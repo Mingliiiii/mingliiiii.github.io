@@ -9,9 +9,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    
-  </head>
+      <style>
+    /* === 图片点击放大（Lightbox）=== */
+          #img-lightbox {
+         display: none;
+         position: fixed;
+         z-index: 9999;
+         left: 0; top: 0;
+         width: 100%; height: 100%;
+         background: rgba(0,0,0,0.9);
+         justify-content: center;
+         align-items: center;
+         cursor: zoom-out;
+         opacity: 0;
+         transition: opacity 0.3s ease;
+         }
+         #img-lightbox.active {
+         display: flex;
+         opacity: 1;
+         }
+         #img-lightbox img {
+         max-width: 90%;
+         max-height: 90%;
+         object-fit: contain;
+         border-radius: 4px;
+         }
 
+         /* === 项目介绍文字：默认隐藏，悬停滑出 === */
+         .project-desc {
+         opacity: 0;
+         max-height: 0;
+         overflow: hidden;
+         transition: all 0.35s ease;
+         margin-top: 0;
+         color: #666;           /* 灰色 */
+         font-style: italic;    /* 斜体 */
+         font-size: 14px;
+         line-height: 1.5;
+         }
+         tr.project-row:hover .project-desc {
+         opacity: 1;
+         max-height: 250px;
+         margin-top: 10px;
+         }
+
+         /* 鼠标悬停图片时，微微放大提示可点击 */
+         .project-row td:first-child img {
+         transition: transform 0.3s ease;
+         cursor: zoom-in;
+         }
+         .project-row td:first-child img:hover {
+         transform: scale(1.03);
+         }
+         </style>
+  </head>
+	
+  <!-- 图片点击放大遮罩层 -->
+  <div id="img-lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="full size">
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('img-lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('img-lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+</body>
+	
   <body>
     <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
       <tr style="padding:0px">
@@ -56,21 +129,19 @@
           </tbody></table>
           <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
-          <tr class="project-row">
+                    <tr class="project-row">
              <td style="padding:16px;width:60%;vertical-align:middle">
-                <a href="https://your-project-page.com/" style="display:block;text-decoration:none;">
-                   <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-                      <img src="images/p1-1.png" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:6px;display:block;" alt="fig1">
-                      <img src="images/p1-2.png" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:6px;display:block;" alt="fig2">
-                      <img src="images/p1-3.png" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:6px;display:block;" alt="fig3">
-                      <img src="images/p1-4.png" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:6px;display:block;" alt="fig4">
-                   </div>
-                </a>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:start;">
+                   <img src="images/p1-1.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig1">
+                   <img src="images/p1-2.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig2">
+                   <img src="images/p1-3.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig3">
+                   <img src="images/p1-4.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig4">
+                </div>
              </td>
              <td style="padding:20px;width:40%;vertical-align:middle">
                 <a href="https://your-project-page.com/" style="text-decoration:none;">
                    <span class="papertitle" style="font-size:16px;font-weight:600;color:#1772d0;">
-                         Graph-Based Generative Design of Mortise-and-Tenon Joints in Timber Structures
+                      Graph-Based Generative Design of Mortise-and-Tenon Joints in Timber Structures
                    </span>
                 </a>
                 <br><br>
@@ -81,7 +152,7 @@
                 <div class="project-desc">
                    Leveraging GNNs to capture the geometric, topological, and mechanical features of mortise-and-tenon joints, this project transforms the experienced craftsmanship into a digital and intelligent paradigm.
                 </div>
-              </td>
+             </td>
           </tr>
 
 
