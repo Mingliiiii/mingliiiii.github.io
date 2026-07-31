@@ -2,22 +2,107 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
     <title>Mingli Sun</title>
-
     <meta name="author" content="Mingli Sun">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
     <style>
-      /* === 图片点击放大（Lightbox）=== */
+      /* ========== CSS Variables & Dark Mode ========== */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #111111;
+        --heading-color: #000000;
+        --secondary-text: #555555;
+        --tertiary-text: #888888;
+        --link-color: #1772d0;
+        --link-hover: #0f5aa3;
+        --desc-color: #666666;
+        --border-color: #e0e0e0;
+      }
+
+      body.dark-mode {
+        --bg-color: #0f0f0f;
+        --text-color: #e8e8e8;
+        --heading-color: #ffffff;
+        --secondary-text: #aaaaaa;
+        --tertiary-text: #999999;
+        --link-color: #5aa8f0;
+        --link-hover: #7dbdf5;
+        --desc-color: #aaaaaa;
+        --border-color: #333333;
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        transition: background-color 0.6s ease, color 0.6s ease;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Force transparent backgrounds on tables so body bg shows through */
+      table, tbody, thead, tfoot, tr, td, th {
+        background-color: transparent !important;
+      }
+
+      h2 {
+        color: var(--heading-color) !important;
+        transition: color 0.6s ease;
+      }
+
+      p, td {
+        transition: color 0.6s ease;
+      }
+
+      a {
+        color: var(--link-color);
+        transition: color 0.6s ease;
+      }
+      a:hover {
+        color: var(--link-hover);
+      }
+
+      /* Override inline gray text in dark mode */
+      body.dark-mode td p,
+      body.dark-mode td span,
+      body.dark-mode td div {
+        transition: color 0.6s ease;
+      }
+
+      body.dark-mode td p[style*="color:#555"],
+      body.dark-mode td p[style*="color: #555"],
+      body.dark-mode td p[style*="color:#666"],
+      body.dark-mode td p[style*="color: #666"] {
+        color: var(--secondary-text) !important;
+      }
+
+      body.dark-mode .project-desc {
+        color: var(--desc-color) !important;
+      }
+
+      body.dark-mode .poster-info span,
+      body.dark-mode td em,
+      body.dark-mode td i {
+        color: var(--tertiary-text) !important;
+      }
+
+      body.dark-mode p[style*="font-size:small"] {
+        color: #888888 !important;
+      }
+
+      body.dark-mode .name {
+        color: var(--heading-color) !important;
+      }
+
+      /* ========== Lightbox ========== */
       #img-lightbox {
         display: none;
         position: fixed;
         z-index: 9999;
         left: 0; top: 0;
         width: 100%; height: 100%;
-        background: rgba(0,0,0,0.9);
+        background: rgba(0,0,0,0.92);
         justify-content: center;
         align-items: center;
         cursor: zoom-out;
@@ -35,7 +120,7 @@
         border-radius: 4px;
       }
 
-      /* === 项目介绍文字：默认隐藏，悬停滑出 === */
+      /* ========== Project Description Hover ========== */
       .project-desc {
         opacity: 0;
         max-height: 0;
@@ -53,7 +138,6 @@
         margin-top: 10px;
       }
 
-      /* 鼠标悬停图片时，微微放大提示可点击 */
       .project-row td:first-child img {
         transition: transform 0.3s ease;
         cursor: zoom-in;
@@ -62,86 +146,22 @@
         transform: scale(1.03);
       }
 
-      /* === Posters 板块 === */
-      .poster-gallery {
-        width: 100%;
-        overflow-x: auto;
-        overflow-y: hidden;
-        cursor: grab;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-      }
-      .poster-gallery::-webkit-scrollbar {
-        display: none;
-      }
-      .poster-gallery:active {
-        cursor: grabbing;
-      }
-
-      .poster-track {
-        display: flex;
-        gap: 20px;
-        padding-bottom: 10px;
-        width: max-content;
-      }
-
-      .poster-card {
-        flex: 0 0 auto;
-        width: 240px;
-        user-select: none;
-      }
-
-      .poster-img-box {
-        width: 100%;
-        aspect-ratio: 3 / 4;
-        background: #f5f5f5;
-        border-radius: 6px;
-        overflow: hidden;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        cursor: zoom-in;
-      }
-      .poster-card:hover .poster-img-box {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-      }
-
-      .poster-img-box img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
+      /* ========== Star Click Effect ========== */
+      .star-particle {
+        position: fixed;
         pointer-events: none;
-      }
-
-      .poster-info {
-        margin-top: 12px;
-      }
-      .poster-info h4 {
-        font-size: 0.95em;
-        font-weight: 600;
-        color: #1772d0;
-        margin: 0 0 4px 0;
-        line-height: 1.3;
-      }
-      .poster-info span {
-        font-size: 0.85em;
-        color: #888;
-      }
-
-      @media (max-width: 800px) {
-        .poster-card { width: 200px; }
-      }
-      @media (max-width: 560px) {
-        .poster-card { width: calc(100vw - 80px); max-width: 300px; }
+        z-index: 99999;
+        line-height: 1;
+        text-shadow: 0 0 6px currentColor, 0 0 12px currentColor;
+        will-change: transform, opacity;
       }
     </style>
+    <base target="_blank">
   <base target="_blank">
 </head>
 
   <body>
-    <!-- 图片点击放大遮罩层 -->
+    <!-- Lightbox -->
     <div id="img-lightbox" onclick="closeLightbox()">
       <img id="lightbox-img" src="" alt="full size">
     </div>
@@ -165,7 +185,7 @@
       <tr style="padding:0px">
         <td style="padding:0px">
 
-          <!-- ===== 个人简介 ===== -->
+          <!-- ===== Profile ===== -->
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr style="padding:0px">
               <td style="padding:2.5%;width:63%;vertical-align:middle">
@@ -194,7 +214,7 @@
             </tr>
           </tbody></table>
 
-          <!-- ===== Research 标题 ===== -->
+          <!-- ===== Research Header ===== -->
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr>
               <td style="padding:16px;width:100%;vertical-align:middle">
@@ -206,7 +226,7 @@
             </tr>
           </tbody></table>
 
-          <!-- ===== Research 论文列表 ===== -->
+          <!-- ===== Research Papers ===== -->
           <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
             <tr class="project-row">
@@ -304,64 +324,56 @@
             </tr>
 
           </tbody></table>
-          <!-- ===== Research 论文列表结束 ===== -->
 
-          <!-- ===== Posters 板块（竖排列表式） ===== -->
-<table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-  <tr>
-    <td style="padding:16px;width:100%;vertical-align:middle">
-      <h2>Posters</h2>
-      <p style="font-size:0.95em;color:#555;line-height:1.6;margin-bottom:8px;">
-        Posters exhibited at academic conferences and exhibitions.
-      </p>
-    </td>
-  </tr>
-</tbody></table>
+          <!-- ===== Posters Section ===== -->
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+              <td style="padding:16px;width:100%;vertical-align:middle">
+                <h2>Posters</h2>
+                <p style="font-size:0.95em;color:#555;line-height:1.6;margin-bottom:8px;">
+                  Posters exhibited at academic conferences and exhibitions.
+                </p>
+              </td>
+            </tr>
+          </tbody></table>
 
-<table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+          <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
-  <!-- Poster 1 -->
-  <tr class="project-row">
-    <td style="padding:16px;width:35%;vertical-align:middle">
-      <img src="images/ac1.jpg" style="width:100%;height:auto;border-radius:6px;display:block;cursor:zoom-in;" onclick="openLightbox(this.src)" alt="Poster 1">
-    </td>
-    <td style="padding:20px;width:65%;vertical-align:middle">
-      <span style="font-size:16px;font-weight:600;color:#1772d0;">
-        Co-Intelligent Architecture: Design and Assembly of the Interlocking Spatial Structures
-      </span>
-      <br><br>
-      Buš, P., Sun, K., <strong>Sun, M.</strong> & Chen, J.
-      <br>
-      <em>ACADIA X CAADRIA 2023: <a href="http://www.acadiacaadria.org/"> Habits of the Anthropocene</a></em>
-      <br>
-      <em>At The University of Hong Kong, Hong Kong SAR, China</em>
-    </td>
-  </tr>
+            <tr class="project-row">
+              <td style="padding:16px;width:35%;vertical-align:middle">
+                <img src="images/ac1.jpg" style="width:100%;height:auto;border-radius:6px;display:block;cursor:zoom-in;" onclick="openLightbox(this.src)" alt="Poster 1">
+              </td>
+              <td style="padding:20px;width:65%;vertical-align:middle">
+                <span style="font-size:16px;font-weight:600;color:#1772d0;">
+                  Co-Intelligent Architecture: Design and Assembly of the Interlocking Spatial Structures
+                </span>
+                <br><br>
+                Buš, P., Sun, K., <strong>Sun, M.</strong> & Chen, J.
+                <br>
+                <em>ACADIA X CAADRIA 2023: <a href="http://www.acadiacaadria.org/">Habits of the Anthropocene</a></em>
+                <br>
+                <em>At The University of Hong Kong, Hong Kong SAR, China</em>
+              </td>
+            </tr>
 
-  <!-- Poster 2 -->
-  <tr class="project-row">
-    <td style="padding:16px;width:35%;vertical-align:middle">
-      <img src="images/ca1.jpg" style="width:100%;height:auto;border-radius:6px;display:block;cursor:zoom-in;" onclick="openLightbox(this.src)" alt="Poster 2">
-    </td>
-    <td style="padding:20px;width:65%;vertical-align:middle">
-      <span style="font-size:16px;font-weight:600;color:#1772d0;">
-        Co-Intelligent Design toward Modular Structures
-      </span>
-      <br><br>
-      <strong>Sun, M.</strong>, Chen, J., Sun, K. & Buš, P.
-      <br>
-      <em>CAADRIA</em>, 2024
-      <br>
-      <em>At Singapore University of Technology and Design (SUTD), Singapore</em>
-    </td>
-  </tr>
+            <tr class="project-row">
+              <td style="padding:16px;width:35%;vertical-align:middle">
+                <img src="images/ca1.jpg" style="width:100%;height:auto;border-radius:6px;display:block;cursor:zoom-in;" onclick="openLightbox(this.src)" alt="Poster 2">
+              </td>
+              <td style="padding:20px;width:65%;vertical-align:middle">
+                <span style="font-size:16px;font-weight:600;color:#1772d0;">
+                  Co-Intelligent Design toward Modular Structures
+                </span>
+                <br><br>
+                <strong>Sun, M.</strong>, Chen, J., Sun, K. & Buš, P.
+                <br>
+                <em>CAADRIA</em>, 2024
+                <br>
+                <em>At Singapore University of Technology and Design (SUTD), Singapore</em>
+              </td>
+            </tr>
 
-
-
- 
-
-</tbody></table>
-<!-- ===== Posters 板块结束 ===== -->
+          </tbody></table>
 
           <!-- ===== Footer ===== -->
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
@@ -379,38 +391,66 @@
       </tr>
     </tbody></table>
 
-    <!-- Posters 拖拽滑动脚本 -->
+    <!-- ========== Theme & Stars Script ========== -->
     <script>
-      (function() {
-        const slider = document.getElementById('posterGallery');
-        if (!slider) return;
-        let isDown = false, startX, scrollLeft;
+      /* ---- Auto Dark Mode: 20:30 - 06:30 ---- */
+      function updateTheme() {
+        const now = new Date();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const totalMinutes = hours * 60 + minutes;
+        const nightStart = 20 * 60 + 30; // 20:30
+        const nightEnd = 6 * 60 + 30;    // 06:30
 
-        slider.addEventListener('mousedown', (e) => {
-          isDown = true;
-          startX = e.pageX - slider.offsetLeft;
-          scrollLeft = slider.scrollLeft;
-        });
-        slider.addEventListener('mouseleave', () => { isDown = false; });
-        slider.addEventListener('mouseup', () => { isDown = false; });
-        slider.addEventListener('mousemove', (e) => {
-          if (!isDown) return;
-          e.preventDefault();
-          const x = e.pageX - slider.offsetLeft;
-          slider.scrollLeft = scrollLeft - (x - startX) * 1.5;
-        });
-        slider.addEventListener('touchstart', (e) => {
-          isDown = true;
-          startX = e.touches[0].pageX - slider.offsetLeft;
-          scrollLeft = slider.scrollLeft;
-        }, {passive: true});
-        slider.addEventListener('touchend', () => { isDown = false; });
-        slider.addEventListener('touchmove', (e) => {
-          if (!isDown) return;
-          const x = e.touches[0].pageX - slider.offsetLeft;
-          slider.scrollLeft = scrollLeft - (x - startX) * 1.5;
-        }, {passive: true});
-      })();
+        if (totalMinutes >= nightStart || totalMinutes < nightEnd) {
+          document.body.classList.add('dark-mode');
+        } else {
+          document.body.classList.remove('dark-mode');
+        }
+      }
+      updateTheme();
+      setInterval(updateTheme, 60000); // check every minute
+
+      /* ---- Star Click Effect ---- */
+      document.addEventListener('click', function(e) {
+        // Don't trigger when clicking inside lightbox
+        if (e.target.closest('#img-lightbox')) return;
+
+        const colors = ['#FFD700', '#FFFACD', '#FFFFFF', '#FFE4B5', '#E6E6FA', '#87CEEB'];
+        const count = 10 + Math.floor(Math.random() * 6); // 10-15 stars
+
+        for (let i = 0; i < count; i++) {
+          const star = document.createElement('span');
+          star.className = 'star-particle';
+          star.innerHTML = '★';
+          star.style.left = e.clientX + 'px';
+          star.style.top = e.clientY + 'px';
+          star.style.color = colors[Math.floor(Math.random() * colors.length)];
+          star.style.fontSize = (10 + Math.random() * 12) + 'px';
+          star.style.opacity = '1';
+          star.style.transform = 'translate(0,0) rotate(0deg) scale(1)';
+          star.style.transition = 'all ' + (0.8 + Math.random() * 0.5) + 's cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+          document.body.appendChild(star);
+
+          // Force reflow
+          star.getBoundingClientRect();
+
+          const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.6;
+          const distance = 60 + Math.random() * 100;
+          const tx = Math.cos(angle) * distance;
+          const ty = Math.sin(angle) * distance;
+          const rot = Math.random() * 720 - 360;
+
+          requestAnimationFrame(() => {
+            star.style.transform = 'translate(' + tx + 'px, ' + ty + 'px) rotate(' + rot + 'deg) scale(0)';
+            star.style.opacity = '0';
+          });
+
+          setTimeout(() => {
+            if (star.parentNode) star.parentNode.removeChild(star);
+          }, 1500);
+        }
+      });
     </script>
   </body>
 </html>
