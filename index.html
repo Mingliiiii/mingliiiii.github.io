@@ -9,86 +9,163 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
-      <style>
-    /* === 图片点击放大（Lightbox）=== */
-          #img-lightbox {
-         display: none;
-         position: fixed;
-         z-index: 9999;
-         left: 0; top: 0;
-         width: 100%; height: 100%;
-         background: rgba(0,0,0,0.9);
-         justify-content: center;
-         align-items: center;
-         cursor: zoom-out;
-         opacity: 0;
-         transition: opacity 0.3s ease;
-         }
-         #img-lightbox.active {
-         display: flex;
-         opacity: 1;
-         }
-         #img-lightbox img {
-         max-width: 90%;
-         max-height: 90%;
-         object-fit: contain;
-         border-radius: 4px;
-         }
+    <style>
+      /* === 图片点击放大（Lightbox）=== */
+      #img-lightbox {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0; top: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.9);
+        justify-content: center;
+        align-items: center;
+        cursor: zoom-out;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      #img-lightbox.active {
+        display: flex;
+        opacity: 1;
+      }
+      #img-lightbox img {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        border-radius: 4px;
+      }
 
-         /* === 项目介绍文字：默认隐藏，悬停滑出 === */
-         .project-desc {
-         opacity: 0;
-         max-height: 0;
-         overflow: hidden;
-         transition: all 0.35s ease;
-         margin-top: 0;
-         color: #666;           /* 灰色 */
-         font-style: italic;    /* 斜体 */
-         font-size: 14px;
-         line-height: 1.5;
-         }
-         tr.project-row:hover .project-desc {
-         opacity: 1;
-         max-height: 250px;
-         margin-top: 10px;
-         }
+      /* === 项目介绍文字：默认隐藏，悬停滑出 === */
+      .project-desc {
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.35s ease;
+        margin-top: 0;
+        color: #666;
+        font-style: italic;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      tr.project-row:hover .project-desc {
+        opacity: 1;
+        max-height: 250px;
+        margin-top: 10px;
+      }
 
-         /* 鼠标悬停图片时，微微放大提示可点击 */
-         .project-row td:first-child img {
-         transition: transform 0.3s ease;
-         cursor: zoom-in;
-         }
-         .project-row td:first-child img:hover {
-         transform: scale(1.03);
-         }
-         </style>
-  </head>
-	
-  <!-- 图片点击放大遮罩层 -->
-  <div id="img-lightbox" onclick="closeLightbox()">
-    <img id="lightbox-img" src="" alt="full size">
-  </div>
+      /* 鼠标悬停图片时，微微放大提示可点击 */
+      .project-row td:first-child img {
+        transition: transform 0.3s ease;
+        cursor: zoom-in;
+      }
+      .project-row td:first-child img:hover {
+        transform: scale(1.03);
+      }
 
-  <script>
-    function openLightbox(src) {
-      document.getElementById('lightbox-img').src = src;
-      document.getElementById('img-lightbox').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeLightbox() {
-      document.getElementById('img-lightbox').classList.remove('active');
-      document.body.style.overflow = '';
-    }
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeLightbox();
-    });
-  </script>
-</body>
-	
+      /* === Posters 板块 === */
+      .poster-gallery {
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        cursor: grab;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      .poster-gallery::-webkit-scrollbar {
+        display: none;
+      }
+      .poster-gallery:active {
+        cursor: grabbing;
+      }
+
+      .poster-track {
+        display: flex;
+        gap: 20px;
+        padding-bottom: 10px;
+        width: max-content;
+      }
+
+      .poster-card {
+        flex: 0 0 auto;
+        width: 240px;
+        user-select: none;
+      }
+
+      .poster-img-box {
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        background: #f5f5f5;
+        border-radius: 6px;
+        overflow: hidden;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: zoom-in;
+      }
+      .poster-card:hover .poster-img-box {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      }
+
+      .poster-img-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        pointer-events: none;
+      }
+
+      .poster-info {
+        margin-top: 12px;
+      }
+      .poster-info h4 {
+        font-size: 0.95em;
+        font-weight: 600;
+        color: #1772d0;
+        margin: 0 0 4px 0;
+        line-height: 1.3;
+      }
+      .poster-info span {
+        font-size: 0.85em;
+        color: #888;
+      }
+
+      @media (max-width: 800px) {
+        .poster-card { width: 200px; }
+      }
+      @media (max-width: 560px) {
+        .poster-card { width: calc(100vw - 80px); max-width: 300px; }
+      }
+    </style>
+  <base target="_blank">
+</head>
+
   <body>
+    <!-- 图片点击放大遮罩层 -->
+    <div id="img-lightbox" onclick="closeLightbox()">
+      <img id="lightbox-img" src="" alt="full size">
+    </div>
+
+    <script>
+      function openLightbox(src) {
+        document.getElementById('lightbox-img').src = src;
+        document.getElementById('img-lightbox').classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeLightbox() {
+        document.getElementById('img-lightbox').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeLightbox();
+      });
+    </script>
+
     <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
       <tr style="padding:0px">
         <td style="padding:0px">
+
+          <!-- ===== 个人简介 ===== -->
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr style="padding:0px">
               <td style="padding:2.5%;width:63%;vertical-align:middle">
@@ -96,366 +173,205 @@
                   Mingli Sun
                 </p>
                 <p>
-		A researcher in computational design. Interested in the philosophy of technology. Academic experience at <a href="https://tjdi.tongji.edu.cn/?lang=en">College of Design and Innovation (D&I) </a>, <a href="https://caup.tongji.edu.cn/caupen/main.htm">College of Architecture and Urban Planning (CAUP)</a>, Tongji University and <a href="https://www.coia.tech/"> Co-Intelligent Architecture Lab</a>, Tsinghua SIGS.
+                  A researcher in computational design. Interested in the philosophy of technology. Academic experience at <a href="https://tjdi.tongji.edu.cn/?lang=en">College of Design and Innovation (D&I) </a>, <a href="https://caup.tongji.edu.cn/caupen/main.htm">College of Architecture and Urban Planning (CAUP)</a>, Tongji University and <a href="https://www.coia.tech/"> Co-Intelligent Architecture Lab</a>, Tsinghua SIGS.
                 </p>
                 <p style="text-align:center">
-                  <a href="2233747@tongji.edu.cn">Email</a> &nbsp;/&nbsp;
+                  <a href="mailto:2233747@tongji.edu.cn">Email</a> &nbsp;/&nbsp;
                   <a href="data/Sun_Mingli_CV_PhD_2027.pdf">CV</a> &nbsp;/&nbsp;
                   <a href="https://www.researchgate.net/profile/Mingli-Sun-4?ev=hdr_xprf">Publications</a> &nbsp;/&nbsp;
                   <a href="https://www.linkedin.com/in/mingli-sun-55a441333/">LinkedIn </a>
-                  
                 </p>
               </td>
               <td style="padding:2.5%;width:37%;max-width:37%">
-                  <a href="images/Mingli_1.png" style="display:block; width:100%; border-radius:50%; overflow:hidden;">
-                      <img 
-                          style="width:100%;max-width:100%;object-fit:cover; border-radius:50%; transform: scale(1.3);transform-origin: center 30%" 
-                          alt="profile photo" 
-                          src="images/Mingli_1.png" 
-                          class="hoverZoomLink">
-				  </a>
+                <a href="images/Mingli_1.png" style="display:block; width:100%; border-radius:50%; overflow:hidden;">
+                  <img 
+                    style="width:100%;max-width:100%;object-fit:cover; border-radius:50%; transform: scale(1.3);transform-origin: center 30%" 
+                    alt="profile photo" 
+                    src="images/Mingli_1.png" 
+                    class="hoverZoomLink">
+                </a>
               </td>
             </tr>
           </tbody></table>
+
+          <!-- ===== Research 标题 ===== -->
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-              <tr>
+            <tr>
               <td style="padding:16px;width:100%;vertical-align:middle">
                 <h2>Research</h2>
                 <p>
-                   Current research sits at the intersection of algorithm design, neural networks, and structural architecture, with a theoretical focus on human-AI interaction.
+                  Current research sits at the intersection of algorithm design, neural networks, and structural architecture, with a theoretical focus on human-AI interaction.
                 </p>
               </td>
             </tr>
           </tbody></table>
+
+          <!-- ===== Research 论文列表 ===== -->
           <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
-                    <tr class="project-row">
-             <td style="padding:16px;width:60%;vertical-align:middle">
+            <tr class="project-row">
+              <td style="padding:16px;width:60%;vertical-align:middle">
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:start;">
-                   <img src="images/p1-1.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig1">
-                   <img src="images/p1-2.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig2">
-                   <img src="images/p1-3.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig3">
-                   <img src="images/p1-4.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig4">
+                  <img src="images/p1-1.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig1">
+                  <img src="images/p1-2.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig2">
+                  <img src="images/p1-3.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig3">
+                  <img src="images/p1-4.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig4">
                 </div>
-             </td>
-             <td style="padding:20px;width:40%;vertical-align:middle">
+              </td>
+              <td style="padding:20px;width:40%;vertical-align:middle">
                 <a href="https://your-project-page.com/" style="text-decoration:none;">
-                   <span class="papertitle" style="font-size:16px;font-weight:600;color:#1772d0;">
-                      Graph-Based Generative Design of Mortise-and-Tenon Joints in Timber Structures
-                   </span>
+                  <span class="papertitle" style="font-size:16px;font-weight:600;color:#1772d0;">
+                    Graph-Based Generative Design of Mortise-and-Tenon Joints in Timber Structures
+                  </span>
                 </a>
                 <br><br>
                 <strong>Sun, M.</strong>, Zhou, Y., Liu, Y., Zhu, Y., Yang, Q., Liu, Y., & Chai, H.
                 <br>
                 <em>CDRF</em>, 2026
-
                 <div class="project-desc">
-                   Leveraging GNNs to capture the geometric, topological, and mechanical features of mortise-and-tenon joints, this project transforms the experienced craftsmanship into a digital and intelligent paradigm.
+                  Leveraging GNNs to capture the geometric, topological, and mechanical features of mortise-and-tenon joints, this project transforms the experienced craftsmanship into a digital and intelligent paradigm.
                 </div>
-             </td>
-          </tr>
+              </td>
+            </tr>
 
             <tr class="project-row">
-             <td style="padding:16px;width:60%;vertical-align:middle">
+              <td style="padding:16px;width:60%;vertical-align:middle">
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:start;">
-                   <img src="images/p1-1.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig1">
-                   <img src="images/p1-2.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig2">
-                   <img src="images/p1-3.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig3">
-                   <img src="images/p1-4.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig4">
+                  <img src="images/p1-1.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig1">
+                  <img src="images/p1-2.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig2">
+                  <img src="images/p1-3.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig3">
+                  <img src="images/p1-4.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig4">
                 </div>
-             </td>
-             <td style="padding:20px;width:40%;vertical-align:middle">
+              </td>
+              <td style="padding:20px;width:40%;vertical-align:middle">
                 <a href="https://papers.cumincad.org/cgi-bin/works/paper/caadria2025_459" style="text-decoration:none;">
-                   <span class="papertitle" style="font-size:16px;font-weight:600;color:#1772d0;">
-                      Text-Guided Fine-Tuned Diffusion Models for Spatial Envisioning of Modular Structures: A Personalized Approach to Conceptual Architectural Design
-                   </span>
+                  <span class="papertitle" style="font-size:16px;font-weight:600;color:#1772d0;">
+                    Text-Guided Fine-Tuned Diffusion Models for Spatial Envisioning of Modular Structures: A Personalized Approach to Conceptual Architectural Design
+                  </span>
                 </a>
                 <br><br>
                 <strong>Sun, M.</strong>, Chen, J. & Terzidis, K.
                 <br>
                 <em>CAADRIA</em>, 2025 <em>IASS</em>, 2024
-
                 <div class="project-desc">
-                   Utilizing the Creativity Support Index (CSI), this study investigates the impact of generative AI-driven conceptual renderings on the early design stage. 
+                  Utilizing the Creativity Support Index (CSI), this study investigates the impact of generative AI-driven conceptual renderings on the early design stage. 
                 </div>
-             </td>
-          </tr>
+              </td>
+            </tr>
 
-			  
-          <tr class="project-row">
-             <td style="padding:16px;width:60%;vertical-align:middle">
+            <tr class="project-row">
+              <td style="padding:16px;width:60%;vertical-align:middle">
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:start;">
-                   <img src="images/p1-1.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig1">
-                   <img src="images/p1-2.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig2">
-                   <img src="images/p1-3.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig3">
-                   <img src="images/p1-4.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig4">
+                  <img src="images/p1-1.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig1">
+                  <img src="images/p1-2.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig2">
+                  <img src="images/p1-3.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig3">
+                  <img src="images/p1-4.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig4">
                 </div>
-             </td>
-             <td style="padding:20px;width:40%;vertical-align:middle">
+              </td>
+              <td style="padding:20px;width:40%;vertical-align:middle">
                 <a href="https://papers.cumincad.org/cgi-bin/works/paper/caadria2024_204" style="text-decoration:none;">
-                   <span class="papertitle" style="font-size:16px;font-weight:600;color:#1772d0;">
-                      An Imitation Learning-Based Agent for Modular Assembly Structural Design
-                   </span>
+                  <span class="papertitle" style="font-size:16px;font-weight:600;color:#1772d0;">
+                    An Imitation Learning-Based Agent for Modular Assembly Structural Design
+                  </span>
                 </a>
                 <br><br>
                 <strong>Sun, M.</strong>, Buš, P., Chen, J., & Sun, K.
                 <br>
                 <em>CAADRIA</em>, 2024
-
                 <div class="project-desc">
-                   Developed an agent for a modular assembly-oriented structural design task through imitation learning from human demonstrations, establishing a human–AI collaborative design paradigm.  
+                  Developed an agent for a modular assembly-oriented structural design task through imitation learning from human demonstrations, establishing a human–AI collaborative design paradigm.  
                 </div>
-             </td>
-          </tr>
+              </td>
+            </tr>
 
-		  <tr class="project-row">
-             <td style="padding:16px;width:60%;vertical-align:middle">
+            <tr class="project-row">
+              <td style="padding:16px;width:60%;vertical-align:middle">
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:start;">
-                   <img src="images/p1-1.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig1">
-                   <img src="images/p1-2.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig2">
-                   <img src="images/p1-3.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig3">
-                   <img src="images/p1-4.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig4">
+                  <img src="images/p1-1.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig1">
+                  <img src="images/p1-2.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig2">
+                  <img src="images/p1-3.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig3">
+                  <img src="images/p1-4.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig4">
                 </div>
-             </td>
-             <td style="padding:20px;width:40%;vertical-align:middle">
+              </td>
+              <td style="padding:20px;width:40%;vertical-align:middle">
                 <a href="https://d.wanfangdata.com.cn/periodical/zhuzkj202606011" style="text-decoration:none;">
-                   <span class="papertitle" style="font-size:16px;font-weight:600;color:#1772d0;">
-                      Intelligent Robotic System for High-Rise Building Façade Finishing
-                   </span>
+                  <span class="papertitle" style="font-size:16px;font-weight:600;color:#1772d0;">
+                    Intelligent Robotic System for High-Rise Building Façade Finishing
+                  </span>
                 </a>
                 <br><br>
                 <strong>Sun, M.</strong> & Chai, H.
                 <br>
                 <em>Housing Science</em>, 2026 <em>(A Chinese journal article)</em>
-
                 <div class="project-desc">
-                    Developed an intelligent robotic system integrated with high-rise building construction platforms for façade spraying and grinding operations, improving construction safety and efficiency. 
+                  Developed an intelligent robotic system integrated with high-rise building construction platforms for façade spraying and grinding operations, improving construction safety and efficiency. 
                 </div>
-             </td>
-          </tr>
+              </td>
+            </tr>
 
-
-		<!-- Posters Section -->
-<div style="margin-top: 60px; margin-bottom: 60px;">
-  <h2 style="font-size: 1.5em; font-weight: 600; color: #111; margin-bottom: 8px; font-family: inherit;">
-    Posters
-  </h2>
-  <p style="font-size: 0.95em; color: #555; line-height: 1.6; margin-bottom: 28px; max-width: 600px;">
-    这是在不同的学术会议或展览中已展出的海报。
-  </p>
-
-  <div class="poster-gallery" id="posterGallery">
-    <div class="poster-track" id="posterTrack">
-      
-      <!-- Poster 1 -->
-      <div class="poster-card">
-        <div class="poster-img-box">
-          <img src="/assets/poster1.jpg" alt="Poster 1">
-        </div>
-        <div class="poster-info">
-          <h4>Graph-Based Generative Design</h4>
-          <span>CDRF, 2026</span>
-        </div>
-      </div>
-
-      <!-- Poster 2 -->
-      <div class="poster-card">
-        <div class="poster-img-box">
-          <img src="/assets/poster2.jpg" alt="Poster 2">
-        </div>
-        <div class="poster-info">
-          <h4>Text-Guided Diffusion Models</h4>
-          <span>CAADRIA, 2025</span>
-        </div>
-      </div>
-
-      <!-- Poster 3 -->
-      <div class="poster-card">
-        <div class="poster-img-box">
-          <img src="/assets/poster3.jpg" alt="Poster 3">
-        </div>
-        <div class="poster-info">
-          <h4>Modular Assembly Design</h4>
-          <span>CAADRIA, 2024</span>
-        </div>
-      </div>
-
-      <!-- Poster 4 -->
-      <div class="poster-card">
-        <div class="poster-img-box">
-          <img src="/assets/poster4.jpg" alt="Poster 4">
-        </div>
-        <div class="poster-info">
-          <h4>Robotic Façade System</h4>
-          <span>Housing Science, 2026</span>
-        </div>
-      </div>
-
-      <!-- 继续添加更多海报... -->
-
-    </div>
-  </div>
-</div>
-
-<style>
-  .poster-gallery {
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    cursor: grab;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;        /* Firefox */
-    -ms-overflow-style: none;     /* IE 10+ */
-  }
-  .poster-gallery::-webkit-scrollbar {
-    display: none;                /* Chrome/Safari */
-  }
-  .poster-gallery:active {
-    cursor: grabbing;
-  }
-
-  .poster-track {
-    display: flex;
-    gap: 24px;
-    padding-bottom: 10px;
-    width: max-content;
-  }
-
-  .poster-card {
-    flex: 0 0 auto;
-    width: calc((100vw - 80px) / 3);   /* 默认显示3个，减去边距 */
-    max-width: 320px;
-    min-width: 220px;
-    user-select: none;
-  }
-
-  .poster-img-box {
-    width: 100%;
-    aspect-ratio: 3 / 4;          /* A0/A1 海报竖版比例 */
-    background: #f5f5f5;
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .poster-card:hover .poster-img-box {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.10);
-  }
-
-  .poster-img-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    pointer-events: none;         /* 防止拖拽时选中图片 */
-  }
-
-  .poster-info {
-    margin-top: 12px;
-  }
-  .poster-info h4 {
-    font-size: 0.95em;
-    font-weight: 600;
-    color: #2a7ae2;               /* 和你网站上论文标题的蓝色保持一致 */
-    margin: 0 0 4px 0;
-    line-height: 1.3;
-  }
-  .poster-info span {
-    font-size: 0.85em;
-    color: #888;
-  }
-
-  /* 响应式：平板显示2个，手机显示1.5个（暗示可滑动） */
-  @media (max-width: 900px) {
-    .poster-card {
-      width: calc((100vw - 60px) / 2);
-    }
-  }
-  @media (max-width: 560px) {
-    .poster-card {
-      width: calc(100vw - 60px);
-      max-width: none;
-    }
-  }
-</style>
-
-<script>
-  (function() {
-    const slider = document.getElementById('posterGallery');
-    const track  = document.getElementById('posterTrack');
-    if (!slider || !track) return;
-
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    slider.addEventListener('mousedown', (e) => {
-      isDown = true;
-      slider.classList.add('active');
-      startX = e.pageX - slider.offsetLeft;
-      scrollLeft = slider.scrollLeft;
-    });
-
-    slider.addEventListener('mouseleave', () => {
-      isDown = false;
-      slider.classList.remove('active');
-    });
-
-    slider.addEventListener('mouseup', () => {
-      isDown = false;
-      slider.classList.remove('active');
-    });
-
-    slider.addEventListener('mousemove', (e) => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - slider.offsetLeft;
-      const walk = (x - startX) * 1.5; // 滑动灵敏度
-      slider.scrollLeft = scrollLeft - walk;
-    });
-
-    // 触摸设备支持
-    slider.addEventListener('touchstart', (e) => {
-      isDown = true;
-      startX = e.touches[0].pageX - slider.offsetLeft;
-      scrollLeft = slider.scrollLeft;
-    }, {passive: true});
-
-    slider.addEventListener('touchend', () => {
-      isDown = false;
-    });
-
-    slider.addEventListener('touchmove', (e) => {
-      if (!isDown) return;
-      const x = e.touches[0].pageX - slider.offsetLeft;
-      const walk = (x - startX) * 1.5;
-      slider.scrollLeft = scrollLeft - walk;
-    }, {passive: true});
-  })();
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-			  
           </tbody></table>
+          <!-- ===== Research 论文列表结束 ===== -->
+
+          <!-- ===== Posters 板块 ===== -->
+          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+            <tr>
+              <td style="padding:16px;width:100%;vertical-align:middle">
+                <h2>Posters</h2>
+                <p style="font-size:0.95em;color:#555;line-height:1.6;margin-bottom:24px;">
+                  Posters exhibited at academic conferences and exhibitions.
+                </p>
+
+                <div class="poster-gallery" id="posterGallery">
+                  <div class="poster-track" id="posterTrack">
+
+                    <div class="poster-card">
+                      <div class="poster-img-box" onclick="openLightbox('images/poster1.jpg')">
+                        <img src="images/poster1.jpg" alt="Poster 1">
+                      </div>
+                      <div class="poster-info">
+                        <h4>Graph-Based Generative Design</h4>
+                        <span>CDRF, 2026</span>
+                      </div>
+                    </div>
+
+                    <div class="poster-card">
+                      <div class="poster-img-box" onclick="openLightbox('images/poster2.jpg')">
+                        <img src="images/poster2.jpg" alt="Poster 2">
+                      </div>
+                      <div class="poster-info">
+                        <h4>Text-Guided Diffusion Models</h4>
+                        <span>CAADRIA, 2025</span>
+                      </div>
+                    </div>
+
+                    <div class="poster-card">
+                      <div class="poster-img-box" onclick="openLightbox('images/poster3.jpg')">
+                        <img src="images/poster3.jpg" alt="Poster 3">
+                      </div>
+                      <div class="poster-info">
+                        <h4>Modular Assembly Design</h4>
+                        <span>CAADRIA, 2024</span>
+                      </div>
+                    </div>
+
+                    <div class="poster-card">
+                      <div class="poster-img-box" onclick="openLightbox('images/poster4.jpg')">
+                        <img src="images/poster4.jpg" alt="Poster 4">
+                      </div>
+                      <div class="poster-info">
+                        <h4>Robotic Façade System</h4>
+                        <span>Housing Science, 2026</span>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody></table>
+          <!-- ===== Posters 板块结束 ===== -->
+
+          <!-- ===== Footer ===== -->
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr>
               <td style="padding:0px">
@@ -466,8 +382,43 @@
               </td>
             </tr>
           </tbody></table>
+
         </td>
       </tr>
-    </table>
+    </tbody></table>
+
+    <!-- Posters 拖拽滑动脚本 -->
+    <script>
+      (function() {
+        const slider = document.getElementById('posterGallery');
+        if (!slider) return;
+        let isDown = false, startX, scrollLeft;
+
+        slider.addEventListener('mousedown', (e) => {
+          isDown = true;
+          startX = e.pageX - slider.offsetLeft;
+          scrollLeft = slider.scrollLeft;
+        });
+        slider.addEventListener('mouseleave', () => { isDown = false; });
+        slider.addEventListener('mouseup', () => { isDown = false; });
+        slider.addEventListener('mousemove', (e) => {
+          if (!isDown) return;
+          e.preventDefault();
+          const x = e.pageX - slider.offsetLeft;
+          slider.scrollLeft = scrollLeft - (x - startX) * 1.5;
+        });
+        slider.addEventListener('touchstart', (e) => {
+          isDown = true;
+          startX = e.touches[0].pageX - slider.offsetLeft;
+          scrollLeft = slider.scrollLeft;
+        }, {passive: true});
+        slider.addEventListener('touchend', () => { isDown = false; });
+        slider.addEventListener('touchmove', (e) => {
+          if (!isDown) return;
+          const x = e.touches[0].pageX - slider.offsetLeft;
+          slider.scrollLeft = scrollLeft - (x - startX) * 1.5;
+        }, {passive: true});
+      })();
+    </script>
   </body>
 </html>
