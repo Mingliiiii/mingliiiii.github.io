@@ -157,8 +157,7 @@
       }
     </style>
     <base target="_blank">
-  <base target="_blank">
-</head>
+  </head>
 
   <body>
     <!-- Lightbox -->
@@ -191,7 +190,6 @@
               <td style="padding:2.5%;width:63%;vertical-align:middle">
                 <p class="name" style="text-align: center;">
                   Mingli Sun
-                  
                 </p>
                 <p>
                   A researcher in computational design. Interested in the philosophy of technology. Academic experience at <a href="https://tjdi.tongji.edu.cn/?lang=en">College of Design and Innovation (D&I) </a>, <a href="https://caup.tongji.edu.cn/caupen/main.htm">College of Architecture and Urban Planning (CAUP)</a>, Tongji University and <a href="https://www.coia.tech/"> Co-Intelligent Architecture Lab</a>, Tsinghua SIGS.
@@ -229,12 +227,10 @@
           <!-- ===== Research Papers ===== -->
           <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
+            <!-- Project 1 -->
             <tr class="project-row">
               <td style="padding:16px;width:30%;vertical-align:middle">
-                
-                  <img src="images/cdrf1.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig1">
-                  
-                
+                <img src="images/cdrf1.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig1">
               </td>
               <td style="padding:20px;width:70%;vertical-align:middle">
                 <a href="https://your-project-page.com/" style="text-decoration:none;">
@@ -252,73 +248,36 @@
               </td>
             </tr>
 
+            <!-- Project 2 (with image slider) -->
             <tr class="project-row">
               <td style="padding:16px;width:60%;vertical-align:middle">
-              <div class="img-slider" style="position:relative;overflow:hidden;border-radius:6px;cursor:grab;user-select:none;-webkit-user-select:none;">
-              <div class="img-track" style="display:flex;transition:transform 0.3s ease;width:200%;">
-              <img src="images/3-1.png" style="width:50%;height:auto;display:block;flex-shrink:0;" alt="fig1">
-              <img src="images/IASS.png" style="width:50%;height:auto;display:block;flex-shrink:0;" alt="fig2">
-              </div>
-              </div>
+                <div class="img-slider" style="position:relative;overflow:hidden;border-radius:6px;cursor:grab;user-select:none;-webkit-user-select:none;">
+                  <div class="img-track" style="display:flex;transition:transform 0.3s ease;width:200%;">
+                    <img src="images/3-1.png" style="width:50%;height:auto;display:block;flex-shrink:0;" alt="fig1">
+                    <img src="images/IASS.png" style="width:50%;height:auto;display:block;flex-shrink:0;" alt="fig2">
+                  </div>
+                </div>
               </td>
-  <td style="padding:20px;width:40%;vertical-align:middle">
-    <a href="https://papers.cumincad.org/cgi-bin/works/paper/caadria2025_459" style="text-decoration:none;">
-      <span class="papertitle" style="font-size:16px;font-weight:600;color:#1772d0;">
-        Text-Guided Fine-Tuned Diffusion Models for Spatial Envisioning of Modular Structures: A Personalized Approach to Conceptual Architectural Design
-      </span>
-    </a>
-    <br><br>
-    <strong>Sun, M.</strong>, Chen, J. & Terzidis, K.
-    <br>
-    <em>CAADRIA</em>, 2025 <em>IASS</em>, 2024
-    <div class="project-desc">
-      Utilizing the Creativity Support Index (CSI), this study investigates the impact of generative AI-driven conceptual renderings on the early design stage. 
-    </div>
-  </td>
-</tr>
+              <td style="padding:20px;width:40%;vertical-align:middle">
+                <a href="https://papers.cumincad.org/cgi-bin/works/paper/caadria2025_459" style="text-decoration:none;">
+                  <span class="papertitle" style="font-size:16px;font-weight:600;color:#1772d0;">
+                    Text-Guided Fine-Tuned Diffusion Models for Spatial Envisioning of Modular Structures: A Personalized Approach to Conceptual Architectural Design
+                  </span>
+                </a>
+                <br><br>
+                <strong>Sun, M.</strong>, Chen, J. & Terzidis, K.
+                <br>
+                <em>CAADRIA</em>, 2025 <em><a href="https://www.research-collection.ethz.ch/entities/publication/c3df904f-28f9-4aab-b9dc-78e3153474cf">IASS</em>, 2024</a>
+                <div class="project-desc">
+                  Utilizing the Creativity Support Index (CSI), this study investigates the impact of generative AI-driven conceptual renderings on the early design stage. 
+                </div>
+              </td>
+            </tr>
 
-<script>
-(function(){
-  var slider = document.querySelector('.img-slider');
-  var track  = slider.querySelector('.img-track');
-  var imgs   = slider.querySelectorAll('img');
-  var startX, current = 0;
-
-  function goTo(i){
-    current = i;
-    track.style.transform = 'translateX(-' + (i * 50) + '%)';
-  }
-
-  function onStart(x){ startX = x; }
-  function onEnd(x){
-    var diff = x - startX;
-    if (Math.abs(diff) < 10) {
-      // 点击（几乎没滑动）→ 打开当前图片的 lightbox
-      if (typeof openLightbox === 'function') openLightbox(imgs[current].src);
-    } else if (Math.abs(diff) > 30) {
-      // 左滑(diff<0)看下一张，右滑(diff>0)回上一张
-      if (diff < 0 && current < imgs.length - 1) goTo(current + 1);
-      else if (diff > 0 && current > 0) goTo(current - 1);
-    }
-  }
-
-  // 鼠标
-  slider.addEventListener('mousedown', function(e){ onStart(e.pageX); slider.style.cursor='grabbing'; });
-  slider.addEventListener('mouseup',   function(e){ onEnd(e.pageX);   slider.style.cursor='grab'; });
-  slider.addEventListener('mouseleave',function(){ slider.style.cursor='grab'; });
-
-  // 触摸
-  slider.addEventListener('touchstart', function(e){ onStart(e.touches[0].pageX); }, {passive:true});
-  slider.addEventListener('touchend',   function(e){ onEnd(e.changedTouches[0].pageX); }, {passive:true});
-})();
-</script>
-            
-
+            <!-- Project 3 -->
             <tr class="project-row">
               <td style="padding:16px;width:30%;vertical-align:middle">
-                  <img src="images/p4-1.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig1">
-                  
-                </div>
+                <img src="images/p4-1.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig1">
               </td>
               <td style="padding:20px;width:70%;vertical-align:middle">
                 <a href="https://papers.cumincad.org/cgi-bin/works/paper/caadria2024_204" style="text-decoration:none;">
@@ -332,16 +291,14 @@
                 <em>CAADRIA</em>, 2024
                 <div class="project-desc">
                   Developed an agent for a modular assembly-oriented structural design task through imitation learning from human demonstrations, establishing a human–AI collaborative design paradigm.  
-               
+                </div>
               </td>
             </tr>
 
+            <!-- Project 4 -->
             <tr class="project-row">
               <td style="padding:16px;width:60%;vertical-align:middle">
-                
-                  <img src="images/hc.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig1">
-                  
-               
+                <img src="images/hc.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig1">
               </td>
               <td style="padding:20px;width:40%;vertical-align:middle">
                 <a href="https://d.wanfangdata.com.cn/periodical/zhuzkj202606011" style="text-decoration:none;">
@@ -375,6 +332,7 @@
 
           <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
+            <!-- Poster 1 -->
             <tr class="project-row">
               <td style="padding:16px;width:35%;vertical-align:middle">
                 <img src="images/ac1.jpg" style="width:100%;height:auto;border-radius:6px;display:block;cursor:zoom-in;" onclick="openLightbox(this.src)" alt="Poster 1">
@@ -392,6 +350,7 @@
               </td>
             </tr>
 
+            <!-- Poster 2 -->
             <tr class="project-row">
               <td style="padding:16px;width:35%;vertical-align:middle">
                 <img src="images/ca1.jpg" style="width:100%;height:auto;border-radius:6px;display:block;cursor:zoom-in;" onclick="openLightbox(this.src)" alt="Poster 2">
@@ -426,6 +385,43 @@
         </td>
       </tr>
     </tbody></table>
+
+    <!-- ========== Image Slider Script ========== -->
+    <script>
+      (function(){
+        var slider = document.querySelector('.img-slider');
+        var track  = slider.querySelector('.img-track');
+        var imgs   = slider.querySelectorAll('img');
+        var startX, current = 0;
+
+        function goTo(i){
+          current = i;
+          track.style.transform = 'translateX(-' + (i * 50) + '%)';
+        }
+
+        function onStart(x){ startX = x; }
+        function onEnd(x){
+          var diff = x - startX;
+          if (Math.abs(diff) < 10) {
+            // Click (almost no drag) -> open lightbox for current image
+            if (typeof openLightbox === 'function') openLightbox(imgs[current].src);
+          } else if (Math.abs(diff) > 30) {
+            // Swipe left (diff<0) -> next, swipe right (diff>0) -> prev
+            if (diff < 0 && current < imgs.length - 1) goTo(current + 1);
+            else if (diff > 0 && current > 0) goTo(current - 1);
+          }
+        }
+
+        // Mouse
+        slider.addEventListener('mousedown', function(e){ onStart(e.pageX); slider.style.cursor='grabbing'; });
+        slider.addEventListener('mouseup',   function(e){ onEnd(e.pageX);   slider.style.cursor='grab'; });
+        slider.addEventListener('mouseleave',function(){ slider.style.cursor='grab'; });
+
+        // Touch
+        slider.addEventListener('touchstart', function(e){ onStart(e.touches[0].pageX); }, {passive:true});
+        slider.addEventListener('touchend',   function(e){ onEnd(e.changedTouches[0].pageX); }, {passive:true});
+      })();
+    </script>
 
     <!-- ========== Theme & Stars Script ========== -->
     <script>
