@@ -145,11 +145,23 @@
         margin-top: 10px;
       }
 
-      .project-row td:first-child img {
-        transition: transform 0.3s ease;
-        cursor: zoom-in;
+      /* ========== Unified Image Height ========== */
+      .project-row td:first-child {
+        vertical-align: middle;
       }
-      .project-row td:first-child img:hover {
+      .project-row td:first-child .img-wrap,
+      .project-row td:first-child > img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 6px;
+        display: block;
+      }
+      .project-row td:first-child > img {
+        cursor: zoom-in;
+        transition: transform 0.3s ease;
+      }
+      .project-row td:first-child > img:hover {
         transform: scale(1.03);
       }
 
@@ -162,15 +174,18 @@
         user-select: none;
         -webkit-user-select: none;
         touch-action: pan-y;
+        height: 200px;
       }
       .img-track {
         display: flex;
         transition: transform 0.3s ease;
         width: 200%;
+        height: 100%;
       }
       .img-track img {
         width: 50%;
-        height: auto;
+        height: 100%;
+        object-fit: cover;
         display: block;
         flex-shrink: 0;
         pointer-events: none;
@@ -259,10 +274,10 @@
 
             <!-- Project 1 -->
             <tr class="project-row">
-              <td style="padding:16px;width:30%;vertical-align:middle">
-                <img src="images/cdrf1.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig1">
+              <td style="padding:16px;width:35%;vertical-align:middle">
+                <img src="images/cdrf1.png" alt="fig1" onclick="openLightbox(this.src)">
               </td>
-              <td style="padding:20px;width:70%;vertical-align:middle">
+              <td style="padding:20px;width:65%;vertical-align:middle">
                 <a href="https://your-project-page.com/" style="text-decoration:none;">
                   <span class="papertitle" style="font-size:16px;font-weight:600;color:#1772d0;">
                     Graph-Based Generative Design of Mortise-and-Tenon Joints in Timber Structures
@@ -280,7 +295,7 @@
 
             <!-- Project 2 (with image slider) -->
             <tr class="project-row">
-              <td style="padding:16px;width:60%;vertical-align:middle">
+              <td style="padding:16px;width:35%;vertical-align:middle">
                 <div class="img-slider">
                   <div class="img-track">
                     <img src="images/p3-1.png" alt="fig1">
@@ -288,7 +303,7 @@
                   </div>
                 </div>
               </td>
-              <td style="padding:20px;width:40%;vertical-align:middle">
+              <td style="padding:20px;width:65%;vertical-align:middle">
                 <a href="https://papers.cumincad.org/cgi-bin/works/paper/caadria2025_459" style="text-decoration:none;">
                   <span class="papertitle" style="font-size:16px;font-weight:600;color:#1772d0;">
                     Text-Guided Fine-Tuned Diffusion Models for Spatial Envisioning of Modular Structures: A Personalized Approach to Conceptual Architectural Design
@@ -297,7 +312,7 @@
                 <br><br>
                 <strong>Sun, M.</strong>, Chen, J. & Terzidis, K.
                 <br>
-                <em>CAADRIA</em>, 2025   <em><a href="https://www.research-collection.ethz.ch/entities/publication/c3df904f-28f9-4aab-b9dc-78e3153474cf">IASS</em>, 2024</a>
+                <em>CAADRIA</em>, 2025 <em><a href="https://www.research-collection.ethz.ch/entities/publication/c3df904f-28f9-4aab-b9dc-78e3153474cf">IASS</a></em>, 2024
                 <div class="project-desc">
                   Utilizing the Creativity Support Index (CSI), this study investigates the impact of generative AI-driven conceptual renderings on the early design stage. 
                 </div>
@@ -306,10 +321,10 @@
 
             <!-- Project 3 -->
             <tr class="project-row">
-              <td style="padding:16px;width:30%;vertical-align:middle">
-                <img src="images/p4-1.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig1">
+              <td style="padding:16px;width:35%;vertical-align:middle">
+                <img src="images/p4-1.png" alt="fig1" onclick="openLightbox(this.src)">
               </td>
-              <td style="padding:20px;width:70%;vertical-align:middle">
+              <td style="padding:20px;width:65%;vertical-align:middle">
                 <a href="https://papers.cumincad.org/cgi-bin/works/paper/caadria2024_204" style="text-decoration:none;">
                   <span class="papertitle" style="font-size:16px;font-weight:600;color:#1772d0;">
                     An Imitation Learning-Based Agent for Modular Assembly Structural Design
@@ -327,10 +342,10 @@
 
             <!-- Project 4 -->
             <tr class="project-row">
-              <td style="padding:16px;width:60%;vertical-align:middle">
-                <img src="images/hc.png" style="width:100%;height:auto;border-radius:6px;display:block;" onclick="openLightbox(this.src)" alt="fig1">
+              <td style="padding:16px;width:35%;vertical-align:middle">
+                <img src="images/hc.png" alt="fig1" onclick="openLightbox(this.src)">
               </td>
-              <td style="padding:20px;width:40%;vertical-align:middle">
+              <td style="padding:20px;width:65%;vertical-align:middle">
                 <a href="https://d.wanfangdata.com.cn/periodical/zhuzkj202606011" style="text-decoration:none;">
                   <span class="papertitle" style="font-size:16px;font-weight:600;color:#1772d0;">
                     Intelligent Robotic System for High-Rise Building Façade Finishing
@@ -354,7 +369,7 @@
               <td style="padding:16px;width:100%;vertical-align:middle">
                 <h2>Posters</h2>
                 <p style="font-size:0.95em;color:#555;line-height:1.6;margin-bottom:8px;">
-                  Posters exhibited at academic conferences.
+                  Posters exhibited at academic conferences and exhibitions.
                 </p>
               </td>
             </tr>
@@ -365,7 +380,7 @@
             <!-- Poster 1 -->
             <tr class="project-row">
               <td style="padding:16px;width:35%;vertical-align:middle">
-                <img src="images/ac1.jpg" style="width:100%;height:auto;border-radius:6px;display:block;cursor:zoom-in;" onclick="openLightbox(this.src)" alt="Poster 1">
+                <img src="images/ac1.jpg" alt="Poster 1" onclick="openLightbox(this.src)">
               </td>
               <td style="padding:20px;width:65%;vertical-align:middle">
                 <span style="font-size:16px;font-weight:600;color:#1772d0;">
@@ -375,7 +390,7 @@
                 Buš, P., Sun, K., <strong>Sun, M.</strong> & Chen, J.
                 <br>
                 <em><a href="http://www.acadiacaadria.org/">ACADIA X CAADRIA 2023: Habits of the Anthropocene</a></em>
-                <br><br>
+                <br>
                 <em>At The University of Hong Kong, Hong Kong SAR, China</em>
               </td>
             </tr>
@@ -383,7 +398,7 @@
             <!-- Poster 2 -->
             <tr class="project-row">
               <td style="padding:16px;width:35%;vertical-align:middle">
-                <img src="images/ca1.jpg" style="width:100%;height:auto;border-radius:6px;display:block;cursor:zoom-in;" onclick="openLightbox(this.src)" alt="Poster 2">
+                <img src="images/ca1.jpg" alt="Poster 2" onclick="openLightbox(this.src)">
               </td>
               <td style="padding:20px;width:65%;vertical-align:middle">
                 <span style="font-size:16px;font-weight:600;color:#1772d0;">
@@ -393,7 +408,7 @@
                 <strong>Sun, M.</strong>, Chen, J., Sun, K. & Buš, P.
                 <br>
                 <em>CAADRIA</em>, 2024
-                <br><br>
+                <br>
                 <em>At Singapore University of Technology and Design (SUTD), Singapore</em>
               </td>
             </tr>
@@ -406,7 +421,7 @@
               <td style="padding:0px">
                 <br><br><br><br><br><br>
                 <p style="text-align:right;font-size:small;">
-                  Source from <a href="https://github.com/jonbarron/jonbarron_website">Jon Barron </a>
+                  Source from <a href="https://github.com/jonbarron/jonbarron_website">Jon Barron</a>.
                 </p>
               </td>
             </tr>
@@ -481,12 +496,10 @@
         star.style.color = colors[Math.floor(Math.random() * colors.length)];
         
         if (isTrail) {
-          // Trail stars: smaller, shorter life, subtler
           star.style.fontSize = (6 + Math.random() * 8) + 'px';
           star.style.textShadow = '0 0 4px currentColor';
           star.style.transition = 'all ' + (0.5 + Math.random() * 0.4) + 's ease-out';
         } else {
-          // Click stars: bigger, explosive
           star.style.fontSize = (10 + Math.random() * 12) + 'px';
           star.style.transition = 'all ' + (0.8 + Math.random() * 0.5) + 's cubic-bezier(0.25, 0.46, 0.45, 0.94)';
         }
@@ -526,7 +539,7 @@
       let lastTrailTime = 0;
       document.addEventListener('mousemove', function(e) {
         const now = Date.now();
-        if (now - lastTrailTime < 40) return; // throttle: max ~25 stars/sec
+        if (now - lastTrailTime < 40) return;
         lastTrailTime = now;
         spawnStar(e.clientX, e.clientY, true);
       });
