@@ -41,6 +41,13 @@
         padding: 0;
       }
 
+      /* ========== Word Wrap for Zoom ========== */
+      html, body, table, td, th, p, span, div, a, em, strong {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        white-space: normal;
+      }
+
       /* Force transparent backgrounds on tables so body bg shows through */
       table, tbody, thead, tfoot, tr, td, th {
         background-color: transparent !important;
@@ -144,6 +151,29 @@
       }
       .project-row td:first-child img:hover {
         transform: scale(1.03);
+      }
+
+      /* ========== Image Slider ========== */
+      .img-slider {
+        position: relative;
+        overflow: hidden;
+        border-radius: 6px;
+        cursor: grab;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: pan-y;
+      }
+      .img-track {
+        display: flex;
+        transition: transform 0.3s ease;
+        width: 200%;
+      }
+      .img-track img {
+        width: 50%;
+        height: auto;
+        display: block;
+        flex-shrink: 0;
+        pointer-events: none;
       }
 
       /* ========== Star Click Effect ========== */
@@ -251,10 +281,10 @@
             <!-- Project 2 (with image slider) -->
             <tr class="project-row">
               <td style="padding:16px;width:60%;vertical-align:middle">
-                <div class="img-slider" style="position:relative;overflow:hidden;border-radius:6px;cursor:grab;user-select:none;-webkit-user-select:none;">
-                  <div class="img-track" style="display:flex;transition:transform 0.3s ease;width:200%;">
-                    <img src="images/p3-1.png" style="width:50%;height:auto;display:block;flex-shrink:0;" alt="fig1">
-                    <img src="images/IASS.png" style="width:50%;height:auto;display:block;flex-shrink:0;" alt="fig2">
+                <div class="img-slider">
+                  <div class="img-track">
+                    <img src="images/p3-1.png" alt="fig1">
+                    <img src="images/IASS.png" alt="fig2">
                   </div>
                 </div>
               </td>
@@ -267,7 +297,7 @@
                 <br><br>
                 <strong>Sun, M.</strong>, Chen, J. & Terzidis, K.
                 <br>
-                <em>CAADRIA</em>, 2025 <em><a href="https://www.research-collection.ethz.ch/entities/publication/c3df904f-28f9-4aab-b9dc-78e3153474cf">IASS</em>, 2024</a>
+                <em>CAADRIA</em>, 2025 <em><a href="https://www.research-collection.ethz.ch/entities/publication/c3df904f-28f9-4aab-b9dc-78e3153474cf">IASS</a></em>, 2024
                 <div class="project-desc">
                   Utilizing the Creativity Support Index (CSI), this study investigates the impact of generative AI-driven conceptual renderings on the early design stage. 
                 </div>
@@ -390,6 +420,7 @@
     <script>
       (function(){
         var slider = document.querySelector('.img-slider');
+        if (!slider) return;
         var track  = slider.querySelector('.img-track');
         var imgs   = slider.querySelectorAll('img');
         var startX, current = 0;
@@ -403,21 +434,17 @@
         function onEnd(x){
           var diff = x - startX;
           if (Math.abs(diff) < 10) {
-            // Click (almost no drag) -> open lightbox for current image
             if (typeof openLightbox === 'function') openLightbox(imgs[current].src);
           } else if (Math.abs(diff) > 30) {
-            // Swipe left (diff<0) -> next, swipe right (diff>0) -> prev
             if (diff < 0 && current < imgs.length - 1) goTo(current + 1);
             else if (diff > 0 && current > 0) goTo(current - 1);
           }
         }
 
-        // Mouse
         slider.addEventListener('mousedown', function(e){ onStart(e.pageX); slider.style.cursor='grabbing'; });
         slider.addEventListener('mouseup',   function(e){ onEnd(e.pageX);   slider.style.cursor='grab'; });
         slider.addEventListener('mouseleave',function(){ slider.style.cursor='grab'; });
 
-        // Touch
         slider.addEventListener('touchstart', function(e){ onStart(e.touches[0].pageX); }, {passive:true});
         slider.addEventListener('touchend',   function(e){ onEnd(e.changedTouches[0].pageX); }, {passive:true});
       })();
@@ -431,8 +458,8 @@
         const hours = now.getHours();
         const minutes = now.getMinutes();
         const totalMinutes = hours * 60 + minutes;
-        const nightStart = 20 * 60 + 30; // 20:30
-        const nightEnd = 6 * 60 + 30;    // 06:30
+        const nightStart = 20 * 60 + 30;
+        const nightEnd = 6 * 60 + 30;
 
         if (totalMinutes >= nightStart || totalMinutes < nightEnd) {
           document.body.classList.add('dark-mode');
@@ -441,47 +468,67 @@
         }
       }
       updateTheme();
-      setInterval(updateTheme, 60000); // check every minute
+      setInterval(updateTheme, 60000);
 
-      /* ---- Star Click Effect ---- */
-      document.addEventListener('click', function(e) {
-        // Don't trigger when clicking inside lightbox
-        if (e.target.closest('#img-lightbox')) return;
-
+      /* ---- Shared Star Factory ---- */
+      function spawnStar(x, y, isTrail) {
         const colors = ['#FFD700', '#FFFACD', '#FFFFFF', '#FFE4B5', '#E6E6FA', '#87CEEB'];
-        const count = 10 + Math.floor(Math.random() * 6); // 10-15 stars
-
-        for (let i = 0; i < count; i++) {
-          const star = document.createElement('span');
-          star.className = 'star-particle';
-          star.innerHTML = '★';
-          star.style.left = e.clientX + 'px';
-          star.style.top = e.clientY + 'px';
-          star.style.color = colors[Math.floor(Math.random() * colors.length)];
+        const star = document.createElement('span');
+        star.className = 'star-particle';
+        star.innerHTML = '★';
+        star.style.left = x + 'px';
+        star.style.top = y + 'px';
+        star.style.color = colors[Math.floor(Math.random() * colors.length)];
+        
+        if (isTrail) {
+          // Trail stars: smaller, shorter life, subtler
+          star.style.fontSize = (6 + Math.random() * 8) + 'px';
+          star.style.textShadow = '0 0 4px currentColor';
+          star.style.transition = 'all ' + (0.5 + Math.random() * 0.4) + 's ease-out';
+        } else {
+          // Click stars: bigger, explosive
           star.style.fontSize = (10 + Math.random() * 12) + 'px';
-          star.style.opacity = '1';
-          star.style.transform = 'translate(0,0) rotate(0deg) scale(1)';
           star.style.transition = 'all ' + (0.8 + Math.random() * 0.5) + 's cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-          document.body.appendChild(star);
-
-          // Force reflow
-          star.getBoundingClientRect();
-
-          const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.6;
-          const distance = 60 + Math.random() * 100;
-          const tx = Math.cos(angle) * distance;
-          const ty = Math.sin(angle) * distance;
-          const rot = Math.random() * 720 - 360;
-
-          requestAnimationFrame(() => {
-            star.style.transform = 'translate(' + tx + 'px, ' + ty + 'px) rotate(' + rot + 'deg) scale(0)';
-            star.style.opacity = '0';
-          });
-
-          setTimeout(() => {
-            if (star.parentNode) star.parentNode.removeChild(star);
-          }, 1500);
         }
+
+        star.style.opacity = '1';
+        star.style.transform = 'translate(0,0) rotate(0deg) scale(1)';
+        document.body.appendChild(star);
+
+        star.getBoundingClientRect();
+
+        const angle = Math.random() * Math.PI * 2;
+        const distance = isTrail ? (20 + Math.random() * 40) : (60 + Math.random() * 100);
+        const tx = Math.cos(angle) * distance;
+        const ty = Math.sin(angle) * distance;
+        const rot = Math.random() * 720 - 360;
+
+        requestAnimationFrame(() => {
+          star.style.transform = 'translate(' + tx + 'px, ' + ty + 'px) rotate(' + rot + 'deg) scale(0)';
+          star.style.opacity = '0';
+        });
+
+        setTimeout(() => {
+          if (star.parentNode) star.parentNode.removeChild(star);
+        }, isTrail ? 900 : 1500);
+      }
+
+      /* ---- Click Stars ---- */
+      document.addEventListener('click', function(e) {
+        if (e.target.closest('#img-lightbox')) return;
+        const count = 10 + Math.floor(Math.random() * 6);
+        for (let i = 0; i < count; i++) {
+          setTimeout(() => spawnStar(e.clientX, e.clientY, false), i * 15);
+        }
+      });
+
+      /* ---- Mouse Move Trail Stars ---- */
+      let lastTrailTime = 0;
+      document.addEventListener('mousemove', function(e) {
+        const now = Date.now();
+        if (now - lastTrailTime < 40) return; // throttle: max ~25 stars/sec
+        lastTrailTime = now;
+        spawnStar(e.clientX, e.clientY, true);
       });
     </script>
   </body>
