@@ -8,6 +8,13 @@
     <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
     <style>
+      /* ========== Word Wrap for Zoom ========== */
+      html, body, table, td, th, p, span, div, a, em, strong {
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        white-space: normal;
+      }
+
       /* ========== CSS Variables & Dark Mode ========== */
       :root {
         --bg-color: #ffffff;
@@ -39,13 +46,6 @@
         transition: background-color 0.6s ease, color 0.6s ease;
         margin: 0;
         padding: 0;
-      }
-
-      /* ========== Word Wrap for Zoom ========== */
-      html, body, table, td, th, p, span, div, a, em, strong {
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-        white-space: normal;
       }
 
       /* Force transparent backgrounds on tables so body bg shows through */
@@ -149,15 +149,12 @@
       .project-row td:first-child {
         vertical-align: middle;
       }
-      .project-row td:first-child .img-wrap,
       .project-row td:first-child > img {
         width: 100%;
         height: 200px;
         object-fit: cover;
         border-radius: 6px;
         display: block;
-      }
-      .project-row td:first-child > img {
         cursor: zoom-in;
         transition: transform 0.3s ease;
       }
@@ -286,7 +283,8 @@
                 <br><br>
                 <strong>Sun, M.</strong>, Zhou, Y., Liu, Y., Zhu, Y., Yang, Q., Liu, Y., & Chai, H.
                 <br>
-                <em>CDRF</em>, 2026   <em>Forthcoming</em>
+                <em>CDRF</em>, 2026 
+                <em>Forthcoming</em>
                 <div class="project-desc">
                   Leveraging GNNs to capture the geometric, topological, and mechanical features of mortise-and-tenon joints, this project transforms the experienced craftsmanship into a digital and intelligent paradigm.
                 </div>
@@ -312,7 +310,7 @@
                 <br><br>
                 <strong>Sun, M.</strong>, Chen, J. & Terzidis, K.
                 <br>
-                <em>CAADRIA</em>, 2025 <em><a href="https://www.research-collection.ethz.ch/entities/publication/c3df904f-28f9-4aab-b9dc-78e3153474cf">IASS</a></em>, 2024
+                <em>CAADRIA</em>, 2025 <em><a href="https://www.research-collection.ethz.ch/entities/publication/c3df904f-28f9-4aab-b9dc-78e3153474cf">IASS</em>, 2024</a>
                 <div class="project-desc">
                   Utilizing the Creativity Support Index (CSI), this study investigates the impact of generative AI-driven conceptual renderings on the early design stage. 
                 </div>
@@ -369,7 +367,7 @@
               <td style="padding:16px;width:100%;vertical-align:middle">
                 <h2>Posters</h2>
                 <p style="font-size:0.95em;color:#555;line-height:1.6;margin-bottom:8px;">
-                  Posters exhibited at academic conferences and exhibitions.
+                  Posters exhibited at academic conferences.
                 </p>
               </td>
             </tr>
@@ -390,7 +388,7 @@
                 Buš, P., Sun, K., <strong>Sun, M.</strong> & Chen, J.
                 <br>
                 <em><a href="http://www.acadiacaadria.org/">ACADIA X CAADRIA 2023: Habits of the Anthropocene</a></em>
-                <br>
+                <br><br>
                 <em>At The University of Hong Kong, Hong Kong SAR, China</em>
               </td>
             </tr>
@@ -408,7 +406,7 @@
                 <strong>Sun, M.</strong>, Chen, J., Sun, K. & Buš, P.
                 <br>
                 <em>CAADRIA</em>, 2024
-                <br>
+                <br><br>
                 <em>At Singapore University of Technology and Design (SUTD), Singapore</em>
               </td>
             </tr>
@@ -419,7 +417,7 @@
           <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
             <tr>
               <td style="padding:0px">
-                <br><br><br><br><br><br>
+                <br>
                 <p style="text-align:right;font-size:small;">
                   Source from <a href="https://github.com/jonbarron/jonbarron_website">Jon Barron</a>.
                 </p>
