@@ -1,546 +1,282 @@
-<!DOCTYPE HTML>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Mingli Sun</title>
-    <meta name="author" content="Mingli Sun">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    <style>
-      /* ========== Word Wrap for Zoom ========== */
-      html, body, table, td, th, p, span, div, a, em, strong {
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-        white-space: normal;
+    <title>Mingli Sun — Computational Design Researcher</title>
+    <meta name="description" content="Mingli Sun is a researcher working at the intersection of machine learning, structural architecture, human–AI collaboration, and construction robotics.">
+    <meta name="keywords" content="Mingli Sun, computational design, generative AI, graph neural networks, structural architecture, construction robotics, human AI collaboration">
+    <meta name="author" content="Mingli Sun">
+    <meta name="theme-color" content="#f4f3ee">
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="Mingli Sun — Computational Design Researcher">
+    <meta property="og:description" content="Research at the intersection of machine learning, structural architecture, human–AI collaboration, and construction robotics.">
+    <meta property="og:url" content="https://mingliiiii.github.io/">
+    <meta property="og:image" content="https://mingliiiii.github.io/images/mingli-sun.webp">
+    <link rel="canonical" href="https://mingliiiii.github.io/">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="stylesheet.css">
+    <script>
+      try {
+        const saved = localStorage.getItem("mingli-theme");
+        const preferred = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        document.documentElement.dataset.theme = saved || preferred;
+      } catch (_) {}
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Mingli Sun",
+        "jobTitle": "Researcher in Computational Design",
+        "url": "https://mingliiiii.github.io/",
+        "email": "mailto:mingli_sun@tongji.edu.cn",
+        "image": "https://mingliiiii.github.io/images/mingli-sun.webp",
+        "affiliation": [
+          { "@type": "CollegeOrUniversity", "name": "Tongji University" },
+          { "@type": "CollegeOrUniversity", "name": "Tsinghua Shenzhen International Graduate School" }
+        ],
+        "sameAs": [
+          "https://www.researchgate.net/profile/Mingli-Sun-4",
+          "https://www.linkedin.com/in/mingli-sun-55a441333/"
+        ]
       }
-
-      /* ========== CSS Variables & Dark Mode ========== */
-      :root {
-        --bg-color: #ffffff;
-        --text-color: #111111;
-        --heading-color: #000000;
-        --secondary-text: #555555;
-        --tertiary-text: #888888;
-        --link-color: #1772d0;
-        --link-hover: #0f5aa3;
-        --desc-color: #666666;
-        --border-color: #e0e0e0;
-      }
-
-      body.dark-mode {
-        --bg-color: #0f0f0f;
-        --text-color: #e8e8e8;
-        --heading-color: #ffffff;
-        --secondary-text: #aaaaaa;
-        --tertiary-text: #999999;
-        --link-color: #5aa8f0;
-        --link-hover: #7dbdf5;
-        --desc-color: #aaaaaa;
-        --border-color: #333333;
-      }
-
-      body {
-        background-color: var(--bg-color);
-        color: var(--text-color);
-        transition: background-color 0.6s ease, color 0.6s ease;
-        margin: 0;
-        padding: 0;
-      }
-
-      /* Force transparent backgrounds on tables so body bg shows through */
-      table, tbody, thead, tfoot, tr, td, th {
-        background-color: transparent !important;
-      }
-
-      h2 {
-        color: var(--heading-color) !important;
-        transition: color 0.6s ease;
-      }
-
-      p, td {
-        transition: color 0.6s ease;
-      }
-
-      a {
-        color: var(--link-color);
-        transition: color 0.6s ease;
-      }
-      a:hover {
-        color: var(--link-hover);
-      }
-
-      /* Override inline gray text in dark mode */
-      body.dark-mode td p,
-      body.dark-mode td span,
-      body.dark-mode td div {
-        transition: color 0.6s ease;
-      }
-
-      body.dark-mode td p[style*="color:#555"],
-      body.dark-mode td p[style*="color: #555"],
-      body.dark-mode td p[style*="color:#666"],
-      body.dark-mode td p[style*="color: #666"] {
-        color: var(--secondary-text) !important;
-      }
-
-      body.dark-mode .project-desc {
-        color: var(--desc-color) !important;
-      }
-
-      body.dark-mode .poster-info span,
-      body.dark-mode td em,
-      body.dark-mode td i {
-        color: var(--tertiary-text) !important;
-      }
-
-      body.dark-mode p[style*="font-size:small"] {
-        color: #888888 !important;
-      }
-
-      body.dark-mode .name {
-        color: var(--heading-color) !important;
-      }
-
-      /* ========== Lightbox ========== */
-      #img-lightbox {
-        display: none;
-        position: fixed;
-        z-index: 9999;
-        left: 0; top: 0;
-        width: 100%; height: 100%;
-        background: rgba(0,0,0,0.92);
-        justify-content: center;
-        align-items: center;
-        cursor: zoom-out;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-      #img-lightbox.active {
-        display: flex;
-        opacity: 1;
-      }
-      #img-lightbox img {
-        max-width: 90%;
-        max-height: 90%;
-        object-fit: contain;
-        border-radius: 4px;
-      }
-
-      /* ========== Project Description Hover ========== */
-      .project-desc {
-        opacity: 0;
-        max-height: 0;
-        overflow: hidden;
-        transition: all 0.35s ease;
-        margin-top: 0;
-        color: #666;
-        font-style: italic;
-        font-size: 14px;
-        line-height: 1.5;
-      }
-      tr.project-row:hover .project-desc {
-        opacity: 1;
-        max-height: 250px;
-        margin-top: 10px;
-      }
-
-      /* ========== Unified Image Height ========== */
-      .project-row td:first-child {
-        vertical-align: middle;
-      }
-      .project-row td:first-child > img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-        border-radius: 6px;
-        display: block;
-        cursor: zoom-in;
-        transition: transform 0.3s ease;
-      }
-      .project-row td:first-child > img:hover {
-        transform: scale(1.03);
-      }
-
-      /* ========== Image Slider ========== */
-      .img-slider {
-        position: relative;
-        overflow: hidden;
-        border-radius: 6px;
-        cursor: grab;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: pan-y;
-        height: 200px;
-      }
-      .img-track {
-        display: flex;
-        transition: transform 0.3s ease;
-        width: 200%;
-        height: 100%;
-      }
-      .img-track img {
-        width: 50%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        flex-shrink: 0;
-        pointer-events: none;
-      }
-
-      /* ========== Star Click Effect ========== */
-      .star-particle {
-        position: fixed;
-        pointer-events: none;
-        z-index: 99999;
-        line-height: 1;
-        text-shadow: 0 0 6px currentColor, 0 0 12px currentColor;
-        will-change: transform, opacity;
-      }
-    </style>
-    <base target="_blank">
+    </script>
   </head>
-
   <body>
-    <!-- Lightbox -->
-    <div id="img-lightbox" onclick="closeLightbox()">
-      <img id="lightbox-img" src="" alt="full size">
-    </div>
+    <header class="site-header">
+      <a class="wordmark" href="#top" aria-label="Mingli Sun, home">
+        <span>MS</span>
+        <strong>Mingli Sun</strong>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#experience">Experience</a>
+      </nav>
+      <div class="header-actions">
+        <a href="Mingli_Sun_CV.pdf" target="_blank" rel="noreferrer noopener">CV ↗</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle color theme"><span aria-hidden="true">◐</span></button>
+      </div>
+    </header>
 
-    <script>
-      function openLightbox(src) {
-        document.getElementById('lightbox-img').src = src;
-        document.getElementById('img-lightbox').classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-      function closeLightbox() {
-        document.getElementById('img-lightbox').classList.remove('active');
-        document.body.style.overflow = '';
-      }
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closeLightbox();
-      });
-    </script>
+    <main id="top">
+      <section class="hero section-shell" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Computational design · Human–AI collaboration</p>
+          <h1 id="hero-title">Designing intelligence for structures, tools, and the built environment.</h1>
+          <p class="hero-intro">I'm <strong>Mingli Sun</strong>, a researcher working at the intersection of machine learning, structural architecture, and human–AI collaboration.</p>
+          <p class="hero-detail">My work explores how graph neural networks, diffusion models, and imitation learning can support generative design, modular assembly, and robotic construction.</p>
+          <div class="hero-links" aria-label="Profile links">
+            <a href="mailto:mingli_sun@tongji.edu.cn">Email</a>
+            <a href="https://www.researchgate.net/profile/Mingli-Sun-4?ev=hdr_xprf" target="_blank" rel="noreferrer noopener">ResearchGate ↗</a>
+            <a href="https://www.linkedin.com/in/mingli-sun-55a441333/" target="_blank" rel="noreferrer noopener">LinkedIn ↗</a>
+          </div>
+        </div>
 
-    <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-      <tr style="padding:0px">
-        <td style="padding:0px">
+        <div class="hero-visual">
+          <div class="portrait-wrap">
+            <img src="images/mingli-sun.webp" alt="Portrait of Mingli Sun" width="800" height="1000" fetchpriority="high" decoding="async">
+          </div>
+          <div class="status-card">
+            <span class="status-dot" aria-hidden="true"></span>
+            <p><strong>Research focus</strong><span>AI × Design × Built Environment</span></p>
+          </div>
+        </div>
 
-          <!-- ===== Profile ===== -->
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr style="padding:0px">
-              <td style="padding:2.5%;width:63%;vertical-align:middle">
-                <p class="name" style="text-align: center;">
-                  Mingli Sun
-                </p>
-                <p>
-                  A researcher in computational design. Interested in the philosophy of technology. Academic experience at <a href="https://tjdi.tongji.edu.cn/?lang=en">College of Design and Innovation (D&I) </a>, <a href="https://caup.tongji.edu.cn/caupen/main.htm">College of Architecture and Urban Planning (CAUP)</a>, Tongji University and <a href="https://www.coia.tech/"> Co-Intelligent Architecture Lab</a>, Tsinghua SIGS.
-                </p>
-                <p style="text-align:center">
-                  <a href="2233747@tongji.edu.cn">Email</a> &nbsp;/&nbsp;
-                  <a href="https://www.researchgate.net/profile/Mingli-Sun-4?ev=hdr_xprf">Publications</a> &nbsp;/&nbsp;
-                  <a href="https://www.linkedin.com/in/mingli-sun-55a441333/">LinkedIn </a>
-                </p>
-              </td>
-              <td style="padding:2.5%;width:37%;max-width:37%">
-                <a href="images/Mingli_1.png" style="display:block; width:100%; border-radius:50%; overflow:hidden;">
-                  <img 
-                    style="width:100%;max-width:100%;object-fit:cover; border-radius:50%; transform: scale(1.3);transform-origin: center 30%" 
-                    alt="profile photo" 
-                    src="images/Mingli_1.png" 
-                    class="hoverZoomLink">
-                </a>
-              </td>
-            </tr>
-          </tbody></table>
+        <div class="hero-index" aria-label="Profile summary">
+          <div><strong>05</strong><span>Peer-reviewed publications</span></div>
+          <div><strong>03</strong><span>Research appointments</span></div>
+          <div><strong>04</strong><span>Core research methods</span></div>
+        </div>
+      </section>
 
-          <!-- ===== Research Header ===== -->
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr>
-              <td style="padding:16px;width:100%;vertical-align:middle">
-                <h2>Research</h2>
-                <p>
-                  Current research sits at the intersection of algorithm design, neural networks, and structural architecture, with a theoretical focus on human-AI interaction.
-                </p>
-              </td>
-            </tr>
-          </tbody></table>
+      <section class="section-shell intro-band" aria-label="Research statement">
+        <p class="section-kicker">Research statement</p>
+        <p class="statement">I develop computational systems that connect design intent with machine intelligence—moving between algorithms, physical structures, and the ways people reason through design.</p>
+        <div class="topic-list" aria-label="Research areas">
+          <span>Graph learning</span><span>Generative AI</span><span>Human–AI interaction</span><span>Construction robotics</span>
+        </div>
+      </section>
 
-          <!-- ===== Research Papers ===== -->
-          <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+      <section class="section-shell content-section" id="research">
+        <div class="section-heading">
+          <div><p class="section-kicker">01 / Selected work</p><h2>Research</h2></div>
+          <p>Selected projects spanning architectural intelligence, empirical design research, and robotic construction.</p>
+        </div>
 
-            <!-- Project 1 -->
-            <tr class="project-row">
-              <td style="padding:16px;width:35%;vertical-align:middle">
-                <img src="images/p1-1.png" alt="fig1" onclick="openLightbox(this.src)">
-              </td>
-              <td style="padding:20px;width:65%;vertical-align:middle">
-                <a href="https://your-project-page.com/" style="text-decoration:none;">
-                  <span class="papertitle" style="font-size:16px;font-weight:600;color:#1772d0;">
-                    Graph-Based Generative Design of Mortise-and-Tenon Joints in Timber Structures
-                  </span>
-                </a>
-                <br><br>
-                <strong>Sun, M.</strong>, Zhou, Y., Liu, Y., Zhu, Y., Yang, Q., Liu, Y., & Chai, H.
-                <br>
-                <em>CDRF</em>, 2026 
-                <em>Forthcoming</em>
-                <div class="project-desc">
-                  Leveraging GNNs to capture the geometric, topological, and mechanical features of mortise-and-tenon joints, this project transforms the experienced craftsmanship into a digital and intelligent paradigm.
+        <div class="research-list">
+          <article class="research-card">
+            <div class="research-image">
+              <img src="images/mortise-tenon.webp" alt="Diagrams of graph-based mortise-and-tenon joint generation" width="900" height="700" loading="lazy" decoding="async">
+              <span>2026</span>
+            </div>
+            <div class="research-copy">
+              <p class="project-number">Project 01</p>
+              <h3>Graph-based generative design for timber joints</h3>
+              <p class="project-subtitle">Mortise-and-tenon structures · GNNs · PyTorch Geometric</p>
+              <p class="project-description">A graph learning pipeline that captures the geometric, topological, and mechanical features of traditional timber joints, turning craft knowledge into a computational design system.</p>
+              <div class="project-footer"><span>CDRF 2026 · Accepted</span></div>
+            </div>
+          </article>
+
+          <article class="research-card">
+            <div class="research-image">
+              <img src="images/diffusion-design.webp" alt="A dataset and generated spatial studies for modular structures" width="900" height="700" loading="lazy" decoding="async">
+              <span>2024–25</span>
+            </div>
+            <div class="research-copy">
+              <p class="project-number">Project 02</p>
+              <h3>Generative AI for modular structural design</h3>
+              <p class="project-subtitle">Diffusion models · LoRA · Human–AI interaction</p>
+              <p class="project-description">A personalized diffusion-model workflow and empirical study using the Creativity Support Index to examine how AI-generated spatial imagery shapes early-stage design reasoning.</p>
+              <div class="project-footer">
+                <span>CAADRIA 2025 · IASS 2024</span>
+                <div class="project-links">
+                  <a href="https://doi.org/10.52842/conf.caadria.2025.1.049" target="_blank" rel="noreferrer noopener">CAADRIA paper ↗</a>
+                  <a href="https://doi.org/10.3929/ethz-b-000728788" target="_blank" rel="noreferrer noopener">IASS paper ↗</a>
                 </div>
-              </td>
-            </tr>
+              </div>
+            </div>
+          </article>
 
-            <!-- Project 2 (with image slider) -->
-            <tr class="project-row">
-              <td style="padding:16px;width:35%;vertical-align:middle">
-                <div class="img-slider">
-                  <div class="img-track">
-                    <img src="images/p2-2.png" alt="fig1">
-                    
-                  </div>
-                </div>
-              </td>
-              <td style="padding:20px;width:65%;vertical-align:middle">
-                <a href="https://papers.cumincad.org/cgi-bin/works/paper/caadria2025_459" style="text-decoration:none;">
-                  <span class="papertitle" style="font-size:16px;font-weight:600;color:#1772d0;">
-                    Text-Guided Fine-Tuned Diffusion Models for Spatial Envisioning of Modular Structures: A Personalized Approach to Conceptual Architectural Design
-                  </span>
-                </a>
-                <br><br>
-                <strong>Sun, M.</strong>, Chen, J. & Terzidis, K.
-                <br>
-                <em>CAADRIA</em>, 2025 <em><a href="https://www.research-collection.ethz.ch/entities/publication/c3df904f-28f9-4aab-b9dc-78e3153474cf">IASS</em>, 2024</a>
-                <div class="project-desc">
-                  Utilizing the Creativity Support Index (CSI), this study investigates the impact of generative AI-driven conceptual renderings on the early design stage. 
-                </div>
-              </td>
-            </tr>
+          <article class="research-card">
+            <div class="research-image">
+              <img src="images/imitation-learning.webp" alt="Co-intelligent design workflow for modular structures" width="900" height="700" loading="lazy" decoding="async">
+              <span>2024</span>
+            </div>
+            <div class="research-copy">
+              <p class="project-number">Project 03</p>
+              <h3>An imitation-learning agent for modular assembly</h3>
+              <p class="project-subtitle">GAIL · Unity3D · ML-Agents</p>
+              <p class="project-description">An interactive training environment and agent that learns modular assembly strategies from human demonstrations, exploring a collaborative design process between people and machines.</p>
+              <div class="project-footer">
+                <span>CAADRIA 2024</span>
+                <div class="project-links"><a href="https://doi.org/10.52842/conf.caadria.2024.3.171" target="_blank" rel="noreferrer noopener">Paper ↗</a></div>
+              </div>
+            </div>
+          </article>
 
-            <!-- Project 3 -->
-            <tr class="project-row">
-              <td style="padding:16px;width:35%;vertical-align:middle">
-                <img src="images/p4-1.png" alt="fig1" onclick="openLightbox(this.src)">
-              </td>
-              <td style="padding:20px;width:65%;vertical-align:middle">
-                <a href="https://papers.cumincad.org/cgi-bin/works/paper/caadria2024_204" style="text-decoration:none;">
-                  <span class="papertitle" style="font-size:16px;font-weight:600;color:#1772d0;">
-                    An Imitation Learning-Based Agent for Modular Assembly Structural Design
-                  </span>
-                </a>
-                <br><br>
-                <strong>Sun, M.</strong>, Buš, P., Chen, J., & Sun, K.
-                <br>
-                <em>CAADRIA</em>, 2024
-                <div class="project-desc">
-                  Developed an agent for a modular assembly-oriented structural design task through imitation learning from human demonstrations, establishing a human–AI collaborative design paradigm.  
-                </div>
-              </td>
-            </tr>
+          <article class="research-card">
+            <div class="research-image">
+              <img src="images/construction-robotics.webp" alt="Housing Science journal cover representing construction robotics research" width="900" height="700" loading="lazy" decoding="async">
+              <span>2025–26</span>
+            </div>
+            <div class="research-copy">
+              <p class="project-number">Project 04</p>
+              <h3>Robotic façade finishing for high-rise construction</h3>
+              <p class="project-subtitle">Construction robotics · Field testing · Algorithm design</p>
+              <p class="project-description">An intelligent spraying and grinding system integrated with high-rise construction platforms, evaluated and optimized through on-site experiments for safer, more accurate operation.</p>
+              <div class="project-footer">
+                <span>Housing Science 2026</span>
+                <div class="project-links"><a href="https://doi.org/10.3969/j.issn.1002-0454.2026.06.011" target="_blank" rel="noreferrer noopener">Article ↗</a></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
 
-            <!-- Project 4 -->
-            <tr class="project-row">
-              <td style="padding:16px;width:35%;vertical-align:middle">
-                <img src="images/hc.png" alt="fig1" onclick="openLightbox(this.src)">
-              </td>
-              <td style="padding:20px;width:65%;vertical-align:middle">
-                <a href="https://d.wanfangdata.com.cn/periodical/zhuzkj202606011" style="text-decoration:none;">
-                  <span class="papertitle" style="font-size:16px;font-weight:600;color:#1772d0;">
-                    Intelligent Robotic System for High-Rise Building Façade Finishing
-                  </span>
-                </a>
-                <br><br>
-                <strong>Sun, M.</strong> & Chai, H.
-                <br>
-                <em>Housing Science</em>, 2026 <em>(A Chinese journal article)</em>
-                <div class="project-desc">
-                  Developed an intelligent robotic system integrated with high-rise building construction platforms for façade spraying and grinding operations, improving construction safety and efficiency. 
-                </div>
-              </td>
-            </tr>
+      <section class="section-shell content-section" id="publications">
+        <div class="section-heading publication-heading">
+          <div><p class="section-kicker">02 / Record</p><h2>Publications</h2></div>
+          <a class="text-link" href="Mingli_Sun_CV.pdf" target="_blank" rel="noreferrer noopener">Download full CV ↗</a>
+        </div>
 
-          </tbody></table>
+        <div class="publication-list">
+          <article class="publication-row">
+            <span class="publication-index">01</span>
+            <div><p class="publication-year">2026</p><h3>Intelligent Robotic Sanding System for Building Exterior Walls Integrated with Residential Building Manufacturing Machines</h3><p class="publication-authors">Mingli Sun and Hua Chai</p><p class="publication-venue">Housing Science, 2026(6), 80–84 · Chinese journal article</p></div>
+            <a class="publication-link" href="https://doi.org/10.3969/j.issn.1002-0454.2026.06.011" aria-label="Open publication: Intelligent Robotic Sanding System for Building Exterior Walls Integrated with Residential Building Manufacturing Machines" target="_blank" rel="noreferrer noopener">↗</a>
+          </article>
+          <article class="publication-row">
+            <span class="publication-index">02</span>
+            <div><p class="publication-year">2026</p><h3>Graph-Based Generative Design of Mortise-and-Tenon Joints in Timber Structures</h3><p class="publication-authors">Mingli Sun, Y. Zhou, Y. Liu, Y. Zhu, Q. Yang, Y. Liu, and H. Chai</p><p class="publication-venue">CDRF 2026 · Accepted · EI</p></div>
+            <span class="publication-status">Accepted</span>
+          </article>
+          <article class="publication-row">
+            <span class="publication-index">03</span>
+            <div><p class="publication-year">2025</p><h3>Text-Guided Fine-Tuning Diffusion Model Enhanced the Spatial Envision of Modular Structures</h3><p class="publication-authors">Mingli Sun, J. Chen, and K. Terzidis</p><p class="publication-venue">CAADRIA 2025, Vol. 1, 49–58 · EI</p></div>
+            <a class="publication-link" href="https://doi.org/10.52842/conf.caadria.2025.1.049" aria-label="Open publication: Text-Guided Fine-Tuning Diffusion Model Enhanced the Spatial Envision of Modular Structures" target="_blank" rel="noreferrer noopener">↗</a>
+          </article>
+          <article class="publication-row">
+            <span class="publication-index">04</span>
+            <div><p class="publication-year">2024</p><h3>Facilitation or Inhibition: The Influence of Generative Artificial Intelligence on Design Reasoning for Modular Structures</h3><p class="publication-authors">Mingli Sun, K. Terzidis, and J. Chen</p><p class="publication-venue">IASS 2024 Symposium · EI</p></div>
+            <a class="publication-link" href="https://doi.org/10.3929/ethz-b-000728788" aria-label="Open publication: Facilitation or Inhibition" target="_blank" rel="noreferrer noopener">↗</a>
+          </article>
+          <article class="publication-row">
+            <span class="publication-index">05</span>
+            <div><p class="publication-year">2024</p><h3>Co-Intelligent Design Toward Modular Structures</h3><p class="publication-authors">Mingli Sun, P. Buš, J. Chen, and K. Sun</p><p class="publication-venue">CAADRIA 2024, Vol. 3, 171–180 · EI</p></div>
+            <a class="publication-link" href="https://doi.org/10.52842/conf.caadria.2024.3.171" aria-label="Open publication: Co-Intelligent Design Toward Modular Structures" target="_blank" rel="noreferrer noopener">↗</a>
+          </article>
+        </div>
+      </section>
 
-          <!-- ===== Posters Section ===== -->
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr>
-              <td style="padding:16px;width:100%;vertical-align:middle">
-                <h2>Posters</h2>
-                <p style="font-size:0.95em;color:#555;line-height:1.6;margin-bottom:8px;">
-                  Posters exhibited at academic conferences.
-                </p>
-              </td>
-            </tr>
-          </tbody></table>
+      <section class="section-shell content-section" id="experience">
+        <div class="section-heading">
+          <div><p class="section-kicker">03 / Background</p><h2>Experience &amp; education</h2></div>
+          <p>An interdisciplinary path through industrial design, environmental design, computational architecture, and AI.</p>
+        </div>
 
-          <table style="width:100%;border:0px;border-spacing:0px 10px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+        <div class="background-grid">
+          <div>
+            <h3 class="subsection-title">Academic experience</h3>
+            <div class="timeline">
+              <article><span>2025–2026</span><div><h4>Research Assistant</h4><p>College of Architecture and Urban Planning, Tongji University</p></div></article>
+              <article><span>2024–2025</span><div><h4>Research Intern</h4><p>Institute of Future Human Habitats, Tsinghua Shenzhen International Graduate School</p></div></article>
+              <article><span>2023</span><div><h4>Technical Instructor</h4><p>FabLab O Shanghai · MIT FabLab Global Network</p></div></article>
+            </div>
+          </div>
+          <div>
+            <h3 class="subsection-title">Education</h3>
+            <div class="timeline">
+              <article><span>2022–2025</span><div><h4>MA in Arts and Design</h4><p>Advanced Environmental Design</p><p>College of Design and Innovation, Tongji University</p></div></article>
+              <article><span>2016–2020</span><div><h4>BEng in Industrial Design</h4><p>Mechanical and Electrical Engineering School</p><p>Beijing Information Science &amp; Technology University</p></div></article>
+            </div>
+          </div>
+        </div>
 
-            <!-- Poster 1 -->
-            <tr class="project-row">
-              <td style="padding:16px;width:35%;vertical-align:middle">
-                <img src="images/ac1.jpg" alt="Poster 1" onclick="openLightbox(this.src)">
-              </td>
-              <td style="padding:20px;width:65%;vertical-align:middle">
-                <span style="font-size:16px;font-weight:600;color:#1772d0;">
-                  Co-Intelligent Architecture: Design and Assembly of the Interlocking Spatial Structures
-                </span>
-                <br><br>
-                Buš, P., Sun, K., <strong>Sun, M.</strong> & Chen, J.
-                <br>
-                <em><a href="http://www.acadiacaadria.org/">ACADIA X CAADRIA 2023: Habits of the Anthropocene</a></em>
-                <br><br>
-                <em>At The University of Hong Kong, Hong Kong SAR, China</em>
-              </td>
-            </tr>
+        <div class="awards-block">
+          <h3 class="subsection-title">Selected honors</h3>
+          <div class="awards-list">
+            <div><span>2025</span><strong>Shanghai Outstanding Graduate Award</strong><em>Top 3%</em></div>
+            <div><span>2024</span><strong>Outstanding Postgraduate Scholarship</strong><em>Top 3%</em></div>
+            <div><span>2024</span><strong>International Academic Conference Travel Grant</strong><em>Tongji University</em></div>
+            <div><span>2023</span><strong>International Exchange Grant</strong><em>Tongji University</em></div>
+          </div>
+        </div>
+      </section>
 
-            <!-- Poster 2 -->
-            <tr class="project-row">
-              <td style="padding:16px;width:35%;vertical-align:middle">
-                <img src="images/ca1.jpg" alt="Poster 2" onclick="openLightbox(this.src)">
-              </td>
-              <td style="padding:20px;width:65%;vertical-align:middle">
-                <span style="font-size:16px;font-weight:600;color:#1772d0;">
-                  Co-Intelligent Design toward Modular Structures
-                </span>
-                <br><br>
-                <strong>Sun, M.</strong>, Chen, J., Sun, K. & Buš, P.
-                <br>
-                <em>CAADRIA</em>, 2024
-                <br><br>
-                <em>At Singapore University of Technology and Design (SUTD), Singapore</em>
-              </td>
-            </tr>
+      <section class="section-shell posters-section" aria-labelledby="posters-title">
+        <div class="section-heading publication-heading">
+          <div><p class="section-kicker">04 / Exhibitions</p><h2 id="posters-title">Posters</h2></div>
+          <p>Research presented through conferences and exhibitions.</p>
+        </div>
+        <div class="poster-grid">
+          <figure>
+            <div class="poster-image"><img src="images/acadia-poster.webp" alt="Co-Intelligent Architecture conference poster" width="1200" height="750" loading="lazy" decoding="async"></div>
+            <figcaption><strong>Co-Intelligent Architecture</strong><span>ACADIA × CAADRIA 2023 · Hong Kong</span></figcaption>
+          </figure>
+          <figure>
+            <div class="poster-image"><img src="images/caadria-poster.webp" alt="Co-Intelligent Design Toward Modular Structures poster" width="1200" height="750" loading="lazy" decoding="async"></div>
+            <figcaption><strong>Co-Intelligent Design Toward Modular Structures</strong><span>CAADRIA 2024 · Singapore</span></figcaption>
+          </figure>
+        </div>
+      </section>
 
-          </tbody></table>
+      <section class="contact-section section-shell" aria-labelledby="contact-title">
+        <p class="section-kicker">Let's connect</p>
+        <h2 id="contact-title">Open to research conversations and collaboration.</h2>
+        <div class="contact-row"><a href="mailto:mingli_sun@tongji.edu.cn">mingli_sun@tongji.edu.cn</a><span>Shanghai, China</span></div>
+      </section>
+    </main>
 
-          <!-- ===== Footer ===== -->
-          <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-            <tr>
-              <td style="padding:0px">
-                <br>
-                <p style="text-align:right;font-size:small;">
-                  Source from <a href="https://github.com/jonbarron/jonbarron_website">Jon Barron</a>.
-                </p>
-              </td>
-            </tr>
-          </tbody></table>
+    <footer class="site-footer section-shell">
+      <p>© 2026 Mingli Sun</p>
+      <p>Computational design · Human–AI collaboration</p>
+      <a href="#top">Back to top ↑</a>
+    </footer>
 
-        </td>
-      </tr>
-    </tbody></table>
-
-    <!-- ========== Image Slider Script ========== -->
-    <script>
-      (function(){
-        var slider = document.querySelector('.img-slider');
-        if (!slider) return;
-        var track  = slider.querySelector('.img-track');
-        var imgs   = slider.querySelectorAll('img');
-        var startX, current = 0;
-
-        function goTo(i){
-          current = i;
-          track.style.transform = 'translateX(-' + (i * 50) + '%)';
-        }
-
-        function onStart(x){ startX = x; }
-        function onEnd(x){
-          var diff = x - startX;
-          if (Math.abs(diff) < 10) {
-            if (typeof openLightbox === 'function') openLightbox(imgs[current].src);
-          } else if (Math.abs(diff) > 30) {
-            if (diff < 0 && current < imgs.length - 1) goTo(current + 1);
-            else if (diff > 0 && current > 0) goTo(current - 1);
-          }
-        }
-
-        slider.addEventListener('mousedown', function(e){ onStart(e.pageX); slider.style.cursor='grabbing'; });
-        slider.addEventListener('mouseup',   function(e){ onEnd(e.pageX);   slider.style.cursor='grab'; });
-        slider.addEventListener('mouseleave',function(){ slider.style.cursor='grab'; });
-
-        slider.addEventListener('touchstart', function(e){ onStart(e.touches[0].pageX); }, {passive:true});
-        slider.addEventListener('touchend',   function(e){ onEnd(e.changedTouches[0].pageX); }, {passive:true});
-      })();
-    </script>
-
-    <!-- ========== Theme & Stars Script ========== -->
-    <script>
-      /* ---- Auto Dark Mode: 20:30 - 06:30 ---- */
-      function updateTheme() {
-        const now = new Date();
-        const hours = now.getHours();
-        const minutes = now.getMinutes();
-        const totalMinutes = hours * 60 + minutes;
-        const nightStart = 20 * 60 + 30;
-        const nightEnd = 6 * 60 + 30;
-
-        if (totalMinutes >= nightStart || totalMinutes < nightEnd) {
-          document.body.classList.add('dark-mode');
-        } else {
-          document.body.classList.remove('dark-mode');
-        }
-      }
-      updateTheme();
-      setInterval(updateTheme, 60000);
-
-      /* ---- Shared Star Factory ---- */
-      function spawnStar(x, y, isTrail) {
-        const colors = ['#FFD700', '#FFFACD', '#FFFFFF', '#FFE4B5', '#E6E6FA', '#87CEEB'];
-        const star = document.createElement('span');
-        star.className = 'star-particle';
-        star.innerHTML = '★';
-        star.style.left = x + 'px';
-        star.style.top = y + 'px';
-        star.style.color = colors[Math.floor(Math.random() * colors.length)];
-        
-        if (isTrail) {
-          star.style.fontSize = (6 + Math.random() * 8) + 'px';
-          star.style.textShadow = '0 0 4px currentColor';
-          star.style.transition = 'all ' + (0.5 + Math.random() * 0.4) + 's ease-out';
-        } else {
-          star.style.fontSize = (10 + Math.random() * 12) + 'px';
-          star.style.transition = 'all ' + (0.8 + Math.random() * 0.5) + 's cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        }
-
-        star.style.opacity = '1';
-        star.style.transform = 'translate(0,0) rotate(0deg) scale(1)';
-        document.body.appendChild(star);
-
-        star.getBoundingClientRect();
-
-        const angle = Math.random() * Math.PI * 2;
-        const distance = isTrail ? (20 + Math.random() * 40) : (60 + Math.random() * 100);
-        const tx = Math.cos(angle) * distance;
-        const ty = Math.sin(angle) * distance;
-        const rot = Math.random() * 720 - 360;
-
-        requestAnimationFrame(() => {
-          star.style.transform = 'translate(' + tx + 'px, ' + ty + 'px) rotate(' + rot + 'deg) scale(0)';
-          star.style.opacity = '0';
-        });
-
-        setTimeout(() => {
-          if (star.parentNode) star.parentNode.removeChild(star);
-        }, isTrail ? 900 : 1500);
-      }
-
-      /* ---- Click Stars ---- */
-      document.addEventListener('click', function(e) {
-        if (e.target.closest('#img-lightbox')) return;
-        const count = 10 + Math.floor(Math.random() * 6);
-        for (let i = 0; i < count; i++) {
-          setTimeout(() => spawnStar(e.clientX, e.clientY, false), i * 15);
-        }
-      });
-
-      /* ---- Mouse Move Trail Stars ---- */
-      let lastTrailTime = 0;
-      document.addEventListener('mousemove', function(e) {
-        const now = Date.now();
-        if (now - lastTrailTime < 40) return;
-        lastTrailTime = now;
-        spawnStar(e.clientX, e.clientY, true);
-      });
-    </script>
+    <script src="site.js" defer></script>
   </body>
 </html>
