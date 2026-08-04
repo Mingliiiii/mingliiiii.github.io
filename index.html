@@ -99,34 +99,96 @@
       }
 
       /* === Holy Grail gold shimmer: 30s cycle, 2s flash === */
-      @keyframes holy-grail-shine {
-        0%, 90% { background-position: 50% center; }
-        95% { background-position: 200% center; }
-        100% { background-position: 50% center; }
-      }
+      /* === Gold text: static gold + hover shimmer + falling gold dust === */
+
       .project-number,
       .publication-year,
       .research-image span,
       .project-subtitle {
+
         font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
         font-style: italic;
-        background: linear-gradient(
-          105deg,
-          #8b6914 0%,
-          #b8860b 18%,
-          #daa520 32%,
-          #fff8dc 45%,
-          #ffd700 50%,
-          #fff8dc 55%,
-          #daa520 68%,
-          #b8860b 82%,
-          #8b6914 100%
-        );
-        background-size: 400% auto;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: holy-grail-shine 30s ease-in-out 28s infinite;
+
+        color: #c9a227;
+        -webkit-text-fill-color: #c9a227;
+        
+        position: relative;
+}
+
+
+/* hover 时金色闪动 */
+      @keyframes gold-flash {
+
+        0%, 70% {
+          filter: none;
+        }
+
+        85% {
+          filter:
+            drop-shadow(0 0 6px #ffd700)
+            drop-shadow(0 0 12px #d4af37);
+        }
+
+        100% {
+          filter:none;
+        }
+
       }
+
+
+      /* 金粉掉落 */
+      @keyframes gold-dust {
+
+        0% {
+          opacity:0;
+          transform:translateY(0) scale(.8);
+        }
+
+        40% {
+          opacity:1;
+        }
+
+        100% {
+          opacity:0;
+          transform:translateY(18px) scale(1.2);
+        }
+
+      }
+
+
+/* 鼠标在项目区域时触发 */
+.research-card:hover .project-number,
+.research-card:hover .project-subtitle,
+.research-card:hover .research-image span {
+
+  animation:
+    gold-flash 3s infinite;
+
+}
+
+
+/* 金粉粒子 */
+.research-card:hover .project-number::after,
+.research-card:hover .project-subtitle::after {
+
+  content:"✦  ✧  ✦";
+
+  position:absolute;
+
+  left:105%;
+
+  top:0;
+
+  color:#d4af37;
+
+  font-size:.75rem;
+
+  pointer-events:none;
+
+  animation:
+    gold-dust 2s infinite;
+
+}
 
       /* === Awards: normalize === */
       .awards-list strong {
@@ -183,15 +245,24 @@
       .accordion summary::-webkit-details-marker {
         display: none;
       }
-      .accordion summary::after {
-        content: '+';
-        font-family: 'Source Sans 3', sans-serif;
-        font-size: 1.2rem;
-        color: var(--text-secondary);
-        transition: transform 0.25s ease;
-      }
-      .accordion[open] summary::after {
-        content: '−';
+      .accordion summary::after{
+
+content:"⌄";
+
+font-size:1.4rem;
+
+color:var(--text-secondary);
+
+transition:.3s;
+
+}
+
+
+.accordion[open] summary::after{
+
+transform:rotate(180deg);
+
+}
       }
       .accordion .timeline,
       .accordion .awards-list {
@@ -230,6 +301,12 @@
         color: var(--text-secondary);
         font-size: 0.9rem;
       }
+
+      .mirror-icon {
+        font-size: 1.1rem;
+        margin-right: 0.35rem;
+        vertical-align: middle;
+      }
     </style>
     <script>
       try {
@@ -261,7 +338,11 @@
 </head>
   <body>
     <header class="site-header">
-      <span class="wordmark" aria-label="Sun Mingli"><strong>Sun Mingli</strong></span>
+      <span class="wordmark" aria-label="Sun Mingli">
+        <span class="mirror-icon">🪞</span>
+        <strong>Sun Mingli</strong>
+      </span>
+      
       <nav aria-label="Primary navigation">
         <a href="#research">Research</a>
         <a href="#publications">Publications</a>
@@ -404,7 +485,7 @@
 
             <section class="section-shell content-section" id="experience">
         <div class="section-heading">
-          <h2>Experience &amp; Education</h2>
+          <h2>Academic Experience &amp; Education</h2>
         </div>
         <div class="background-grid">
           <details class="accordion" open>
