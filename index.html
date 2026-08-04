@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sun Mingli — Computational Design Researcher</title>
+    <title>Sun Mingli</title>
     <meta name="description" content="Sun Mingli is a researcher working at the intersection of machine learning, structural architecture, human–AI collaboration, and construction robotics.">
     <meta name="keywords" content="Sun Mingli, computational design, generative AI, graph neural networks, structural architecture, construction robotics, human AI collaboration">
     <meta name="author" content="Sun Mingli">
@@ -14,7 +14,7 @@
     <meta property="og:url" content="https://mingliiiii.github.io/">
     <meta property="og:image" content="https://mingliiiii.github.io/images/mingli-sun.webp">
     <link rel="canonical" href="https://mingliiiii.github.io/">
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20rx%3D%2224%22%20fill%3D%22%23f5f0e6%22%2F%3E%3Ctext%20x%3D%2250%22%20y%3D%2264%22%20font-family%3D%22Georgia%2CTimes%20New%20Roman%2Cserif%22%20font-size%3D%2244%22%20font-weight%3D%22700%22%20fill%3D%22%232c1810%22%20text-anchor%3D%22middle%22%3ESM%3C%2Ftext%3E%3Ccircle%20cx%3D%2278%22%20cy%3D%2224%22%20r%3D%225%22%20fill%3D%22%23c9a227%22%2F%3E%3C%2Fsvg%3E" type="image/svg+xml">
     <link rel="preload" href="fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="stylesheet.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +22,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <style>
       /* === Two-font system === */
-      /* Crimson Text: headings & academic serif accents */
       h1, h2, h3, h4, h5, h6,
       .wordmark,
       .subsection-title,
@@ -35,22 +34,13 @@
       .awards-list strong {
         font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
       }
-      /* Source Sans 3: body & labels */
       body, p, span, div, article, section, header, footer, main, nav, a, button, li, td, th, label, input, textarea,
-      .project-number,
-      .publication-year,
       .timeline article > span,
       .awards-list span,
       .awards-list em,
-      figcaption span {
+      figcaption span,
+      .poster-venue {
         font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-      }
-      /* Italic accents */
-      .project-subtitle,
-      .publication-venue,
-      em, i {
-        font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
-        font-style: italic;
       }
 
       /* === Subsection titles: slightly larger === */
@@ -59,36 +49,43 @@
       }
 
       /* === Shared year-label model === */
-      .publication-year,
       .timeline article > span,
       .awards-list span {
         font-size: 0.8rem;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.08em;
-      }
-      .timeline article > span,
-      .awards-list span {
         color: var(--text-secondary);
       }
 
-      /* === Gold shimmer for project numbers & pub years === */
-      @keyframes gold-shimmer {
-        0% { background-position: 0% center; }
-        50% { background-position: 100% center; }
-        100% { background-position: 0% center; }
+      /* === Holy Grail gold shimmer (polished chalice) === */
+      @keyframes holy-grail-shine {
+        0% { background-position: -200% center; }
+        50% { background-position: 200% center; }
+        100% { background-position: -200% center; }
       }
       .project-number,
-      .publication-year {
-        color: #c9a227;
-        background: linear-gradient(90deg, #c9a227, #f0e68c, #c9a227, #f0e68c, #c9a227);
-        background-size: 200% auto;
+      .publication-year,
+      .research-image span,
+      .project-subtitle {
+        font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
+        font-style: italic;
+        background: linear-gradient(
+          105deg,
+          #8b6914 0%,
+          #b8860b 18%,
+          #daa520 32%,
+          #fff8dc 45%,
+          #ffd700 50%,
+          #fff8dc 55%,
+          #daa520 68%,
+          #b8860b 82%,
+          #8b6914 100%
+        );
+        background-size: 400% auto;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        animation: gold-shimmer 5s ease-in-out infinite;
-      }
-      .research-image span {
-        color: #c9a227;
+        animation: holy-grail-shine 7s ease-in-out infinite;
       }
 
       /* === Awards: normalize === */
@@ -100,7 +97,7 @@
         color: var(--text-secondary);
       }
 
-      /* === Links: follow theme text color === */
+      /* === Links: follow theme, absolutely no purple/blue === */
       a {
         color: var(--text);
         text-decoration: underline;
@@ -122,6 +119,14 @@
       }
       .project-footer a, .publication-link, figcaption a {
         font-weight: 600;
+      }
+
+      /* === Poster venue on new line === */
+      .poster-venue {
+        display: block;
+        margin-top: 0.3rem;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
       }
     </style>
     <script>
@@ -342,7 +347,7 @@
         <div class="poster-grid">
           <figure>
             <div class="poster-image"><img src="images/acadia-poster.webp" alt="Co-Intelligent Architecture conference poster" width="1200" height="750" loading="lazy" decoding="async"></div>
-            <figcaption><strong>Co-Intelligent Architecture</strong><span><a href="http://www.acadiacaadria.org/">ACADIA × CAADRIA 2023: Habits of the Anthropocene</a> · At The University of Hong Kong, Hong Kong SAR, China</span></figcaption>
+            <figcaption><strong>Co-Intelligent Architecture</strong><span><a href="http://www.acadiacaadria.org/">ACADIA × CAADRIA 2023: Habits of the Anthropocene</a></span><span class="poster-venue">At The University of Hong Kong, Hong Kong SAR, China</span></figcaption>
           </figure>
           <figure>
             <div class="poster-image"><img src="images/caadria-poster.webp" alt="Co-Intelligent Design Toward Modular Structures poster" width="1200" height="750" loading="lazy" decoding="async"></div>
