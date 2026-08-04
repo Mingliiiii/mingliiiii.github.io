@@ -21,6 +21,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <style>
+      /* === Section headings: vertical stack === */
+      .section-heading {
+        display: block !important;
+      }
+      .section-heading h2 {
+        margin-bottom: 0.6rem;
+      }
+      .section-heading p {
+        max-width: 65ch;
+      }
+
       /* === Two-font system === */
       h1, h2, h3, h4, h5, h6,
       .wordmark,
@@ -39,14 +50,43 @@
       .awards-list span,
       .awards-list em,
       figcaption span,
-      .poster-venue {
+      .poster-venue,
+      .hero-links a {
         font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      }
+
+      /* === Research heading: vertical stack === */
+      .section-heading {
+        display: block !important;
+      }
+      .section-heading h2 {
+        margin-bottom: 0.6rem;
+      }
+      .section-heading p {
+        max-width: 65ch;
       }
 
       /* === Subsection titles: slightly larger === */
       .subsection-title {
         font-size: 1.4rem;
+        cursor: pointer;
+        list-style: none;
+        display: block;
+        padding-bottom: 0.4rem;
+        border-bottom: 2px solid var(--text);
+        margin-bottom: 1.2rem;
       }
+      .subsection-title::-webkit-details-marker { display: none; }
+
+      /* === Collapsible sections: compact === */
+      details > summary { outline: none; }
+      details[open] > summary { margin-bottom: 1rem; }
+      details .timeline,
+      details .awards-list {
+        padding-left: 0.25rem;
+      }
+      .timeline { gap: 1rem; }
+      .awards-list > div { padding: 0.4rem 0; }
 
       /* === Shared year-label model === */
       .timeline article > span,
@@ -58,11 +98,11 @@
         color: var(--text-secondary);
       }
 
-      /* === Holy Grail gold shimmer (polished chalice) === */
+      /* === Holy Grail gold shimmer: 30s cycle, 2s flash === */
       @keyframes holy-grail-shine {
-        0% { background-position: -200% center; }
-        50% { background-position: 200% center; }
-        100% { background-position: -200% center; }
+        0%, 90% { background-position: 50% center; }
+        95% { background-position: 200% center; }
+        100% { background-position: 50% center; }
       }
       .project-number,
       .publication-year,
@@ -85,7 +125,7 @@
         background-size: 400% auto;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        animation: holy-grail-shine 7s ease-in-out infinite;
+        animation: holy-grail-shine 30s ease-in-out 28s infinite;
       }
 
       /* === Awards: normalize === */
@@ -97,7 +137,7 @@
         color: var(--text-secondary);
       }
 
-      /* === Links: follow theme, absolutely no purple/blue === */
+      /* === Links: follow theme, no purple === */
       a {
         color: var(--text);
         text-decoration: underline;
@@ -110,6 +150,7 @@
       }
       .wordmark {
         text-decoration: none !important;
+        cursor: default;
       }
       .site-header a, nav a, .header-actions a {
         text-decoration: none;
@@ -119,6 +160,67 @@
       }
       .project-footer a, .publication-link, figcaption a {
         font-weight: 600;
+      }
+
+      /* === Accordion compact layout === */
+      .accordion {
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 0.75rem 1rem;
+        background: var(--surface);
+      }
+      .accordion + .accordion {
+        margin-top: 0.75rem;
+      }
+      .accordion summary {
+        cursor: pointer;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.25rem 0;
+      }
+      .accordion summary::-webkit-details-marker {
+        display: none;
+      }
+      .accordion summary::after {
+        content: '+';
+        font-family: 'Source Sans 3', sans-serif;
+        font-size: 1.2rem;
+        color: var(--text-secondary);
+        transition: transform 0.25s ease;
+      }
+      .accordion[open] summary::after {
+        content: '−';
+      }
+      .accordion .timeline,
+      .accordion .awards-list {
+        padding-top: 0.5rem;
+        margin-top: 0.5rem;
+        border-top: 1px solid var(--border);
+      }
+      .accordion .timeline article {
+        padding: 0.4rem 0;
+      }
+      .accordion .awards-list > div {
+        padding: 0.4rem 0;
+      }
+      .awards-accordion {
+        margin-top: 0.75rem;
+      }
+
+      /* === Hero links: title case, Source Sans 3 === */
+      .hero-links a {
+        font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        text-transform: none;
+      }
+
+      /* === Poster figcaption: all text Source Sans 3 === */
+      figcaption, figcaption a, figcaption span, .poster-venue {
+        font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      }
+      figcaption strong {
+        font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
       }
 
       /* === Poster venue on new line === */
@@ -159,14 +261,11 @@
 </head>
   <body>
     <header class="site-header">
-      <a class="wordmark" href="#top" aria-label="Sun Mingli, home">
-        
-        <strong>Sun Mingli</strong>
-      </a>
+      <span class="wordmark" aria-label="Sun Mingli"><strong>Sun Mingli</strong></span>
       <nav aria-label="Primary navigation">
         <a href="#research">Research</a>
         <a href="#publications">Publications</a>
-        <a href="#experience">Experience</a>
+        <a href="#experience">Background</a>
       </nav>
       <div class="header-actions">
         <a href="Mingli_Sun_CV.pdf" target="_blank" rel="noreferrer noopener">CV ↗</a>
@@ -303,32 +402,29 @@
         </div>
       </section>
 
-      <section class="section-shell content-section" id="experience">
+            <section class="section-shell content-section" id="experience">
         <div class="section-heading">
-          <div><h2>Experience &amp; Education</h2></div>
-         
+          <h2>Experience &amp; Education</h2>
         </div>
-
         <div class="background-grid">
-          <div>
-            <h3 class="subsection-title">Academic experience</h3>
+          <details class="accordion" open>
+            <summary class="subsection-title">Academic Experience</summary>
             <div class="timeline">
               <article><span>2025–2026</span><div><h4>Research Assistant</h4><p>College of Architecture and Urban Planning, Tongji University</p></div></article>
               <article><span>2024–2025</span><div><h4>Research Intern</h4><p>Institute of Future Human Habitats, Tsinghua Shenzhen International Graduate School</p></div></article>
               <article><span>2023</span><div><h4>Technical Instructor</h4><p>FabLab O Shanghai · MIT FabLab Global Network</p></div></article>
             </div>
-          </div>
-          <div>
-            <h3 class="subsection-title">Education</h3>
+          </details>
+          <details class="accordion" open>
+            <summary class="subsection-title">Education</summary>
             <div class="timeline">
               <article><span>2022–2025</span><div><h4>MA in Arts and Design</h4><p>Advanced Environmental Design</p><p>College of Design and Innovation, Tongji University</p></div></article>
               <article><span>2016–2020</span><div><h4>BEng in Industrial Design</h4><p>Mechanical and Electrical Engineering School</p><p>Beijing Information Science &amp; Technology University</p></div></article>
             </div>
-          </div>
+          </details>
         </div>
-
-        <div class="awards-block">
-          <h3 class="subsection-title">Honors &amp; Awards</h3>
+        <details class="accordion awards-accordion" open>
+          <summary class="subsection-title">Honors &amp; Awards</summary>
           <div class="awards-list">
             <div><span>2025</span><strong>Shanghai Outstanding Graduate Award</strong><em>Shanghai Municipal Government</em></div>
             <div><span>2024</span><strong>Outstanding Postgraduate Scholarship</strong><em>Tongji University</em></div>
@@ -336,7 +432,7 @@
             <div><span>2023</span><strong>International and Hong Kong, Macao, and Taiwan Exchange Grant</strong><em>Tongji University</em></div>
             <div><span>2020</span><strong>Beijing Outstanding Graduate Award</strong><em>Beijing Municipal Government</em></div>
           </div>
-        </div>
+        </details>
       </section>
 
       <section class="section-shell posters-section" aria-labelledby="posters-title">
