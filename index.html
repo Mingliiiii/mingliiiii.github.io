@@ -152,56 +152,77 @@
       }
 
       /* === ALL LINKS: light underline default, bold on hover, never blue/purple === */
+      /* Use text-decoration system (more reliable than border-bottom) */
       a, a:link, a:visited, a:active, a:focus {
-        color: var(--text) !important;
-        text-decoration: none !important;
-        border-bottom: 1px solid var(--text-secondary) !important;
-        transition: border-color 0.25s ease, border-width 0.25s ease;
+        color: var(--text, #333) !important;
+        text-decoration: underline !important;
+        text-decoration-color: color-mix(in srgb, var(--text, #333) 30%, transparent) !important;
+        text-decoration-thickness: 1px !important;
+        text-underline-offset: 0.15em !important;
+        border-bottom: none !important;
+        transition: text-decoration-color 0.25s ease, text-decoration-thickness 0.25s ease;
       }
       a:hover {
-        border-bottom: 2px solid var(--text) !important;
+        text-decoration-color: var(--text, #333) !important;
+        text-decoration-thickness: 2px !important;
       }
 
       /* Wordmark: no underline ever */
       .wordmark, .wordmark:hover {
-        border-bottom: 1px solid transparent !important;
+        text-decoration: none !important;
+        border-bottom: none !important;
       }
 
       /* Header nav */
       .site-header a, nav a, .header-actions a {
-        color: var(--text) !important;
-        text-decoration: none !important;
-        border-bottom: 1px solid var(--text-secondary) !important;
+        color: var(--text, #333) !important;
+        text-decoration: underline !important;
+        text-decoration-color: color-mix(in srgb, var(--text, #333) 30%, transparent) !important;
+        text-decoration-thickness: 1px !important;
+        border-bottom: none !important;
       }
       .site-header a:hover, nav a:hover, .header-actions a:hover {
-        border-bottom: 2px solid var(--text) !important;
+        text-decoration-color: var(--text, #333) !important;
+        text-decoration-thickness: 2px !important;
       }
 
       /* Hero links */
       .hero-links a {
         font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
         text-transform: none;
-        border-bottom: 1px solid var(--text-secondary) !important;
+        text-decoration: underline !important;
+        text-decoration-color: color-mix(in srgb, var(--text, #333) 30%, transparent) !important;
+        text-decoration-thickness: 1px !important;
+        border-bottom: none !important;
       }
       .hero-links a:hover {
-        border-bottom: 2px solid var(--text) !important;
+        text-decoration-color: var(--text, #333) !important;
+        text-decoration-thickness: 2px !important;
       }
 
       /* Project footer, publication links, figcaption */
       .project-footer a, .publication-link, figcaption a {
         font-weight: 600;
-        border-bottom: 1px solid var(--text-secondary) !important;
+        text-decoration: underline !important;
+        text-decoration-color: color-mix(in srgb, var(--text, #333) 30%, transparent) !important;
+        text-decoration-thickness: 1px !important;
+        border-bottom: none !important;
       }
       .project-footer a:hover, .publication-link:hover, figcaption a:hover {
-        border-bottom: 2px solid var(--text) !important;
+        text-decoration-color: var(--text, #333) !important;
+        text-decoration-thickness: 2px !important;
       }
 
       /* Footer back-to-top */
       .site-footer a {
-        border-bottom: 1px solid var(--text-secondary) !important;
+        text-decoration: underline !important;
+        text-decoration-color: color-mix(in srgb, var(--text, #333) 30%, transparent) !important;
+        text-decoration-thickness: 1px !important;
+        border-bottom: none !important;
       }
       .site-footer a:hover {
-        border-bottom: 2px solid var(--text) !important;
+        text-decoration-color: var(--text, #333) !important;
+        text-decoration-thickness: 2px !important;
       }
 
       /* === Poster figcaption: all text Source Sans 3 === */
