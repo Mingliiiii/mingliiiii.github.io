@@ -172,7 +172,7 @@
 
       /* === Links: follow theme text color === */
       a, a:visited {
-        color: var(--text);
+        color: var(--text) !important;
         text-decoration: none;
         border-bottom: 1px solid transparent;
         transition: border-color 0.25s ease;
@@ -184,10 +184,12 @@
         text-decoration: none !important;
       }
       .site-header a, nav a, .header-actions a {
+        color: var(--text) !important;
         text-decoration: none;
       }
       .site-header a:hover, nav a:hover, .header-actions a:hover {
-        text-decoration: underline;
+        text-decoration: none;
+        border-bottom: 1px solid currentColor;
       }
       .project-footer a, .publication-link, figcaption a {
         font-weight: 600;
