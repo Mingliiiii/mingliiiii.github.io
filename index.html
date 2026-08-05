@@ -20,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-    <style>
+        <style>
       /* === Section headings: vertical stack === */
       .section-heading {
         display: block !important;
@@ -142,8 +142,6 @@
           position: relative;
       }
 
-/* 重点：已经删掉旧的 ::after 伪元素粉尘代码！ */
-
       /* === Awards: normalize === */
       .awards-list strong {
         font-weight: 400;
@@ -153,37 +151,57 @@
         color: var(--text-secondary);
       }
 
-      /* === Links: follow theme text color === */
+      /* === ALL LINKS: light underline default, bold on hover, never blue/purple === */
       a, a:link, a:visited, a:active, a:focus {
         color: var(--text) !important;
         text-decoration: none !important;
-        border-bottom: 1px solid transparent !important;
+        border-bottom: 1px solid var(--text-secondary) !important;
+        transition: border-color 0.25s ease, border-width 0.25s ease;
       }
-      
       a:hover {
-        border-bottom: 1px solid var(--text) !important;
-      }
-      
-      .wordmark {
-        text-decoration: none !important;
-      }
-      .site-header a, nav a, .header-actions a {
-        color: var(--text) !important;
-        text-decoration: none;
-      }
-      .site-header a:hover, nav a:hover, .header-actions a:hover {
-        text-decoration: none !important;
-        border-bottom: 1px solid var(--text) !important;
-      }
-      
-      .project-footer a, .publication-link, figcaption a {
-        font-weight: 600;
+        border-bottom: 2px solid var(--text) !important;
       }
 
-      /* === Hero links: title case, Source Sans 3 === */
+      /* Wordmark: no underline ever */
+      .wordmark, .wordmark:hover {
+        border-bottom: 1px solid transparent !important;
+      }
+
+      /* Header nav */
+      .site-header a, nav a, .header-actions a {
+        color: var(--text) !important;
+        text-decoration: none !important;
+        border-bottom: 1px solid var(--text-secondary) !important;
+      }
+      .site-header a:hover, nav a:hover, .header-actions a:hover {
+        border-bottom: 2px solid var(--text) !important;
+      }
+
+      /* Hero links */
       .hero-links a {
         font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
         text-transform: none;
+        border-bottom: 1px solid var(--text-secondary) !important;
+      }
+      .hero-links a:hover {
+        border-bottom: 2px solid var(--text) !important;
+      }
+
+      /* Project footer, publication links, figcaption */
+      .project-footer a, .publication-link, figcaption a {
+        font-weight: 600;
+        border-bottom: 1px solid var(--text-secondary) !important;
+      }
+      .project-footer a:hover, .publication-link:hover, figcaption a:hover {
+        border-bottom: 2px solid var(--text) !important;
+      }
+
+      /* Footer back-to-top */
+      .site-footer a {
+        border-bottom: 1px solid var(--text-secondary) !important;
+      }
+      .site-footer a:hover {
+        border-bottom: 2px solid var(--text) !important;
       }
 
       /* === Poster figcaption: all text Source Sans 3 === */
@@ -194,7 +212,6 @@
         font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
       }
 
-     
       /* === Accordion compact layout === */
       .accordion {
         border: 1px solid var(--border);
@@ -503,7 +520,6 @@
     <script src="site.js" defer></script>
     <script>
       // === Gold foil burst: sync with 9s shine cycle ===
-      // 3s shine sweep → burst → 6s rest as static gold text
       const particleNum = 28;
       const shineLoop = 9000;
       const goldPalette = ["#c9a227","#daa520","#ffd700","#fff8dc","#b8860b","#f0e68c"];
@@ -512,8 +528,6 @@
         const textRect = triggerEl.getBoundingClientRect();
         const parentWrap = triggerEl.closest(".research-card, .publication-row");
         if (!parentWrap) return;
-
-        // Ensure parent doesn't clip particles
         parentWrap.style.overflow = "visible";
         const parentRect = parentWrap.getBoundingClientRect();
 
@@ -525,7 +539,6 @@
           const startX = textRect.left - parentRect.left + Math.random() * textRect.width;
           const startY = textRect.top - parentRect.top + textRect.height * 0.3;
 
-          // Burst: upper-right quadrant (-20° to -70°)
           const angleDeg = -25 - Math.random() * 50;
           const angle = angleDeg * Math.PI / 180;
           const dist = 60 + Math.random() * 100;
@@ -562,7 +575,6 @@
           });
 
           anim.onfinish = () => dust.remove();
-          // Fallback cleanup
           setTimeout(() => { if(dust.parentNode) dust.remove(); }, 2500);
         }
       }
@@ -575,7 +587,6 @@
         item.addEventListener("mouseenter", () => {
           clearTimeout(delayTimer);
           clearInterval(intervalTimer);
-          // Wait ~2.8s for shine sweep to finish, then burst
           delayTimer = setTimeout(() => {
             createGoldDust(item);
             intervalTimer = setInterval(() => createGoldDust(item), shineLoop);
@@ -588,5 +599,5 @@
         });
       });
     </script>
-  </body>
+</body>
 </html>
