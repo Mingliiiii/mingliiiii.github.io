@@ -103,63 +103,46 @@
       .publication-year,
       .research-image span,
       .project-subtitle {
-        font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
-        font-style: italic;
-        color: #c9a227;
-        -webkit-text-fill-color: #c9a227;
+          font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
+          font-style: italic;
+          color: #c9a227;
+          -webkit-text-fill-color: #c9a227;
       }
+
+      /* 9秒完整周期：前3秒扫光、后面6秒静止休息 */
       @keyframes hover-shine {
-        0% { background-position: -200% center; }
-        50% { background-position: 200% center; }
-        100% { background-position: -200% center; }
+          0% { background-position: -200% center; }
+          33% { background-position: 200% center; }
+          100% { background-position: 200% center; }
       }
-      @keyframes gold-dust-fall {
-        0% { transform: translateY(0) scale(1); opacity: 1; }
-        100% { transform: translateY(40px) scale(0); opacity: 0; }
-      }
+
       .research-card:hover .project-number,
       .research-card:hover .project-subtitle,
       .research-card:hover .research-image span,
       .publication-row:hover .publication-year {
-        background: linear-gradient(
-          105deg,
-          #c9a227 0%,
-          #daa520 20%,
-          #fff8dc 40%,
-          #ffd700 50%,
-          #fff8dc 60%,
-          #daa520 80%,
-          #c9a227 100%
-        );
-        background-size: 300% auto;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: hover-shine 3s ease-in-out infinite;
+          background: linear-gradient(
+              105deg,
+              #c9a227 0%,
+              #daa520 20%,
+              #fff8dc 40%,
+              #ffd700 50%,
+              #fff8dc 60%,
+              #daa520 80%,
+              #c9a227 100%
+          );
+          background-size: 300% auto;
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          animation: hover-shine 9s ease-in-out infinite;
       }
+
       .research-card,
       .publication-row {
-        position: relative;
+          position: relative;
       }
-      .research-card:hover .project-number::after,
-      .publication-row:hover .publication-year::after {
-        content: '';
-        position: absolute;
-        width: 3px;
-        height: 3px;
-        background: #daa520;
-        border-radius: 50%;
-        box-shadow:
-          8px 12px 0 #c9a227,
-          -5px 20px 0 #ffd700,
-          15px 28px 0 #daa520,
-          -10px 35px 0 #c9a227,
-          20px 42px 0 #fff8dc,
-          -3px 48px 0 #daa520,
-          12px 55px 0 #c9a227,
-          -8px 62px 0 #ffd700;
-        animation: gold-dust-fall 2s ease-out infinite;
-        pointer-events: none;
-      }
+
+/* 重点：已经删掉旧的 ::after 伪元素粉尘代码！ */
 
       /* === Awards: normalize === */
       .awards-list strong {
@@ -171,10 +154,10 @@
       }
 
       /* === Links: follow theme text color === */
-      a, a:link, a:visited, a:hover, a:active, a:focus {
-      color: var(--text) !important;
-      text-decoration: none !important;
-      border-bottom: 1px solid transparent !important;
+      a, a:link, a:visited, a:active, a:focus {
+        color: var(--text) !important;
+        text-decoration: none !important;
+        border-bottom: 1px solid transparent !important;
       }
       
       a:hover {
@@ -189,9 +172,10 @@
         text-decoration: none;
       }
       .site-header a:hover, nav a:hover, .header-actions a:hover {
-        text-decoration: none;
-        border-bottom: 1px solid currentColor;
+        text-decoration: none !important;
+        border-bottom: 1px solid var(--text) !important;
       }
+      
       .project-footer a, .publication-link, figcaption a {
         font-weight: 600;
       }
@@ -270,6 +254,7 @@
         font-size: 0.9rem;
       }
     </style>
+    
     <script>
       try {
         const saved = localStorage.getItem("mingli-theme");
@@ -277,6 +262,7 @@
         document.documentElement.dataset.theme = saved || preferred;
       } catch (_) {}
     </script>
+    
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -297,8 +283,11 @@
       }
     </script>
   <base target="_blank">
+    
 </head>
+  
   <body>
+    
     <header class="site-header">
       <span class="wordmark" aria-label="Sun Mingli">
         
@@ -511,5 +500,64 @@
     </footer>
 
     <script src="site.js" defer></script>
+    <script>
+    // 参数配置
+            const particleNum = 22;      // 单次喷发22颗金粉
+            const fallTime = 3000;       // 下坠动画时长3秒
+            const shineLoop = 9000;      // 和流光周期保持9s
+            const goldPalette = ["#c9a227","#daa520","#ffd700","#fff8dc"];
+
+            // 创建单批金粉碎屑
+            function createGoldDust(triggerEl) {
+                // 获取触发文字、父卡片坐标
+                const textRect = triggerEl.getBoundingClientRect();
+                const parentWrap = triggerEl.closest(".research-card,.publication-row");
+                const parentRect = parentWrap.getBoundingClientRect();
+
+                for(let i = 0; i < particleNum; i++){
+                    const dust = document.createElement("span");
+                    // 随机尺寸 1px ~ 3px
+                    const randomSize = 1 + Math.random() * 2;
+                    dust.style.cssText = `
+                        position:absolute;
+                        width:${randomSize}px;
+                        height:${randomSize}px;
+                        border-radius:50%;
+                        background:${goldPalette[Math.floor(Math.random()*goldPalette.length)]};
+                        left: ${textRect.left - parentRect.left + Math.random() * textRect.width}px;
+                        top: ${textRect.top - parentRect.top}px;
+                        pointer-events: none;
+                        z-index: 100;
+                        animation: dustFall ${fallTime}ms ease-out forwards;
+                    `
+                    parentWrap.appendChild(dust);
+                    // 动画结束销毁粒子
+                    setTimeout(()=> dust.remove(), fallTime);
+                }
+            }
+
+            // 注入粒子下落关键帧动画（先上飞再下坠）
+            const dustAnimStyle = document.createElement("style");
+            dustAnimStyle.innerText = `
+            @keyframes dustFall {
+                0%{transform: translateY(0); opacity:1;}
+                20%{transform: translateY(-12px) scale(1.1); opacity:1;}
+                100%{transform: translateY(40px) scale(0); opacity:0;}
+            }
+            `
+            document.head.appendChild(dustAnimStyle);
+
+            // 监听鼠标悬浮，定时喷发粉尘
+            const hoverTargets = document.querySelectorAll(".project-number,.publication-year");
+            hoverTargets.forEach(item=>{
+                let timer;
+                item.addEventListener("mouseenter",()=>{
+                    createGoldDust(item);
+                    timer = setInterval(()=> createGoldDust(item), shineLoop);
+                })
+                item.addEventListener("mouseleave",()=>{
+                    clearInterval(timer);
+                })
+            })
   </body>
 </html>
