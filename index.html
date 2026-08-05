@@ -154,31 +154,36 @@
       }
 
       /* === Links: follow theme text color === */
-      a, a:link, a:visited, a:active, a:focus {
-        color: var(--text) !important;
-        text-decoration: none !important;
-        border-bottom: 1px solid transparent !important;
-      }
-      
-      a:hover {
-        border-bottom: 1px solid var(--text) !important;
-      }
-      
-      .wordmark {
-        text-decoration: none !important;
-      }
-      .site-header a, nav a, .header-actions a {
-        color: var(--text) !important;
-        text-decoration: none;
-      }
-      .site-header a:hover, nav a:hover, .header-actions a:hover {
-        text-decoration: none !important;
-        border-bottom: 1px solid var(--text) !important;
-      }
-      
-      .project-footer a, .publication-link, figcaption a {
-        font-weight: 600;
-      }
+      /* === Links: follow theme text color === */
+a, a:link, a:visited, a:active, a:focus {
+  color: var(--text);
+  text-decoration: none;
+  /* 只保留文字链接预留边框空间，导航标题单独处理 */
+}
+a:hover {
+  border-bottom: 1px solid var(--text);
+}
+
+/* 网站标题完全无下划线 */
+.wordmark {
+  text-decoration: none;
+  border-bottom: none !important;
+}
+
+/* 头部导航链接：hover也不显示下划线 */
+.site-header a, nav a, .header-actions a {
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: none;
+}
+.site-header a:hover, nav a:hover, .header-actions a:hover {
+  border-bottom: none;
+}
+
+/* 正文项目/文献/图注链接加粗 */
+.project-footer a, .publication-link, figcaption a {
+  font-weight: 600;
+}
 
       /* === Hero links: title case, Source Sans 3 === */
       .hero-links a {
@@ -492,72 +497,74 @@
 
       
     </main>
-
-    <footer class="site-footer section-shell">
+      <footer class="site-footer section-shell">
       <p>© 2026 Sun Mingli</p>
      
       <a href="#top">Back to top ↑</a>
-    </footer>
+      </footer>
 
-    <script src="site.js" defer></script>
+    <!-- 外部JS -->
+      <script src="site.js" defer></script>
+
+    <!-- 金粉粒子JS，补全闭合script -->
     <script>
-    // 参数配置
-            const particleNum = 22;      // 单次喷发22颗金粉
-            const fallTime = 3000;       // 下坠动画时长3秒
-            const shineLoop = 9000;      // 和流光周期保持9s
-            const goldPalette = ["#c9a227","#daa520","#ffd700","#fff8dc"];
+        // 参数配置
+        const particleNum = 22;      // 单次喷发22颗金粉
+        const fallTime = 3000;       // 下坠动画时长3秒
+        const shineLoop = 9000;      // 和流光周期保持9s
+        const goldPalette = ["#c9a227","#daa520","#ffd700","#fff8dc"];
 
-            // 创建单批金粉碎屑
-            function createGoldDust(triggerEl) {
-                // 获取触发文字、父卡片坐标
-                const textRect = triggerEl.getBoundingClientRect();
-                const parentWrap = triggerEl.closest(".research-card,.publication-row");
-                const parentRect = parentWrap.getBoundingClientRect();
-
-                for(let i = 0; i < particleNum; i++){
-                    const dust = document.createElement("span");
-                    // 随机尺寸 1px ~ 3px
-                    const randomSize = 1 + Math.random() * 2;
-                    dust.style.cssText = `
-                        position:absolute;
-                        width:${randomSize}px;
-                        height:${randomSize}px;
-                        border-radius:50%;
-                        background:${goldPalette[Math.floor(Math.random()*goldPalette.length)]};
-                        left: ${textRect.left - parentRect.left + Math.random() * textRect.width}px;
-                        top: ${textRect.top - parentRect.top}px;
-                        pointer-events: none;
-                        z-index: 100;
-                        animation: dustFall ${fallTime}ms ease-out forwards;
-                    `
-                    parentWrap.appendChild(dust);
-                    // 动画结束销毁粒子
-                    setTimeout(()=> dust.remove(), fallTime);
-                }
+        // 创建单批金粉碎屑
+        function createGoldDust(triggerEl) {
+            // 获取触发文字、父卡片坐标
+            const textRect = triggerEl.getBoundingClientRect();
+            const parentWrap = triggerEl.closest(".research-card,.publication-row");
+            const parentRect = parentWrap.getBoundingClientRect();
+            for(let i = 0; i < particleNum; i++){
+                const dust = document.createElement("span");
+                // 随机尺寸 1px ~ 3px
+                const randomSize = 1 + Math.random() * 2;
+                dust.style.cssText = `
+                    position:absolute;
+                    width:${randomSize}px;
+                    height:${randomSize}px;
+                    border-radius:50%;
+                    background:${goldPalette[Math.floor(Math.random()*goldPalette.length)]};
+                    left: ${textRect.left - parentRect.left + Math.random() * textRect.width}px;
+                    top: ${textRect.top - parentRect.top}px;
+                    pointer-events: none;
+                    z-index: 100;
+                    animation: dustFall ${fallTime}ms ease-out forwards;
+                `
+                parentWrap.appendChild(dust);
+                // 动画结束销毁粒子
+                setTimeout(()=> dust.remove(), fallTime);
             }
-
-            // 注入粒子下落关键帧动画（先上飞再下坠）
-            const dustAnimStyle = document.createElement("style");
-            dustAnimStyle.innerText = `
-            @keyframes dustFall {
-                0%{transform: translateY(0); opacity:1;}
-                20%{transform: translateY(-12px) scale(1.1); opacity:1;}
-                100%{transform: translateY(40px) scale(0); opacity:0;}
-            }
-            `
-            document.head.appendChild(dustAnimStyle);
-
-            // 监听鼠标悬浮，定时喷发粉尘
-            const hoverTargets = document.querySelectorAll(".project-number,.publication-year");
-            hoverTargets.forEach(item=>{
-                let timer;
-                item.addEventListener("mouseenter",()=>{
-                    createGoldDust(item);
-                    timer = setInterval(()=> createGoldDust(item), shineLoop);
-                })
-                item.addEventListener("mouseleave",()=>{
-                    clearInterval(timer);
-                })
+        }
+        // 注入粒子下落关键帧动画（先上飞再下坠）
+        const dustAnimStyle = document.createElement("style");
+        dustAnimStyle.innerText = `
+        @keyframes dustFall {
+            0%{transform: translateY(0); opacity:1;}
+            20%{transform: translateY(-12px) scale(1.1); opacity:1;}
+            100%{transform: translateY(40px) scale(0); opacity:0;}
+        }
+        `
+        document.head.appendChild(dustAnimStyle);
+        // 监听鼠标悬浮，定时喷发粉尘
+        const hoverTargets = document.querySelectorAll(".project-number,.publication-year");
+        hoverTargets.forEach(item=>{
+            let timer;
+            item.addEventListener("mouseenter",()=>{
+                createGoldDust(item);
+                timer = setInterval(()=> createGoldDust(item), shineLoop);
             })
-  </body>
+            item.addEventListener("mouseleave",()=>{
+                clearInterval(timer);
+            })
+        })
+    </script>
+</body>
 </html>
+
+    
