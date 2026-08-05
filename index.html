@@ -152,77 +152,60 @@
       }
 
       /* === ALL LINKS: light underline default, bold on hover, never blue/purple === */
-      /* Use text-decoration system (more reliable than border-bottom) */
-      a, a:link, a:visited, a:active, a:focus {
-        color: var(--text, #333) !important;
+      /* Base: high specificity (html prefix) to override stylesheet.css */
+      html a, html a:link, html a:visited, html a:active, html a:focus,
+      html .site-header a, html nav a, html .header-actions a,
+      html .hero-links a, html .project-footer a, html .publication-link, html figcaption a,
+      html .site-footer a {
+        color: var(--text) !important;
         text-decoration: underline !important;
-        text-decoration-color: color-mix(in srgb, var(--text, #333) 30%, transparent) !important;
         text-decoration-thickness: 1px !important;
         text-underline-offset: 0.15em !important;
         border-bottom: none !important;
         transition: text-decoration-color 0.25s ease, text-decoration-thickness 0.25s ease;
       }
-      a:hover {
-        text-decoration-color: var(--text, #333) !important;
+
+      /* Light mode: faint dark underline */
+      html a, html a:link, html a:visited, html a:active, html a:focus,
+      html .site-header a, html nav a, html .header-actions a,
+      html .hero-links a, html .project-footer a, html .publication-link, html figcaption a,
+      html .site-footer a {
+        text-decoration-color: rgba(0,0,0,0.22) !important;
+      }
+
+      /* Dark mode: faint light underline */
+      html[data-theme="dark"] a, html[data-theme="dark"] a:link, html[data-theme="dark"] a:visited,
+      html[data-theme="dark"] a:active, html[data-theme="dark"] a:focus,
+      html[data-theme="dark"] .site-header a, html[data-theme="dark"] nav a, html[data-theme="dark"] .header-actions a,
+      html[data-theme="dark"] .hero-links a, html[data-theme="dark"] .project-footer a,
+      html[data-theme="dark"] .publication-link, html[data-theme="dark"] figcaption a,
+      html[data-theme="dark"] .site-footer a {
+        text-decoration-color: rgba(255,255,255,0.35) !important;
+      }
+
+      /* Hover: bold solid underline (both modes) */
+      html a:hover, html .site-header a:hover, html nav a:hover, html .header-actions a:hover,
+      html .hero-links a:hover, html .project-footer a:hover, html .publication-link:hover,
+      html figcaption a:hover, html .site-footer a:hover {
+        text-decoration-color: var(--text) !important;
         text-decoration-thickness: 2px !important;
       }
 
       /* Wordmark: no underline ever */
-      .wordmark, .wordmark:hover {
+      html .wordmark, html .wordmark:hover {
         text-decoration: none !important;
         border-bottom: none !important;
       }
 
-      /* Header nav */
-      .site-header a, nav a, .header-actions a {
-        color: var(--text, #333) !important;
-        text-decoration: underline !important;
-        text-decoration-color: color-mix(in srgb, var(--text, #333) 30%, transparent) !important;
-        text-decoration-thickness: 1px !important;
-        border-bottom: none !important;
-      }
-      .site-header a:hover, nav a:hover, .header-actions a:hover {
-        text-decoration-color: var(--text, #333) !important;
-        text-decoration-thickness: 2px !important;
-      }
-
-      /* Hero links */
-      .hero-links a {
+      /* Hero links font */
+      html .hero-links a {
         font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
         text-transform: none;
-        text-decoration: underline !important;
-        text-decoration-color: color-mix(in srgb, var(--text, #333) 30%, transparent) !important;
-        text-decoration-thickness: 1px !important;
-        border-bottom: none !important;
-      }
-      .hero-links a:hover {
-        text-decoration-color: var(--text, #333) !important;
-        text-decoration-thickness: 2px !important;
       }
 
-      /* Project footer, publication links, figcaption */
-      .project-footer a, .publication-link, figcaption a {
+      /* Project footer & publication link weight */
+      html .project-footer a, html .publication-link, html figcaption a {
         font-weight: 600;
-        text-decoration: underline !important;
-        text-decoration-color: color-mix(in srgb, var(--text, #333) 30%, transparent) !important;
-        text-decoration-thickness: 1px !important;
-        border-bottom: none !important;
-      }
-      .project-footer a:hover, .publication-link:hover, figcaption a:hover {
-        text-decoration-color: var(--text, #333) !important;
-        text-decoration-thickness: 2px !important;
-      }
-
-      /* Footer back-to-top */
-      .site-footer a {
-        text-decoration: underline !important;
-        text-decoration-color: color-mix(in srgb, var(--text, #333) 30%, transparent) !important;
-        text-decoration-thickness: 1px !important;
-        border-bottom: none !important;
-      }
-      .site-footer a:hover {
-        text-decoration-color: var(--text, #333) !important;
-        text-decoration-thickness: 2px !important;
       }
 
       /* === Poster figcaption: all text Source Sans 3 === */
