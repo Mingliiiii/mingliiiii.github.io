@@ -171,16 +171,20 @@
       }
 
       /* === Links: follow theme text color === */
-      a, a:visited {
-        color: var(--text) !important;
-        text-decoration: none !important;
-        border-bottom: 1px solid transparent;
-        transition: border-color 0.25s ease;
-      }
+     a, a:link, a:visited, a:hover, a:active, a:focus {
+       color: var(--text) !important;
+       text-decoration: none !important;
+     }
+
+     a {
+       border-bottom: 1px solid transparent;
+       transition: border-color 0.25s ease;
+     }
+
       a:hover {
-        text-decoration: none !important; 
         border-bottom: 1px solid var(--text);
       }
+      
       .wordmark {
         text-decoration: none !important;
       }
