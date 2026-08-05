@@ -35,6 +35,9 @@
       .hero-intro {
         font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
       }
+      .hero-intro a {
+        font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
+      }
 
       /* === Responsive navigation === */
       @media (max-width: 640px) {
@@ -219,119 +222,180 @@
         font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
       }
 
-      /* === Vintage Mirror: webcam or static, both with scratches === */
+      /* === Vintage Mirror: Hogwarts / Mirror of Erised vibe === */
       .mirror-container {
         position: relative;
         width: 100%;
         aspect-ratio: 4/5;
-        border-radius: 4px;
+        border-radius: 2px;
         overflow: hidden;
-        background: #1a1a1a;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+        background: #0f0e0c;
+        box-shadow:
+          0 4px 20px rgba(0,0,0,0.4),
+          inset 0 0 80px rgba(60,40,20,0.3);
       }
+
+      /* Video feed */
       .mirror-container video {
         position: absolute;
         inset: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transform: scaleX(-1); /* mirror flip */
-        filter: sepia(0.08) contrast(1.05) brightness(0.95);
+        transform: scaleX(-1);
+        filter: sepia(0.35) saturate(0.7) contrast(1.1) brightness(0.85) hue-rotate(-10deg);
         opacity: 0;
-        transition: opacity 0.6s ease;
+        transition: opacity 1.2s ease;
       }
       .mirror-container video.active {
         opacity: 1;
       }
+
+      /* Static mirror surface when cam off or wandering */
       .mirror-static {
         position: absolute;
         inset: 0;
         background:
-          linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 40%, #2f2f2f 50%, #1a1a1a 60%, #252525 100%);
+          radial-gradient(ellipse at 30% 20%, rgba(80,60,40,0.15) 0%, transparent 50%),
+          radial-gradient(ellipse at 70% 80%, rgba(60,50,35,0.12) 0%, transparent 50%),
+          linear-gradient(160deg, #1c1814 0%, #141210 30%, #1a1612 50%, #12100e 70%, #181410 100%);
         opacity: 1;
-        transition: opacity 0.6s ease;
+        transition: opacity 1.2s ease;
       }
       .mirror-static.hidden {
         opacity: 0;
       }
-      /* Vintage scratch overlay */
+
+      /* Wandering message */
+      .mirror-wander {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 20;
+        opacity: 0;
+        transition: opacity 1s ease;
+        pointer-events: none;
+      }
+      .mirror-wander.visible {
+        opacity: 1;
+      }
+      .mirror-wander p {
+        font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
+        font-style: italic;
+        font-size: 1.1rem;
+        color: rgba(201,162,39,0.5);
+        text-align: center;
+        line-height: 1.6;
+        padding: 2rem;
+        text-shadow: 0 0 20px rgba(201,162,39,0.15);
+        animation: wander-flicker 4s ease-in-out infinite;
+      }
+      @keyframes wander-flicker {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
+      }
+
+      /* Heavy scratch overlay — Hogwarts portrait feel */
       .mirror-scratches {
         position: absolute;
         inset: 0;
         pointer-events: none;
         z-index: 10;
-        opacity: 0.35;
-        background-image:
-          repeating-linear-gradient(
-            75deg,
-            transparent,
-            transparent 49px,
-            rgba(255,255,255,0.03) 49px,
-            rgba(255,255,255,0.03) 50px
-          ),
-          repeating-linear-gradient(
-            -15deg,
-            transparent,
-            transparent 79px,
-            rgba(255,255,255,0.02) 79px,
-            rgba(255,255,255,0.02) 80px
-          ),
-          repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 119px,
-            rgba(255,255,255,0.025) 119px,
-            rgba(255,255,255,0.025) 120px
-          );
+        opacity: 0.45;
         mix-blend-mode: overlay;
+        background-image:
+          /* Deep scratches */
+          repeating-linear-gradient(82deg, transparent, transparent 38px, rgba(180,160,120,0.04) 38px, rgba(180,160,120,0.04) 39px),
+          repeating-linear-gradient(-8deg, transparent, transparent 62px, rgba(160,140,100,0.03) 62px, rgba(160,140,100,0.03) 63px),
+          repeating-linear-gradient(33deg, transparent, transparent 95px, rgba(140,120,90,0.025) 95px, rgba(140,120,90,0.025) 96px),
+          /* Fine grain */
+          repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(255,255,255,0.015) 1px, rgba(255,255,255,0.015) 2px),
+          repeating-linear-gradient(90deg, transparent, transparent 1px, rgba(255,255,255,0.01) 1px, rgba(255,255,255,0.01) 2px);
       }
-      /* Subtle dust specks */
+      /* Random dust & specks */
       .mirror-scratches::before {
         content: '';
         position: absolute;
         inset: 0;
         background-image:
-          radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 0.5px, transparent 1px),
-          radial-gradient(circle at 70% 20%, rgba(255,255,255,0.1) 0.5px, transparent 1px),
-          radial-gradient(circle at 40% 70%, rgba(255,255,255,0.12) 0.5px, transparent 1px),
-          radial-gradient(circle at 85% 60%, rgba(255,255,255,0.08) 0.5px, transparent 1px),
-          radial-gradient(circle at 10% 80%, rgba(255,255,255,0.1) 0.5px, transparent 1px),
-          radial-gradient(circle at 60% 45%, rgba(255,255,255,0.06) 0.5px, transparent 1px);
+          radial-gradient(circle at 12% 18%, rgba(201,162,39,0.2) 0.8px, transparent 2px),
+          radial-gradient(circle at 78% 12%, rgba(180,150,100,0.15) 1px, transparent 2.5px),
+          radial-gradient(circle at 35% 65%, rgba(201,162,39,0.18) 0.6px, transparent 1.5px),
+          radial-gradient(circle at 88% 55%, rgba(160,130,80,0.12) 1.2px, transparent 2.5px),
+          radial-gradient(circle at 5% 82%, rgba(201,162,39,0.14) 0.8px, transparent 2px),
+          radial-gradient(circle at 62% 42%, rgba(180,150,100,0.1) 1px, transparent 2px),
+          radial-gradient(circle at 45% 88%, rgba(140,110,60,0.16) 0.7px, transparent 1.8px),
+          radial-gradient(circle at 92% 92%, rgba(201,162,39,0.1) 1px, transparent 2px);
       }
-      /* Slow-moving glare sweep */
+      /* Crack lines */
+      .mirror-scratches::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(72deg, transparent 48%, rgba(120,100,70,0.06) 49%, rgba(120,100,70,0.06) 50%, transparent 51%),
+          linear-gradient(-18deg, transparent 62%, rgba(100,85,60,0.04) 63%, rgba(100,85,60,0.04) 64%, transparent 65%);
+      }
+
+      /* Slow-moving ghostly glare */
       .mirror-glare {
         position: absolute;
         inset: 0;
         pointer-events: none;
         z-index: 11;
         background: linear-gradient(
-          105deg,
+          115deg,
           transparent 0%,
-          transparent 40%,
-          rgba(255,255,255,0.04) 45%,
-          rgba(255,255,255,0.08) 50%,
-          rgba(255,255,255,0.04) 55%,
-          transparent 60%,
+          transparent 35%,
+          rgba(201,162,39,0.03) 42%,
+          rgba(255,248,220,0.06) 50%,
+          rgba(201,162,39,0.03) 58%,
+          transparent 65%,
           transparent 100%
         );
-        background-size: 200% 100%;
-        animation: mirror-sweep 8s ease-in-out infinite;
-        mix-blend-mode: overlay;
+        background-size: 250% 100%;
+        animation: mirror-sweep 10s ease-in-out infinite;
+        mix-blend-mode: soft-light;
       }
       @keyframes mirror-sweep {
-        0%, 70% { background-position: 200% center; }
-        85% { background-position: -200% center; }
-        100% { background-position: -200% center; }
+        0%, 75% { background-position: 250% center; }
+        90% { background-position: -250% center; }
+        100% { background-position: -250% center; }
       }
-      /* Corner tarnish */
+
+      /* Heavy vignette — dark edges like old portrait frame */
       .mirror-container::after {
         content: '';
         position: absolute;
         inset: 0;
         pointer-events: none;
         z-index: 12;
-        box-shadow: inset 0 0 60px rgba(0,0,0,0.4);
-        border-radius: 4px;
+        box-shadow:
+          inset 0 0 100px rgba(20,15,10,0.7),
+          inset 0 0 40px rgba(40,30,20,0.4);
+        border-radius: 2px;
+      }
+
+      /* Occasional flicker layer */
+      .mirror-flicker {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 13;
+        background: rgba(201,162,39,0.02);
+        opacity: 0;
+        animation: flicker-dust 7s ease-in-out infinite;
+        mix-blend-mode: overlay;
+      }
+      @keyframes flicker-dust {
+        0%, 92% { opacity: 0; }
+        94% { opacity: 0.6; }
+        95% { opacity: 0.1; }
+        96% { opacity: 0.5; }
+        97% { opacity: 0; }
+        100% { opacity: 0; }
       }
 
       /* === Accordion compact layout === */
@@ -458,11 +522,15 @@
         </div>
 
         <div class="hero-visual">
-          <div class="portrait-wrap mirror-container">
+          <div class="portrait-wrap mirror-container" id="mirror-box">
             <video id="mirror-cam" autoplay playsinline muted></video>
             <div id="mirror-static" class="mirror-static"></div>
             <div class="mirror-scratches"></div>
             <div class="mirror-glare"></div>
+            <div class="mirror-flicker"></div>
+            <div class="mirror-wander" id="mirror-wander">
+              <p>There is a mirror.<br>It is wandering outside now.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -640,24 +708,77 @@
 
     <script src="site.js" defer></script>
     <script>
-      // === Vintage Mirror: webcam with fallback ===
+      // === Vintage Mirror: webcam with wandering spirit ===
       (function() {
         const video = document.getElementById('mirror-cam');
         const staticMirror = document.getElementById('mirror-static');
-        if (!video || !staticMirror) return;
+        const wanderMsg = document.getElementById('mirror-wander');
+        const mirrorBox = document.getElementById('mirror-box');
+        if (!video || !staticMirror || !wanderMsg) return;
+
+        let stream = null;
+        let isWandering = false;
+        let wanderTimer = null;
+        let returnTimer = null;
 
         // Try to get webcam
-        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-          navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } })
-            .then(stream => {
-              video.srcObject = stream;
-              video.classList.add('active');
-              staticMirror.classList.add('hidden');
-            })
-            .catch(() => {
-              // Permission denied or no camera — static mirror stays visible
-            });
+        function initCamera() {
+          if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } })
+              .then(s => {
+                stream = s;
+                video.srcObject = stream;
+                video.classList.add('active');
+                staticMirror.classList.add('hidden');
+                // Start wandering after a few seconds
+                setTimeout(scheduleWander, 5000);
+              })
+              .catch(() => {
+                // No camera — static mirror stays, still wanders
+                setTimeout(scheduleWander, 3000);
+              });
+          } else {
+            setTimeout(scheduleWander, 3000);
+          }
         }
+
+        // Mirror goes wandering (disappears)
+        function wanderAway() {
+          if (isWandering) return;
+          isWandering = true;
+
+          // Fade out video/static, show message
+          video.classList.remove('active');
+          staticMirror.classList.remove('hidden');
+          wanderMsg.classList.add('visible');
+
+          // Schedule return
+          const returnDelay = 4000 + Math.random() * 6000; // 4-10s gone
+          returnTimer = setTimeout(returnBack, returnDelay);
+        }
+
+        // Mirror returns
+        function returnBack() {
+          isWandering = false;
+          wanderMsg.classList.remove('visible');
+
+          if (stream) {
+            video.classList.add('active');
+            staticMirror.classList.add('hidden');
+          }
+
+          // Schedule next wander
+          scheduleWander();
+        }
+
+        // Schedule next wandering
+        function scheduleWander() {
+          const delay = 8000 + Math.random() * 15000; // 8-23s present
+          wanderTimer = setTimeout(wanderAway, delay);
+        }
+
+        // Start
+        initCamera();
       })();
     </script>
     <script>
