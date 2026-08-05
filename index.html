@@ -170,16 +170,14 @@
       }
 
       /* === Links: follow theme text color === */
-      a {
+      a, a:visited {
         color: var(--text);
         text-decoration: none;
-        /*text-underline-offset: 0.12em;
-        /*text-decoration-thickness: 1px;*/
-        /*transition: text-decoration-thickness 0.25s ease;*/
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.25s ease;
       }
       a:hover {
-        /*text-decoration-thickness: 2px;*/
-        text-decoration: underline
+        border-bottom: 1px solid currentColor;
       }
       .wordmark {
         text-decoration: none !important;
