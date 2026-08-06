@@ -206,7 +206,7 @@
         font-size: 0.95rem;
         color: var(--text-secondary);
         margin-bottom: var(--space-md);
-        max-width: 45ch;
+        line-height: 1.45;
       }
       .project-footer {
         margin-top: auto;
@@ -214,6 +214,9 @@
         border-top: 1px solid var(--border);
         font-size: 0.85rem;
         color: var(--text-secondary);
+      }
+      html[data-theme="dark"] .project-footer {
+        border-top-color: rgba(255,255,255,0.12);
       }
       .project-footer a {
         font-weight: 600;
@@ -251,7 +254,7 @@
         margin-bottom: var(--space-xs);
       }
       .publication-row h3 {
-        font-size: 1.15rem;
+        font-size: 1.3rem;
         font-weight: 400;
         margin-bottom: var(--space-xs);
       }
@@ -290,7 +293,7 @@
         box-shadow: none !important;
       }
       .experience-accordion-wrapper .accordion + .accordion {
-        margin-top: var(--space-lg);
+        margin-top: var(--space-md);
       }
       .experience-accordion-wrapper .accordion summary {
         cursor: pointer;
@@ -298,9 +301,9 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: var(--space-sm) 0;
+        padding: 0.15rem 0;
         font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
-        font-size: 1.5rem;
+        font-size: 1.75rem;
         font-weight: 600;
         color: var(--text);
         border-bottom: 1px solid var(--border);
@@ -324,7 +327,7 @@
         transform: rotate(180deg);
       }
       .experience-accordion-wrapper .accordion .accordion-content {
-        padding: var(--space-md) 0 var(--space-md) 0;
+        padding: var(--space-sm) 0 var(--space-sm) 0;
       }
       .experience-accordion-wrapper .timeline {
         display: flex;
@@ -335,7 +338,7 @@
         display: grid;
         grid-template-columns: 6.5rem 1fr;
         gap: var(--space-md);
-        padding: var(--space-md) 0;
+        padding: 0.6rem 0;
         border-top: 1px solid var(--border);
       }
       .experience-accordion-wrapper .timeline article:first-child {
@@ -351,7 +354,7 @@
         padding-top: 0.2rem;
       }
       .experience-accordion-wrapper .timeline h4 {
-        font-size: 1.05rem;
+        font-size: 1.2rem;
         font-weight: 400;
         margin-bottom: var(--space-xs);
       }
@@ -370,7 +373,7 @@
         display: grid;
         grid-template-columns: 3.5rem 1fr auto;
         gap: var(--space-md);
-        padding: var(--space-md) 0;
+        padding: 0.6rem 0;
         border-top: 1px solid var(--border);
         align-items: baseline;
       }
@@ -388,7 +391,7 @@
       }
       .experience-accordion-wrapper .awards-list strong {
         font-weight: 400;
-        font-size: 1.05rem;
+        font-size: 1.15rem;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -787,8 +790,8 @@
             <summary>Education</summary>
             <div class="accordion-content">
               <div class="timeline">
-                <article><span>2022–2025</span><div><h4>MA in Arts and Design</h4><p>Advanced Environmental Design</p><p>College of Design and Innovation, Tongji University</p></div></article>
-                <article><span>2016–2020</span><div><h4>BEng in Industrial Design</h4><p>Mechanical and Electrical Engineering School</p><p>Beijing Information Science &amp; Technology University</p></div></article>
+                <article><span>2022–2025</span><div><h4>MA in Arts and Design</h4><p>Advanced Environmental Design, College of Design and Innovation, Tongji University</p></div></article>
+                <article><span>2016–2020</span><div><h4>BEng in Industrial Design</h4><p>Mechanical and Electrical Engineering School, Beijing Information Science &amp; Technology University</p></div></article>
               </div>
             </div>
           </details>
