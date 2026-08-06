@@ -5,7 +5,7 @@ let mouseForce = 0;
 let myCanvas;
 
 function preload(){
-  img = loadImage("images/Mingli.png");
+  img = loadImage("horse.png");
 }
 
 function setup(){
