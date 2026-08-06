@@ -26,6 +26,11 @@ function setup(){
   console.log("Setup complete, particles:", particles.length);
 }
 
+function getThemeColor() {
+  // dark mode -> white (255), light mode -> black (0)
+  return document.documentElement.dataset.theme === 'dark' ? 255 : 0;
+}
+
 function generateParticles(){
   let candidates = [];
 
@@ -50,7 +55,6 @@ function generateParticles(){
     }
   }
 
-  // Fallback: if no candidates from image, generate random ones
   if (candidates.length === 0) {
     for (let i = 0; i < 500; i++) {
       candidates.push({
@@ -76,8 +80,9 @@ function generateParticles(){
 }
 
 function draw(){
-  background(10);
+  clear(); // Transparent background — lets the hero theme color show through
 
+  let c = getThemeColor();
   let breathe = 1 + sin(frameCount * 0.04) * 0.015;
 
   let targetX = width * 0.72;
@@ -109,7 +114,8 @@ function draw(){
         let chance = map(d, 0, 100, 0.7, 0);
         chance += (a.darkness + b.darkness) / 1000;
         if(random() < chance){
-          stroke(255, map(d, 0, 100, 150, 0));
+          let alpha = map(d, 0, 100, 150, 0);
+          stroke(c, alpha);
           strokeWeight(0.7);
           line(a.x, a.y, b.x, b.y);
         }
@@ -118,7 +124,7 @@ function draw(){
   }
 
   noStroke();
-  fill(255);
+  fill(c);
   for(let p of particles){
     circle(p.x, p.y, 3);
   }
