@@ -29,6 +29,9 @@
     star.style.setProperty("--star-x", `${Math.cos(angle) * distance}px`);
     star.style.setProperty("--star-y", `${Math.sin(angle) * distance}px`);
     star.style.setProperty("--star-r", `${Math.random() * 620 - 310}deg`);
+    // Prevent stars from blocking mouse events on the p5 canvas
+    star.style.pointerEvents = "none";
+    star.style.zIndex = "9999";
 
     document.body.appendChild(star);
     window.setTimeout(() => star.remove(), isTrail ? 820 : 1280);
