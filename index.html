@@ -20,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-        <style>
+    <style>
       /* === Section headings: vertical stack === */
       .section-heading {
         display: block !important;
@@ -104,7 +104,7 @@
         color: var(--text-secondary);
       }
 
-      /* === Gold: static by default, shimmer on hover === */
+      /* === Gold: static subtle tone === */
       .project-number,
       .publication-year,
       .research-image span,
@@ -115,32 +115,13 @@
           -webkit-text-fill-color: #c9a227;
       }
 
-      /* 9秒完整周期：前3秒扫光、后面6秒静止休息 */
-      @keyframes hover-shine {
-          0% { background-position: -200% center; }
-          33% { background-position: 200% center; }
-          100% { background-position: 200% center; }
-      }
-
       .research-card:hover .project-number,
       .research-card:hover .project-subtitle,
       .research-card:hover .research-image span,
       .publication-row:hover .publication-year {
-          background: linear-gradient(
-              105deg,
-              #c9a227 0%,
-              #daa520 20%,
-              #fff8dc 40%,
-              #ffd700 50%,
-              #fff8dc 60%,
-              #daa520 80%,
-              #c9a227 100%
-          );
-          background-size: 300% auto;
-          -webkit-background-clip: text;
-          background-clip: text;
-          -webkit-text-fill-color: transparent;
-          animation: hover-shine 9s ease-in-out infinite;
+          color: #b8950c;
+          -webkit-text-fill-color: #b8950c;
+          transition: color 0.3s ease;
       }
 
       .research-card,
@@ -158,7 +139,6 @@
       }
 
       /* === ALL LINKS: light underline default, bold on hover, never blue/purple === */
-      /* Base: high specificity (html prefix) to override stylesheet.css */
       html a, html a:link, html a:visited, html a:active, html a:focus,
       html .site-header a, html nav a, html .header-actions a,
       html .hero-links a, html .project-footer a, html .publication-link, html figcaption a,
@@ -171,7 +151,6 @@
         transition: text-decoration-color 0.25s ease, text-decoration-thickness 0.25s ease;
       }
 
-      /* Light mode: faint dark underline */
       html a, html a:link, html a:visited, html a:active, html a:focus,
       html .site-header a, html nav a, html .header-actions a,
       html .hero-links a, html .project-footer a, html .publication-link, html figcaption a,
@@ -179,7 +158,6 @@
         text-decoration-color: rgba(0,0,0,0.22) !important;
       }
 
-      /* Dark mode: faint light underline */
       html[data-theme="dark"] a, html[data-theme="dark"] a:link, html[data-theme="dark"] a:visited,
       html[data-theme="dark"] a:active, html[data-theme="dark"] a:focus,
       html[data-theme="dark"] .site-header a, html[data-theme="dark"] nav a, html[data-theme="dark"] .header-actions a,
@@ -189,7 +167,6 @@
         text-decoration-color: rgba(255,255,255,0.35) !important;
       }
 
-      /* Hover: bold solid underline (both modes) */
       html a:hover, html .site-header a:hover, html nav a:hover, html .header-actions a:hover,
       html .hero-links a:hover, html .project-footer a:hover, html .publication-link:hover,
       html figcaption a:hover, html .site-footer a:hover {
@@ -197,24 +174,20 @@
         text-decoration-thickness: 2px !important;
       }
 
-      /* Wordmark: no underline ever */
       html .wordmark, html .wordmark:hover {
         text-decoration: none !important;
         border-bottom: none !important;
       }
 
-      /* Hero links font */
       html .hero-links a {
         font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
         text-transform: none;
       }
 
-      /* Project footer & publication link weight */
       html .project-footer a, html .publication-link, html figcaption a {
         font-weight: 600;
       }
 
-      /* === Poster figcaption: all text Source Sans 3 === */
       figcaption, figcaption a, figcaption span, .poster-venue {
         font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
       }
@@ -222,231 +195,108 @@
         font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
       }
 
-      /* === Vintage Mirror: Hogwarts / Mirror of Erised vibe === */
-      .mirror-container {
-        position: relative;
-        width: 100%;
-        aspect-ratio: 4/5;
-        border-radius: 2px;
-        overflow: hidden;
-        background: #0f0e0c;
-        box-shadow:
-          0 4px 20px rgba(0,0,0,0.4),
-          inset 0 0 80px rgba(60,40,20,0.3);
-      }
-
-      /* Video feed */
-      .mirror-container video {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transform: scaleX(-1);
-        filter: sepia(0.35) saturate(0.7) contrast(1.1) brightness(0.85) hue-rotate(-10deg);
-        opacity: 0;
-        transition: opacity 1.2s ease;
-      }
-      .mirror-container video.active {
-        opacity: 1;
-      }
-
-      /* Static mirror surface when cam off or wandering */
-      .mirror-static {
-        position: absolute;
-        inset: 0;
-        background:
-          radial-gradient(ellipse at 30% 20%, rgba(80,60,40,0.15) 0%, transparent 50%),
-          radial-gradient(ellipse at 70% 80%, rgba(60,50,35,0.12) 0%, transparent 50%),
-          linear-gradient(160deg, #1c1814 0%, #141210 30%, #1a1612 50%, #12100e 70%, #181410 100%);
-        opacity: 1;
-        transition: opacity 1.2s ease;
-      }
-      .mirror-static.hidden {
-        opacity: 0;
-      }
-
-      /* Wandering message */
-      .mirror-wander {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 20;
-        opacity: 0;
-        transition: opacity 1s ease;
-        pointer-events: none;
-      }
-      .mirror-wander.visible {
-        opacity: 1;
-      }
-      .mirror-wander p {
-        font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
+      /* === Compact section intros === */
+      .section-heading .hero-intro {
+        font-size: 1.05rem;
+        line-height: 1.45;
         font-style: italic;
-        font-size: 1.1rem;
-        color: rgba(201,162,39,0.5);
-        text-align: center;
-        line-height: 1.6;
-        padding: 2rem;
-        text-shadow: 0 0 20px rgba(201,162,39,0.15);
-        animation: wander-flicker 4s ease-in-out infinite;
+        margin-bottom: 1.2rem;
+        max-width: 55ch;
       }
-      @keyframes wander-flicker {
-        0%, 100% { opacity: 0.6; }
-        50% { opacity: 1; }
+      
+      /* === Compact research cards === */
+      .research-card {
+        margin-bottom: 1.5rem;
       }
-
-      /* Heavy scratch overlay — Hogwarts portrait feel */
-      .mirror-scratches {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        z-index: 10;
-        opacity: 0.45;
-        mix-blend-mode: overlay;
-        background-image:
-          /* Deep scratches */
-          repeating-linear-gradient(82deg, transparent, transparent 38px, rgba(180,160,120,0.04) 38px, rgba(180,160,120,0.04) 39px),
-          repeating-linear-gradient(-8deg, transparent, transparent 62px, rgba(160,140,100,0.03) 62px, rgba(160,140,100,0.03) 63px),
-          repeating-linear-gradient(33deg, transparent, transparent 95px, rgba(140,120,90,0.025) 95px, rgba(140,120,90,0.025) 96px),
-          /* Fine grain */
-          repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(255,255,255,0.015) 1px, rgba(255,255,255,0.015) 2px),
-          repeating-linear-gradient(90deg, transparent, transparent 1px, rgba(255,255,255,0.01) 1px, rgba(255,255,255,0.01) 2px);
+      .research-card .project-description {
+        line-height: 1.5;
+        margin-bottom: 0.6rem;
       }
-      /* Random dust & specks */
-      .mirror-scratches::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background-image:
-          radial-gradient(circle at 12% 18%, rgba(201,162,39,0.2) 0.8px, transparent 2px),
-          radial-gradient(circle at 78% 12%, rgba(180,150,100,0.15) 1px, transparent 2.5px),
-          radial-gradient(circle at 35% 65%, rgba(201,162,39,0.18) 0.6px, transparent 1.5px),
-          radial-gradient(circle at 88% 55%, rgba(160,130,80,0.12) 1.2px, transparent 2.5px),
-          radial-gradient(circle at 5% 82%, rgba(201,162,39,0.14) 0.8px, transparent 2px),
-          radial-gradient(circle at 62% 42%, rgba(180,150,100,0.1) 1px, transparent 2px),
-          radial-gradient(circle at 45% 88%, rgba(140,110,60,0.16) 0.7px, transparent 1.8px),
-          radial-gradient(circle at 92% 92%, rgba(201,162,39,0.1) 1px, transparent 2px);
+      .research-card .research-copy {
+        padding: 1.2rem 1.5rem;
       }
-      /* Crack lines */
-      .mirror-scratches::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background:
-          linear-gradient(72deg, transparent 48%, rgba(120,100,70,0.06) 49%, rgba(120,100,70,0.06) 50%, transparent 51%),
-          linear-gradient(-18deg, transparent 62%, rgba(100,85,60,0.04) 63%, rgba(100,85,60,0.04) 64%, transparent 65%);
+      .research-card h3 {
+        margin-bottom: 0.4rem;
+        line-height: 1.25;
       }
-
-      /* Slow-moving ghostly glare */
-      .mirror-glare {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        z-index: 11;
-        background: linear-gradient(
-          115deg,
-          transparent 0%,
-          transparent 35%,
-          rgba(201,162,39,0.03) 42%,
-          rgba(255,248,220,0.06) 50%,
-          rgba(201,162,39,0.03) 58%,
-          transparent 65%,
-          transparent 100%
-        );
-        background-size: 250% 100%;
-        animation: mirror-sweep 10s ease-in-out infinite;
-        mix-blend-mode: soft-light;
+      .research-card .project-subtitle {
+        margin-bottom: 0.6rem;
       }
-      @keyframes mirror-sweep {
-        0%, 75% { background-position: 250% center; }
-        90% { background-position: -250% center; }
-        100% { background-position: -250% center; }
+      
+      /* === Compact publications === */
+      .publication-list {
+        max-width: 800px;
       }
-
-      /* Heavy vignette — dark edges like old portrait frame */
-      .mirror-container::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        z-index: 12;
-        box-shadow:
-          inset 0 0 100px rgba(20,15,10,0.7),
-          inset 0 0 40px rgba(40,30,20,0.4);
-        border-radius: 2px;
+      .publication-row {
+        padding: 0.7rem 0;
       }
-
-      /* Occasional flicker layer */
-      .mirror-flicker {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        z-index: 13;
-        background: rgba(201,162,39,0.02);
-        opacity: 0;
-        animation: flicker-dust 7s ease-in-out infinite;
-        mix-blend-mode: overlay;
+      .publication-row h3 {
+        line-height: 1.3;
+        margin-bottom: 0.2rem;
       }
-      @keyframes flicker-dust {
-        0%, 92% { opacity: 0; }
-        94% { opacity: 0.6; }
-        95% { opacity: 0.1; }
-        96% { opacity: 0.5; }
-        97% { opacity: 0; }
-        100% { opacity: 0; }
+      .publication-row .publication-authors,
+      .publication-row .publication-venue {
+        line-height: 1.4;
       }
-
-      /* === Accordion compact layout === */
-      .accordion {
+      
+      /* === Experience accordion - single column, compact === */
+      .experience-accordion-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .experience-accordion-wrapper .accordion {
         border: 1px solid var(--border);
         border-radius: 4px;
-        padding: 0.6rem 1rem;
+        padding: 0;
         background: var(--surface);
       }
-      .accordion + .accordion,
-      .awards-accordion {
-        margin-top: 0.6rem;
-      }
-      .accordion summary {
+      .experience-accordion-wrapper .accordion summary {
         cursor: pointer;
         list-style: none;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0.2rem 0;
+        padding: 0.6rem 1rem;
+        font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text);
       }
-      .accordion summary::-webkit-details-marker {
+      .experience-accordion-wrapper .accordion summary::-webkit-details-marker {
         display: none;
       }
-      .accordion summary::after {
+      .experience-accordion-wrapper .accordion summary::after {
         content: '›';
         font-family: 'Source Sans 3', sans-serif;
-        font-size: 1.4rem;
+        font-size: 1.3rem;
         color: var(--text-secondary);
         transition: transform 0.25s ease;
         line-height: 1;
         margin-left: 0.5rem;
       }
-      .accordion[open] summary::after {
+      .experience-accordion-wrapper .accordion[open] summary::after {
         transform: rotate(90deg);
       }
-      .accordion .timeline,
-      .accordion .awards-list {
-        padding-top: 0.4rem;
-        margin-top: 0.4rem;
+      .experience-accordion-wrapper .accordion .accordion-content {
+        padding: 0 1rem 0.8rem 1rem;
         border-top: 1px solid var(--border);
       }
-      .accordion .timeline article {
+      .experience-accordion-wrapper .timeline article,
+      .experience-accordion-wrapper .awards-list > div {
         padding: 0.35rem 0;
       }
-      .accordion .awards-list > div {
-        padding: 0.35rem 0;
+      .experience-accordion-wrapper .timeline article + article,
+      .experience-accordion-wrapper .awards-list > div + div {
+        border-top: 1px solid var(--border);
       }
-      .background-grid {
-        gap: 0.6rem;
-        margin-bottom: 0.6rem;
+      .experience-accordion-wrapper h4 {
+        margin-bottom: 0.1rem;
+        line-height: 1.3;
+      }
+      .experience-accordion-wrapper p {
+        line-height: 1.4;
+        margin-bottom: 0.1rem;
       }
 
       /* === Poster venue on new line === */
@@ -500,10 +350,9 @@
       <nav aria-label="Primary navigation">
         <a href="#research">Research</a>
         <a href="#publications">Publications</a>
-        <a href="#experience">Background</a>
+        <a href="#works">Works</a>
       </nav>
       <div class="header-actions">
-        <a href="Mingli_Sun_CV.pdf" target="_blank" rel="noreferrer noopener">CV ↗</a>
         <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle color theme"><span aria-hidden="true">◐</span></button>
       </div>
     </header>
@@ -520,22 +369,7 @@
             <a href="https://www.linkedin.com/in/mingli-sun-55a441333/" target="_blank" rel="noreferrer noopener">LinkedIn</a>
           </div>
         </div>
-
-        <div class="hero-visual">
-          <div class="portrait-wrap mirror-container" id="mirror-box">
-            <video id="mirror-cam" autoplay playsinline muted></video>
-            <div id="mirror-static" class="mirror-static"></div>
-            <div class="mirror-scratches"></div>
-            <div class="mirror-glare"></div>
-            <div class="mirror-flicker"></div>
-            <div class="mirror-wander" id="mirror-wander">
-              <p>There is a mirror.<br>It is wandering outside now.</p>
-            </div>
-          </div>
-        </div>
       </section>
-
-      
 
       <section class="section-shell content-section" id="research">
         <div class="section-heading">
@@ -647,41 +481,47 @@
 
       <section class="section-shell content-section" id="experience">
         <div class="section-heading">
-          <div><h2>Experience &amp; Education</h2></div>
-         
+          <h2>Experience &amp; Education</h2>
         </div>
 
-        <div class="background-grid">
-          <div>
-            <h3 class="subsection-title">Academic Experience</h3>
-            <div class="timeline">
-              <article><span>2025–2026</span><div><h4>Research Assistant</h4><p>College of Architecture and Urban Planning, Tongji University</p></div></article>
-              <article><span>2024–2025</span><div><h4>Research Intern</h4><p>Institute of Future Human Habitats, Tsinghua Shenzhen International Graduate School</p></div></article>
-              <article><span>2023</span><div><h4>Technical Instructor</h4><p>FabLab O Shanghai · MIT FabLab Global Network</p></div></article>
+        <div class="experience-accordion-wrapper">
+          <details class="accordion" open>
+            <summary>Academic experience</summary>
+            <div class="accordion-content">
+              <div class="timeline">
+                <article><span>2025–2026</span><div><h4>Research Assistant</h4><p>College of Architecture and Urban Planning, Tongji University</p></div></article>
+                <article><span>2024–2025</span><div><h4>Research Intern</h4><p>Institute of Future Human Habitats, Tsinghua Shenzhen International Graduate School</p></div></article>
+                <article><span>2023</span><div><h4>Technical Instructor</h4><p>FabLab O Shanghai · MIT FabLab Global Network</p></div></article>
+              </div>
             </div>
-          </div>
-          <div>
-            <h3 class="subsection-title">Education</h3>
-            <div class="timeline">
-              <article><span>2022–2025</span><div><h4>MA in Arts and Design</h4><p>Advanced Environmental Design</p><p>College of Design and Innovation, Tongji University</p></div></article>
-              <article><span>2016–2020</span><div><h4>BEng in Industrial Design</h4><p>Mechanical and Electrical Engineering School</p><p>Beijing Information Science &amp; Technology University</p></div></article>
-            </div>
-          </div>
-        </div>
+          </details>
 
-        <div class="awards-block">
-          <h3 class="subsection-title">Honors &amp; Awards</h3>
-          <div class="awards-list">
-            <div><span>2025</span><strong>Shanghai Outstanding Graduate Award</strong><em>Shanghai Municipal Government</em></div>
-            <div><span>2024</span><strong>Outstanding Postgraduate Scholarship</strong><em>Tongji University</em></div>
-            <div><span>2024</span><strong>International Academic Conference Travel Grant</strong><em>Tongji University</em></div>
-            <div><span>2023</span><strong>International and Hong Kong, Macao, and Taiwan Exchange Grant</strong><em>Tongji University</em></div>
-            <div><span>2020</span><strong>Beijing Outstanding Graduate Award</strong><em>Beijing Municipal Government</em></div>
-          </div>
+          <details class="accordion" open>
+            <summary>Education</summary>
+            <div class="accordion-content">
+              <div class="timeline">
+                <article><span>2022–2025</span><div><h4>MA in Arts and Design</h4><p>Advanced Environmental Design</p><p>College of Design and Innovation, Tongji University</p></div></article>
+                <article><span>2016–2020</span><div><h4>BEng in Industrial Design</h4><p>Mechanical and Electrical Engineering School</p><p>Beijing Information Science &amp; Technology University</p></div></article>
+              </div>
+            </div>
+          </details>
+
+          <details class="accordion" open>
+            <summary>Honors &amp; awards</summary>
+            <div class="accordion-content">
+              <div class="awards-list">
+                <div><span>2025</span><strong>Shanghai Outstanding Graduate Award</strong><em>Shanghai Municipal Government</em></div>
+                <div><span>2024</span><strong>Outstanding Postgraduate Scholarship</strong><em>Tongji University</em></div>
+                <div><span>2024</span><strong>International Academic Conference Travel Grant</strong><em>Tongji University</em></div>
+                <div><span>2023</span><strong>International and Hong Kong, Macao, and Taiwan Exchange Grant</strong><em>Tongji University</em></div>
+                <div><span>2020</span><strong>Beijing Outstanding Graduate Award</strong><em>Beijing Municipal Government</em></div>
+              </div>
+            </div>
+          </details>
         </div>
       </section>
 
-      <section class="section-shell posters-section" aria-labelledby="posters-title">
+      <section class="section-shell posters-section" id="works" aria-labelledby="posters-title">
         <div class="section-heading publication-heading">
           <div><h2 id="posters-title">Works</h2></div>
           
@@ -708,160 +548,5 @@
     </footer>
 
     <script src="site.js" defer></script>
-    <script>
-      // === Vintage Mirror: webcam with wandering spirit ===
-      (function() {
-        const video = document.getElementById('mirror-cam');
-        const staticMirror = document.getElementById('mirror-static');
-        const wanderMsg = document.getElementById('mirror-wander');
-        const mirrorBox = document.getElementById('mirror-box');
-        if (!video || !staticMirror || !wanderMsg) return;
-
-        let stream = null;
-        let isWandering = false;
-        let wanderTimer = null;
-        let returnTimer = null;
-
-        // Try to get webcam
-        function initCamera() {
-          if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } })
-              .then(s => {
-                stream = s;
-                video.srcObject = stream;
-                video.classList.add('active');
-                staticMirror.classList.add('hidden');
-                // Start wandering after a few seconds
-                setTimeout(scheduleWander, 5000);
-              })
-              .catch(() => {
-                // No camera — static mirror stays, still wanders
-                setTimeout(scheduleWander, 3000);
-              });
-          } else {
-            setTimeout(scheduleWander, 3000);
-          }
-        }
-
-        // Mirror goes wandering (disappears)
-        function wanderAway() {
-          if (isWandering) return;
-          isWandering = true;
-
-          // Fade out video/static, show message
-          video.classList.remove('active');
-          staticMirror.classList.remove('hidden');
-          wanderMsg.classList.add('visible');
-
-          // Schedule return
-          const returnDelay = 4000 + Math.random() * 6000; // 4-10s gone
-          returnTimer = setTimeout(returnBack, returnDelay);
-        }
-
-        // Mirror returns
-        function returnBack() {
-          isWandering = false;
-          wanderMsg.classList.remove('visible');
-
-          if (stream) {
-            video.classList.add('active');
-            staticMirror.classList.add('hidden');
-          }
-
-          // Schedule next wander
-          scheduleWander();
-        }
-
-        // Schedule next wandering
-        function scheduleWander() {
-          const delay = 8000 + Math.random() * 15000; // 8-23s present
-          wanderTimer = setTimeout(wanderAway, delay);
-        }
-
-        // Start
-        initCamera();
-      })();
-    </script>
-    <script>
-      // === Gold foil burst: sync with 9s shine cycle ===
-      const particleNum = 28;
-      const shineLoop = 9000;
-      const goldPalette = ["#c9a227","#daa520","#ffd700","#fff8dc","#b8860b","#f0e68c"];
-
-      function createGoldDust(triggerEl) {
-        const textRect = triggerEl.getBoundingClientRect();
-        const parentWrap = triggerEl.closest(".research-card, .publication-row");
-        if (!parentWrap) return;
-        parentWrap.style.overflow = "visible";
-        const parentRect = parentWrap.getBoundingClientRect();
-
-        for (let i = 0; i < particleNum; i++) {
-          const dust = document.createElement("span");
-          const w = 4 + Math.random() * 10;
-          const h = 2 + Math.random() * 3;
-          const color = goldPalette[Math.floor(Math.random() * goldPalette.length)];
-          const startX = textRect.left - parentRect.left + Math.random() * textRect.width;
-          const startY = textRect.top - parentRect.top + textRect.height * 0.3;
-
-          const angleDeg = -25 - Math.random() * 50;
-          const angle = angleDeg * Math.PI / 180;
-          const dist = 60 + Math.random() * 100;
-          const tx = Math.cos(angle) * dist;
-          const ty = Math.sin(angle) * dist;
-          const rotStart = Math.random() * 360;
-          const rotEnd = rotStart + 180 + Math.random() * 540;
-
-          dust.style.cssText = `
-            position: absolute;
-            width: ${w}px;
-            height: ${h}px;
-            background: ${color};
-            box-shadow: 0 0 4px ${color}, 0 0 10px rgba(218,165,32,0.6);
-            left: ${startX}px;
-            top: ${startY}px;
-            pointer-events: none;
-            z-index: 9999;
-            border-radius: 2px;
-            opacity: 0;
-          `;
-
-          parentWrap.appendChild(dust);
-
-          const anim = dust.animate([
-            { transform: `translate(0,0) rotate(${rotStart}deg) scale(1)`, opacity: 0, offset: 0 },
-            { transform: `translate(${tx * 0.15}px, ${ty * 0.15}px) rotate(${rotStart + (rotEnd-rotStart)*0.15}deg) scale(1)`, opacity: 1, offset: 0.08 },
-            { transform: `translate(${tx * 0.6}px, ${ty * 0.6}px) rotate(${rotStart + (rotEnd-rotStart)*0.5}deg) scale(0.8)`, opacity: 0.9, offset: 0.4 },
-            { transform: `translate(${tx}px, ${ty}px) rotate(${rotEnd}deg) scale(0)`, opacity: 0, offset: 1 }
-          ], {
-            duration: 900 + Math.random() * 800,
-            easing: 'cubic-bezier(0.22, 0.61, 0.36, 1)',
-            fill: 'forwards'
-          });
-
-          anim.onfinish = () => dust.remove();
-          setTimeout(() => { if(dust.parentNode) dust.remove(); }, 2500);
-        }
-      }
-
-      const hoverTargets = document.querySelectorAll(".project-number, .publication-year");
-      hoverTargets.forEach(item => {
-        let intervalTimer;
-        let delayTimer;
-
-        item.addEventListener("mouseenter", () => {
-          clearTimeout(delayTimer);
-          clearInterval(intervalTimer);
-          delayTimer = setTimeout(() => {
-            createGoldDust(item);
-            intervalTimer = setInterval(() => createGoldDust(item), shineLoop);
-          }, 2800);
-        });
-
-        item.addEventListener("mouseleave", () => {
-          clearTimeout(delayTimer);
-          clearInterval(intervalTimer);
-        });
-      });
-    </script>
 </body>
 </html>
