@@ -21,47 +21,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <style>
-      /* === Section headings: vertical stack === */
-      .section-heading {
-        display: block !important;
-      }
-      .section-heading h2 {
-        margin-bottom: 0.6rem;
-      }
-      .section-heading p {
-        max-width: none;
-        font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
-      }
-      .hero-intro {
-        font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
-      }
-      .hero-intro a {
-        font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
-      }
-
-      /* === Responsive navigation === */
-      @media (max-width: 640px) {
-        .site-header {
-          flex-wrap: nowrap;
-          padding: 1rem;
-          gap: 0.5rem;
-        }
-        nav[aria-label="Primary navigation"] {
-          gap: 0.75rem;
-        }
-        nav a {
-          font-size: 0.85rem;
-          white-space: nowrap;
-        }
-        .wordmark {
-          font-size: 1.1rem;
-        }
-        .header-actions a {
-          font-size: 0.85rem;
-        }
+      /* ============================================================
+         TYPOGRAPHY & SPACING SYSTEM
+         ============================================================ */
+      
+      :root {
+        --space-xs: 0.25rem;
+        --space-sm: 0.5rem;
+        --space-md: 1rem;
+        --space-lg: 1.5rem;
+        --space-xl: 2.5rem;
+        --space-2xl: 4rem;
+        --space-3xl: 6rem;
+        --line-tight: 1.2;
+        --line-snug: 1.35;
+        --line-normal: 1.6;
+        --line-relaxed: 1.75;
       }
 
-      /* === Two-font system === */
       h1, h2, h3, h4, h5, h6,
       .wordmark,
       .subsection-title,
@@ -74,6 +51,7 @@
       .awards-list strong {
         font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
       }
+      
       body, p, span, div, article, section, header, footer, main, nav, a, button, li, td, th, label, input, textarea,
       .timeline article > span,
       .awards-list span,
@@ -82,6 +60,7 @@
       .poster-venue {
         font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
       }
+      
       .project-subtitle,
       .publication-venue,
       em, i {
@@ -89,56 +68,417 @@
         font-style: italic;
       }
 
-      /* === Subsection titles: slightly larger === */
-      .subsection-title {
-        font-size: 1.4rem;
+      h1 { line-height: var(--line-tight); }
+      h2 { line-height: var(--line-tight); }
+      h3 { line-height: var(--line-snug); }
+      h4 { line-height: var(--line-snug); }
+      p  { line-height: var(--line-normal); }
+      .project-description { line-height: var(--line-normal); }
+      .publication-authors, .publication-venue { line-height: 1.5; }
+      .timeline article p { line-height: 1.5; }
+
+      .section-shell {
+        padding-top: var(--space-2xl);
+        padding-bottom: var(--space-2xl);
+      }
+      .section-shell + .section-shell {
+        border-top: 1px solid var(--border);
       }
 
-      /* === Shared year-label model === */
-      .timeline article > span,
-      .awards-list span {
+      .section-heading {
+        display: block;
+        margin-bottom: var(--space-xl);
+      }
+      .section-heading h2 {
+        font-size: 2.75rem;
+        font-weight: 400;
+        margin-bottom: var(--space-md);
+        letter-spacing: -0.01em;
+      }
+      .section-heading .hero-intro {
+        font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
+        font-size: 1.05rem;
+        line-height: 1.5;
+        font-style: italic;
+        color: var(--text-secondary);
+        max-width: 55ch;
+        margin-bottom: 0;
+      }
+
+      .hero {
+        padding-top: var(--space-3xl);
+        padding-bottom: var(--space-3xl);
+      }
+      .hero-copy h1 {
+        font-size: 3.5rem;
+        font-weight: 400;
+        margin-bottom: var(--space-lg);
+        letter-spacing: -0.02em;
+      }
+      .hero-intro {
+        font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
+        font-size: 1.15rem;
+        line-height: var(--line-relaxed);
+        max-width: 52ch;
+        margin-bottom: var(--space-lg);
+      }
+      .hero-links {
+        display: flex;
+        gap: var(--space-md);
+        margin-top: var(--space-lg);
+      }
+      .hero-links a {
+        font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 0.95rem;
+      }
+
+      .research-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xl);
+      }
+      .research-card {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .research-image {
+        position: relative;
+        background: var(--surface);
+      }
+      .research-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .research-image span {
+        position: absolute;
+        bottom: var(--space-md);
+        left: var(--space-md);
+        font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
+        font-style: italic;
+        font-size: 0.9rem;
+        color: #c9a227;
+        background: rgba(0,0,0,0.6);
+        padding: 0.2rem 0.5rem;
+        border-radius: 2px;
+      }
+      .research-copy {
+        padding: var(--space-xl);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .project-number {
+        font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
+        font-style: italic;
+        font-size: 0.85rem;
+        color: #c9a227;
+        margin-bottom: var(--space-sm);
+        letter-spacing: 0.02em;
+      }
+      .research-copy h3 {
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin-bottom: var(--space-sm);
+      }
+      .project-subtitle {
+        font-size: 0.95rem;
+        color: #c9a227;
+        margin-bottom: var(--space-md);
+      }
+      .project-description {
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+        margin-bottom: var(--space-md);
+        max-width: 45ch;
+      }
+      .project-footer {
+        margin-top: auto;
+        padding-top: var(--space-md);
+        border-top: 1px solid var(--border);
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+      }
+      .project-footer a {
+        font-weight: 600;
+      }
+
+      .publication-list {
+        max-width: 800px;
+      }
+      .publication-row {
+        display: grid;
+        grid-template-columns: 2.5rem 1fr auto;
+        gap: var(--space-md);
+        align-items: start;
+        padding: var(--space-lg) 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .publication-row:first-child {
+        padding-top: 0;
+      }
+      .publication-index {
+        font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        padding-top: 0.15rem;
+      }
+      .publication-year {
+        font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
+        font-style: italic;
+        font-size: 0.85rem;
+        color: #c9a227;
+        margin-bottom: var(--space-xs);
+      }
+      .publication-row h3 {
+        font-size: 1.15rem;
+        font-weight: 400;
+        margin-bottom: var(--space-xs);
+      }
+      .publication-authors {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        margin-bottom: var(--space-xs);
+      }
+      .publication-venue {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+      }
+      .publication-status {
         font-size: 0.8rem;
-        font-weight: 700;
+        color: var(--text-secondary);
+        white-space: nowrap;
+        padding-top: 0.15rem;
+      }
+      .publication-link {
+        font-size: 1.1rem;
+        text-decoration: none !important;
+        padding: 0.2rem;
+      }
+
+      .experience-accordion-wrapper {
+        max-width: 800px;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+      }
+      .experience-accordion-wrapper .accordion {
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        background: var(--surface);
+      }
+      .experience-accordion-wrapper .accordion summary {
+        cursor: pointer;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--space-md) var(--space-lg);
+        font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
+        font-size: 1.3rem;
+        font-weight: 400;
+        color: var(--text);
+      }
+      .experience-accordion-wrapper .accordion summary::-webkit-details-marker {
+        display: none;
+      }
+      .experience-accordion-wrapper .accordion summary::after {
+        content: '›';
+        font-family: 'Source Sans 3', sans-serif;
+        font-size: 1.2rem;
+        color: var(--text-secondary);
+        transition: transform 0.25s ease;
+        line-height: 1;
+        margin-left: var(--space-sm);
+      }
+      .experience-accordion-wrapper .accordion[open] summary::after {
+        transform: rotate(90deg);
+      }
+      .experience-accordion-wrapper .accordion .accordion-content {
+        padding: 0 var(--space-lg) var(--space-md) var(--space-lg);
+      }
+      .experience-accordion-wrapper .timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .experience-accordion-wrapper .timeline article {
+        display: grid;
+        grid-template-columns: 6.5rem 1fr;
+        gap: var(--space-md);
+        padding: var(--space-md) 0;
+        border-top: 1px solid var(--border);
+      }
+      .experience-accordion-wrapper .timeline article:first-child {
+        border-top: none;
+        padding-top: 0;
+      }
+      .experience-accordion-wrapper .timeline article > span {
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text-secondary);
+        padding-top: 0.2rem;
+      }
+      .experience-accordion-wrapper .timeline h4 {
+        font-size: 1.05rem;
+        font-weight: 400;
+        margin-bottom: var(--space-xs);
+      }
+      .experience-accordion-wrapper .timeline p {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        margin-bottom: 0.1rem;
+        line-height: 1.5;
+      }
+      .experience-accordion-wrapper .awards-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .experience-accordion-wrapper .awards-list > div {
+        display: grid;
+        grid-template-columns: 3rem 1fr;
+        gap: var(--space-md);
+        padding: var(--space-md) 0;
+        border-top: 1px solid var(--border);
+        align-items: baseline;
+      }
+      .experience-accordion-wrapper .awards-list > div:first-child {
+        border-top: none;
+        padding-top: 0;
+      }
+      .experience-accordion-wrapper .awards-list span {
+        font-size: 0.8rem;
+        font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.08em;
         color: var(--text-secondary);
       }
-
-      /* === Gold: static subtle tone === */
-      .project-number,
-      .publication-year,
-      .research-image span,
-      .project-subtitle {
-          font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
-          font-style: italic;
-          color: #c9a227;
-          -webkit-text-fill-color: #c9a227;
-      }
-
-      .research-card:hover .project-number,
-      .research-card:hover .project-subtitle,
-      .research-card:hover .research-image span,
-      .publication-row:hover .publication-year {
-          color: #b8950c;
-          -webkit-text-fill-color: #b8950c;
-          transition: color 0.3s ease;
-      }
-
-      .research-card,
-      .publication-row {
-          position: relative;
-      }
-
-      /* === Awards: normalize === */
-      .awards-list strong {
+      .experience-accordion-wrapper .awards-list strong {
+        display: block;
         font-weight: 400;
+        font-size: 1.05rem;
+        margin-bottom: var(--space-xs);
       }
-      .awards-list em {
+      .experience-accordion-wrapper .awards-list em {
         font-style: normal;
+        font-size: 0.9rem;
         color: var(--text-secondary);
       }
 
-      /* === ALL LINKS: light underline default, bold on hover, never blue/purple === */
+      .posters-section .section-heading {
+        margin-bottom: var(--space-xl);
+      }
+      .poster-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-xl);
+      }
+      .poster-grid figure {
+        margin: 0;
+      }
+      .poster-image {
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: var(--space-md);
+        border: 1px solid var(--border);
+      }
+      .poster-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .poster-grid figcaption {
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+      .poster-grid figcaption strong {
+        display: block;
+        font-size: 1.05rem;
+        font-weight: 400;
+        margin-bottom: var(--space-xs);
+      }
+      .poster-grid figcaption span {
+        display: block;
+        color: var(--text-secondary);
+      }
+      .poster-venue {
+        display: block;
+        margin-top: var(--space-xs);
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+      }
+
+      .site-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: var(--space-lg);
+        padding-bottom: var(--space-lg);
+        border-top: 1px solid var(--border);
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+      }
+
+      @media (max-width: 768px) {
+        .section-shell {
+          padding-top: var(--space-xl);
+          padding-bottom: var(--space-xl);
+        }
+        .section-heading h2 {
+          font-size: 2rem;
+        }
+        .hero-copy h1 {
+          font-size: 2.5rem;
+        }
+        .research-card {
+          grid-template-columns: 1fr;
+        }
+        .research-copy {
+          padding: var(--space-lg);
+        }
+        .poster-grid {
+          grid-template-columns: 1fr;
+        }
+        .publication-row {
+          grid-template-columns: 1.5rem 1fr auto;
+          gap: var(--space-sm);
+        }
+        .experience-accordion-wrapper .timeline article {
+          grid-template-columns: 1fr;
+          gap: var(--space-xs);
+        }
+        .experience-accordion-wrapper .awards-list > div {
+          grid-template-columns: 1fr;
+          gap: var(--space-xs);
+        }
+      }
+
+      @media (max-width: 640px) {
+        .site-header {
+          flex-wrap: nowrap;
+          padding: var(--space-md);
+          gap: var(--space-sm);
+        }
+        nav[aria-label="Primary navigation"] {
+          gap: 0.75rem;
+        }
+        nav a {
+          font-size: 0.85rem;
+          white-space: nowrap;
+        }
+        .wordmark {
+          font-size: 1.1rem;
+        }
+      }
+
       html a, html a:link, html a:visited, html a:active, html a:focus,
       html .site-header a, html nav a, html .header-actions a,
       html .hero-links a, html .project-footer a, html .publication-link, html figcaption a,
@@ -150,14 +490,12 @@
         border-bottom: none !important;
         transition: text-decoration-color 0.25s ease, text-decoration-thickness 0.25s ease;
       }
-
       html a, html a:link, html a:visited, html a:active, html a:focus,
       html .site-header a, html nav a, html .header-actions a,
       html .hero-links a, html .project-footer a, html .publication-link, html figcaption a,
       html .site-footer a {
         text-decoration-color: rgba(0,0,0,0.22) !important;
       }
-
       html[data-theme="dark"] a, html[data-theme="dark"] a:link, html[data-theme="dark"] a:visited,
       html[data-theme="dark"] a:active, html[data-theme="dark"] a:focus,
       html[data-theme="dark"] .site-header a, html[data-theme="dark"] nav a, html[data-theme="dark"] .header-actions a,
@@ -166,145 +504,31 @@
       html[data-theme="dark"] .site-footer a {
         text-decoration-color: rgba(255,255,255,0.35) !important;
       }
-
       html a:hover, html .site-header a:hover, html nav a:hover, html .header-actions a:hover,
       html .hero-links a:hover, html .project-footer a:hover, html .publication-link:hover,
       html figcaption a:hover, html .site-footer a:hover {
         text-decoration-color: var(--text) !important;
         text-decoration-thickness: 2px !important;
       }
-
       html .wordmark, html .wordmark:hover {
         text-decoration: none !important;
         border-bottom: none !important;
       }
 
-      html .hero-links a {
-        font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-        text-transform: none;
+      .project-number,
+      .publication-year,
+      .research-image span,
+      .project-subtitle {
+        color: #c9a227;
+        -webkit-text-fill-color: #c9a227;
       }
-
-      html .project-footer a, html .publication-link, html figcaption a {
-        font-weight: 600;
-      }
-
-      figcaption, figcaption a, figcaption span, .poster-venue {
-        font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-      }
-      figcaption strong {
-        font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
-      }
-
-      /* === Compact section intros === */
-      .section-heading .hero-intro {
-        font-size: 1.05rem;
-        line-height: 1.45;
-        font-style: italic;
-        margin-bottom: 1.2rem;
-        max-width: 55ch;
-      }
-      
-      /* === Compact research cards === */
-      .research-card {
-        margin-bottom: 1.5rem;
-      }
-      .research-card .project-description {
-        line-height: 1.5;
-        margin-bottom: 0.6rem;
-      }
-      .research-card .research-copy {
-        padding: 1.2rem 1.5rem;
-      }
-      .research-card h3 {
-        margin-bottom: 0.4rem;
-        line-height: 1.25;
-      }
-      .research-card .project-subtitle {
-        margin-bottom: 0.6rem;
-      }
-      
-      /* === Compact publications === */
-      .publication-list {
-        max-width: 800px;
-      }
-      .publication-row {
-        padding: 0.7rem 0;
-      }
-      .publication-row h3 {
-        line-height: 1.3;
-        margin-bottom: 0.2rem;
-      }
-      .publication-row .publication-authors,
-      .publication-row .publication-venue {
-        line-height: 1.4;
-      }
-      
-      /* === Experience accordion - single column, compact === */
-      .experience-accordion-wrapper {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-      .experience-accordion-wrapper .accordion {
-        border: 1px solid var(--border);
-        border-radius: 4px;
-        padding: 0;
-        background: var(--surface);
-      }
-      .experience-accordion-wrapper .accordion summary {
-        cursor: pointer;
-        list-style: none;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0.6rem 1rem;
-        font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
-        font-size: 1.25rem;
-        font-weight: 600;
-        color: var(--text);
-      }
-      .experience-accordion-wrapper .accordion summary::-webkit-details-marker {
-        display: none;
-      }
-      .experience-accordion-wrapper .accordion summary::after {
-        content: '›';
-        font-family: 'Source Sans 3', sans-serif;
-        font-size: 1.3rem;
-        color: var(--text-secondary);
-        transition: transform 0.25s ease;
-        line-height: 1;
-        margin-left: 0.5rem;
-      }
-      .experience-accordion-wrapper .accordion[open] summary::after {
-        transform: rotate(90deg);
-      }
-      .experience-accordion-wrapper .accordion .accordion-content {
-        padding: 0 1rem 0.8rem 1rem;
-        border-top: 1px solid var(--border);
-      }
-      .experience-accordion-wrapper .timeline article,
-      .experience-accordion-wrapper .awards-list > div {
-        padding: 0.35rem 0;
-      }
-      .experience-accordion-wrapper .timeline article + article,
-      .experience-accordion-wrapper .awards-list > div + div {
-        border-top: 1px solid var(--border);
-      }
-      .experience-accordion-wrapper h4 {
-        margin-bottom: 0.1rem;
-        line-height: 1.3;
-      }
-      .experience-accordion-wrapper p {
-        line-height: 1.4;
-        margin-bottom: 0.1rem;
-      }
-
-      /* === Poster venue on new line === */
-      .poster-venue {
-        display: block;
-        margin-top: 0.3rem;
-        color: var(--text-secondary);
-        font-size: 0.9rem;
+      .research-card:hover .project-number,
+      .research-card:hover .project-subtitle,
+      .research-card:hover .research-image span,
+      .publication-row:hover .publication-year {
+        color: #b8950c;
+        -webkit-text-fill-color: #b8950c;
+        transition: color 0.3s ease;
       }
     </style>
     
