@@ -456,6 +456,27 @@
         color: var(--text-secondary);
       }
 
+      /* --- p5 sketch container --- */
+      .hero {
+        position: relative;
+        overflow: hidden;
+      }
+      #sketch-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+      }
+      #sketch-container canvas {
+        display: block;
+      }
+      .hero-copy {
+        position: relative;
+        z-index: 1;
+      }
+
       /* --- Responsive --- */
       @media (max-width: 768px) {
         .section-shell {
@@ -598,6 +619,8 @@
     
 <base target="_blank">
 <base target="_blank">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+<base target="_blank">
 </head>
   
   <body>
@@ -619,6 +642,7 @@
 
     <main id="top">
       <section class="hero section-shell" aria-labelledby="hero-title">
+        <div id="sketch-container"></div>
         <div class="hero-copy">
           <h1 id="hero-title">Sun Mingli</h1>
           <p class="hero-intro">A researcher in computational design. Interested in the philosophy of technology. Academic expericence at <a href="https://tjdi.tongji.edu.cn/?lang=en">College of Design and Inovation(D&I)</a>, <a href="https://caup.tongji.edu.cn/caupen/">College of Architecture and Urban Planning(CAUP)</a>, Tongji University and <a href="https://www.coia.tech/">Co-Intelligent Architecture Lab</a>, Institute of Future Human Habitats, Tsinghua SIGS.</p>
@@ -810,6 +834,7 @@
       <a href="#top">Back to top ↑</a>
     </footer>
 
+    <script src="sketch.js"></script>
     <script src="site.js" defer></script>
     
     
