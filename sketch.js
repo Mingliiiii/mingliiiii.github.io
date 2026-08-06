@@ -80,7 +80,7 @@ function generateParticles(){
 }
 
 function draw(){
-  clear(); // Transparent background — lets the hero theme color show through
+  clear(); // Transparent background — lets the hero theme color show throug
 
   let c = getThemeColor();
   let breathe = 1 + sin(frameCount * 0.04) * 0.015;
