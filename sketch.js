@@ -12,7 +12,7 @@ function preload(){
 }
 
 function setup(){
-  myCanvas = createCanvas(windowWidth, windowHeight);
+  myCanvas = createCanvas(windowWidth, windowHeight); 
   myCanvas.parent('sketch-container');
 
   if (img && img.width > 0) {
