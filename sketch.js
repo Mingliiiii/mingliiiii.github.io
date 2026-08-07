@@ -12,11 +12,11 @@ function preload(){
 }
 
 function setup(){
-  myCanvas = createCanvas(windowWidth, windowHeight); 
+  myCanvas = createCanvas(windowWidth, windowHeight);
   myCanvas.parent('sketch-container');
 
   if (img && img.width > 0) {
-    img.resize(0, min(windowHeight * 0.55, 400));
+    img.resize(0, min(windowHeight * 0.3, 300));
   }
   generateParticles();
   console.log("Setup complete, particles:", particles.length);
@@ -122,7 +122,7 @@ function draw(){
           let alpha = map(d, 0, 100, 150, 0);
           stroke(c, alpha);
           strokeWeight(0.7);
-          line(a.x, a.y, b.x, b.y);
+          line(a.x, a.y, b.x, b.y); 
         }
       }
     }
