@@ -1,536 +1,651 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sun Mingli</title>
-    <meta name="description" content="Sun Mingli is a researcher in computational design at Tongji University.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <style>
-        /* Tufte-inspired minimal academic style */
-        :root {
-            --bg: #fffff8;
-            --text: #111;
-            --text-secondary: #555;
-            --border: #ddd;
-            --accent: #b40303; /* Tufte-style dark red for links */
-            --sidebar-width: 200px;
-            --content-max: 640px;
-        }
-        
-        [data-theme="dark"] {
-            --bg: #1a1a1a;
-            --text: #e8e6e3;
-            --text-secondary: #999;
-            --border: #444;
-            --accent: #ff6b6b;
-        }
-        
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        html {
-            font-size: 16px;
-            -webkit-font-smoothing: antialiased;
-        }
-        
-        body {
-            font-family: 'Crimson Text', Georgia, 'Times New Roman', serif;
-            font-size: 1.05rem;
-            line-height: 1.6;
-            color: var(--text);
-            background: var(--bg);
-            padding: 0 1.5rem;
-        }
-        
-        /* Layout */
-        .container {
-            max-width: calc(var(--content-max) + var(--sidebar-width) + 4rem);
-            margin: 0 auto;
-            padding: 3rem 0 6rem;
-            position: relative;
-        }
-        
-        /* Header */
-        header {
-            margin-bottom: 4rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        
-        .wordmark {
-            font-family: 'Crimson Text', serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            letter-spacing: 0.02em;
-            text-decoration: none;
-            color: var(--text);
-        }
-        
-        nav {
-            display: flex;
-            gap: 1.5rem;
-            font-family: 'Source Sans 3', sans-serif;
-            font-size: 0.9rem;
-        }
-        
-        nav a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        
-        nav a:hover {
-            color: var(--text);
-        }
-        
-        /* Typography */
-        h1 {
-            font-size: 2.8rem;
-            font-weight: 400;
-            line-height: 1.1;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.01em;
-        }
-        
-        h2 {
-            font-size: 1.6rem;
-            font-weight: 400;
-            font-style: italic;
-            margin-top: 3rem;
-            margin-bottom: 1.2rem;
-            line-height: 1.3;
-        }
-        
-        h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-top: 1.8rem;
-            margin-bottom: 0.6rem;
-            line-height: 1.3;
-        }
-        
-        h4 {
-            font-size: 1.05rem;
-            font-weight: 600;
-            margin-top: 1.2rem;
-            margin-bottom: 0.4rem;
-        }
-        
-        p {
-            margin-bottom: 1rem;
-            max-width: var(--content-max);
-        }
-        
-        /* Links */
-        a {
-            color: var(--text);
-            text-decoration: none;
-            background: linear-gradient(var(--bg), var(--bg)), 
-                        linear-gradient(var(--bg), var(--bg)),
-                        linear-gradient(var(--text), var(--text));
-            background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
-            background-repeat: no-repeat, no-repeat, repeat-x;
-            background-position: 0% 93%, 100% 93%, 0% 93%;
-            text-shadow: 0.03em 0 var(--bg), -0.03em 0 var(--bg), 
-                         0 0.03em var(--bg), 0 -0.03em var(--bg),
-                         0.06em 0 var(--bg), -0.06em 0 var(--bg),
-                         0.09em 0 var(--bg), -0.09em 0 var(--bg);
-        }
-        
-        a:hover {
-            color: var(--accent);
-            background: none;
-            text-shadow: none;
-        }
-        
-        /* Hero */
-        .hero {
-            margin-bottom: 3rem;
-        }
-        
-        .hero-role {
-            font-family: 'Source Sans 3', sans-serif;
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 1.5rem;
-        }
-        
-        .hero-intro {
-            font-size: 1.15rem;
-            line-height: 1.65;
-            max-width: var(--content-max);
-        }
-        
-        .hero-links {
-            margin-top: 1.5rem;
-            font-family: 'Source Sans 3', sans-serif;
-            font-size: 0.9rem;
-        }
-        
-        .hero-links a {
-            margin-right: 1.5rem;
-        }
-        
-        /* Section styling */
-        section {
-            margin-bottom: 1rem;
-        }
-        
-        /* Research interests */
-        .research-interest {
-            margin-bottom: 1.2rem;
-            max-width: var(--content-max);
-        }
-        
-        .research-interest strong {
-            font-weight: 600;
-        }
-        
-        /* Publications */
-        .publication {
-            margin-bottom: 1.3rem;
-            max-width: var(--content-max);
-            padding-left: 2rem;
-            text-indent: -2rem;
-        }
-        
-        .publication .year {
-            font-family: 'Source Sans 3', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            margin-right: 0.5rem;
-        }
-        
-        .publication .venue {
-            font-family: 'Source Sans 3', sans-serif;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            display: block;
-            margin-top: 0.2rem;
-            text-indent: 0;
-            padding-left: 2rem;
-        }
-        
-        /* Projects */
-        .project {
-            margin-bottom: 2rem;
-            max-width: var(--content-max);
-        }
-        
-        .project-meta {
-            font-family: 'Source Sans 3', sans-serif;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Lists */
-        ul, ol {
-            margin-left: 1.5rem;
-            margin-bottom: 1rem;
-            max-width: var(--content-max);
-        }
-        
-        li {
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Experience & Awards */
-        .entry {
-            margin-bottom: 1rem;
-            max-width: var(--content-max);
-        }
-        
-        .entry-date {
-            font-family: 'Source Sans 3', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        /* Footer */
-        footer {
-            margin-top: 5rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-            font-family: 'Source Sans 3', sans-serif;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            display: flex;
-            justify-content: space-between;
-            align-wrap: wrap;
-            gap: 1rem;
-        }
-        
-        /* Theme toggle */
-        .theme-toggle {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            color: var(--text-secondary);
-            padding: 0.2rem;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            body { padding: 0 1rem; }
-            h1 { font-size: 2.2rem; }
-            h2 { font-size: 1.4rem; }
-            .container { padding: 2rem 0 4rem; }
-        }
-    </style>
-    
-    <script>
-        try {
-            const saved = localStorage.getItem("mingli-theme");
-            const preferred = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-            document.documentElement.dataset.theme = saved || preferred;
-        } catch (_) {}
-    </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sun Mingli</title>
+  <meta name="description" content="Sun Mingli is a researcher working at the intersection of machine learning, structural architecture, human–AI collaboration, and construction robotics.">
+  <meta name="author" content="Sun Mingli">
+  <meta name="theme-color" content="#fffff8">
+  <link rel="canonical" href="https://mingliiiii.github.io/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E🪞%3C/text%3E%3C/svg%3E" type="image/svg+xml">
+  <style>
+    /* ─── ET Book @font-face ─── */
+    @font-face {
+      font-family: "et-book";
+      src: url("https://cdn.bootcdn.net/ajax/libs/tufte-css/1.8.0/et-book/et-book-roman-line-figures/et-book-roman-line-figures.woff") format("woff");
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "et-book";
+      src: url("https://cdn.bootcdn.net/ajax/libs/tufte-css/1.8.0/et-book/et-book-bold-line-figures/et-book-bold-line-figures.woff") format("woff");
+      font-weight: bold;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "et-book";
+      src: url("https://cdn.bootcdn.net/ajax/libs/tufte-css/1.8.0/et-book/et-book-semi-bold-old-style-figures/et-book-semi-bold-old-style-figures.woff") format("woff");
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "et-book";
+      src: url("https://cdn.bootcdn.net/ajax/libs/tufte-css/1.8.0/et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.woff") format("woff");
+      font-weight: normal;
+      font-style: italic;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "et-book";
+      src: url("https://cdn.bootcdn.net/ajax/libs/tufte-css/1.8.0/et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.woff") format("woff");
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --bg: #fffff8;
+      --text: #111;
+      --text-secondary: #555;
+      --border: rgba(0,0,0,0.10);
+      --link-underline: rgba(0,0,0,0.22);
+      --max-width: 720px;
+      --font: "et-book", Georgia, "Times New Roman", serif;
+    }
+
+    [data-theme="dark"] {
+      --bg: #1a1a1a;
+      --text: #e8e4dc;
+      --text-secondary: #999;
+      --border: rgba(255,255,255,0.08);
+      --link-underline: rgba(255,255,255,0.28);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font);
+      font-size: 1.05rem;
+      line-height: 1.45;
+      color: var(--text);
+      background: var(--bg);
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    /* ─── Header: only theme toggle ─── */
+    .site-header {
+      display: flex;
+      justify-content: flex-end;
+      align-items: baseline;
+      margin-bottom: 2.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--text-secondary);
+      padding: 0;
+      font-family: var(--font);
+    }
+    .theme-toggle:hover { color: var(--text); }
+
+    /* ─── Typography ─── */
+    h1, h2, h3, h4 {
+      font-family: var(--font);
+      font-weight: normal;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    h1 { font-size: 3.6rem; margin-bottom: 0.2rem; letter-spacing: -0.01em; }
+    h2 {
+      font-size: 1.9rem;
+      margin-top: 2.2rem;
+      margin-bottom: 0.9rem;
+      font-style: italic;
+      font-weight: normal;
+    }
+    h3 {
+      font-size: 1.15rem;
+      margin-top: 1.3rem;
+      margin-bottom: 0.35rem;
+      font-weight: bold;
+      font-style: normal;
+    }
+    h4 {
+      font-size: 1.05rem;
+      margin-top: 0.9rem;
+      margin-bottom: 0.25rem;
+      font-style: italic;
+      font-weight: normal;
+    }
+
+    p {
+      margin-bottom: 0.85rem;
+      max-width: 68ch;
+    }
+
+    a {
+      color: var(--text);
+      text-decoration: underline;
+      text-decoration-color: var(--link-underline);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.12em;
+      transition: text-decoration-color 0.2s;
+    }
+    a:hover { text-decoration-color: var(--text); }
+
+    strong { font-weight: bold; }
+    em { font-style: italic; }
+
+    /* ─── Hero ─── */
+    .hero {
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-title {
+      font-size: 3.2rem;
+      font-weight: normal;
+      margin-bottom: 0.15rem;
+    }
+
+    .hero-intro {
+      font-size: 1.05rem;
+      line-height: 1.5;
+      max-width: 62ch;
+      margin-bottom: 1rem;
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 1.1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-links a {
+      font-family: var(--font);
+      font-style: italic;
+      font-size: 0.95rem;
+    }
+
+    /* ─── Sections ─── */
+    section { margin-top: 2.5rem; }
+
+    .section-label {
+      font-family: var(--font);
+      font-style: italic;
+      font-size: 1.9rem;
+      font-weight: normal;
+      color: var(--text);
+      margin-bottom: 1rem;
+      display: block;
+      line-height: 1.2;
+    }
+
+    /* ─── Research items ─── */
+    .research-item {
+      margin-bottom: 1.6rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .research-item:last-child { border-bottom: none; }
+
+    .research-meta {
+      font-family: var(--font);
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.25rem;
+    }
+
+    .research-item h3 {
+      font-size: 1.15rem;
+      font-weight: bold;
+      margin-top: 0;
+      margin-bottom: 0.25rem;
+    }
+
+    .research-item .subtitle {
+      font-family: var(--font);
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.45rem;
+    }
+
+    .research-item .desc {
+      font-size: 1rem;
+      line-height: 1.35;
+      margin-bottom: 0.4rem;
+    }
+
+    .research-item .venue {
+      font-family: var(--font);
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    /* ─── Publications ─── */
+    .pub-item {
+      display: grid;
+      grid-template-columns: 3.2rem 1fr;
+      gap: 0.7rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .pub-item:first-child { padding-top: 0; }
+    .pub-item:last-child { border-bottom: none; }
+
+    .pub-year {
+      font-family: var(--font);
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      padding-top: 0.1rem;
+    }
+
+    .pub-title {
+      font-size: 1.05rem;
+      font-weight: bold;
+      margin-bottom: 0.15rem;
+      line-height: 1.3;
+    }
+
+    .pub-authors {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.1rem;
+    }
+
+    .pub-venue {
+      font-family: var(--font);
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    /* ─── Timeline (Experience & Education) ─── */
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 6.2rem 1fr;
+      gap: 0.7rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .timeline-item:first-child { padding-top: 0; }
+    .timeline-item:last-child { border-bottom: none; }
+
+    .timeline-date {
+      font-family: var(--font);
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      padding-top: 0.05rem;
+    }
+
+    .timeline-content {
+      font-size: 1rem;
+      line-height: 1.45;
+    }
+
+    .timeline-content .role {
+      font-weight: bold;
+      display: block;
+    }
+
+    .timeline-content .institution {
+      font-style: italic;
+      color: var(--text-secondary);
+      display: block;
+    }
+
+    /* ─── Awards ─── */
+    .award-item {
+      display: grid;
+      grid-template-columns: 3.2rem 1fr auto;
+      gap: 0.7rem;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: baseline;
+    }
+    .award-item:first-child { padding-top: 0; }
+    .award-item:last-child { border-bottom: none; }
+
+    .award-year {
+      font-family: var(--font);
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .award-name {
+      font-size: 1rem;
+      font-weight: normal;
+    }
+
+    .award-org {
+      font-family: var(--font);
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      text-align: right;
+    }
+
+    /* ─── Colophon ─── */
+    .colophon {
+      margin-top: 2.5rem;
+    }
+
+    .colophon p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 0.4rem;
+    }
+
+    /* ─── Footer ─── */
+    .site-footer {
+      margin-top: 2.5rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-family: var(--font);
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .site-footer a {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 600px) {
+      body { padding: 1.2rem 1rem 2.5rem; }
+      h1, .hero-title { font-size: 2.4rem; }
+      h2 { font-size: 1.5rem; }
+      .pub-item { grid-template-columns: 1fr; gap: 0.15rem; }
+      .pub-year { padding-top: 0; }
+      .timeline-item { grid-template-columns: 1fr; gap: 0.1rem; }
+      .award-item { grid-template-columns: 1fr; gap: 0.1rem; }
+      .award-org { text-align: left; }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    ::selection {
+      background: rgba(0,0,0,0.12);
+    }
+    [data-theme="dark"] ::selection {
+      background: rgba(255,255,255,0.15);
+    }
+  </style>
+
+  <script>
+    try {
+      const saved = localStorage.getItem("mingli-theme");
+      const preferred = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = saved || preferred;
+    } catch (_) {}
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Sun Mingli",
+    "jobTitle": "Researcher in Computational Design",
+    "url": "https://mingliiiii.github.io/",
+    "email": "mailto:mingli_sun@tongji.edu.cn",
+    "affiliation": [
+      { "@type": "CollegeOrUniversity", "name": "Tongji University" },
+      { "@type": "CollegeOrUniversity", "name": "Tsinghua Shenzhen International Graduate School" }
+    ]
+  }
+  </script>
+<base target="_blank">
 </head>
+
 <body>
-    <div class="container">
-        <header>
-            <a href="#" class="wordmark">Sun Mingli</a>
-            <nav>
-                <a href="#about">About</a>
-                <a href="#research">Research</a>
-                <a href="#publications">Publications</a>
-                <a href="#experience">Experience</a>
-                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">◐</button>
-            </nav>
-        </header>
-        
-        <main>
-            <section class="hero" id="about">
-                <h1>Sun Mingli</h1>
-                <p class="hero-role">Researcher in Computational Design</p>
-                <p class="hero-intro">
-                    Hi, I'm Mingli. I am a researcher working at the intersection of machine learning, 
-                    structural architecture, human–AI collaboration, and construction robotics. 
-                    My research focuses on design methodology at the intersection of algorithm design, 
-                    neural networks, and geometry, with an emphasis on human-AI interaction theory. 
-                    I am also interested in the philosophy of technology.
-                </p>
-                <p class="hero-intro">
-                    I have academic experience at the 
-                    <a href="https://tjdi.tongji.edu.cn/?lang=en">College of Design and Innovation</a> 
-                    and the <a href="https://caup.tongji.edu.cn/caupen/">College of Architecture and Urban Planning</a>, 
-                    Tongji University, as well as the 
-                    <a href="https://www.coia.tech/">Co-Intelligent Architecture Lab</a>, 
-                    Institute of Future Human Habitats, Tsinghua SIGS.
-                </p>
-                <div class="hero-links">
-                    <a href="mailto:mingli_sun@tongji.edu.cn">Email</a>
-                    <a href="https://www.researchgate.net/profile/Mingli-Sun-4">ResearchGate</a>
-                    <a href="https://www.linkedin.com/in/mingli-sun-55a441333/">LinkedIn</a>
-                </div>
-            </section>
-            
-            <section id="research-interests">
-                <h2>Research Interests</h2>
-                
-                <div class="research-interest">
-                    <p><strong>Graph learning for traditional craftsmanship.</strong> 
-                    Leveraging graph neural networks to capture the geometric, topological, and mechanical 
-                    features of mortise-and-tenon joints, transforming experienced craftsmanship into a 
-                    digital and intelligent paradigm.</p>
-                </div>
-                
-                <div class="research-interest">
-                    <p><strong>Generative AI for architectural conceptualization.</strong> 
-                    Examining how text-guided diffusion models and fine-tuning strategies influence 
-                    early-stage spatial reasoning and design creativity in modular structural design, 
-                    measured through empirical frameworks such as the Creativity Support Index.</p>
-                </div>
-                
-                <div class="research-interest">
-                    <p><strong>Human–AI collaborative design.</strong> 
-                    Developing imitation learning-based agents that learn from human demonstrations 
-                    to enable co-intelligent design workflows for modular assembly-oriented structural tasks.</p>
-                </div>
-                
-                <div class="research-interest">
-                    <p><strong>Construction robotics.</strong> 
-                    Intelligent robotic systems for high-rise building façade finishing, integrating 
-                    algorithm design with field deployment to improve construction safety and efficiency.</p>
-                </div>
-            </section>
-            
-            <section id="publications">
-                <h2>Publications</h2>
-                <p>Please see my <a href="https://www.researchgate.net/profile/Mingli-Sun-4">ResearchGate profile</a> for the full publication list.</p>
-                
-                <div class="publication">
-                    <span class="year">[2026]</span>
-                    <strong>Sun, M.</strong> & Chai, H. Intelligent Robotic Sanding System for Building Exterior Walls Integrated with Residential Building Manufacturing Machines. 
-                    <span class="venue">Housing Science, 2026(6), 80–84 · Journal article (in Chinese)</span>
-                </div>
-                
-                <div class="publication">
-                    <span class="year">[2026]</span>
-                    <strong>Sun, M.</strong>, Zhou, Y., Liu, Y., Zhu, Y., Yang, Q., Liu, Y., & Chai, H. Graph-Based Generative Design of Mortise-and-Tenon Joints in Timber Structures. 
-                    <span class="venue">CDRF 2026 · Accepted · EI · Forthcoming</span>
-                </div>
-                
-                <div class="publication">
-                    <span class="year">[2025]</span>
-                    <strong>Sun, M.</strong>, Chen, J. & Terzidis, K. Text-Guided Fine-Tuning Diffusion Model Enhanced the Spatial Envision of Modular Structures. 
-                    <span class="venue">CAADRIA 2025, Vol. 1, 49–58 · EI</span>
-                </div>
-                
-                <div class="publication">
-                    <span class="year">[2024]</span>
-                    <strong>Sun, M.</strong>, K. Terzidis & J. Chen. Facilitation or Inhibition: The Influence of Generative Artificial Intelligence on Design Reasoning for Modular Structures. 
-                    <span class="venue">IASS 2024 Symposium · EI</span>
-                </div>
-                
-                <div class="publication">
-                    <span class="year">[2024]</span>
-                    <strong>Sun, M.</strong>, P. Buš, J. Chen, & K. Sun. Co-Intelligent Design Toward Modular Structures. 
-                    <span class="venue">CAADRIA 2024, Vol. 3, 171–180 · EI</span>
-                </div>
-            </section>
-            
-            <section id="research">
-                <h2>Research Projects</h2>
-                
-                <div class="project">
-                    <h3>Graph-Based Generative Design of Mortise-and-Tenon Joints in Timber Structures</h3>
-                    <p class="project-meta">Graph Learning · Mortise-and-Tenon Joints · CDRF 2026</p>
-                    <p>Leveraging GNNs to capture the geometric, topological, and mechanical features of 
-                    mortise-and-tenon joints, this project transforms the experienced craftsmanship into 
-                    a digital and intelligent paradigm.</p>
-                </div>
-                
-                <div class="project">
-                    <h3>Text-Guided Fine-Tuned Diffusion Models for Spatial Envisioning of Modular Structures</h3>
-                    <p class="project-meta">Diffusion Models · Generative AI · Human–AI Interaction · CAADRIA 2025 · IASS 2024</p>
-                    <p>Through an empirical study employing the Creativity Support Index (CSI), this study 
-                    examines how AI-generated architectural imagery influences early-stage design reasoning.</p>
-                </div>
-                
-                <div class="project">
-                    <h3>An Imitation Learning-Based Agent for Modular Assembly Structural Design</h3>
-                    <p class="project-meta">GAIL · Unity3D · ML-Agents · CAADRIA 2024</p>
-                    <p>Developed an agent for a modular assembly-oriented structural design task through 
-                    imitation learning from human demonstrations, enabling a human–AI collaborative design paradigm.</p>
-                </div>
-                
-                <div class="project">
-                    <h3>Intelligent Robotic System for High-Rise Building Façade Finishing</h3>
-                    <p class="project-meta">Construction Robotics · Field Testing · Algorithm Design · Housing Science 2026</p>
-                    <p>Developed an intelligent robotic system integrated with high-rise building construction 
-                    platforms for façade spraying and grinding operations, improving construction safety and efficiency.</p>
-                </div>
-            </section>
-            
-            <section id="experience">
-                <h2>Experience</h2>
-                
-                <div class="entry">
-                    <span class="entry-date">2025–2026</span>
-                    <strong>Research Assistant</strong>, College of Architecture and Urban Planning, Tongji University.
-                </div>
-                
-                <div class="entry">
-                    <span class="entry-date">2024–2025</span>
-                    <strong>Research Intern</strong>, Institute of Future Human Habitats, Tsinghua Shenzhen International Graduate School.
-                </div>
-                
-                <div class="entry">
-                    <span class="entry-date">2023</span>
-                    <strong>Technical Instructor</strong>, FabLab O Shanghai, MIT FabLab Global Network.
-                </div>
-                
-                <h2>Education</h2>
-                
-                <div class="entry">
-                    <span class="entry-date">2022–2025</span>
-                    <strong>MA in Arts and Design</strong>, Advanced Environmental Design. 
-                    College of Design and Innovation, Tongji University.
-                </div>
-                
-                <div class="entry">
-                    <span class="entry-date">2016–2020</span>
-                    <strong>BEng in Industrial Design</strong>. 
-                    Mechanical and Electrical Engineering School, Beijing Information Science & Technology University.
-                </div>
-            </section>
-            
-            <section id="awards">
-                <h2>Honors & Awards</h2>
-                
-                <div class="entry">
-                    <span class="entry-date">2025</span>
-                    <strong>Shanghai Outstanding Graduate Award</strong>, Shanghai Municipal Government.
-                </div>
-                
-                <div class="entry">
-                    <span class="entry-date">2024</span>
-                    <strong>Outstanding Postgraduate Scholarship</strong>, Tongji University.
-                </div>
-                
-                <div class="entry">
-                    <span class="entry-date">2024</span>
-                    <strong>International Academic Conference Travel Grant</strong>, Tongji University.
-                </div>
-                
-                <div class="entry">
-                    <span class="entry-date">2023</span>
-                    <strong>International and Hong Kong, Macao, and Taiwan Exchange Grant</strong>, Tongji University.
-                </div>
-                
-                <div class="entry">
-                    <span class="entry-date">2020</span>
-                    <strong>Beijing Outstanding Graduate Award</strong>, Beijing Municipal Government.
-                </div>
-            </section>
-            
-            <section id="works">
-                <h2>Selected Works</h2>
-                
-                <div class="entry">
-                    <strong>Co-Intelligent Architecture.</strong> 
-                    ACADIA × CAADRIA 2023: Habits of the Anthropocene. 
-                    The University of Hong Kong, Hong Kong SAR.
-                </div>
-                
-                <div class="entry">
-                    <strong>Co-Intelligent Design Toward Modular Structures.</strong> 
-                    CAADRIA 2024: Accelerated Design. 
-                    Singapore University of Technology and Design.
-                </div>
-            </section>
-        </main>
-        
-        <footer>
-            <p>© 2026 Sun Mingli</p>
-            <p>Styled with inspiration from <a href="https://edwardtufte.github.io/tufte-css/">Tufte CSS</a></p>
-        </footer>
-    </div>
-    
-    <script>
-        function toggleTheme() {
-            const html = document.documentElement;
-            const current = html.dataset.theme;
-            const next = current === 'dark' ? 'light' : 'dark';
-            html.dataset.theme = next;
-            try { localStorage.setItem('mingli-theme', next); } catch(_) {}
-        }
-    </script>
+  <header class="site-header">
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle color theme">◐</button>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <h1 class="hero-title">Sun Mingli</h1>
+      <p class="hero-intro">
+        A researcher in computational design. Interested in the philosophy of technology. Academic experience at <a href="https://tjdi.tongji.edu.cn/?lang=en">College of Design and Innovation (D&I)</a>, <a href="https://caup.tongji.edu.cn/caupen/">College of Architecture and Urban Planning (CAUP)</a>, Tongji University and <a href="https://www.coia.tech/">Co-Intelligent Architecture Lab</a>, Institute of Future Human Habitats, Tsinghua SIGS.
+      </p>
+      <div class="hero-links">
+        <a href="mailto:2233747@tongji.edu.cn">Email</a>
+        <a href="https://www.researchgate.net/profile/Mingli-Sun-4" target="_blank" rel="noreferrer noopener">ResearchGate</a>
+        <a href="https://www.linkedin.com/in/mingli-sun-55a441333/" target="_blank" rel="noreferrer noopener">LinkedIn</a>
+      </div>
+    </section>
+
+    <!-- Research Projects -->
+    <section id="research">
+      <span class="section-label">Research Projects</span>
+
+      <div class="research-item">
+        <div class="research-meta">2026</div>
+        <h3>Graph-Based Generative Design of Mortise-and-Tenon Joints in Timber Structures</h3>
+        <p class="subtitle">Graph Learning · Mortise-and-Tenon Joints</p>
+        <p class="desc">Leveraging GNNs to capture the geometric, topological, and mechanical features of mortise-and-tenon joints, this project transforms the experienced craftsmanship into a digital and intelligent paradigm.</p>
+        <p class="venue">The 8th International Conference on Computational Design and Robotic Fabrication (CDRF 2026) · Accepted · EI</p>
+      </div>
+
+      <div class="research-item">
+        <div class="research-meta">2024–25</div>
+        <h3>Text-Guided Fine-Tuned Diffusion Models for Spatial Envisioning of Modular Structures</h3>
+        <p class="subtitle">Diffusion Models · Generative AI · Human–AI Interaction</p>
+        <p class="desc">Through an empirical study employing the Creativity Support Index (CSI), this study examines how AI-generated architectural imagery influences early-stage design reasoning.</p>
+        <p class="venue">
+          <a href="https://doi.org/10.52842/conf.caadria.2025.1.049" target="_blank" rel="noreferrer noopener">CAADRIA 2025</a> ·
+          <a href="https://doi.org/10.3929/ethz-b-000728788" target="_blank" rel="noreferrer noopener">IASS 2024</a> · EI
+        </p>
+      </div>
+
+      <div class="research-item">
+        <div class="research-meta">2024</div>
+        <h3>An Imitation Learning-Based Agent for Modular Assembly Structural Design</h3>
+        <p class="subtitle">Generative Adversarial Imitation Learning (GAIL) · Unity3D · ML-Agents</p>
+        <p class="desc">Developed an agent for a modular assembly-oriented structural design task through imitation learning from human demonstrations, enabling a human–AI collaborative design paradigm.</p>
+        <p class="venue">
+          <a href="https://doi.org/10.52842/conf.caadria.2024.3.171" target="_blank" rel="noreferrer noopener">CAADRIA 2024</a> · EI
+        </p>
+      </div>
+
+      <div class="research-item">
+        <div class="research-meta">2025–26</div>
+        <h3>Intelligent Robotic System for High-Rise Building Façade Finishing</h3>
+        <p class="subtitle">Construction Robotics · Field Testing · Algorithm Design</p>
+        <p class="desc">Developed an intelligent robotic system integrated with high-rise building construction platforms for façade spraying and grinding operations, improving construction safety and efficiency.</p>
+        <p class="venue">
+          <a href="https://doi.org/10.3969/j.issn.1002-0454.2026.06.011" target="_blank" rel="noreferrer noopener">Housing Science 2026</a> · Journal article (in Chinese)
+        </p>
+      </div>
+    </section>
+
+    <!-- Publications -->
+    <section id="publications">
+      <span class="section-label">Publications</span>
+
+      <div class="pub-item">
+        <div class="pub-year">2026</div>
+        <div>
+          <div class="pub-title">Intelligent Robotic Sanding System for Building Exterior Walls Integrated with Residential Building Manufacturing Machines</div>
+          <div class="pub-authors"><strong>Sun, M.</strong> & Chai, H.</div>
+          <div class="pub-venue"><a href="https://doi.org/10.3969/j.issn.1002-0454.2026.06.011" target="_blank" rel="noreferrer noopener">Housing Science, 2026(6), 80–84</a> · Journal article (in Chinese)</div>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2026</div>
+        <div>
+          <div class="pub-title">Graph-Based Generative Design of Mortise-and-Tenon Joints in Timber Structures</div>
+          <div class="pub-authors"><strong>Sun, M.</strong>, Zhou, Y., Liu, Y., Zhu, Y., Yang, Q., Liu, Y., & Chai, H.</div>
+          <div class="pub-venue">CDRF 2026 · Accepted · EI · Forthcoming</div>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2025</div>
+        <div>
+          <div class="pub-title">Text-Guided Fine-Tuning Diffusion Model Enhanced the Spatial Envision of Modular Structures</div>
+          <div class="pub-authors"><strong>Sun, M.</strong>, Chen, J. & Terzidis, K.</div>
+          <div class="pub-venue"><a href="https://doi.org/10.52842/conf.caadria.2025.1.049" target="_blank" rel="noreferrer noopener">CAADRIA 2025, Vol. 1, 49–58</a> · EI</div>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2024</div>
+        <div>
+          <div class="pub-title">Facilitation or Inhibition: The Influence of Generative Artificial Intelligence on Design Reasoning for Modular Structures</div>
+          <div class="pub-authors"><strong>Sun, M.</strong>, K. Terzidis & J. Chen</div>
+          <div class="pub-venue"><a href="https://doi.org/10.3929/ethz-b-000728788" target="_blank" rel="noreferrer noopener">IASS 2024 Symposium</a> · EI</div>
+        </div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-year">2024</div>
+        <div>
+          <div class="pub-title">Co-Intelligent Design Toward Modular Structures</div>
+          <div class="pub-authors"><strong>Sun, M.</strong>, P. Buš, J. Chen, & K. Sun</div>
+          <div class="pub-venue"><a href="https://doi.org/10.52842/conf.caadria.2024.3.171" target="_blank" rel="noreferrer noopener">CAADRIA 2024, Vol. 3, 171–180</a> · EI</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Academic Experience -->
+    <section id="experience">
+      <span class="section-label">Academic Experience</span>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">2025–2026</div>
+          <div class="timeline-content">
+            <span class="role">Research Assistant</span>
+            <span class="institution">College of Architecture and Urban Planning, Tongji University</span>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2024–2025</div>
+          <div class="timeline-content">
+            <span class="role">Research Intern</span>
+            <span class="institution">Institute of Future Human Habitats, Tsinghua Shenzhen International Graduate School</span>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2023</div>
+          <div class="timeline-content">
+            <span class="role">Technical Instructor</span>
+            <span class="institution">FabLab O Shanghai · MIT FabLab Global Network</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+      <span class="section-label">Education</span>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">2022–2025</div>
+          <div class="timeline-content">
+            <span class="role">MA in Arts and Design</span>
+            <span class="institution">Advanced Environmental Design, College of Design and Innovation, Tongji University</span>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">2016–2020</div>
+          <div class="timeline-content">
+            <span class="role">BEng in Industrial Design</span>
+            <span class="institution">Mechanical and Electrical Engineering School, Beijing Information Science & Technology University</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Honors & Awards -->
+    <section id="awards">
+      <span class="section-label">Honors & Awards</span>
+
+      <div class="awards-list">
+        <div class="award-item">
+          <div class="award-year">2025</div>
+          <div class="award-name">Shanghai Outstanding Graduate Award</div>
+          <div class="award-org">Shanghai Municipal Government</div>
+        </div>
+        <div class="award-item">
+          <div class="award-year">2024</div>
+          <div class="award-name">Outstanding Postgraduate Scholarship</div>
+          <div class="award-org">Tongji University</div>
+        </div>
+        <div class="award-item">
+          <div class="award-year">2024</div>
+          <div class="award-name">International Academic Conference Travel Grant</div>
+          <div class="award-org">Tongji University</div>
+        </div>
+        <div class="award-item">
+          <div class="award-year">2023</div>
+          <div class="award-name">International and Hong Kong, Macao, and Taiwan Exchange Grant</div>
+          <div class="award-org">Tongji University</div>
+        </div>
+        <div class="award-item">
+          <div class="award-year">2020</div>
+          <div class="award-name">Beijing Outstanding Graduate Award</div>
+          <div class="award-org">Beijing Municipal Government</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Colophon -->
+    <section class="colophon" id="colophon">
+      <span class="section-label">Colophon</span>
+      <p>This webpage is styled in the spirit of <a href="https://edwardtufte.github.io/tufte-css/" target="_blank" rel="noreferrer noopener">Tufte CSS</a>. The typeface is <a href="https://edwardtufte.github.io/et-book/" target="_blank" rel="noreferrer noopener">ET Book</a>. Content is authored by Sun Mingli with support from <a href="https://kimi.moonshot.cn/" target="_blank" rel="noreferrer noopener">Kimi</a>.</p>
+      <p>© 2026 Sun Mingli. All rights reserved.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Back to top ↑</p>
+    <a href="#top" aria-label="Back to top"></a>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('theme-toggle');
+    toggle.addEventListener('click', () => {
+      const html = document.documentElement;
+      const current = html.dataset.theme;
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.dataset.theme = next;
+      try { localStorage.setItem('mingli-theme', next); } catch (_) {}
+    });
+  </script>
 </body>
 </html>
