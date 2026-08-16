@@ -10,11 +10,84 @@
   <link rel="canonical" href="https://mingliiiii.github.io/">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E🪞%3C/text%3E%3C/svg%3E" type="image/svg+xml">
   
-  <!-- 引入星星特效样式 -->
-  <link rel="stylesheet" href="star-effect.css">
-  
   <style>
-    /* ─── ET Book @font-face ─── */
+    /* ═══════════════════════════════════════════════════════
+       星星特效样式（保留原 .css 全部参数，仅改形状与颜色）
+       ═══════════════════════════════════════════════════════ */
+    .star-particle {
+      --star-x: 0px;
+      --star-y: 0px;
+      --star-r: 0deg;
+      position: fixed;
+      z-index: 9999;
+      width: 1em;
+      height: 1em;
+      pointer-events: none;
+      line-height: 1;
+      transform: translate(-50%, -50%);
+      will-change: transform, opacity;
+
+      /* 固定淡黄色 */
+      background: #FEF08A;
+
+      /* 五角星（clip-path） */
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+      /* 如需六角星，替换为下面这行： */
+      /* clip-path: polygon(50% 0%, 65% 25%, 100% 25%, 75% 50%, 100% 75%, 65% 75%, 50% 100%, 35% 75%, 0% 75%, 25% 50%, 0% 25%, 35% 25%); */
+    }
+
+    .star-particle--trail {
+      opacity: 0.9;
+      filter: drop-shadow(0 0 4px #FEF08A);
+      animation: star-drift 780ms ease-out forwards;
+    }
+
+    .star-particle--burst {
+      filter: drop-shadow(0 0 6px #FEF08A) drop-shadow(0 0 12px #FEF08A);
+      animation: star-drift 1.22s cubic-bezier(0.22, 0.65, 0.24, 1) forwards;
+    }
+
+    @keyframes star-drift {
+      0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) rotate(0deg) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(
+            calc(-50% + var(--star-x)),
+            calc(-50% + var(--star-y))
+          )
+          rotate(var(--star-r)) scale(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+      .star-particle {
+        display: none !important;
+      }
+    }
+
+    @media (pointer: coarse) {
+      .star-particle--trail {
+        opacity: 0.82;
+      }
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       原 Tufte 页面样式
+       ═══════════════════════════════════════════════════════ */
     @font-face {
       font-family: "et-book";
       src: url("https://cdn.bootcdn.net/ajax/libs/tufte-css/1.8.0/et-book/et-book-roman-line-figures/et-book-roman-line-figures.woff") format("woff");
@@ -89,7 +162,6 @@
       transition: background 0.3s ease, color 0.3s ease;
     }
 
-    /* ─── Header: only theme toggle ─── */
     .site-header {
       display: flex;
       justify-content: flex-end;
@@ -110,7 +182,6 @@
     }
     .theme-toggle:hover { color: var(--text); }
 
-    /* ─── Typography ─── */
     h1, h2, h3, h4 {
       font-family: var(--font);
       font-weight: normal;
@@ -159,7 +230,6 @@
     strong { font-weight: bold; }
     em { font-style: italic; }
 
-    /* ─── Hero ─── */
     .hero {
       margin-bottom: 3.2rem;
     }
@@ -189,7 +259,6 @@
       font-size: 0.95rem;
     }
 
-    /* ─── Sections ─── */
     section { margin-top: 2.5rem; }
 
     .section-label {
@@ -203,7 +272,6 @@
       line-height: 1.2;
     }
 
-    /* ─── Research items ─── */
     .research-item {
       margin-bottom: 0.77rem;
       padding-bottom: 0.6rem;
@@ -247,7 +315,6 @@
       color: var(--text-secondary);
     }
 
-    /* ─── Publications ─── */
     .pub-item {
       display: grid;
       grid-template-columns: 3.2rem 1fr;
@@ -287,7 +354,6 @@
       color: var(--text-secondary);
     }
 
-    /* ─── Timeline (Experience & Education) ─── */
     .timeline-item {
       display: grid;
       grid-template-columns: 6.2rem 1fr;
@@ -322,7 +388,6 @@
       display: block;
     }
 
-    /* ─── Awards ─── */
     .award-item {
       display: grid;
       grid-template-columns: 3.2rem 1fr auto;
@@ -354,7 +419,6 @@
       text-align: right;
     }
 
-    /* ─── Colophon ─── */
     .colophon {
       margin-top: 2.5rem;
     }
@@ -366,7 +430,6 @@
       margin-bottom: 0.4rem;
     }
 
-    /* ─── Footer ─── */
     .site-footer {
       margin-top: 2.5rem;
       padding-top: 1.2rem;
@@ -385,7 +448,6 @@
       color: var(--text-secondary);
     }
 
-    /* ─── Responsive ─── */
     @media (max-width: 600px) {
       body { padding: 1.2rem 1rem 2.5rem; }
       h1, .hero-title { font-size: 2.4rem; }
@@ -430,7 +492,6 @@
   }
   </script>
 <base target="_blank">
-<base target="_blank">
 </head>
 
 <body>
@@ -439,7 +500,6 @@
   </header>
 
   <main id="top">
-    <!-- Hero -->
     <section class="hero">
       <h1 class="hero-title">Sun Mingli</h1>
       <p class="hero-intro">
@@ -452,13 +512,11 @@
       </div>
     </section>
 
-    <!-- Research Interest -->
     <section id="research-interest">
       <span class="section-label">Research Interest</span>
       <p>Current research interests lie at the intersection of algorithms, neural networks, and geometric transformations, particularly in structural architecture, with a focus on the theoretical development of human–AI interaction.</p>
     </section>
 
-    <!-- Research Projects -->
     <section id="research">
       <span class="section-label">Research Projects</span>
 
@@ -502,7 +560,6 @@
       </div>
     </section>
 
-    <!-- Publications -->
     <section id="publications">
       <span class="section-label">Publications</span>
 
@@ -552,7 +609,6 @@
       </div>
     </section>
 
-    <!-- Academic Experience -->
     <section id="experience">
       <span class="section-label">Academic Experience</span>
 
@@ -581,7 +637,6 @@
       </div>
     </section>
 
-    <!-- Education -->
     <section id="education">
       <span class="section-label">Education</span>
 
@@ -603,7 +658,6 @@
       </div>
     </section>
 
-    <!-- Honors & Awards -->
     <section id="awards">
       <span class="section-label">Honors & Awards</span>
 
@@ -636,7 +690,6 @@
       </div>
     </section>
 
-    <!-- Colophon -->
     <section class="colophon" id="colophon">
       <span class="section-label">Colophon</span>
       <p>This webpage is styled in the spirit of <a href="https://edwardtufte.github.io/tufte-css/" target="_blank" rel="noreferrer noopener">Tufte CSS</a>. The typeface is <a href="https://edwardtufte.github.io/et-book/" target="_blank" rel="noreferrer noopener">ET Book</a>. Content is authored by Sun Mingli with support from <a href="https://kimi.moonshot.cn/" target="_blank" rel="noreferrer noopener">Kimi</a>.</p>
@@ -662,17 +715,6 @@
   <!-- 星星特效 -->
   <script>
     (function() {
-      /* 六种 pastel 颜色：淡黄、浅粉、淡绿、浅紫、浅棕红、浅蓝 */
-      const COLORS = [
-        '#FEF08A', // 淡黄色
-        '#FBCFE8', // 浅粉色
-        '#BBF7D0', // 淡绿色
-        '#DDD6FE', // 浅紫色
-        '#FFCCBC', // 浅棕红色
-        '#BAE6FD'  // 浅蓝色
-      ];
-      const SYMBOLS = ['✦', '★', '✧', '⋆', '✴', '✹', '✸', '✶'];
-
       function random(min, max) {
         return Math.random() * (max - min) + min;
       }
@@ -680,12 +722,14 @@
       function createStar(x, y, type) {
         const star = document.createElement('span');
         star.className = 'star-particle star-particle--' + type;
-        star.textContent = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+
+        /* 尺寸直接控制图形大小（原 css 中 width/height: 1em） */
+        const size = random(10, 20);
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+
         star.style.left = x + 'px';
-        star.style.top = y + 'px';
-        /* 随机选取六种颜色之一 */
-        star.style.color = COLORS[Math.floor(Math.random() * COLORS.length)];
-        star.style.fontSize = random(10, 20) + 'px';
+        star.style.top  = y + 'px';
 
         const angle = random(0, Math.PI * 2);
         const distance = type === 'burst' ? random(40, 140) : random(30, 100);
@@ -699,13 +743,12 @@
         });
       }
 
-      let lastX = 0, lastY = 0;
-
       /* 鼠标拖尾 */
+      let lastX = -9999, lastY = -9999;
       document.addEventListener('mousemove', function(e) {
         const dx = e.clientX - lastX;
         const dy = e.clientY - lastY;
-        if (dx * dx + dy * dy > 225) { // 间距大于 15px 时生成
+        if (dx * dx + dy * dy > 36) {   // 6px 间距
           createStar(e.clientX, e.clientY, 'trail');
           lastX = e.clientX;
           lastY = e.clientY;
