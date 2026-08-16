@@ -12,7 +12,7 @@
   
   <style>
     /* ═══════════════════════════════════════════════════════
-       星星特效样式（内联，保留原 .css 全部参数）
+       星星特效样式（内联）：字母 a-z A-Z，颜色跟随主题
        ═══════════════════════════════════════════════════════ */
     .star-particle {
       --star-x: 0px;
@@ -26,17 +26,21 @@
       line-height: 1;
       transform: translate(-50%, -50%);
       will-change: transform, opacity;
-      color: #FFB7C5;   /* 更淡的黄色 */
+      color: #111;   /* 浅色模式：黑色 */
+    }
+
+    [data-theme="dark"] .star-particle {
+      color: #e8e4dc;   /* 深色模式：白色 */
     }
 
     .star-particle--trail {
       opacity: 0.9;
-      text-shadow: 0 0 4px #FFB7C5;
+      text-shadow: 0 0 4px currentColor;
       animation: star-drift 780ms ease-out forwards;
     }
 
     .star-particle--burst {
-      text-shadow: 0 0 6px #FFB7C5, 0 0 12px #FFB7C5;
+      text-shadow: 0 0 6px currentColor, 0 0 12px currentColor;
       animation: star-drift 1.22s cubic-bezier(0.22, 0.65, 0.24, 1) forwards;
     }
 
@@ -433,7 +437,7 @@
       font-family: var(--font);
       font-style: italic;
       font-size: 0.9rem;
-      color: var(--text-secondary;
+      color: var(--text-secondary);
     }
 
     .site-footer a {
@@ -705,10 +709,10 @@
     });
   </script>
 
-  <!-- 星星特效 -->
+  <!-- 星星特效：字母 a-z A-Z，颜色跟随主题，移动端兼容 -->
   <script>
     (function() {
-      const SYMBOLS = ['✦', '★', '✧', '⋆', '✴', '✹', '✸', '✶'];
+      const SYMBOLS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
       function random(min, max) {
         return Math.random() * (max - min) + min;
@@ -718,7 +722,7 @@
         const star = document.createElement('span');
         star.className = 'star-particle star-particle--' + type;
         star.textContent = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
-        star.style.fontSize = random(3, 16) + 'px';
+        star.style.fontSize = random(6, 12) + 'px';
         star.style.left = x + 'px';
         star.style.top  = y + 'px';
 
@@ -734,26 +738,46 @@
         });
       }
 
-      /* 鼠标拖尾 */
+      /* 拖尾：鼠标 + 触摸滑动 */
       let lastX = -9999, lastY = -9999;
-      document.addEventListener('mousemove', function(e) {
-        const dx = e.clientX - lastX;
-        const dy = e.clientY - lastY;
+
+      function handleMove(clientX, clientY) {
+        const dx = clientX - lastX;
+        const dy = clientY - lastY;
         if (dx * dx + dy * dy > 36) {
-          createStar(e.clientX, e.clientY, 'trail');
-          lastX = e.clientX;
-          lastY = e.clientY;
+          createStar(clientX, clientY, 'trail');
+          lastX = clientX;
+          lastY = clientY;
         }
+      }
+
+      document.addEventListener('mousemove', function(e) {
+        handleMove(e.clientX, e.clientY);
       });
 
-      /* 点击爆发 */
-      document.addEventListener('click', function(e) {
+      document.addEventListener('touchmove', function(e) {
+        const touch = e.touches[0];
+        handleMove(touch.clientX, touch.clientY);
+      }, { passive: true });
+
+      /* 爆发：pointerdown 统一鼠标与触摸，无 300ms 延迟 */
+      function handleBurst(clientX, clientY) {
         for (let i = 0; i < 10; i++) {
           setTimeout(function() {
-            createStar(e.clientX, e.clientY, 'burst');
+            createStar(clientX, clientY, 'burst');
           }, i * 25);
         }
-      });
+      }
+
+      if (window.PointerEvent) {
+        document.addEventListener('pointerdown', function(e) {
+          handleBurst(e.clientX, e.clientY);
+        });
+      } else {
+        document.addEventListener('click', function(e) {
+          handleBurst(e.clientX, e.clientY);
+        });
+      }
     })();
   </script>
 </body>
