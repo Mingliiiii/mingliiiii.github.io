@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════
-   星星粒子特效（保留原 .css 全部参数）
+   星星粒子特效：字母 a-z A-Z，颜色跟随系统主题
    ═══════════════════════════════════════════════════════ */
 
 .star-particle {
@@ -14,17 +14,24 @@
   line-height: 1;
   transform: translate(-50%, -50%);
   will-change: transform, opacity;
-  color: #C4B5FD;   /* 低饱和亮紫色 */
+
+  /* 浅色模式：黑色，与正文一致 */
+  color: #111;
+}
+
+/* 深色模式：白色，与正文一致 */
+[data-theme="dark"] .star-particle {
+  color: #e8e4dc;
 }
 
 .star-particle--trail {
   opacity: 0.9;
-  text-shadow: 0 0 4px #C4B5FD;
+  text-shadow: 0 0 4px currentColor;
   animation: star-drift 780ms ease-out forwards;
 }
 
 .star-particle--burst {
-  text-shadow: 0 0 6px #C4B5FD, 0 0 12px #C4B5FD;
+  text-shadow: 0 0 6px currentColor, 0 0 12px currentColor;
   animation: star-drift 1.22s cubic-bezier(0.22, 0.65, 0.24, 1) forwards;
 }
 
