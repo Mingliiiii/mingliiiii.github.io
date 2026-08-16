@@ -1,4 +1,7 @@
-/* ═══ 星星粒子特效 ═══ */
+/* ═══════════════════════════════════════════════════════
+   星星粒子特效（保留原 .css 全部参数）
+   ═══════════════════════════════════════════════════════ */
+
 .star-particle {
   --star-x: 0px;
   --star-y: 0px;
@@ -11,18 +14,17 @@
   line-height: 1;
   transform: translate(-50%, -50%);
   will-change: transform, opacity;
+  color: #FEF9C3;   /* 更淡的黄色 */
 }
 
-/* 鼠标拖尾 */
 .star-particle--trail {
   opacity: 0.9;
-  text-shadow: 0 0 4px currentColor;
+  text-shadow: 0 0 4px #FEF9C3;
   animation: star-drift 780ms ease-out forwards;
 }
 
-/* 点击爆发 */
 .star-particle--burst {
-  text-shadow: 0 0 6px currentColor, 0 0 12px currentColor;
+  text-shadow: 0 0 6px #FEF9C3, 0 0 12px #FEF9C3;
   animation: star-drift 1.22s cubic-bezier(0.22, 0.65, 0.24, 1) forwards;
 }
 
@@ -41,14 +43,23 @@
   }
 }
 
-/* 尊重用户减少动效偏好 */
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
   .star-particle {
     display: none !important;
   }
 }
 
-/* 触控设备微调 */
 @media (pointer: coarse) {
   .star-particle--trail {
     opacity: 0.82;
