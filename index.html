@@ -9,6 +9,10 @@
   <meta name="theme-color" content="#fffff8">
   <link rel="canonical" href="https://mingliiiii.github.io/">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E🪞%3C/text%3E%3C/svg%3E" type="image/svg+xml">
+  
+  <!-- 引入星星特效样式 -->
+  <link rel="stylesheet" href="star-effect.css">
+  
   <style>
     /* ─── ET Book @font-face ─── */
     @font-face {
@@ -653,6 +657,70 @@
       html.dataset.theme = next;
       try { localStorage.setItem('mingli-theme', next); } catch (_) {}
     });
+  </script>
+
+  <!-- 星星特效 -->
+  <script>
+    (function() {
+      /* 六种 pastel 颜色：淡黄、浅粉、淡绿、浅紫、浅棕红、浅蓝 */
+      const COLORS = [
+        '#FEF08A', // 淡黄色
+        '#FBCFE8', // 浅粉色
+        '#BBF7D0', // 淡绿色
+        '#DDD6FE', // 浅紫色
+        '#FFCCBC', // 浅棕红色
+        '#BAE6FD'  // 浅蓝色
+      ];
+      const SYMBOLS = ['✦', '★', '✧', '⋆', '✴', '✹', '✸', '✶'];
+
+      function random(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+
+      function createStar(x, y, type) {
+        const star = document.createElement('span');
+        star.className = 'star-particle star-particle--' + type;
+        star.textContent = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+        star.style.left = x + 'px';
+        star.style.top = y + 'px';
+        /* 随机选取六种颜色之一 */
+        star.style.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+        star.style.fontSize = random(10, 20) + 'px';
+
+        const angle = random(0, Math.PI * 2);
+        const distance = type === 'burst' ? random(40, 140) : random(30, 100);
+        star.style.setProperty('--star-x', Math.cos(angle) * distance + 'px');
+        star.style.setProperty('--star-y', Math.sin(angle) * distance + 'px');
+        star.style.setProperty('--star-r', random(-180, 180) + 'deg');
+
+        document.body.appendChild(star);
+        star.addEventListener('animationend', function() {
+          star.remove();
+        });
+      }
+
+      let lastX = 0, lastY = 0;
+
+      /* 鼠标拖尾 */
+      document.addEventListener('mousemove', function(e) {
+        const dx = e.clientX - lastX;
+        const dy = e.clientY - lastY;
+        if (dx * dx + dy * dy > 225) { // 间距大于 15px 时生成
+          createStar(e.clientX, e.clientY, 'trail');
+          lastX = e.clientX;
+          lastY = e.clientY;
+        }
+      });
+
+      /* 点击爆发 */
+      document.addEventListener('click', function(e) {
+        for (let i = 0; i < 10; i++) {
+          setTimeout(function() {
+            createStar(e.clientX, e.clientY, 'burst');
+          }, i * 25);
+        }
+      });
+    })();
   </script>
 </body>
 </html>
