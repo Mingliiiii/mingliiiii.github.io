@@ -12,7 +12,7 @@
   
   <style>
     /* ═══════════════════════════════════════════════════════
-       星星特效样式（保留原 .css 全部参数，仅改形状与颜色）
+       星星特效样式（内联，保留原 .css 全部参数）
        ═══════════════════════════════════════════════════════ */
     .star-particle {
       --star-x: 0px;
@@ -26,24 +26,17 @@
       line-height: 1;
       transform: translate(-50%, -50%);
       will-change: transform, opacity;
-
-      /* 固定淡黄色 */
-      background: #FEF08A;
-
-      /* 五角星（clip-path） */
-      /*clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-      /* 如需六角星，替换为下面这行： */
-      clip-path: polygon(50% 0%, 65% 25%, 100% 25%, 75% 50%, 100% 75%, 65% 75%, 50% 100%, 35% 75%, 0% 75%, 25% 50%, 0% 25%, 35% 25%); */
+      color: #FEF9C3;   /* 更淡的黄色 */
     }
 
     .star-particle--trail {
       opacity: 0.9;
-      filter: drop-shadow(0 0 4px #FEF08A);
+      text-shadow: 0 0 4px #FEF9C3;
       animation: star-drift 780ms ease-out forwards;
     }
 
     .star-particle--burst {
-      filter: drop-shadow(0 0 6px #FEF08A) drop-shadow(0 0 12px #FEF08A);
+      text-shadow: 0 0 6px #FEF9C3, 0 0 12px #FEF9C3;
       animation: star-drift 1.22s cubic-bezier(0.22, 0.65, 0.24, 1) forwards;
     }
 
@@ -440,7 +433,7 @@
       font-family: var(--font);
       font-style: italic;
       font-size: 0.9rem;
-      color: var(--text-secondary);
+      color: var(--text-secondary;
     }
 
     .site-footer a {
@@ -715,6 +708,8 @@
   <!-- 星星特效 -->
   <script>
     (function() {
+      const SYMBOLS = ['✦', '★', '✧', '⋆', '✴', '✹', '✸', '✶'];
+
       function random(min, max) {
         return Math.random() * (max - min) + min;
       }
@@ -722,12 +717,8 @@
       function createStar(x, y, type) {
         const star = document.createElement('span');
         star.className = 'star-particle star-particle--' + type;
-
-        /* 尺寸直接控制图形大小（原 css 中 width/height: 1em） */
-        const size = random(3, 10);
-        star.style.width = size + 'px';
-        star.style.height = size + 'px';
-
+        star.textContent = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+        star.style.fontSize = random(6, 12) + 'px';
         star.style.left = x + 'px';
         star.style.top  = y + 'px';
 
@@ -748,7 +739,7 @@
       document.addEventListener('mousemove', function(e) {
         const dx = e.clientX - lastX;
         const dy = e.clientY - lastY;
-        if (dx * dx + dy * dy > 36) {   // 6px 间距
+        if (dx * dx + dy * dy > 36) {
           createStar(e.clientX, e.clientY, 'trail');
           lastX = e.clientX;
           lastY = e.clientY;
