@@ -21,7 +21,6 @@
     type="image/svg+xml"
   >
 
-  <!-- Font Awesome -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -74,6 +73,7 @@
     }
 
     @keyframes star-drift {
+
       0% {
         opacity: 1;
 
@@ -94,6 +94,7 @@
           rotate(var(--star-r))
           scale(0);
       }
+
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -114,6 +115,7 @@
       .star-particle {
         display: none !important;
       }
+
     }
 
     @media (pointer: coarse) {
@@ -201,7 +203,7 @@
 
 
     /* =========================================================
-       Theme variables
+       Theme
        ========================================================= */
 
     :root {
@@ -493,7 +495,7 @@
 
 
     /* =========================================================
-       Research projects
+       Research Projects
        ========================================================= */
 
     .research-item {
@@ -509,16 +511,32 @@
       border-bottom: none;
     }
 
+
     /*
-      The year is intentionally outside .research-main.
+      FIRST PROJECT STRUCTURE
 
-      Therefore:
+                    2026
+      ┌───────────┬──────────────────────────┐
+      │           │ Graph-Based Generative   │
+      │           │ Design of Mortise-and-   │
+      │   VIDEO   │ Tenon Joints...          │
+      │           │                          │
+      │           │ subtitle                 │
+      │           │                          │
+      │           │ description              │
+      │           │                          │
+      │           │ CDRF 2026 · Accepted     │
+      └───────────┴──────────────────────────┘
 
-      2026
-      [VIDEO] [TITLE + TEXT]
+      The video is a separate left block.
 
-      The video begins at the title,
-      NOT at the year.
+      2026 belongs entirely to the right block.
+
+      The video starts at the TITLE,
+      not at 2026.
+
+      The video height is calculated from
+      title top → venue bottom.
     */
 
     .research-main {
@@ -533,11 +551,6 @@
       align-items: start;
     }
 
-    /*
-      The media square is dynamically sized by JavaScript
-      according to the actual height of .research-content.
-    */
-
     .research-media {
       width: 0;
       height: 0;
@@ -545,6 +558,8 @@
       overflow: hidden;
 
       flex-shrink: 0;
+
+      margin-top: 0;
     }
 
     .research-media video {
@@ -581,15 +596,10 @@
       margin-bottom: 0.25rem;
     }
 
-    /*
-      First project title:
 
-      normal:
-      no underline
-
-      hover:
-      thin bottom line
-    */
+    /* =========================================================
+       Project title YouTube link
+       ========================================================= */
 
     .research-item h3 a {
       color: var(--text);
@@ -598,8 +608,6 @@
 
       border-bottom:
         1px solid transparent;
-
-      text-underline-offset: 0;
 
       transition:
         border-color 0.2s ease;
@@ -611,6 +619,11 @@
       border-bottom-color:
         var(--text);
     }
+
+
+    /* =========================================================
+       Project text
+       ========================================================= */
 
     .research-item .subtitle {
       font-family: var(--font);
@@ -975,9 +988,10 @@
         font-size: 1.5rem;
       }
 
+
       /*
-        On small screens, stack the project media
-        and project text.
+        Mobile layout:
+        video above project text.
       */
 
       .research-main {
@@ -991,7 +1005,10 @@
         height: auto;
 
         aspect-ratio: 1 / 1;
+
+        margin-top: 0;
       }
+
 
       .pub-item {
         grid-template-columns: 1fr;
@@ -1018,6 +1035,7 @@
       .award-org {
         text-align: left;
       }
+
     }
 
 
@@ -1041,12 +1059,16 @@
        ========================================================= -->
 
   <script>
+
     try {
+
       const saved =
         localStorage.getItem("mingli-theme");
 
       const preferred =
-        matchMedia("(prefers-color-scheme: dark)").matches
+        matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches
           ? "dark"
           : "light";
 
@@ -1054,6 +1076,7 @@
         saved || preferred;
 
     } catch (_) {}
+
   </script>
 
 
@@ -1088,6 +1111,7 @@
 
 
 <body>
+
 
   <!-- =========================================================
        Header
@@ -1126,74 +1150,104 @@
       </p>
 
       <p class="hero-intro">
+
         <em>
+
           Academic experience at
+
           <a href="https://tjdi.tongji.edu.cn/?lang=en">
             College of Design and Innovation (D&amp;I)
           </a>,
+
           <a href="https://caup.tongji.edu.cn/caupen/">
             College of Architecture and Urban Planning (CAUP)
           </a>,
+
           Tongji University and
+
           <a href="https://www.coia.tech/">
             Co-Intelligent Architecture Lab
           </a>,
-          Institute of Future Human Habitats, Tsinghua SIGS.
+
+          Institute of Future Human Habitats,
+          Tsinghua SIGS.
+
         </em>
+
       </p>
+
 
       <div class="hero-links">
 
         <a href="mailto:2233747@tongji.edu.cn">
+
           <i
             class="fa-solid fa-envelope link-icon"
             aria-hidden="true"
           ></i>
+
           Email
+
         </a>
 
+
         <a href="Sun_Mingli_CV.pdf">
+
           <i
             class="fa-solid fa-file-pdf link-icon"
             aria-hidden="true"
           ></i>
+
           CV
+
         </a>
+
 
         <a
           href="https://github.com/Mingliiiii?tab=repositories"
           target="_blank"
           rel="noreferrer noopener"
         >
+
           <i
             class="fa-brands fa-github link-icon"
             aria-hidden="true"
           ></i>
+
           GitHub
+
         </a>
+
 
         <a
           href="https://www.researchgate.net/profile/Mingli-Sun-4"
           target="_blank"
           rel="noreferrer noopener"
         >
+
           <i
             class="fa-brands fa-researchgate link-icon"
             aria-hidden="true"
           ></i>
+
           ResearchGate
+
         </a>
+
 
         <a
           href="https://scholar.google.com/citations?user=ayEBnm4AAAAJ&hl=zh-CN&authuser=1"
           target="_blank"
           rel="noreferrer noopener"
         >
+
           <i
             class="fa-solid fa-graduation-cap link-icon"
             aria-hidden="true"
           ></i>
+
           Google Scholar
+
         </a>
 
       </div>
@@ -1211,8 +1265,11 @@
         Research Interest
       </span>
 
+
       <p>
+
         <span class="highlight-pink">
+
           My research sits at the intersection of technology and art,
           exploring how design knowledge can be represented, learned,
           and transformed through machine computing. I am fascinated
@@ -1222,16 +1279,23 @@
           craftsmanship interact. My prior work investigates these
           questions through graph learning, generative AI and
           imitation learning.
+
         </span>
+
       </p>
 
+
       <p>
+
         <span class="highlight-pink">
+
           In addition, I am engaged with the theoretical and empirical
           study of human-AI interaction, exploring its broader
           implications for design practice. I am also interested in
           the philosophy of technology.
+
         </span>
+
       </p>
 
     </section>
@@ -1247,10 +1311,15 @@
         Research Projects
       </span>
 
+
       <p class="section-sublabel">
+
         Projects led or primarily executed, 2023–2026.
         Detailed roles and contributions are available in my
-        <a href="Sun_Mingli_CV.pdf">CV</a>.
+        <a href="Sun_Mingli_CV.pdf">
+          CV
+        </a>.
+
       </p>
 
 
@@ -1260,20 +1329,10 @@
 
       <div class="research-item">
 
-        <!-- Year is independent -->
-        <div class="research-meta">
-          2026
-        </div>
-
-
-        <!--
-          Video + project text begin here.
-
-          The video height will be synchronized
-          to the actual height of .research-content.
-        -->
-
         <div class="research-main">
+
+
+          <!-- LEFT: VIDEO -->
 
           <div class="research-media">
 
@@ -1285,16 +1344,30 @@
               preload="metadata"
               aria-label="Graph-Based Generative Design of Mortise-and-Tenon Joints in Timber Structures"
             >
+
               <source
                 src="rotation.mp4"
                 type="video/mp4"
               >
+
             </video>
 
           </div>
 
 
+          <!-- RIGHT: PROJECT INFORMATION -->
+
           <div class="research-content">
+
+
+            <!-- YEAR -->
+
+            <div class="research-meta">
+              2026
+            </div>
+
+
+            <!-- TITLE -->
 
             <h3>
 
@@ -1305,25 +1378,37 @@
                 aria-label="Watch project video on YouTube"
                 title="Watch project video on YouTube"
               >
+
                 Graph-Based Generative Design of Mortise-and-Tenon
                 Joints in Timber Structures
+
               </a>
 
             </h3>
 
 
+            <!-- SUBTITLE -->
+
             <p class="subtitle">
+
               Graph Learning · Mortise-and-Tenon Joints · Algorithm Design
+
             </p>
 
 
+            <!-- DESCRIPTION -->
+
             <p class="desc">
+
               Leveraging GNNs to capture the geometric, topological,
               and mechanical features of mortise-and-tenon joints,
               this project transforms the experience-based craftsmanship
               into a digital and intelligent-driven paradigm.
+
             </p>
 
+
+            <!-- VENUE -->
 
             <p class="venue">
 
@@ -1338,10 +1423,12 @@
                 aria-label="Watch project video on YouTube"
                 title="Watch project video on YouTube"
               >
+
                 <i
                   class="fa-brands fa-youtube"
                   aria-hidden="true"
                 ></i>
+
               </a>
 
             </p>
@@ -1373,10 +1460,12 @@
         </p>
 
         <p class="desc">
+
           This study investigates how generative AI images influence
           early conceptual design, employing the Creativity Support
           Index (CSI) and verbal protocol analysis to study
           human–AI interaction.
+
         </p>
 
         <p class="venue">
@@ -1420,17 +1509,21 @@
         </h3>
 
         <p class="subtitle">
+
           Generative Adversarial Imitation Learning (GAIL) ·
           Proximal Policy Optimization (PPO) · Unity3D ·
           ML-Agents · Human–AI Interaction
+
         </p>
 
         <p class="desc">
+
           Trains an agent through Generative Adversarial Imitation
           Learning (GAIL) and Proximal Policy Optimization (PPO)
           in Unity3D with ML-Agents Toolkit, using human demonstration
           trajectories to learn design reasoning strategies for
           modular assembly-oriented structures.
+
         </p>
 
         <p class="venue">
@@ -1468,9 +1561,11 @@
         </p>
 
         <p class="desc">
+
           Contributes to the later-stage validation, parametrically
           models operation and environment, defines evaluation metrics
           for operational performance, and validates through field testing.
+
         </p>
 
         <p class="venue">
@@ -1510,12 +1605,16 @@
         <div>
 
           <div class="pub-title">
+
             Intelligent Robotic Sanding System for Building Exterior
             Walls Integrated with Residential Building Manufacturing Machines
+
           </div>
 
           <div class="pub-authors">
+
             <strong>Mingli Sun</strong> &amp; Hua Chai
+
           </div>
 
           <div class="pub-venue">
@@ -1546,11 +1645,14 @@
         <div>
 
           <div class="pub-title">
+
             Graph-Based Generative Design of Mortise-and-Tenon
             Joints in Timber Structures
+
           </div>
 
           <div class="pub-authors">
+
             <strong>Mingli Sun</strong>,
             Ying Zhou,
             Yuancao Liu,
@@ -1558,6 +1660,7 @@
             Qinhui Yang,
             Yige Liu,
             &amp; Hua Chai
+
           </div>
 
           <div class="pub-venue">
@@ -1578,14 +1681,18 @@
         <div>
 
           <div class="pub-title">
+
             Text-Guided Fine-Tuning Diffusion Model Enhanced
             the Spatial Envision of Modular Structures
+
           </div>
 
           <div class="pub-authors">
+
             <strong>Mingli Sun</strong>,
             Jianhao Chen,
             &amp; Kostas Terzidis
+
           </div>
 
           <div class="pub-venue">
@@ -1616,14 +1723,18 @@
         <div>
 
           <div class="pub-title">
+
             Facilitation or Inhibition: The Influence of Generative
             Artificial Intelligence on Design Reasoning for Modular Structures
+
           </div>
 
           <div class="pub-authors">
+
             <strong>Mingli Sun</strong>,
             Kostas Terzidis,
             &amp; Jianhao Chen
+
           </div>
 
           <div class="pub-venue">
@@ -1658,10 +1769,12 @@
           </div>
 
           <div class="pub-authors">
+
             <strong>Mingli Sun</strong>,
             Peter Buš,
             Jianhao Chen,
             &amp; Kenan Sun
+
           </div>
 
           <div class="pub-venue">
@@ -1842,6 +1955,7 @@
 
       <div class="awards-list">
 
+
         <div class="award-item">
 
           <div class="award-year">
@@ -1944,8 +2058,11 @@
         Colophon
       </span>
 
+
       <p>
+
         This webpage is styled in the spirit of
+
         <a
           href="https://edwardtufte.github.io/tufte-css/"
           target="_blank"
@@ -1953,7 +2070,9 @@
         >
           Tufte CSS
         </a>.
+
         The typeface is
+
         <a
           href="https://edwardtufte.github.io/et-book/"
           target="_blank"
@@ -1961,7 +2080,9 @@
         >
           ET Book
         </a>.
+
         Content is authored by Sun Mingli with support from
+
         <a
           href="https://kimi.moonshot.cn/"
           target="_blank"
@@ -1969,7 +2090,9 @@
         >
           Kimi
         </a>.
+
       </p>
+
 
       <p>
         © 2026 Sun Mingli. All rights reserved.
@@ -2006,38 +2129,41 @@
     const toggle =
       document.getElementById("theme-toggle");
 
-    toggle.addEventListener("click", () => {
+    toggle.addEventListener(
+      "click",
+      () => {
 
-      const html =
-        document.documentElement;
+        const html =
+          document.documentElement;
 
-      const current =
-        html.dataset.theme;
+        const current =
+          html.dataset.theme;
 
-      const next =
-        current === "dark"
-          ? "light"
-          : "dark";
+        const next =
+          current === "dark"
+            ? "light"
+            : "dark";
 
-      html.dataset.theme =
-        next;
+        html.dataset.theme =
+          next;
 
-      try {
+        try {
 
-        localStorage.setItem(
-          "mingli-theme",
-          next
-        );
+          localStorage.setItem(
+            "mingli-theme",
+            next
+          );
 
-      } catch (_) {}
+        } catch (_) {}
 
-    });
+      }
+    );
 
   </script>
 
 
   <!-- =========================================================
-       Sync first project video to text height
+       First project video sizing
        ========================================================= -->
 
   <script>
@@ -2045,59 +2171,110 @@
     function syncResearchVideo() {
 
       const main =
-        document.querySelector(".research-main");
+        document.querySelector(
+          ".research-main"
+        );
 
       if (!main) return;
 
+
       const media =
-        main.querySelector(".research-media");
+        main.querySelector(
+          ".research-media"
+        );
 
       const content =
-        main.querySelector(".research-content");
+        main.querySelector(
+          ".research-content"
+        );
 
-      if (!media || !content) return;
+      const title =
+        content.querySelector(
+          "h3"
+        );
+
+      const venue =
+        content.querySelector(
+          ".venue"
+        );
 
 
-      /*
-        On desktop:
-
-        video height = content height
-        video width  = content height
-
-        Therefore the video is always a square.
-      */
-
-      if (window.innerWidth > 600) {
-
-        const height =
-          content.getBoundingClientRect().height;
-
-        media.style.width =
-          height + "px";
-
-        media.style.height =
-          height + "px";
-
+      if (
+        !media ||
+        !content ||
+        !title ||
+        !venue
+      ) {
+        return;
       }
 
-      /*
-        On mobile:
 
-        CSS controls the square size.
+      /*
+        Mobile:
+        let CSS control the layout.
       */
 
-      else {
+      if (
+        window.innerWidth <= 600
+      ) {
 
         media.style.width = "";
         media.style.height = "";
 
+        return;
       }
+
+
+      /*
+        IMPORTANT:
+
+        Do NOT measure the whole .research-content,
+        because that would include "2026".
+
+        Instead measure:
+
+        TITLE TOP
+            ↓
+        subtitle
+            ↓
+        description
+            ↓
+        venue / Accepted BOTTOM
+
+        This gives the exact square height
+        required for the video.
+      */
+
+      const titleTop =
+        title.getBoundingClientRect().top;
+
+      const venueBottom =
+        venue.getBoundingClientRect().bottom;
+
+
+      const height =
+        venueBottom -
+        titleTop;
+
+
+      /*
+        Width = Height
+
+        Therefore the video is always
+        a perfect square.
+      */
+
+      media.style.width =
+        height + "px";
+
+      media.style.height =
+        height + "px";
 
     }
 
 
     /*
-      Wait until fonts and layout are ready.
+      Initial calculation
     */
 
     window.addEventListener(
@@ -2107,7 +2284,7 @@
 
 
     /*
-      Recalculate when browser width changes.
+      Recalculate after resizing
     */
 
     window.addEventListener(
@@ -2117,7 +2294,7 @@
 
 
     /*
-      Recalculate after fonts are loaded.
+      Recalculate after ET Book loads
     */
 
     if (document.fonts) {
@@ -2144,7 +2321,10 @@
         .split("");
 
 
-      function random(min, max) {
+      function random(
+        min,
+        max
+      ) {
 
         return Math.random() *
           (max - min) +
@@ -2160,11 +2340,15 @@
       ) {
 
         const star =
-          document.createElement("span");
+          document.createElement(
+            "span"
+          );
+
 
         star.className =
           "star-particle star-particle--" +
           type;
+
 
         star.textContent =
           SYMBOLS[
@@ -2174,18 +2358,25 @@
             )
           ];
 
+
         star.style.fontSize =
-          random(6, 26) + "px";
+          random(6, 26) +
+          "px";
+
 
         star.style.left =
           x + "px";
+
 
         star.style.top =
           y + "px";
 
 
         const angle =
-          random(0, Math.PI * 2);
+          random(
+            0,
+            Math.PI * 2
+          );
 
 
         const distance =
@@ -2262,6 +2453,7 @@
             "trail"
           );
 
+
           lastX =
             clientX;
 
@@ -2294,6 +2486,7 @@
             e.touches[0];
 
           if (!touch) return;
+
 
           handleMove(
             touch.clientX,
