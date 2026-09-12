@@ -509,8 +509,9 @@
     }
 
     /*
-      项目 01 专用：左右并排容器。
-      左列：正方形视频；右列：年份 + 标题 + 正文。
+      项目 01：Grid 两列。
+      左列 = 正方形视频，边长由 JS 动态设定为「右侧测量块」高度。
+      右列 = 2026 + 测量块（标题/副标题/描述/venue）。
     */
 
     .research-video-block {
@@ -518,22 +519,31 @@
 
       grid-template-columns: auto minmax(0, 1fr);
 
-      gap: 1rem;
+      gap: 1.2rem;
 
       align-items: start;
 
       margin-bottom: 0.5rem;
     }
 
+    /* 初始尺寸由 JS 动态赋值；这里给个兜底，防止 JS 未生效时视频消失 */
     .research-video-media {
-      width: 140px;
-      height: 140px;
+      width: 160px;
+      height: 160px;
+
+      aspect-ratio: 1 / 1;
 
       overflow: hidden;
 
-      border-radius: 4px;
+      border-radius: 6px;
 
       flex-shrink: 0;
+
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    [data-theme="dark"] .research-video-media {
+      box-shadow: 0 1px 3px rgba(255, 255, 255, 0.06);
     }
 
     .research-video-media video {
@@ -545,11 +555,13 @@
       object-fit: cover;
     }
 
+    /* 右列内容区 */
     .research-video-content {
       min-width: 0;
     }
 
-    .research-meta {
+    /* 上方「2026」：与视频顶端对齐 */
+    .research-video-year {
       font-family: var(--font);
 
       font-style: italic;
@@ -558,7 +570,17 @@
 
       color: var(--text-secondary);
 
+      line-height: 1.2;
+
+      /* 负外边距让「2026」视觉顶端与视频顶端齐平 */
+      margin-top: -0.15rem;
+
       margin-bottom: 0.25rem;
+    }
+
+    /* 下方测量块：标题 + 副标题 + 描述 + venue */
+    .research-video-measure {
+      /* 这个容器就是 JS 要测量的目标 */
     }
 
     .research-item h3 {
@@ -619,6 +641,8 @@
       font-size: 0.9rem;
 
       color: var(--text-secondary);
+
+      margin-bottom: 0;
     }
 
 
@@ -968,6 +992,10 @@
         aspect-ratio: 1 / 1;
       }
 
+      .research-video-year {
+        margin-top: 0;
+      }
+
       .pub-item {
         grid-template-columns: 1fr;
 
@@ -1191,14 +1219,14 @@
 
 
       <!-- =====================================================
-           Project 01 — 左右并排容器
+           Project 01 — 左右并排，视频正方形边长 = 右侧测量块高度
            ===================================================== -->
 
       <div class="research-item">
 
         <div class="research-video-block">
 
-          <div class="research-video-media">
+          <div class="research-video-media" id="project-01-media">
 
             <video
               autoplay
@@ -1219,51 +1247,57 @@
 
           <div class="research-video-content">
 
-            <div class="research-meta">
+            <!-- 年份：与视频顶端对齐 -->
+            <div class="research-video-year">
               2026
             </div>
 
-            <h3>
+            <!-- 测量块：JS 将读取它的高度作为视频边长 -->
+            <div class="research-video-measure" id="project-01-measure">
 
-              <a
-                href="https://www.youtube.com/watch?v=u5Ec4ELluCE"
-                target="_blank"
-                rel="noreferrer noopener"
-                aria-label="Watch project video on YouTube"
-                title="Watch project video on YouTube"
-              >
-                Graph-Based Generative Design of Mortise-and-Tenon
-                Joints in Timber Structures
-              </a>
+              <h3>
 
-            </h3>
+                <a
+                  href="https://www.youtube.com/watch?v=u5Ec4ELluCE"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  aria-label="Watch project video on YouTube"
+                  title="Watch project video on YouTube"
+                >
+                  Graph-Based Generative Design of Mortise-and-Tenon
+                  Joints in Timber Structures
+                </a>
 
-            <p class="subtitle">
-              Graph Learning · Mortise-and-Tenon Joints · Algorithm Design
-            </p>
+              </h3>
 
-            <p class="desc">
-              Leveraging GNNs to capture the geometric, topological,
-              and mechanical features of mortise-and-tenon joints,
-              this project transforms the experience-based craftsmanship
-              into a digital and intelligent-driven paradigm.
-            </p>
+              <p class="subtitle">
+                Graph Learning · Mortise-and-Tenon Joints · Algorithm Design
+              </p>
 
-            <p class="venue">
-              The 8th International Conference on Computational Design
-              and Robotic Fabrication (CDRF 2026) · Accepted
+              <p class="desc">
+                Leveraging GNNs to capture the geometric, topological,
+                and mechanical features of mortise-and-tenon joints,
+                this project transforms the experience-based craftsmanship
+                into a digital and intelligent-driven paradigm.
+              </p>
 
-              <a
-                class="youtube-link"
-                href="https://www.youtube.com/watch?v=u5Ec4ELluCE"
-                target="_blank"
-                rel="noreferrer noopener"
-                aria-label="Watch project video on YouTube"
-                title="Watch project video on YouTube"
-              >
-                <i class="fa-brands fa-youtube" aria-hidden="true"></i>
-              </a>
-            </p>
+              <p class="venue">
+                The 8th International Conference on Computational Design
+                and Robotic Fabrication (CDRF 2026) · Accepted
+
+                <a
+                  class="youtube-link"
+                  href="https://www.youtube.com/watch?v=u5Ec4ELluCE"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  aria-label="Watch project video on YouTube"
+                  title="Watch project video on YouTube"
+                >
+                  <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+                </a>
+              </p>
+
+            </div>
 
           </div>
 
@@ -1922,6 +1956,63 @@
 
       } catch (_) {}
 
+    });
+
+  </script>
+
+
+  <!-- =========================================================
+       视频边长同步：读取 project-01-measure 的高度
+       ========================================================= -->
+
+  <script>
+
+    function syncProjectVideo() {
+
+      const media =
+        document.getElementById("project-01-media");
+
+      const measure =
+        document.getElementById("project-01-measure");
+
+      if (!media || !measure) return;
+
+      if (window.innerWidth > 600) {
+
+        // 读取测量块（标题 + 副标题 + 描述 + venue）高度
+        const h =
+          measure.getBoundingClientRect().height;
+
+        if (h > 0) {
+
+          media.style.width = h + "px";
+          media.style.height = h + "px";
+
+        }
+
+      } else {
+
+        // 移动端由 CSS 控制
+        media.style.width = "";
+        media.style.height = "";
+
+      }
+
+    }
+
+    window.addEventListener("load", syncProjectVideo);
+    window.addEventListener("resize", syncProjectVideo);
+
+    if (document.fonts) {
+      document.fonts.ready.then(syncProjectVideo);
+    }
+
+    // 视频元数据加载后，再同步一次（防止字体/换行还没稳定）
+    document.addEventListener("DOMContentLoaded", function() {
+      const v = document.querySelector("#project-01-media video");
+      if (v) {
+        v.addEventListener("loadedmetadata", syncProjectVideo);
+      }
     });
 
   </script>
