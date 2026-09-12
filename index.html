@@ -11,46 +11,204 @@
     content="Sun Mingli is a researcher working at the intersection of machine learning, structural architecture, human–AI collaboration, and construction robotics."
   >
   <meta name="author" content="Sun Mingli">
-
   <meta name="theme-color" content="#ffffff">
+
+  <link rel="canonical" href="https://mingliiiii.github.io/">
+
+  <link
+    rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E🪞%3C/text%3E%3C/svg%3E"
+    type="image/svg+xml"
+  >
 
   <!-- Font Awesome -->
   <link
     rel="stylesheet"
-    href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
   >
 
   <style>
+
     /* =========================================================
-       ET BOOK
+       Star particles
+       ========================================================= */
+
+    .star-particle {
+      --star-x: 0px;
+      --star-y: 0px;
+      --star-r: 0deg;
+
+      position: fixed;
+      z-index: 9999;
+
+      width: 1em;
+      height: 1em;
+
+      pointer-events: none;
+      line-height: 1;
+
+      transform: translate(-50%, -50%);
+      will-change: transform, opacity;
+
+      color: #111;
+    }
+
+    [data-theme="dark"] .star-particle {
+      color: #e8e4dc;
+    }
+
+    .star-particle--trail {
+      opacity: 0.9;
+      animation: star-drift 780ms ease-out forwards;
+    }
+
+    .star-particle--burst {
+      animation:
+        star-drift
+        1.22s
+        cubic-bezier(0.22, 0.65, 0.24, 1)
+        forwards;
+    }
+
+    @keyframes star-drift {
+      0% {
+        opacity: 1;
+
+        transform:
+          translate(-50%, -50%)
+          rotate(0deg)
+          scale(1);
+      }
+
+      100% {
+        opacity: 0;
+
+        transform:
+          translate(
+            calc(-50% + var(--star-x)),
+            calc(-50% + var(--star-y))
+          )
+          rotate(var(--star-r))
+          scale(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .star-particle {
+        display: none !important;
+      }
+    }
+
+    @media (pointer: coarse) {
+
+      .star-particle--trail {
+        opacity: 0.82;
+      }
+
+    }
+
+
+    /* =========================================================
+       Highlight
+       ========================================================= */
+
+    .highlight-pink {
+      background-color: transparent;
+      color: var(--text);
+    }
+
+
+    /* =========================================================
+       ET Book
        ========================================================= */
 
     @font-face {
       font-family: "et-book";
+
       src:
-        url("https://cdn.bootcdn.net/ajax/libs/et-book/0.2.2/et-book/et-book-roman-line-figures/et-book-roman-line-figures.woff")
+        url("https://cdn.bootcdn.net/ajax/libs/tufte-css/1.8.0/et-book/et-book-roman-line-figures/et-book-roman-line-figures.woff")
         format("woff");
+
       font-weight: normal;
       font-style: normal;
+      font-display: swap;
     }
 
     @font-face {
       font-family: "et-book";
+
       src:
-        url("https://cdn.bootcdn.net/ajax/libs/et-book/0.2.2/et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.woff")
+        url("https://cdn.bootcdn.net/ajax/libs/tufte-css/1.8.0/et-book/et-book-bold-line-figures/et-book-bold-line-figures.woff")
         format("woff");
-      font-weight: normal;
-      font-style: italic;
+
+      font-weight: bold;
+      font-style: normal;
+      font-display: swap;
     }
 
+    @font-face {
+      font-family: "et-book";
+
+      src:
+        url("https://cdn.bootcdn.net/ajax/libs/tufte-css/1.8.0/et-book/et-book-semi-bold-old-style-figures/et-book-semi-bold-old-style-figures.woff")
+        format("woff");
+
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "et-book";
+
+      src:
+        url("https://cdn.bootcdn.net/ajax/libs/tufte-css/1.8.0/et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.woff")
+        format("woff");
+
+      font-weight: normal;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "et-book";
+
+      src:
+        url("https://cdn.bootcdn.net/ajax/libs/tufte-css/1.8.0/et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.woff")
+        format("woff");
+
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+
     /* =========================================================
-       VARIABLES
+       Theme variables
        ========================================================= */
 
     :root {
       --bg: #ffffff;
       --text: #111111;
       --text-secondary: #555555;
+
       --border: rgba(0, 0, 0, 0.10);
       --link-underline: rgba(0, 0, 0, 0.22);
 
@@ -67,185 +225,300 @@
       --bg: #111111;
       --text: #e8e4dc;
       --text-secondary: #999999;
+
       --border: rgba(255, 255, 255, 0.08);
       --link-underline: rgba(255, 255, 255, 0.28);
     }
 
+
     /* =========================================================
-       RESET
+       Global
        ========================================================= */
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     html {
+      font-size: 16px;
+
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+
       scroll-behavior: smooth;
     }
 
     body {
-      margin: 0;
-      padding: 0;
-
-      background: var(--bg);
-      color: var(--text);
-
       font-family: var(--font);
-      font-size: 16px;
-      line-height: 1.5;
+
+      font-size: 1.05rem;
+      line-height: 1.45;
+
+      color: var(--text);
+      background: var(--bg);
+
+      max-width: var(--max-width);
+
+      margin: 0 auto;
+
+      padding:
+        2rem
+        1.5rem
+        3rem;
 
       transition:
-        background-color 0.25s ease,
-        color 0.25s ease;
-
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
+        background 0.3s ease,
+        color 0.3s ease;
     }
 
-    ::selection {
-      background: var(--text);
-      color: var(--bg);
+
+    /* =========================================================
+       Header
+       ========================================================= */
+
+    .site-header {
+      display: flex;
+
+      justify-content: flex-end;
+      align-items: baseline;
+
+      margin-bottom: 2.5rem;
+      padding-bottom: 0.5rem;
+
+      border-bottom:
+        1px solid var(--border);
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+
+      cursor: pointer;
+
+      font-size: 1rem;
+
+      color: var(--text-secondary);
+
+      padding: 0;
+
+      font-family: var(--font);
+    }
+
+    .theme-toggle:hover {
+      color: var(--text);
+    }
+
+
+    /* =========================================================
+       Typography
+       ========================================================= */
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: var(--font);
+
+      font-weight: normal;
+
+      color: var(--text);
+
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: 3.6rem;
+
+      letter-spacing: -0.01em;
+    }
+
+    h2 {
+      font-size: 1.9rem;
+
+      margin-top: 2.2rem;
+      margin-bottom: 0.9rem;
+
+      font-style: italic;
+      font-weight: normal;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+
+      margin-top: 1.3rem;
+      margin-bottom: 0.35rem;
+
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    h4 {
+      font-size: 1.05rem;
+
+      margin-top: 0.9rem;
+      margin-bottom: 0.25rem;
+
+      font-style: italic;
+      font-weight: normal;
+    }
+
+    p {
+      margin-bottom: 0.85rem;
+
+      max-width: 68ch;
     }
 
     a {
       color: var(--text);
-      text-decoration: none;
+
+      text-decoration: underline;
+
+      text-decoration-color:
+        var(--link-underline);
+
+      text-decoration-thickness: 1px;
+
+      text-underline-offset: 0.12em;
+
+      transition:
+        text-decoration-color 0.2s;
     }
 
-    p {
-      margin-top: 0;
+    a:hover {
+      text-decoration-color: var(--text);
     }
+
+    strong {
+      font-weight: bold;
+    }
+
+    em {
+      font-style: italic;
+    }
+
 
     /* =========================================================
-       PAGE
-       ========================================================= */
-
-    .page {
-      width: min(
-        calc(100% - 2rem),
-        var(--max-width)
-      );
-
-      margin: 0 auto;
-      padding: 4.5rem 0 5rem;
-
-      position: relative;
-      z-index: 2;
-    }
-
-    /* =========================================================
-       HERO
+       Hero
        ========================================================= */
 
     .hero {
-      margin-bottom: 4.5rem;
+      margin-bottom: 3.2rem;
     }
 
-    .hero h1 {
-      margin: 0 0 0.25rem;
-
-      font-size: 2.2rem;
-      line-height: 1.1;
+    .hero-title {
+      font-size: 3.2rem;
 
       font-weight: normal;
-      letter-spacing: -0.015em;
+
+      margin-bottom: 0.67rem;
     }
 
-    .hero .subtitle {
-      margin: 0;
+    .hero-subtitle {
+      font-size: 2.1rem;
 
-      font-size: 1.05rem;
-      font-style: italic;
+      font-weight: normal;
 
-      color: var(--text-secondary);
-    }
+      margin-bottom: 0.8rem;
 
-    .hero-description {
-      max-width: 650px;
-      margin-top: 1.4rem;
+      line-height: 1.2;
 
-      font-size: 1.02rem;
-      line-height: 1.55;
-    }
-
-    /* =========================================================
-       THEME TOGGLE
-       ========================================================= */
-
-    .theme-toggle {
-      position: fixed;
-      top: 1.2rem;
-      right: 1.2rem;
-
-      z-index: 20;
-
-      width: 34px;
-      height: 34px;
-
-      border: 1px solid var(--border);
-      border-radius: 50%;
-
-      background: transparent;
       color: var(--text);
+    }
 
+    .hero-intro {
+      font-size: 1.05rem;
+
+      line-height: 1.5;
+
+      max-width: 62ch;
+
+      margin-bottom: 1rem;
+    }
+
+    .hero-links {
       display: flex;
-      align-items: center;
-      justify-content: center;
 
-      cursor: pointer;
+      gap: 0.3rem;
 
+      flex-wrap: wrap;
+    }
+
+    .hero-links a {
       font-family: var(--font);
-      font-size: 0.85rem;
 
-      transition:
-        background-color 0.2s ease,
-        color 0.2s ease,
-        border-color 0.2s ease;
+      font-size: 0.95rem;
     }
 
-    .theme-toggle:hover {
-      background: var(--text);
-      color: var(--bg);
-    }
 
     /* =========================================================
-       SECTIONS
+       Sections
        ========================================================= */
 
     section {
-      margin-bottom: 4.2rem;
+      margin-top: 2rem;
     }
 
-    .section-title {
-      margin: 0 0 1.5rem;
+    .section-label {
+      font-family: var(--font);
 
-      font-size: 0.95rem;
       font-style: italic;
+
+      font-size: 1.9rem;
+
       font-weight: normal;
+
+      color: var(--text);
+
+      margin-bottom: 0.7rem;
+
+      display: block;
+
+      line-height: 1.2;
+    }
+
+    .section-sublabel {
+      font-size: 0.95rem;
+
+      font-style: italic;
 
       color: var(--text-secondary);
 
-      letter-spacing: 0.01em;
+      margin-bottom: 1.2rem;
+      margin-top: -0.3rem;
+
+      line-height: 1.4;
     }
 
+
     /* =========================================================
-       RESEARCH PROJECTS
+       Research projects
        ========================================================= */
 
     .research-item {
-      margin-bottom: 3rem;
+      margin-bottom: 0.77rem;
+
+      padding-bottom: 0.6rem;
+
+      border-bottom:
+        1px solid var(--border);
+    }
+
+    .research-item:last-child {
+      border-bottom: none;
     }
 
     /*
-      IMPORTANT:
+      The year is intentionally outside .research-main.
 
-      The left column is the video.
-      The right column contains 2026 + title + subtitle +
-      description + venue.
+      Therefore:
 
-      The video itself is initially hidden because its exact
-      square size is calculated from the title top to the
-      venue bottom by JavaScript.
+      2026
+      [VIDEO] [TITLE + TEXT]
+
+      The video begins at the title,
+      NOT at the year.
     */
 
     .research-main {
@@ -260,6 +533,11 @@
       align-items: start;
     }
 
+    /*
+      The media square is dynamically sized by JavaScript
+      according to the actual height of .research-content.
+    */
+
     .research-media {
       width: 0;
       height: 0;
@@ -267,8 +545,6 @@
       overflow: hidden;
 
       flex-shrink: 0;
-
-      margin-top: 0;
     }
 
     .research-media video {
@@ -285,70 +561,91 @@
     }
 
     .research-meta {
-      margin-bottom: 0.25rem;
-
       font-family: var(--font);
+
       font-style: italic;
 
       font-size: 0.9rem;
 
       color: var(--text-secondary);
+
+      margin-bottom: 0.25rem;
     }
 
     .research-item h3 {
-      margin-top: 0;
-      margin-bottom: 0.25rem;
-
       font-size: 1.15rem;
-      line-height: 1.25;
 
       font-weight: bold;
+
+      margin-top: 0;
+      margin-bottom: 0.25rem;
     }
+
+    /*
+      First project title:
+
+      normal:
+      no underline
+
+      hover:
+      thin bottom line
+    */
 
     .research-item h3 a {
       color: var(--text);
 
       text-decoration: none;
 
-      border-bottom: 1px solid transparent;
+      border-bottom:
+        1px solid transparent;
 
-      transition: border-color 0.2s ease;
+      text-underline-offset: 0;
+
+      transition:
+        border-color 0.2s ease;
     }
 
     .research-item h3 a:hover {
       text-decoration: none;
 
-      border-bottom-color: var(--text);
+      border-bottom-color:
+        var(--text);
     }
 
     .research-item .subtitle {
-      margin-bottom: 0.45rem;
-
       font-family: var(--font);
+
       font-style: italic;
 
       font-size: 0.95rem;
 
       color: var(--text-secondary);
+
+      margin-bottom: 0.45rem;
     }
 
     .research-item .desc {
-      margin-bottom: 0.4rem;
-
       font-size: 1rem;
+
       line-height: 1.35;
+
+      margin-bottom: 0.4rem;
     }
 
     .research-item .venue {
-      margin-bottom: 0;
-
       font-family: var(--font);
+
       font-style: italic;
 
       font-size: 0.9rem;
 
       color: var(--text-secondary);
     }
+
+
+    /* =========================================================
+       YouTube icon
+       ========================================================= */
 
     .youtube-link {
       display: inline-block;
@@ -358,11 +655,13 @@
       color: var(--text-secondary);
 
       text-decoration: none;
+
       border: none;
 
       vertical-align: baseline;
 
-      transition: color 0.2s ease;
+      transition:
+        color 0.2s ease;
     }
 
     .youtube-link:hover {
@@ -375,190 +674,170 @@
       font-size: 0.95em;
     }
 
+
     /* =========================================================
-       OTHER RESEARCH PROJECTS
+       Publications
        ========================================================= */
 
-    .research-simple {
-      margin-bottom: 2.6rem;
+    .pub-item {
+      display: grid;
+
+      grid-template-columns:
+        3.2rem
+        1fr;
+
+      gap: 0.7rem;
+
+      padding: 0.75rem 0;
+
+      border-bottom:
+        1px solid var(--border);
     }
 
-    .research-simple .research-meta {
-      margin-bottom: 0.25rem;
+    .pub-item:first-child {
+      padding-top: 0;
     }
 
-    .research-simple h3 {
-      margin-top: 0;
-      margin-bottom: 0.25rem;
-
-      font-size: 1.15rem;
-      line-height: 1.25;
-
-      font-weight: bold;
+    .pub-item:last-child {
+      border-bottom: none;
     }
 
-    .research-simple h3 a {
-      color: var(--text);
-
-      text-decoration: none;
-
-      border-bottom: 1px solid transparent;
-
-      transition: border-color 0.2s ease;
-    }
-
-    .research-simple h3 a:hover {
-      border-bottom-color: var(--text);
-    }
-
-    .research-simple .subtitle {
-      margin-bottom: 0.45rem;
+    .pub-year {
+      font-family: var(--font);
 
       font-style: italic;
+
+      font-size: 0.9rem;
+
+      color: var(--text-secondary);
+
+      padding-top: 0.1rem;
+    }
+
+    .pub-title {
+      font-size: 1.05rem;
+
+      font-weight: normal;
+
+      font-style: italic;
+
+      margin-bottom: 0.15rem;
+
+      line-height: 1.3;
+    }
+
+    .pub-authors {
       font-size: 0.95rem;
 
       color: var(--text-secondary);
+
+      margin-bottom: 0.1rem;
     }
 
-    .research-simple .desc {
-      margin-bottom: 0.4rem;
-
-      font-size: 1rem;
-      line-height: 1.4;
-    }
-
-    .research-simple .venue {
-      margin-bottom: 0;
+    .pub-venue {
+      font-family: var(--font);
 
       font-style: italic;
+
       font-size: 0.9rem;
 
       color: var(--text-secondary);
     }
+
 
     /* =========================================================
-       PUBLICATIONS
-       ========================================================= */
-
-    .publication {
-      margin-bottom: 1.55rem;
-    }
-
-    .publication-year {
-      margin-bottom: 0.15rem;
-
-      font-style: italic;
-      font-size: 0.9rem;
-
-      color: var(--text-secondary);
-    }
-
-    .publication-title {
-      margin: 0 0 0.2rem;
-
-      font-size: 1rem;
-      line-height: 1.35;
-
-      font-weight: bold;
-    }
-
-    .publication-authors {
-      margin-bottom: 0.15rem;
-
-      font-size: 0.95rem;
-    }
-
-    .publication-venue {
-      font-size: 0.9rem;
-      font-style: italic;
-
-      color: var(--text-secondary);
-    }
-
-    /* =========================================================
-       EXPERIENCE
+       Timeline
        ========================================================= */
 
     .timeline-item {
       display: grid;
 
       grid-template-columns:
-        6.5rem
-        minmax(0, 1fr);
+        6.2rem
+        1fr;
 
-      gap: 1rem;
+      gap: 0.7rem;
 
-      margin-bottom: 1.5rem;
+      padding: 0.5rem 0;
+
+      border-bottom:
+        1px solid var(--border);
+    }
+
+    .timeline-item:first-child {
+      padding-top: 0;
+    }
+
+    .timeline-item:last-child {
+      border-bottom: none;
     }
 
     .timeline-date {
+      font-family: var(--font);
+
       font-style: italic;
 
       font-size: 0.9rem;
 
       color: var(--text-secondary);
+
+      padding-top: 0.05rem;
     }
 
-    .timeline-content strong {
+    .timeline-content {
       font-size: 1rem;
+
+      line-height: 1.45;
+    }
+
+    .timeline-content .role {
       font-weight: bold;
+
+      display: block;
     }
 
-    .timeline-content p {
-      margin: 0.15rem 0 0;
-
-      font-size: 0.95rem;
-
-      color: var(--text-secondary);
-    }
-
-    /* =========================================================
-       EDUCATION
-       ========================================================= */
-
-    .education-item {
-      margin-bottom: 1.5rem;
-    }
-
-    .education-year {
-      margin-bottom: 0.15rem;
-
+    .timeline-content .institution {
       font-style: italic;
-      font-size: 0.9rem;
 
       color: var(--text-secondary);
+
+      display: block;
     }
 
-    .education-degree {
-      margin-bottom: 0.15rem;
-
-      font-size: 1rem;
-      font-weight: bold;
-    }
-
-    .education-school {
-      font-size: 0.95rem;
-
-      color: var(--text-secondary);
-    }
 
     /* =========================================================
-       AWARDS
+       Awards
        ========================================================= */
 
-    .award {
+    .award-item {
       display: grid;
 
       grid-template-columns:
-        4rem
-        minmax(0, 1fr);
+        3.2rem
+        1fr
+        auto;
 
-      gap: 1rem;
+      gap: 0.7rem;
 
-      margin-bottom: 0.9rem;
+      padding: 0.4rem 0;
+
+      border-bottom:
+        1px solid var(--border);
+
+      align-items: baseline;
+    }
+
+    .award-item:first-child {
+      padding-top: 0;
+    }
+
+    .award-item:last-child {
+      border-bottom: none;
     }
 
     .award-year {
+      font-family: var(--font);
+
       font-style: italic;
 
       font-size: 0.9rem;
@@ -566,95 +845,144 @@
       color: var(--text-secondary);
     }
 
-    .award-text {
-      font-size: 0.95rem;
-      line-height: 1.4;
+    .award-name {
+      font-size: 1rem;
+
+      font-weight: normal;
     }
 
+    .award-org {
+      font-family: var(--font);
+
+      font-style: italic;
+
+      font-size: 0.9rem;
+
+      color: var(--text-secondary);
+
+      text-align: right;
+    }
+
+
     /* =========================================================
-       COLophon
+       Colophon
        ========================================================= */
 
     .colophon {
-      padding-top: 2rem;
-
-      border-top: 1px solid var(--border);
-
-      font-size: 0.85rem;
-      line-height: 1.5;
-
-      color: var(--text-secondary);
+      margin-top: 2.5rem;
     }
 
     .colophon p {
-      margin-bottom: 0.7rem;
+      font-size: 0.9rem;
+
+      color: var(--text-secondary);
+
+      line-height: 1.5;
+
+      margin-bottom: 0.4rem;
     }
 
+
     /* =========================================================
-       FOOTER
+       Footer
        ========================================================= */
 
-    footer {
-      margin-top: 4rem;
+    .site-footer {
+      margin-top: 2.5rem;
 
-      text-align: center;
+      padding-top: 1.2rem;
 
-      font-size: 0.85rem;
+      border-top:
+        1px solid var(--border);
+
+      display: flex;
+
+      justify-content: space-between;
+      align-items: baseline;
+
+      font-family: var(--font);
+
+      font-style: italic;
+
+      font-size: 0.9rem;
 
       color: var(--text-secondary);
     }
 
-    footer a {
+    .site-footer a {
+      font-size: 0.9rem;
+
       color: var(--text-secondary);
-      text-decoration: none;
     }
 
-    footer a:hover {
-      color: var(--text);
-    }
 
     /* =========================================================
-       STAR / PARTICLE CANVAS
+       Icons
        ========================================================= */
 
-    #star-canvas {
-      position: fixed;
+    .link-icon {
+      font-style: normal;
 
-      inset: 0;
+      margin-right: 0.3em;
 
-      width: 100%;
-      height: 100%;
+      display: inline-block;
 
-      pointer-events: none;
+      font-size: 1.2em;
 
-      z-index: 1;
+      vertical-align: middle;
     }
 
+    .school-logo {
+      display: inline-block;
+
+      width: 1.1em;
+      height: 1.1em;
+
+      vertical-align: middle;
+
+      margin-right: 0.25em;
+      margin-left: 0.1em;
+
+      border-radius: 50%;
+
+      object-fit: cover;
+    }
+
+
     /* =========================================================
-       MOBILE
+       Mobile
        ========================================================= */
 
     @media (max-width: 600px) {
 
-      .page {
-        width: min(
-          calc(100% - 1.5rem),
-          var(--max-width)
-        );
-
-        padding-top: 3.5rem;
+      body {
+        padding:
+          1.2rem
+          1rem
+          2.5rem;
       }
 
-      .hero {
-        margin-bottom: 3.5rem;
+      h1,
+      .hero-title {
+        font-size: 2.4rem;
       }
 
-      .hero h1 {
-        font-size: 2rem;
+      .hero-subtitle {
+        font-size: 1.6rem;
       }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      /*
+        On small screens, stack the project media
+        and project text.
+      */
 
       .research-main {
         grid-template-columns: 1fr;
+
         gap: 0.8rem;
       }
 
@@ -663,126 +991,289 @@
         height: auto;
 
         aspect-ratio: 1 / 1;
+      }
 
-        margin-top: 0;
+      .pub-item {
+        grid-template-columns: 1fr;
+
+        gap: 0.15rem;
+      }
+
+      .pub-year {
+        padding-top: 0;
       }
 
       .timeline-item {
         grid-template-columns: 1fr;
-        gap: 0.15rem;
+
+        gap: 0.1rem;
       }
 
-      .award {
-        grid-template-columns: 3.5rem 1fr;
-        gap: 0.7rem;
+      .award-item {
+        grid-template-columns: 1fr;
+
+        gap: 0.1rem;
+      }
+
+      .award-org {
+        text-align: left;
       }
     }
+
+
+    /* =========================================================
+       Selection
+       ========================================================= */
+
+    ::selection {
+      background: rgba(0, 0, 0, 0.12);
+    }
+
+    [data-theme="dark"] ::selection {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
   </style>
 
-  <!-- =======================================================
-       THEME INIT
-       Prevents flash of the wrong theme.
-       ======================================================= -->
+
+  <!-- =========================================================
+       Theme initialization
+       ========================================================= -->
 
   <script>
-    (function () {
-      const savedTheme = localStorage.getItem("mingli-theme");
+    try {
+      const saved =
+        localStorage.getItem("mingli-theme");
 
-      if (savedTheme === "dark") {
-        document.documentElement.setAttribute(
-          "data-theme",
-          "dark"
-        );
-      } else {
-        document.documentElement.setAttribute(
-          "data-theme",
-          "light"
-        );
-      }
-    })();
+      const preferred =
+        matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+
+      document.documentElement.dataset.theme =
+        saved || preferred;
+
+    } catch (_) {}
   </script>
+
+
+  <!-- =========================================================
+       Structured data
+       ========================================================= -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Sun Mingli",
+    "jobTitle": "Researcher in Computational Design",
+    "url": "https://mingliiiii.github.io/",
+    "email": "mailto:mingli_sun@tongji.edu.cn",
+    "affiliation": [
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "Tongji University"
+      },
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "Tsinghua Shenzhen International Graduate School"
+      }
+    ]
+  }
+  </script>
+
+  <base target="_blank">
+
 </head>
 
 
 <body>
 
-  <!-- =======================================================
-       PARTICLE CANVAS
-       ======================================================= -->
+  <!-- =========================================================
+       Header
+       ========================================================= -->
 
-  <canvas id="star-canvas"></canvas>
+  <header class="site-header">
 
+    <button
+      class="theme-toggle"
+      id="theme-toggle"
+      type="button"
+      aria-label="Toggle color theme"
+      title="Toggle color theme"
+    >
+      🔦
+    </button>
 
-  <!-- =======================================================
-       THEME BUTTON
-       ======================================================= -->
-
-  <button
-    class="theme-toggle"
-    id="themeToggle"
-    type="button"
-    aria-label="Toggle dark mode"
-    title="Toggle dark mode"
-  >
-    ◐
-  </button>
+  </header>
 
 
-  <!-- =======================================================
-       PAGE
-       ======================================================= -->
+  <main id="top">
 
-  <main class="page">
 
-    <!-- =====================================================
-         HERO
-         ===================================================== -->
+    <!-- =======================================================
+         Hero
+         ======================================================= -->
 
-    <header class="hero">
+    <section class="hero">
 
-      <h1>Sun Mingli</h1>
+      <h1 class="hero-title">
+        Sun Mingli
+      </h1>
 
-      <p class="subtitle">
+      <p class="hero-subtitle">
         Researcher in Algorithm and AI Design
       </p>
 
-      <p class="hero-description">
-        My research sits at the intersection of technology and art,
-        investigating how design knowledge can be represented,
-        learned, and transformed through machine computing.
-        I am interested in the dialogue between age-old human
-        craftsmanship and machine intelligence, particularly in
-        the design of structures where geometry, topology,
-        material behaviour, and embodied craftsmanship intersect.
-        My work draws on graph learning, generative AI, and
-        imitation learning, with a focus on human–AI interaction
-        and the philosophical implications of computation for
-        design practice.
+      <p class="hero-intro">
+        <em>
+          Academic experience at
+          <a href="https://tjdi.tongji.edu.cn/?lang=en">
+            College of Design and Innovation (D&amp;I)
+          </a>,
+          <a href="https://caup.tongji.edu.cn/caupen/">
+            College of Architecture and Urban Planning (CAUP)
+          </a>,
+          Tongji University and
+          <a href="https://www.coia.tech/">
+            Co-Intelligent Architecture Lab
+          </a>,
+          Institute of Future Human Habitats, Tsinghua SIGS.
+        </em>
       </p>
 
-    </header>
+      <div class="hero-links">
+
+        <a href="mailto:2233747@tongji.edu.cn">
+          <i
+            class="fa-solid fa-envelope link-icon"
+            aria-hidden="true"
+          ></i>
+          Email
+        </a>
+
+        <a href="Sun_Mingli_CV.pdf">
+          <i
+            class="fa-solid fa-file-pdf link-icon"
+            aria-hidden="true"
+          ></i>
+          CV
+        </a>
+
+        <a
+          href="https://github.com/Mingliiiii?tab=repositories"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          <i
+            class="fa-brands fa-github link-icon"
+            aria-hidden="true"
+          ></i>
+          GitHub
+        </a>
+
+        <a
+          href="https://www.researchgate.net/profile/Mingli-Sun-4"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          <i
+            class="fa-brands fa-researchgate link-icon"
+            aria-hidden="true"
+          ></i>
+          ResearchGate
+        </a>
+
+        <a
+          href="https://scholar.google.com/citations?user=ayEBnm4AAAAJ&hl=zh-CN&authuser=1"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          <i
+            class="fa-solid fa-graduation-cap link-icon"
+            aria-hidden="true"
+          ></i>
+          Google Scholar
+        </a>
+
+      </div>
+
+    </section>
 
 
-    <!-- =====================================================
-         RESEARCH
-         ===================================================== -->
+    <!-- =======================================================
+         Research Interest
+         ======================================================= -->
+
+    <section id="research-interest">
+
+      <span class="section-label">
+        Research Interest
+      </span>
+
+      <p>
+        <span class="highlight-pink">
+          My research sits at the intersection of technology and art,
+          exploring how design knowledge can be represented, learned,
+          and transformed through machine computing. I am fascinated
+          by the dialogue between age-old human craftsmanship and
+          machine computing, particularly in the design of structures
+          where geometry, topology, material behaviour, and embodied
+          craftsmanship interact. My prior work investigates these
+          questions through graph learning, generative AI and
+          imitation learning.
+        </span>
+      </p>
+
+      <p>
+        <span class="highlight-pink">
+          In addition, I am engaged with the theoretical and empirical
+          study of human-AI interaction, exploring its broader
+          implications for design practice. I am also interested in
+          the philosophy of technology.
+        </span>
+      </p>
+
+    </section>
+
+
+    <!-- =======================================================
+         Research Projects
+         ======================================================= -->
 
     <section id="research">
 
-      <h2 class="section-title">
+      <span class="section-label">
         Research Projects
-      </h2>
+      </span>
+
+      <p class="section-sublabel">
+        Projects led or primarily executed, 2023–2026.
+        Detailed roles and contributions are available in my
+        <a href="Sun_Mingli_CV.pdf">CV</a>.
+      </p>
 
 
-      <!-- ===================================================
-           PROJECT 01
-           =================================================== -->
+      <!-- =====================================================
+           Project 01
+           ===================================================== -->
 
       <div class="research-item">
 
-        <div class="research-main">
+        <!-- Year is independent -->
+        <div class="research-meta">
+          2026
+        </div>
 
-          <!-- LEFT: VIDEO -->
+
+        <!--
+          Video + project text begin here.
+
+          The video height will be synchronized
+          to the actual height of .research-content.
+        -->
+
+        <div class="research-main">
 
           <div class="research-media">
 
@@ -792,6 +1283,7 @@
               loop
               playsinline
               preload="metadata"
+              aria-label="Graph-Based Generative Design of Mortise-and-Tenon Joints in Timber Structures"
             >
               <source
                 src="rotation.mp4"
@@ -802,28 +1294,28 @@
           </div>
 
 
-          <!-- RIGHT: TEXT -->
-
           <div class="research-content">
 
-            <div class="research-meta">
-              2026
-            </div>
-
             <h3>
+
               <a
                 href="https://www.youtube.com/watch?v=u5Ec4ELluCE"
                 target="_blank"
                 rel="noreferrer noopener"
+                aria-label="Watch project video on YouTube"
+                title="Watch project video on YouTube"
               >
                 Graph-Based Generative Design of Mortise-and-Tenon
                 Joints in Timber Structures
               </a>
+
             </h3>
+
 
             <p class="subtitle">
               Graph Learning · Mortise-and-Tenon Joints · Algorithm Design
             </p>
+
 
             <p class="desc">
               Leveraging GNNs to capture the geometric, topological,
@@ -832,10 +1324,11 @@
               into a digital and intelligent-driven paradigm.
             </p>
 
+
             <p class="venue">
 
-              The 8th International Conference on Computational
-              Design and Robotic Fabrication (CDRF 2026) · Accepted
+              The 8th International Conference on Computational Design
+              and Robotic Fabrication (CDRF 2026) · Accepted
 
               <a
                 class="youtube-link"
@@ -860,11 +1353,11 @@
       </div>
 
 
-      <!-- ===================================================
-           PROJECT 02
-           =================================================== -->
+      <!-- =====================================================
+           Project 02
+           ===================================================== -->
 
-      <div class="research-simple">
+      <div class="research-item">
 
         <div class="research-meta">
           2024–25
@@ -880,24 +1373,42 @@
         </p>
 
         <p class="desc">
-          Investigating how generative AI image systems influence
-          creativity and design reasoning during early conceptual
-          design through the Creativity Support Index (CSI) and
-          verbal protocol analysis.
+          This study investigates how generative AI images influence
+          early conceptual design, employing the Creativity Support
+          Index (CSI) and verbal protocol analysis to study
+          human–AI interaction.
         </p>
 
         <p class="venue">
-          CAADRIA 2025 · IASS 2024
+
+          <a
+            href="https://doi.org/10.52842/conf.caadria.2025.1.049"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            CAADRIA 2025
+          </a>
+
+          &amp;
+
+          <a
+            href="https://doi.org/10.3929/ethz-b-000728788"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            IASS 2024
+          </a>
+
         </p>
 
       </div>
 
 
-      <!-- ===================================================
-           PROJECT 03
-           =================================================== -->
+      <!-- =====================================================
+           Project 03
+           ===================================================== -->
 
-      <div class="research-simple">
+      <div class="research-item">
 
         <div class="research-meta">
           2024
@@ -909,28 +1420,39 @@
         </h3>
 
         <p class="subtitle">
-          GAIL · PPO · Unity3D · ML-Agents · Human–AI Interaction
+          Generative Adversarial Imitation Learning (GAIL) ·
+          Proximal Policy Optimization (PPO) · Unity3D ·
+          ML-Agents · Human–AI Interaction
         </p>
 
         <p class="desc">
-          Developing a design agent that learns modular assembly
-          strategies from human demonstration trajectories,
-          exploring how human design behaviour can be represented
-          and learned through imitation learning.
+          Trains an agent through Generative Adversarial Imitation
+          Learning (GAIL) and Proximal Policy Optimization (PPO)
+          in Unity3D with ML-Agents Toolkit, using human demonstration
+          trajectories to learn design reasoning strategies for
+          modular assembly-oriented structures.
         </p>
 
         <p class="venue">
-          CAADRIA 2024
+
+          <a
+            href="https://doi.org/10.52842/conf.caadria.2024.3.171"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            CAADRIA 2024
+          </a>
+
         </p>
 
       </div>
 
 
-      <!-- ===================================================
-           PROJECT 04
-           =================================================== -->
+      <!-- =====================================================
+           Project 04
+           ===================================================== -->
 
-      <div class="research-simple">
+      <div class="research-item">
 
         <div class="research-meta">
           2025–26
@@ -946,14 +1468,21 @@
         </p>
 
         <p class="desc">
-          Contributing to later-stage validation, parametric
-          modelling, evaluation metrics, and field testing for
-          a robotic façade finishing system integrating spraying
-          and grinding operations.
+          Contributes to the later-stage validation, parametrically
+          models operation and environment, defines evaluation metrics
+          for operational performance, and validates through field testing.
         </p>
 
         <p class="venue">
-          Housing Science 2026(6)
+
+          <a
+            href="https://doi.org/10.3969/j.issn.1002-0454.2026.06.011"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Housing Science 2026(6)
+          </a>
+
         </p>
 
       </div>
@@ -961,125 +1490,194 @@
     </section>
 
 
-    <!-- =====================================================
-         PUBLICATIONS
-         ===================================================== -->
+    <!-- =======================================================
+         Publications
+         ======================================================= -->
 
     <section id="publications">
 
-      <h2 class="section-title">
+      <span class="section-label">
         Publications
-      </h2>
+      </span>
 
 
-      <div class="publication">
+      <div class="pub-item">
 
-        <div class="publication-year">
+        <div class="pub-year">
           2026
         </div>
 
-        <div class="publication-title">
-          Intelligent Robotic Sanding System for Building
-          Exterior Walls Integrated with Residential Building
-          Manufacturing Machines
-        </div>
+        <div>
 
-        <div class="publication-authors">
-          Mingli Sun &amp; Hua Chai
-        </div>
+          <div class="pub-title">
+            Intelligent Robotic Sanding System for Building Exterior
+            Walls Integrated with Residential Building Manufacturing Machines
+          </div>
 
-        <div class="publication-venue">
-          Housing Science 2026(6), 80–84 · Chinese Journal
-          (PKU Core) · in Chinese
+          <div class="pub-authors">
+            <strong>Mingli Sun</strong> &amp; Hua Chai
+          </div>
+
+          <div class="pub-venue">
+
+            <a
+              href="https://doi.org/10.3969/j.issn.1002-0454.2026.06.011"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              Housing Science, 2026(6), 80–84
+            </a>
+
+            · Chinese Journal (PKU Core) · in Chinese
+
+          </div>
+
         </div>
 
       </div>
 
 
-      <div class="publication">
+      <div class="pub-item">
 
-        <div class="publication-year">
+        <div class="pub-year">
           2026
         </div>
 
-        <div class="publication-title">
-          Graph-Based Generative Design of Mortise-and-Tenon
-          Joints in Timber Structures
-        </div>
+        <div>
 
-        <div class="publication-authors">
-          Mingli Sun, Ying Zhou, Yuancao Liu, Yuxuan Zhu,
-          Qinhui Yang, Yige Liu, &amp; Hua Chai
-        </div>
+          <div class="pub-title">
+            Graph-Based Generative Design of Mortise-and-Tenon
+            Joints in Timber Structures
+          </div>
 
-        <div class="publication-venue">
-          CDRF 2026 Accepted · EI
+          <div class="pub-authors">
+            <strong>Mingli Sun</strong>,
+            Ying Zhou,
+            Yuancao Liu,
+            Yuxuan Zhu,
+            Qinhui Yang,
+            Yige Liu,
+            &amp; Hua Chai
+          </div>
+
+          <div class="pub-venue">
+            CDRF 2026 Accepted · EI
+          </div>
+
         </div>
 
       </div>
 
 
-      <div class="publication">
+      <div class="pub-item">
 
-        <div class="publication-year">
+        <div class="pub-year">
           2025
         </div>
 
-        <div class="publication-title">
-          Text-Guided Fine-Tuning Diffusion Model Enhanced
-          the Spatial Envision of Modular Structures
-        </div>
+        <div>
 
-        <div class="publication-authors">
-          Mingli Sun, Jianhao Chen, &amp; Kostas Terzidis
-        </div>
+          <div class="pub-title">
+            Text-Guided Fine-Tuning Diffusion Model Enhanced
+            the Spatial Envision of Modular Structures
+          </div>
 
-        <div class="publication-venue">
-          CAADRIA 2025, Vol. 1, 49–58 · EI
-        </div>
+          <div class="pub-authors">
+            <strong>Mingli Sun</strong>,
+            Jianhao Chen,
+            &amp; Kostas Terzidis
+          </div>
 
-      </div>
+          <div class="pub-venue">
 
+            <a
+              href="https://doi.org/10.52842/conf.caadria.2025.1.049"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              CAADRIA 2025, Vol. 1, 49–58
+            </a>
 
-      <div class="publication">
+            · EI
 
-        <div class="publication-year">
-          2024
-        </div>
+          </div>
 
-        <div class="publication-title">
-          Facilitation or Inhibition: The Influence of Generative
-          Artificial Intelligence on Design Reasoning for
-          Modular Structures
-        </div>
-
-        <div class="publication-authors">
-          Mingli Sun, Kostas Terzidis, &amp; Jianhao Chen
-        </div>
-
-        <div class="publication-venue">
-          IASS 2024 Symposium · EI
         </div>
 
       </div>
 
 
-      <div class="publication">
+      <div class="pub-item">
 
-        <div class="publication-year">
+        <div class="pub-year">
           2024
         </div>
 
-        <div class="publication-title">
-          Co-Intelligent Design Toward Modular Structures
+        <div>
+
+          <div class="pub-title">
+            Facilitation or Inhibition: The Influence of Generative
+            Artificial Intelligence on Design Reasoning for Modular Structures
+          </div>
+
+          <div class="pub-authors">
+            <strong>Mingli Sun</strong>,
+            Kostas Terzidis,
+            &amp; Jianhao Chen
+          </div>
+
+          <div class="pub-venue">
+
+            <a
+              href="https://doi.org/10.3929/ethz-b-000728788"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              IASS 2024 Symposium
+            </a>
+
+            · EI
+
+          </div>
+
         </div>
 
-        <div class="publication-authors">
-          Mingli Sun, Peter Buš, Jianhao Chen, &amp; Kenan Sun
+      </div>
+
+
+      <div class="pub-item">
+
+        <div class="pub-year">
+          2024
         </div>
 
-        <div class="publication-venue">
-          CAADRIA 2024, Vol. 3, 171–180 · EI
+        <div>
+
+          <div class="pub-title">
+            Co-Intelligent Design Toward Modular Structures
+          </div>
+
+          <div class="pub-authors">
+            <strong>Mingli Sun</strong>,
+            Peter Buš,
+            Jianhao Chen,
+            &amp; Kenan Sun
+          </div>
+
+          <div class="pub-venue">
+
+            <a
+              href="https://doi.org/10.52842/conf.caadria.2024.3.171"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              CAADRIA 2024, Vol. 3, 171–180
+            </a>
+
+            · EI
+
+          </div>
+
         </div>
 
       </div>
@@ -1087,76 +1685,80 @@
     </section>
 
 
-    <!-- =====================================================
-         EXPERIENCE
-         ===================================================== -->
+    <!-- =======================================================
+         Academic Experience
+         ======================================================= -->
 
     <section id="experience">
 
-      <h2 class="section-title">
+      <span class="section-label">
         Academic Experience
-      </h2>
+      </span>
 
 
-      <div class="timeline-item">
+      <div class="timeline">
 
-        <div class="timeline-date">
-          2025–2026
-        </div>
+        <div class="timeline-item">
 
-        <div class="timeline-content">
+          <div class="timeline-date">
+            2025–2026
+          </div>
 
-          <strong>
-            Research Assistant
-          </strong>
+          <div class="timeline-content">
 
-          <p>
-            College of Architecture and Urban Planning,
-            Tongji University
-          </p>
+            <span class="role">
+              Research Assistant
+            </span>
 
-        </div>
+            <span class="institution">
+              College of Architecture and Urban Planning,
+              Tongji University
+            </span>
 
-      </div>
-
-
-      <div class="timeline-item">
-
-        <div class="timeline-date">
-          2024–2025
-        </div>
-
-        <div class="timeline-content">
-
-          <strong>
-            Research Intern
-          </strong>
-
-          <p>
-            Institute of Future Human Habitats,
-            Tsinghua Shenzhen International Graduate School
-          </p>
+          </div>
 
         </div>
 
-      </div>
 
+        <div class="timeline-item">
 
-      <div class="timeline-item">
+          <div class="timeline-date">
+            2024–2025
+          </div>
 
-        <div class="timeline-date">
-          2023
+          <div class="timeline-content">
+
+            <span class="role">
+              Research Intern
+            </span>
+
+            <span class="institution">
+              Institute of Future Human Habitats,
+              Tsinghua Shenzhen International Graduate School
+            </span>
+
+          </div>
+
         </div>
 
-        <div class="timeline-content">
 
-          <strong>
-            Technical Instructor
-          </strong>
+        <div class="timeline-item">
 
-          <p>
-            FabLab O Shanghai · MIT FabLab Global Network
-          </p>
+          <div class="timeline-date">
+            2023
+          </div>
+
+          <div class="timeline-content">
+
+            <span class="role">
+              Technical Instructor
+            </span>
+
+            <span class="institution">
+              FabLab O Shanghai · MIT FabLab Global Network
+            </span>
+
+          </div>
 
         </div>
 
@@ -1165,48 +1767,61 @@
     </section>
 
 
-    <!-- =====================================================
-         EDUCATION
-         ===================================================== -->
+    <!-- =======================================================
+         Education
+         ======================================================= -->
 
     <section id="education">
 
-      <h2 class="section-title">
+      <span class="section-label">
         Education
-      </h2>
+      </span>
 
 
-      <div class="education-item">
+      <div class="timeline">
 
-        <div class="education-year">
-          2022–2025
+        <div class="timeline-item">
+
+          <div class="timeline-date">
+            2022–2025
+          </div>
+
+          <div class="timeline-content">
+
+            <span class="role">
+              MFA in Arts and Design
+            </span>
+
+            <span class="institution">
+              Advanced Environmental Design,
+              College of Design and Innovation,
+              Tongji University
+            </span>
+
+          </div>
+
         </div>
 
-        <div class="education-degree">
-          MFA in Arts and Design, Advanced Environmental Design
-        </div>
 
-        <div class="education-school">
-          College of Design and Innovation,
-          Tongji University
-        </div>
+        <div class="timeline-item">
 
-      </div>
+          <div class="timeline-date">
+            2016–2020
+          </div>
 
+          <div class="timeline-content">
 
-      <div class="education-item">
+            <span class="role">
+              BEng in Industrial Design
+            </span>
 
-        <div class="education-year">
-          2016–2020
-        </div>
+            <span class="institution">
+              Mechanical and Electrical Engineering School,
+              Beijing Information Science &amp; Technology University
+            </span>
 
-        <div class="education-degree">
-          BEng in Industrial Design
-        </div>
+          </div>
 
-        <div class="education-school">
-          Mechanical and Electrical Engineering School,
-          Beijing Information Science &amp; Technology University
         </div>
 
       </div>
@@ -1214,82 +1829,101 @@
     </section>
 
 
-    <!-- =====================================================
-         AWARDS
-         ===================================================== -->
+    <!-- =======================================================
+         Awards
+         ======================================================= -->
 
     <section id="awards">
 
-      <h2 class="section-title">
-        Awards
-      </h2>
+      <span class="section-label">
+        Honors, Awards &amp; Grants
+      </span>
 
 
-      <div class="award">
+      <div class="awards-list">
 
-        <div class="award-year">
-          2025
+        <div class="award-item">
+
+          <div class="award-year">
+            2025
+          </div>
+
+          <div class="award-name">
+            Shanghai Outstanding Graduate Award (top 5%)
+          </div>
+
+          <div class="award-org">
+            Shanghai Municipal Education Commission
+          </div>
+
         </div>
 
-        <div class="award-text">
-          Shanghai Outstanding Graduate Award (top 5%),
-          Shanghai Municipal Education Commission
+
+        <div class="award-item">
+
+          <div class="award-year">
+            2024
+          </div>
+
+          <div class="award-name">
+            Xiangcheng High-Tech Talent Scholarship (endowed, top ~1%)
+          </div>
+
+          <div class="award-org">
+            Tongji University
+          </div>
+
         </div>
 
-      </div>
 
+        <div class="award-item">
 
-      <div class="award">
+          <div class="award-year">
+            2024
+          </div>
 
-        <div class="award-year">
-          2024
+          <div class="award-name">
+            International Academic Conference Travel Grant
+          </div>
+
+          <div class="award-org">
+            Tongji University
+          </div>
+
         </div>
 
-        <div class="award-text">
-          Xiangcheng High-Tech Talent Scholarship
-          (endowed, top ~1%), Tongji University
+
+        <div class="award-item">
+
+          <div class="award-year">
+            2023
+          </div>
+
+          <div class="award-name">
+            International and Hong Kong, Macao, and Taiwan Exchange Grant
+          </div>
+
+          <div class="award-org">
+            Tongji University
+          </div>
+
         </div>
 
-      </div>
 
+        <div class="award-item">
 
-      <div class="award">
+          <div class="award-year">
+            2020
+          </div>
 
-        <div class="award-year">
-          2024
-        </div>
+          <div class="award-name">
+            Beijing Outstanding Graduate Award (top 5%)
+          </div>
 
-        <div class="award-text">
-          International Academic Conference Travel Grant,
-          Tongji University
-        </div>
+          <div class="award-org">
+            Beijing Municipal Education Commission
+          </div>
 
-      </div>
-
-
-      <div class="award">
-
-        <div class="award-year">
-          2023
-        </div>
-
-        <div class="award-text">
-          International and Hong Kong, Macao, and Taiwan
-          Exchange Grant, Tongji University
-        </div>
-
-      </div>
-
-
-      <div class="award">
-
-        <div class="award-year">
-          2020
-        </div>
-
-        <div class="award-text">
-          Beijing Outstanding Graduate Award (top 5%),
-          Beijing Municipal Education Commission
         </div>
 
       </div>
@@ -1297,94 +1931,117 @@
     </section>
 
 
-    <!-- =====================================================
-         COLOPHON
-         ===================================================== -->
+    <!-- =======================================================
+         Colophon
+         ======================================================= -->
 
-    <section class="colophon">
+    <section
+      class="colophon"
+      id="colophon"
+    >
+
+      <span class="section-label">
+        Colophon
+      </span>
 
       <p>
-        This site uses Tufte CSS principles and ET Book,
-        with a deliberately restrained typographic system
-        inspired by academic publishing.
+        This webpage is styled in the spirit of
+        <a
+          href="https://edwardtufte.github.io/tufte-css/"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          Tufte CSS
+        </a>.
+        The typeface is
+        <a
+          href="https://edwardtufte.github.io/et-book/"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          ET Book
+        </a>.
+        Content is authored by Sun Mingli with support from
+        <a
+          href="https://kimi.moonshot.cn/"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          Kimi
+        </a>.
       </p>
 
       <p>
-        Designed and maintained by Sun Mingli.
-      </p>
-
-      <p>
-        Built with HTML, CSS, and JavaScript.
+        © 2026 Sun Mingli. All rights reserved.
       </p>
 
     </section>
-
-
-    <!-- =====================================================
-         FOOTER
-         ===================================================== -->
-
-    <footer>
-
-      <a href="#top" aria-label="Back to top">
-        🤸
-      </a>
-
-    </footer>
 
   </main>
 
 
-  <!-- =======================================================
-       THEME SCRIPT
-       ======================================================= -->
+  <!-- =========================================================
+       Footer
+       ========================================================= -->
+
+  <footer class="site-footer">
+
+    <a
+      href="#top"
+      target="_self"
+      aria-label="Back to top"
+    >
+      🤸
+    </a>
+
+  </footer>
+
+
+  <!-- =========================================================
+       Theme toggle
+       ========================================================= -->
 
   <script>
-    const themeToggle =
-      document.getElementById("themeToggle");
 
-    themeToggle.addEventListener("click", function () {
+    const toggle =
+      document.getElementById("theme-toggle");
 
-      const currentTheme =
-        document.documentElement.getAttribute("data-theme");
+    toggle.addEventListener("click", () => {
 
-      const nextTheme =
-        currentTheme === "dark"
+      const html =
+        document.documentElement;
+
+      const current =
+        html.dataset.theme;
+
+      const next =
+        current === "dark"
           ? "light"
           : "dark";
 
-      document.documentElement.setAttribute(
-        "data-theme",
-        nextTheme
-      );
+      html.dataset.theme =
+        next;
 
-      localStorage.setItem(
-        "mingli-theme",
-        nextTheme
-      );
+      try {
+
+        localStorage.setItem(
+          "mingli-theme",
+          next
+        );
+
+      } catch (_) {}
 
     });
+
   </script>
 
 
-  <!-- =======================================================
-       RESEARCH VIDEO ALIGNMENT
-
-       IMPORTANT:
-
-       The video does NOT use the whole research-content
-       height.
-
-       Instead:
-
-       video TOP    = h3 TOP
-       video BOTTOM = venue BOTTOM
-
-       Therefore the 2026 line is excluded from the
-       video height calculation.
-       ======================================================= -->
+  <!-- =========================================================
+       Sync first project video to text height
+       ========================================================= -->
 
   <script>
+
     function syncResearchVideo() {
 
       const main =
@@ -1392,90 +2049,55 @@
 
       if (!main) return;
 
-
       const media =
         main.querySelector(".research-media");
 
       const content =
         main.querySelector(".research-content");
 
-      const title =
-        content.querySelector("h3");
-
-      const venue =
-        content.querySelector(".venue");
+      if (!media || !content) return;
 
 
-      if (
-        !media ||
-        !content ||
-        !title ||
-        !venue
-      ) {
-        return;
+      /*
+        On desktop:
+
+        video height = content height
+        video width  = content height
+
+        Therefore the video is always a square.
+      */
+
+      if (window.innerWidth > 600) {
+
+        const height =
+          content.getBoundingClientRect().height;
+
+        media.style.width =
+          height + "px";
+
+        media.style.height =
+          height + "px";
+
       }
 
+      /*
+        On mobile:
 
-      /* Mobile */
+        CSS controls the square size.
+      */
 
-      if (window.innerWidth <= 600) {
+      else {
 
         media.style.width = "";
         media.style.height = "";
-        media.style.marginTop = "";
 
-        return;
       }
 
-
-      /*
-        Get the actual position of each element
-        after the browser has calculated typography.
-      */
-
-      const contentTop =
-        content.getBoundingClientRect().top;
-
-      const titleTop =
-        title.getBoundingClientRect().top;
-
-      const venueBottom =
-        venue.getBoundingClientRect().bottom;
-
-
-      /*
-        Move the video DOWN so that its top is
-        exactly aligned with the title.
-      */
-
-      const offsetTop =
-        titleTop - contentTop;
-
-
-      /*
-        Make the video a perfect square.
-
-        Height =
-        title top → venue bottom
-      */
-
-      const height =
-        venueBottom - titleTop;
-
-
-      media.style.width =
-        height + "px";
-
-      media.style.height =
-        height + "px";
-
-      media.style.marginTop =
-        offsetTop + "px";
     }
 
 
     /*
-      Initial calculation
+      Wait until fonts and layout are ready.
     */
 
     window.addEventListener(
@@ -1485,7 +2107,7 @@
 
 
     /*
-      Recalculate when viewport changes
+      Recalculate when browser width changes.
     */
 
     window.addEventListener(
@@ -1495,8 +2117,7 @@
 
 
     /*
-      Recalculate after ET Book / other fonts
-      have finished loading.
+      Recalculate after fonts are loaded.
     */
 
     if (document.fonts) {
@@ -1506,344 +2127,175 @@
       );
 
     }
+
   </script>
 
 
-  <!-- =======================================================
-       STAR PARTICLE EFFECT
-       ======================================================= -->
+  <!-- =========================================================
+       Star particle effect
+       ========================================================= -->
 
   <script>
-    (function () {
 
-      const canvas =
-        document.getElementById("star-canvas");
+    (function() {
 
-      const ctx =
-        canvas.getContext("2d");
-
-      let width = 0;
-      let height = 0;
-
-      const particles = [];
-      const trails = [];
-
-      const characters =
-        "✦✧·.*+";
-
-      const particleCount = 28;
+      const SYMBOLS =
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        .split("");
 
 
-      function resize() {
+      function random(min, max) {
 
-        width =
-          canvas.width =
-            window.innerWidth *
-            window.devicePixelRatio;
+        return Math.random() *
+          (max - min) +
+          min;
 
-        height =
-          canvas.height =
-            window.innerHeight *
-            window.devicePixelRatio;
-
-        canvas.style.width =
-          window.innerWidth + "px";
-
-        canvas.style.height =
-          window.innerHeight + "px";
-
-        ctx.setTransform(
-          window.devicePixelRatio,
-          0,
-          0,
-          window.devicePixelRatio,
-          0,
-          0
-        );
       }
 
 
-      function randomCharacter() {
-
-        return characters[
-          Math.floor(
-            Math.random() *
-            characters.length
-          )
-        ];
-      }
-
-
-      function createParticle(
+      function createStar(
         x,
         y,
-        burst = false
+        type
       ) {
 
-        particles.push({
+        const star =
+          document.createElement("span");
 
-          x: x,
-          y: y,
+        star.className =
+          "star-particle star-particle--" +
+          type;
 
-          vx:
-            (Math.random() - 0.5) *
-            (burst ? 1.8 : 0.35),
+        star.textContent =
+          SYMBOLS[
+            Math.floor(
+              Math.random() *
+              SYMBOLS.length
+            )
+          ];
 
-          vy:
-            (Math.random() - 0.5) *
-            (burst ? 1.8 : 0.35),
+        star.style.fontSize =
+          random(6, 26) + "px";
 
-          life:
-            burst
-              ? 1
-              : Math.random(),
+        star.style.left =
+          x + "px";
 
-          decay:
-            burst
-              ? 0.025
-              : 0.003,
-
-          size:
-            burst
-              ? Math.random() * 10 + 6
-              : Math.random() * 7 + 4,
-
-          char:
-            randomCharacter()
-        });
-      }
+        star.style.top =
+          y + "px";
 
 
-      function seedParticles() {
-
-        for (
-          let i = 0;
-          i < particleCount;
-          i++
-        ) {
-
-          createParticle(
-            Math.random() *
-              window.innerWidth,
-
-            Math.random() *
-              window.innerHeight
-          );
-        }
-      }
+        const angle =
+          random(0, Math.PI * 2);
 
 
-      function draw() {
+        const distance =
+          type === "burst"
+            ? random(40, 140)
+            : random(30, 100);
 
-        ctx.clearRect(
-          0,
-          0,
-          window.innerWidth,
-          window.innerHeight
+
+        star.style.setProperty(
+          "--star-x",
+          Math.cos(angle) *
+            distance +
+            "px"
         );
 
 
-        /*
-          Use the current text colour so the
-          effect works in both themes.
-        */
-
-        const styles =
-          getComputedStyle(
-            document.documentElement
-          );
-
-        const textColor =
-          styles.getPropertyValue(
-            "--text"
-          ).trim();
+        star.style.setProperty(
+          "--star-y",
+          Math.sin(angle) *
+            distance +
+            "px"
+        );
 
 
-        /*
-          Ambient particles
-        */
-
-        for (
-          let i = particles.length - 1;
-          i >= 0;
-          i--
-        ) {
-
-          const p =
-            particles[i];
-
-          p.x += p.vx;
-          p.y += p.vy;
-
-          p.life -= p.decay;
+        star.style.setProperty(
+          "--star-r",
+          random(-180, 180) +
+            "deg"
+        );
 
 
-          if (
-            p.life <= 0 ||
-            p.x < -30 ||
-            p.x > window.innerWidth + 30 ||
-            p.y < -30 ||
-            p.y > window.innerHeight + 30
-          ) {
+        document.body.appendChild(
+          star
+        );
 
-            particles.splice(i, 1);
 
-            continue;
+        star.addEventListener(
+          "animationend",
+          function() {
+
+            star.remove();
+
           }
+        );
 
-
-          ctx.save();
-
-          ctx.globalAlpha =
-            Math.max(
-              0,
-              Math.min(
-                1,
-                p.life
-              )
-            ) * 0.32;
-
-          ctx.fillStyle =
-            textColor;
-
-          ctx.font =
-            p.size +
-            "px Georgia";
-
-          ctx.fillText(
-            p.char,
-            p.x,
-            p.y
-          );
-
-          ctx.restore();
-        }
-
-
-        /*
-          Mouse trails
-        */
-
-        for (
-          let i = trails.length - 1;
-          i >= 0;
-          i--
-        ) {
-
-          const t =
-            trails[i];
-
-          t.life -= 0.025;
-
-          t.x += t.vx;
-          t.y += t.vy;
-
-
-          if (t.life <= 0) {
-
-            trails.splice(i, 1);
-
-            continue;
-          }
-
-
-          ctx.save();
-
-          ctx.globalAlpha =
-            t.life * 0.45;
-
-          ctx.fillStyle =
-            textColor;
-
-          ctx.font =
-            t.size + "px Georgia";
-
-          ctx.fillText(
-            t.char,
-            t.x,
-            t.y
-          );
-
-          ctx.restore();
-        }
-
-
-        requestAnimationFrame(draw);
       }
 
 
-      function addTrail(
-        x,
-        y
+      let lastX = -9999;
+      let lastY = -9999;
+
+
+      function handleMove(
+        clientX,
+        clientY
       ) {
 
-        trails.push({
+        const dx =
+          clientX - lastX;
 
-          x: x,
-          y: y,
-
-          vx:
-            (Math.random() - 0.5) *
-            0.4,
-
-          vy:
-            (Math.random() - 0.5) *
-            0.4,
-
-          life: 1,
-
-          size:
-            Math.random() * 6 + 4,
-
-          char:
-            randomCharacter()
-        });
+        const dy =
+          clientY - lastY;
 
 
-        if (trails.length > 70) {
+        if (
+          dx * dx +
+          dy * dy >
+          36
+        ) {
 
-          trails.splice(
-            0,
-            trails.length - 70
+          createStar(
+            clientX,
+            clientY,
+            "trail"
           );
 
+          lastX =
+            clientX;
+
+          lastY =
+            clientY;
+
         }
+
       }
 
 
-      window.addEventListener(
+      document.addEventListener(
         "mousemove",
-        function (event) {
+        function(e) {
 
-          if (
-            Math.random() < 0.32
-          ) {
-
-            addTrail(
-              event.clientX,
-              event.clientY
-            );
-
-          }
+          handleMove(
+            e.clientX,
+            e.clientY
+          );
 
         }
       );
 
 
-      window.addEventListener(
+      document.addEventListener(
         "touchmove",
-        function (event) {
-
-          if (
-            !event.touches.length
-          ) {
-            return;
-          }
+        function(e) {
 
           const touch =
-            event.touches[0];
+            e.touches[0];
 
-          addTrail(
+          if (!touch) return;
+
+          handleMove(
             touch.clientX,
             touch.clientY
           );
@@ -1855,39 +2307,69 @@
       );
 
 
-      window.addEventListener(
-        "pointerdown",
-        function (event) {
+      function handleBurst(
+        clientX,
+        clientY
+      ) {
 
-          for (
-            let i = 0;
-            i < 8;
-            i++
-          ) {
+        for (
+          let i = 0;
+          i < 10;
+          i++
+        ) {
 
-            createParticle(
-              event.clientX,
-              event.clientY,
-              true
+          setTimeout(
+            function() {
+
+              createStar(
+                clientX,
+                clientY,
+                "burst"
+              );
+
+            },
+            i * 25
+          );
+
+        }
+
+      }
+
+
+      if (window.PointerEvent) {
+
+        document.addEventListener(
+          "pointerdown",
+          function(e) {
+
+            handleBurst(
+              e.clientX,
+              e.clientY
             );
 
           }
+        );
 
-        }
-      );
+      }
 
+      else {
 
-      window.addEventListener(
-        "resize",
-        resize
-      );
+        document.addEventListener(
+          "click",
+          function(e) {
 
+            handleBurst(
+              e.clientX,
+              e.clientY
+            );
 
-      resize();
-      seedParticles();
-      draw();
+          }
+        );
+
+      }
 
     })();
+
   </script>
 
 </body>
