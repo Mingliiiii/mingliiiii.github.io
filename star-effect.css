@@ -101,3 +101,27 @@
 .youtube-link:hover {
   color: var(--text);
 }
+
+.research-item {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.research-media {
+  width: 180px;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.research-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.research-content {
+  min-width: 0;
+}
