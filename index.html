@@ -10,9 +10,8 @@
     name="description"
     content="Sun Mingli is a researcher working at the intersection of machine learning, structural architecture, human–AI collaboration, and construction robotics."
   >
-
   <meta name="author" content="Sun Mingli">
-  <meta name="theme-color" content="#fffff8">
+  <meta name="theme-color" content="#ffffff">
 
   <link rel="canonical" href="https://mingliiiii.github.io/">
 
@@ -31,13 +30,11 @@
     referrerpolicy="no-referrer"
   >
 
-  <base target="_blank">
-
   <style>
 
-    /* ═══════════════════════════════════════════════════════
-       Star particle effect
-       ═══════════════════════════════════════════════════════ */
+    /* =========================================================
+       Star particles
+       ========================================================= */
 
     .star-particle {
       --star-x: 0px;
@@ -54,7 +51,6 @@
       line-height: 1;
 
       transform: translate(-50%, -50%);
-
       will-change: transform, opacity;
 
       color: #111;
@@ -70,13 +66,17 @@
     }
 
     .star-particle--burst {
-      animation: star-drift 1.22s cubic-bezier(0.22, 0.65, 0.24, 1) forwards;
+      animation:
+        star-drift
+        1.22s
+        cubic-bezier(0.22, 0.65, 0.24, 1)
+        forwards;
     }
 
     @keyframes star-drift {
-
       0% {
         opacity: 1;
+
         transform:
           translate(-50%, -50%)
           rotate(0deg)
@@ -94,7 +94,6 @@
           rotate(var(--star-r))
           scale(0);
       }
-
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -115,7 +114,6 @@
       .star-particle {
         display: none !important;
       }
-
     }
 
     @media (pointer: coarse) {
@@ -127,9 +125,9 @@
     }
 
 
-    /* ═══════════════════════════════════════════════════════
+    /* =========================================================
        Highlight
-       ═══════════════════════════════════════════════════════ */
+       ========================================================= */
 
     .highlight-pink {
       background-color: transparent;
@@ -137,9 +135,9 @@
     }
 
 
-    /* ═══════════════════════════════════════════════════════
+    /* =========================================================
        ET Book
-       ═══════════════════════════════════════════════════════ */
+       ========================================================= */
 
     @font-face {
       font-family: "et-book";
@@ -202,17 +200,17 @@
     }
 
 
-    /* ═══════════════════════════════════════════════════════
-       Theme
-       ═══════════════════════════════════════════════════════ */
+    /* =========================================================
+       Theme variables
+       ========================================================= */
 
     :root {
-      --bg: #fffff8;
-      --text: #111;
-      --text-secondary: #555;
+      --bg: #ffffff;
+      --text: #111111;
+      --text-secondary: #555555;
 
-      --border: rgba(0,0,0,0.10);
-      --link-underline: rgba(0,0,0,0.22);
+      --border: rgba(0, 0, 0, 0.10);
+      --link-underline: rgba(0, 0, 0, 0.22);
 
       --max-width: 720px;
 
@@ -224,18 +222,18 @@
     }
 
     [data-theme="dark"] {
-      --bg: #111;
+      --bg: #111111;
       --text: #e8e4dc;
-      --text-secondary: #999;
+      --text-secondary: #999999;
 
-      --border: rgba(255,255,255,0.08);
-      --link-underline: rgba(255,255,255,0.28);
+      --border: rgba(255, 255, 255, 0.08);
+      --link-underline: rgba(255, 255, 255, 0.28);
     }
 
 
-    /* ═══════════════════════════════════════════════════════
+    /* =========================================================
        Global
-       ═══════════════════════════════════════════════════════ */
+       ========================================================= */
 
     * {
       box-sizing: border-box;
@@ -276,9 +274,9 @@
     }
 
 
-    /* ═══════════════════════════════════════════════════════
+    /* =========================================================
        Header
-       ═══════════════════════════════════════════════════════ */
+       ========================================================= */
 
     .site-header {
       display: flex;
@@ -313,9 +311,9 @@
     }
 
 
-    /* ═══════════════════════════════════════════════════════
+    /* =========================================================
        Typography
-       ═══════════════════════════════════════════════════════ */
+       ========================================================= */
 
     h1,
     h2,
@@ -332,6 +330,7 @@
 
     h1 {
       font-size: 3.6rem;
+
       letter-spacing: -0.01em;
     }
 
@@ -367,6 +366,7 @@
 
     p {
       margin-bottom: 0.85rem;
+
       max-width: 68ch;
     }
 
@@ -399,9 +399,9 @@
     }
 
 
-    /* ═══════════════════════════════════════════════════════
+    /* =========================================================
        Hero
-       ═══════════════════════════════════════════════════════ */
+       ========================================================= */
 
     .hero {
       margin-bottom: 3.2rem;
@@ -447,13 +447,14 @@
 
     .hero-links a {
       font-family: var(--font);
+
       font-size: 0.95rem;
     }
 
 
-    /* ═══════════════════════════════════════════════════════
+    /* =========================================================
        Sections
-       ═══════════════════════════════════════════════════════ */
+       ========================================================= */
 
     section {
       margin-top: 2rem;
@@ -491,9 +492,9 @@
     }
 
 
-    /* ═══════════════════════════════════════════════════════
-       Research Projects
-       ═══════════════════════════════════════════════════════ */
+    /* =========================================================
+       Research projects
+       ========================================================= */
 
     .research-item {
       margin-bottom: 0.77rem;
@@ -506,6 +507,57 @@
 
     .research-item:last-child {
       border-bottom: none;
+    }
+
+    /*
+      The year is intentionally outside .research-main.
+
+      Therefore:
+
+      2026
+      [VIDEO] [TITLE + TEXT]
+
+      The video begins at the title,
+      NOT at the year.
+    */
+
+    .research-main {
+      display: grid;
+
+      grid-template-columns:
+        auto
+        minmax(0, 1fr);
+
+      gap: 1rem;
+
+      align-items: start;
+    }
+
+    /*
+      The media square is dynamically sized by JavaScript
+      according to the actual height of .research-content.
+    */
+
+    .research-media {
+      width: 0;
+      height: 0;
+
+      overflow: hidden;
+
+      flex-shrink: 0;
+    }
+
+    .research-media video {
+      display: block;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+    }
+
+    .research-content {
+      min-width: 0;
     }
 
     .research-meta {
@@ -526,8 +578,38 @@
       font-weight: bold;
 
       margin-top: 0;
-
       margin-bottom: 0.25rem;
+    }
+
+    /*
+      First project title:
+
+      normal:
+      no underline
+
+      hover:
+      thin bottom line
+    */
+
+    .research-item h3 a {
+      color: var(--text);
+
+      text-decoration: none;
+
+      border-bottom:
+        1px solid transparent;
+
+      text-underline-offset: 0;
+
+      transition:
+        border-color 0.2s ease;
+    }
+
+    .research-item h3 a:hover {
+      text-decoration: none;
+
+      border-bottom-color:
+        var(--text);
     }
 
     .research-item .subtitle {
@@ -558,135 +640,25 @@
       font-size: 0.9rem;
 
       color: var(--text-secondary);
-
-      margin-bottom: 0;
     }
 
 
-    /* ═══════════════════════════════════════════════════════
-       FEATURED RESEARCH PROJECT
-       Video + Text
-       ═══════════════════════════════════════════════════════ */
-
-    .research-item--featured {
-      display: grid;
-
-      /*
-       * Left: square video
-       * Right: project text
-       */
-      grid-template-columns:
-        160px
-        minmax(0, 1fr);
-
-      column-gap: 1.6rem;
-
-      /*
-       * Both columns start from exactly
-       * the same top baseline.
-       */
-      align-items: stretch;
-    }
-
-    /*
-     * The media column stretches to the
-     * exact height of the text column.
-     */
-    .research-item--featured .research-media {
-      width: 180px;
-      height: 100%;
-
-      min-height: 180px;
-
-      overflow: hidden;
-
-      background: var(--border);
-
-      align-self: stretch;
-    }
-
-    /*
-     * Video fills the entire media column.
-     */
-    .research-item--featured .research-media video {
-      display: block;
-
-      width: 100%;
-      height: 100%;
-
-      object-fit: cover;
-
-      border: none;
-    }
-
-    /*
-     * Prevents long words from forcing
-     * the right column wider.
-     */
-    .research-item--featured .research-content {
-      min-width: 0;
-
-      height: 100%;
-    }
-
-    .research-item--featured .research-meta {
-      margin-top: 0;
-    }
-
-
-    /* ═══════════════════════════════════════════════════════
-       Project Title → YouTube
-       ═══════════════════════════════════════════════════════ */
-
-    .research-title-link {
-      color: var(--text);
-
-      text-decoration: none;
-
-      /*
-       * Invisible line by default.
-       * It appears on hover.
-       */
-      border-bottom:
-        1px solid transparent;
-
-      text-decoration-thickness: 1px;
-
-      transition:
-        border-color 0.2s ease,
-        color 0.2s ease;
-    }
-
-    .research-title-link:hover {
-      color: var(--text);
-
-      text-decoration: none;
-
-      border-bottom-color:
-        var(--text);
-    }
-
-
-    /* ═══════════════════════════════════════════════════════
-       YouTube Icon
-       ═══════════════════════════════════════════════════════ */
+    /* =========================================================
+       YouTube icon
+       ========================================================= */
 
     .youtube-link {
       display: inline-block;
 
-      /*
-       * Space between "Accepted"
-       * and the icon.
-       */
-      margin-left: 0.9em;
+      margin-left: 0.55em;
 
       color: var(--text-secondary);
 
       text-decoration: none;
 
-      font-style: normal;
+      border: none;
 
-      vertical-align: -0.05em;
+      vertical-align: baseline;
 
       transition:
         color 0.2s ease;
@@ -698,10 +670,14 @@
       text-decoration: none;
     }
 
+    .youtube-link i {
+      font-size: 0.95em;
+    }
 
-    /* ═══════════════════════════════════════════════════════
+
+    /* =========================================================
        Publications
-       ═══════════════════════════════════════════════════════ */
+       ========================================================= */
 
     .pub-item {
       display: grid;
@@ -769,9 +745,9 @@
     }
 
 
-    /* ═══════════════════════════════════════════════════════
+    /* =========================================================
        Timeline
-       ═══════════════════════════════════════════════════════ */
+       ========================================================= */
 
     .timeline-item {
       display: grid;
@@ -816,6 +792,7 @@
 
     .timeline-content .role {
       font-weight: bold;
+
       display: block;
     }
 
@@ -828,9 +805,9 @@
     }
 
 
-    /* ═══════════════════════════════════════════════════════
+    /* =========================================================
        Awards
-       ═══════════════════════════════════════════════════════ */
+       ========================================================= */
 
     .award-item {
       display: grid;
@@ -887,9 +864,9 @@
     }
 
 
-    /* ═══════════════════════════════════════════════════════
+    /* =========================================================
        Colophon
-       ═══════════════════════════════════════════════════════ */
+       ========================================================= */
 
     .colophon {
       margin-top: 2.5rem;
@@ -906,9 +883,9 @@
     }
 
 
-    /* ═══════════════════════════════════════════════════════
+    /* =========================================================
        Footer
-       ═══════════════════════════════════════════════════════ */
+       ========================================================= */
 
     .site-footer {
       margin-top: 2.5rem;
@@ -939,9 +916,9 @@
     }
 
 
-    /* ═══════════════════════════════════════════════════════
+    /* =========================================================
        Icons
-       ═══════════════════════════════════════════════════════ */
+       ========================================================= */
 
     .link-icon {
       font-style: normal;
@@ -972,9 +949,9 @@
     }
 
 
-    /* ═══════════════════════════════════════════════════════
+    /* =========================================================
        Mobile
-       ═══════════════════════════════════════════════════════ */
+       ========================================================= */
 
     @media (max-width: 600px) {
 
@@ -998,8 +975,27 @@
         font-size: 1.5rem;
       }
 
+      /*
+        On small screens, stack the project media
+        and project text.
+      */
+
+      .research-main {
+        grid-template-columns: 1fr;
+
+        gap: 0.8rem;
+      }
+
+      .research-media {
+        width: min(100%, 12rem);
+        height: auto;
+
+        aspect-ratio: 1 / 1;
+      }
+
       .pub-item {
         grid-template-columns: 1fr;
+
         gap: 0.15rem;
       }
 
@@ -1009,70 +1005,43 @@
 
       .timeline-item {
         grid-template-columns: 1fr;
+
         gap: 0.1rem;
       }
 
       .award-item {
         grid-template-columns: 1fr;
+
         gap: 0.1rem;
       }
 
       .award-org {
         text-align: left;
       }
-
-
-      /* Featured project becomes vertical */
-
-      .research-item--featured {
-        grid-template-columns: 1fr;
-
-        row-gap: 1rem;
-
-        align-items: start;
-      }
-
-      .research-item--featured .research-media {
-        width: 100%;
-
-        height: auto;
-
-        min-height: 0;
-
-        aspect-ratio: 1 / 1;
-      }
-
-      .research-item--featured .research-media video {
-        width: 100%;
-        height: 100%;
-
-        object-fit: cover;
-      }
-
     }
 
 
-    /* ═══════════════════════════════════════════════════════
+    /* =========================================================
        Selection
-       ═══════════════════════════════════════════════════════ */
+       ========================================================= */
 
     ::selection {
-      background: rgba(0,0,0,0.12);
+      background: rgba(0, 0, 0, 0.12);
     }
 
     [data-theme="dark"] ::selection {
-      background: rgba(255,255,255,0.15);
+      background: rgba(255, 255, 255, 0.15);
     }
 
   </style>
 
 
-  <!-- Theme initialization -->
+  <!-- =========================================================
+       Theme initialization
+       ========================================================= -->
 
   <script>
-
     try {
-
       const saved =
         localStorage.getItem("mingli-theme");
 
@@ -1085,14 +1054,14 @@
         saved || preferred;
 
     } catch (_) {}
-
   </script>
 
 
-  <!-- Structured data -->
+  <!-- =========================================================
+       Structured data
+       ========================================================= -->
 
   <script type="application/ld+json">
-
   {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -1111,18 +1080,18 @@
       }
     ]
   }
-
   </script>
+
+  <base target="_blank">
 
 </head>
 
 
 <body>
 
-
-  <!-- ═══════════════════════════════════════════════════════
+  <!-- =========================================================
        Header
-       ═══════════════════════════════════════════════════════ -->
+       ========================================================= -->
 
   <header class="site-header">
 
@@ -1142,9 +1111,9 @@
   <main id="top">
 
 
-    <!-- ═══════════════════════════════════════════════════════
+    <!-- =======================================================
          Hero
-         ═══════════════════════════════════════════════════════ -->
+         ======================================================= -->
 
     <section class="hero">
 
@@ -1157,104 +1126,74 @@
       </p>
 
       <p class="hero-intro">
-
         <em>
-
           Academic experience at
-
           <a href="https://tjdi.tongji.edu.cn/?lang=en">
-            College of Design and Innovation (D&I)
+            College of Design and Innovation (D&amp;I)
           </a>,
-
           <a href="https://caup.tongji.edu.cn/caupen/">
             College of Architecture and Urban Planning (CAUP)
           </a>,
-
           Tongji University and
-
           <a href="https://www.coia.tech/">
             Co-Intelligent Architecture Lab
           </a>,
-
-          Institute of Future Human Habitats,
-          Tsinghua SIGS.
-
+          Institute of Future Human Habitats, Tsinghua SIGS.
         </em>
-
       </p>
-
 
       <div class="hero-links">
 
         <a href="mailto:2233747@tongji.edu.cn">
-
           <i
             class="fa-solid fa-envelope link-icon"
             aria-hidden="true"
           ></i>
-
           Email
-
         </a>
 
-
         <a href="Sun_Mingli_CV.pdf">
-
           <i
             class="fa-solid fa-file-pdf link-icon"
             aria-hidden="true"
           ></i>
-
           CV
-
         </a>
-
 
         <a
           href="https://github.com/Mingliiiii?tab=repositories"
           target="_blank"
           rel="noreferrer noopener"
         >
-
           <i
             class="fa-brands fa-github link-icon"
             aria-hidden="true"
           ></i>
-
           GitHub
-
         </a>
-
 
         <a
           href="https://www.researchgate.net/profile/Mingli-Sun-4"
           target="_blank"
           rel="noreferrer noopener"
         >
-
           <i
             class="fa-brands fa-researchgate link-icon"
             aria-hidden="true"
           ></i>
-
           ResearchGate
-
         </a>
-
 
         <a
           href="https://scholar.google.com/citations?user=ayEBnm4AAAAJ&hl=zh-CN&authuser=1"
           target="_blank"
           rel="noreferrer noopener"
         >
-
           <i
             class="fa-solid fa-graduation-cap link-icon"
             aria-hidden="true"
           ></i>
-
           Google Scholar
-
         </a>
 
       </div>
@@ -1262,9 +1201,9 @@
     </section>
 
 
-    <!-- ═══════════════════════════════════════════════════════
+    <!-- =======================================================
          Research Interest
-         ═══════════════════════════════════════════════════════ -->
+         ======================================================= -->
 
     <section id="research-interest">
 
@@ -1272,11 +1211,8 @@
         Research Interest
       </span>
 
-
       <p>
-
         <span class="highlight-pink">
-
           My research sits at the intersection of technology and art,
           exploring how design knowledge can be represented, learned,
           and transformed through machine computing. I am fascinated
@@ -1286,31 +1222,24 @@
           craftsmanship interact. My prior work investigates these
           questions through graph learning, generative AI and
           imitation learning.
-
         </span>
-
       </p>
 
-
       <p>
-
         <span class="highlight-pink">
-
           In addition, I am engaged with the theoretical and empirical
           study of human-AI interaction, exploring its broader
           implications for design practice. I am also interested in
           the philosophy of technology.
-
         </span>
-
       </p>
 
     </section>
 
 
-    <!-- ═══════════════════════════════════════════════════════
+    <!-- =======================================================
          Research Projects
-         ═══════════════════════════════════════════════════════ -->
+         ======================================================= -->
 
     <section id="research">
 
@@ -1318,127 +1247,115 @@
         Research Projects
       </span>
 
-
       <p class="section-sublabel">
-
         Projects led or primarily executed, 2023–2026.
         Detailed roles and contributions are available in my
-
-        <a href="Sun_Mingli_CV.pdf">
-          CV
-        </a>.
-
+        <a href="Sun_Mingli_CV.pdf">CV</a>.
       </p>
 
 
-      <!-- ═══════════════════════════════════════════════════
-           FIRST PROJECT — FEATURED
-           ═══════════════════════════════════════════════════ -->
+      <!-- =====================================================
+           Project 01
+           ===================================================== -->
 
-      <div class="research-item research-item--featured">
+      <div class="research-item">
 
-
-        <!-- Video -->
-
-        <div class="research-media">
-
-          <video
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="metadata"
-          >
-
-            <source
-              src="rotation.mp4"
-              type="video/mp4"
-            >
-
-            Your browser does not support the video tag.
-
-          </video>
-
+        <!-- Year is independent -->
+        <div class="research-meta">
+          2026
         </div>
 
 
-        <!-- Project Text -->
+        <!--
+          Video + project text begin here.
 
-        <div class="research-content">
+          The video height will be synchronized
+          to the actual height of .research-content.
+        -->
 
+        <div class="research-main">
 
-          <div class="research-meta">
-            2026
+          <div class="research-media">
+
+            <video
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              aria-label="Graph-Based Generative Design of Mortise-and-Tenon Joints in Timber Structures"
+            >
+              <source
+                src="rotation.mp4"
+                type="video/mp4"
+              >
+            </video>
+
           </div>
 
 
-          <h3>
+          <div class="research-content">
 
-            <a
-              class="research-title-link"
-              href="https://www.youtube.com/watch?v=u5Ec4ELluCE"
-              target="_blank"
-              rel="noreferrer noopener"
-              aria-label="Watch Graph-Based Generative Design of Mortise-and-Tenon Joints in Timber Structures on YouTube"
-              title="Watch project video on YouTube"
-            >
+            <h3>
 
-              Graph-Based Generative Design of Mortise-and-Tenon Joints in Timber Structures
+              <a
+                href="https://www.youtube.com/watch?v=u5Ec4ELluCE"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="Watch project video on YouTube"
+                title="Watch project video on YouTube"
+              >
+                Graph-Based Generative Design of Mortise-and-Tenon
+                Joints in Timber Structures
+              </a>
 
-            </a>
-
-          </h3>
-
-
-          <p class="subtitle">
-
-            Graph Learning · Mortise-and-Tenon Joints · Algorithm Design
-
-          </p>
+            </h3>
 
 
-          <p class="desc">
-
-            Leveraging GNNs to capture the geometric, topological,
-            and mechanical features of mortise-and-tenon joints,
-            this project transforms the experience-based craftsmanship
-            into a digital and intelligent-driven paradigm.
-
-          </p>
+            <p class="subtitle">
+              Graph Learning · Mortise-and-Tenon Joints · Algorithm Design
+            </p>
 
 
-          <p class="venue">
+            <p class="desc">
+              Leveraging GNNs to capture the geometric, topological,
+              and mechanical features of mortise-and-tenon joints,
+              this project transforms the experience-based craftsmanship
+              into a digital and intelligent-driven paradigm.
+            </p>
 
-            The 8th International Conference on Computational Design
-            and Robotic Fabrication (CDRF 2026) · Accepted
 
-            <a
-              class="youtube-link"
-              href="https://www.youtube.com/watch?v=u5Ec4ELluCE"
-              target="_blank"
-              rel="noreferrer noopener"
-              aria-label="Watch project video on YouTube"
-              title="Watch project video on YouTube"
-            >
+            <p class="venue">
 
-              <i
-                class="fa-brands fa-youtube"
-                aria-hidden="true"
-              ></i>
+              The 8th International Conference on Computational Design
+              and Robotic Fabrication (CDRF 2026) · Accepted
 
-            </a>
+              <a
+                class="youtube-link"
+                href="https://www.youtube.com/watch?v=u5Ec4ELluCE"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="Watch project video on YouTube"
+                title="Watch project video on YouTube"
+              >
+                <i
+                  class="fa-brands fa-youtube"
+                  aria-hidden="true"
+                ></i>
+              </a>
 
-          </p>
+            </p>
 
+          </div>
 
         </div>
 
       </div>
 
 
-      <!-- ═══════════════════════════════════════════════════
-           SECOND PROJECT
-           ═══════════════════════════════════════════════════ -->
+      <!-- =====================================================
+           Project 02
+           ===================================================== -->
 
       <div class="research-item">
 
@@ -1447,29 +1364,20 @@
         </div>
 
         <h3>
-
           Generative AI Images for Early Conceptual Design:
           A Creativity Support Index (CSI) Study
-
         </h3>
 
-
         <p class="subtitle">
-
           Diffusion Models · Generative AI · Human–AI Interaction
-
         </p>
-
 
         <p class="desc">
-
           This study investigates how generative AI images influence
           early conceptual design, employing the Creativity Support
-          Index (CSI) and verbal protocol analysis to study human–AI
-          interaction.
-
+          Index (CSI) and verbal protocol analysis to study
+          human–AI interaction.
         </p>
-
 
         <p class="venue">
 
@@ -1481,7 +1389,7 @@
             CAADRIA 2025
           </a>
 
-          &
+          &amp;
 
           <a
             href="https://doi.org/10.3929/ethz-b-000728788"
@@ -1496,9 +1404,9 @@
       </div>
 
 
-      <!-- ═══════════════════════════════════════════════════
-           THIRD PROJECT
-           ═══════════════════════════════════════════════════ -->
+      <!-- =====================================================
+           Project 03
+           ===================================================== -->
 
       <div class="research-item">
 
@@ -1507,32 +1415,23 @@
         </div>
 
         <h3>
-
-          An Imitation Learning-Based Design Agent for Modular
-          Assembly-Oriented Structures
-
+          An Imitation Learning-Based Design Agent for
+          Modular Assembly-Oriented Structures
         </h3>
 
-
         <p class="subtitle">
-
           Generative Adversarial Imitation Learning (GAIL) ·
           Proximal Policy Optimization (PPO) · Unity3D ·
           ML-Agents · Human–AI Interaction
-
         </p>
 
-
         <p class="desc">
-
           Trains an agent through Generative Adversarial Imitation
           Learning (GAIL) and Proximal Policy Optimization (PPO)
           in Unity3D with ML-Agents Toolkit, using human demonstration
           trajectories to learn design reasoning strategies for
           modular assembly-oriented structures.
-
         </p>
-
 
         <p class="venue">
 
@@ -1549,9 +1448,9 @@
       </div>
 
 
-      <!-- ═══════════════════════════════════════════════════
-           FOURTH PROJECT
-           ═══════════════════════════════════════════════════ -->
+      <!-- =====================================================
+           Project 04
+           ===================================================== -->
 
       <div class="research-item">
 
@@ -1559,30 +1458,20 @@
           2025–26
         </div>
 
-
         <h3>
-
           Intelligent Robotic System for High-Rise Building
           Façade Finishing
-
         </h3>
 
-
         <p class="subtitle">
-
           Construction Robotics · Field Testing · Algorithm Design
-
         </p>
 
-
         <p class="desc">
-
           Contributes to the later-stage validation, parametrically
           models operation and environment, defines evaluation metrics
           for operational performance, and validates through field testing.
-
         </p>
-
 
         <p class="venue">
 
@@ -1601,9 +1490,9 @@
     </section>
 
 
-    <!-- ═══════════════════════════════════════════════════════
+    <!-- =======================================================
          Publications
-         ═══════════════════════════════════════════════════════ -->
+         ======================================================= -->
 
     <section id="publications">
 
@@ -1621,20 +1510,13 @@
         <div>
 
           <div class="pub-title">
-
-            Intelligent Robotic Sanding System for Building
-            Exterior Walls Integrated with Residential Building
-            Manufacturing Machines
-
+            Intelligent Robotic Sanding System for Building Exterior
+            Walls Integrated with Residential Building Manufacturing Machines
           </div>
-
 
           <div class="pub-authors">
-
-            <strong>Mingli Sun</strong> & Hua Chai
-
+            <strong>Mingli Sun</strong> &amp; Hua Chai
           </div>
-
 
           <div class="pub-venue">
 
@@ -1664,30 +1546,22 @@
         <div>
 
           <div class="pub-title">
-
             Graph-Based Generative Design of Mortise-and-Tenon
             Joints in Timber Structures
-
           </div>
 
-
           <div class="pub-authors">
-
             <strong>Mingli Sun</strong>,
             Ying Zhou,
             Yuancao Liu,
             Yuxuan Zhu,
             Qinhui Yang,
             Yige Liu,
-            & Hua Chai
-
+            &amp; Hua Chai
           </div>
 
-
           <div class="pub-venue">
-
             CDRF 2026 Accepted · EI
-
           </div>
 
         </div>
@@ -1704,21 +1578,15 @@
         <div>
 
           <div class="pub-title">
-
             Text-Guided Fine-Tuning Diffusion Model Enhanced
             the Spatial Envision of Modular Structures
-
           </div>
-
 
           <div class="pub-authors">
-
             <strong>Mingli Sun</strong>,
             Jianhao Chen,
-            & Kostas Terzidis
-
+            &amp; Kostas Terzidis
           </div>
-
 
           <div class="pub-venue">
 
@@ -1748,22 +1616,15 @@
         <div>
 
           <div class="pub-title">
-
-            Facilitation or Inhibition: The Influence of
-            Generative Artificial Intelligence on Design Reasoning
-            for Modular Structures
-
+            Facilitation or Inhibition: The Influence of Generative
+            Artificial Intelligence on Design Reasoning for Modular Structures
           </div>
-
 
           <div class="pub-authors">
-
             <strong>Mingli Sun</strong>,
             Kostas Terzidis,
-            & Jianhao Chen
-
+            &amp; Jianhao Chen
           </div>
-
 
           <div class="pub-venue">
 
@@ -1793,21 +1654,15 @@
         <div>
 
           <div class="pub-title">
-
             Co-Intelligent Design Toward Modular Structures
-
           </div>
 
-
           <div class="pub-authors">
-
             <strong>Mingli Sun</strong>,
             Peter Buš,
             Jianhao Chen,
-            & Kenan Sun
-
+            &amp; Kenan Sun
           </div>
-
 
           <div class="pub-venue">
 
@@ -1830,9 +1685,9 @@
     </section>
 
 
-    <!-- ═══════════════════════════════════════════════════════
+    <!-- =======================================================
          Academic Experience
-         ═══════════════════════════════════════════════════════ -->
+         ======================================================= -->
 
     <section id="experience">
 
@@ -1842,7 +1697,6 @@
 
 
       <div class="timeline">
-
 
         <div class="timeline-item">
 
@@ -1913,9 +1767,9 @@
     </section>
 
 
-    <!-- ═══════════════════════════════════════════════════════
+    <!-- =======================================================
          Education
-         ═══════════════════════════════════════════════════════ -->
+         ======================================================= -->
 
     <section id="education">
 
@@ -1925,7 +1779,6 @@
 
 
       <div class="timeline">
-
 
         <div class="timeline-item">
 
@@ -1964,7 +1817,7 @@
 
             <span class="institution">
               Mechanical and Electrical Engineering School,
-              Beijing Information Science & Technology University
+              Beijing Information Science &amp; Technology University
             </span>
 
           </div>
@@ -1976,19 +1829,18 @@
     </section>
 
 
-    <!-- ═══════════════════════════════════════════════════════
+    <!-- =======================================================
          Awards
-         ═══════════════════════════════════════════════════════ -->
+         ======================================================= -->
 
     <section id="awards">
 
       <span class="section-label">
-        Honors, Awards & Grants
+        Honors, Awards &amp; Grants
       </span>
 
 
       <div class="awards-list">
-
 
         <div class="award-item">
 
@@ -2079,9 +1931,9 @@
     </section>
 
 
-    <!-- ═══════════════════════════════════════════════════════
+    <!-- =======================================================
          Colophon
-         ═══════════════════════════════════════════════════════ -->
+         ======================================================= -->
 
     <section
       class="colophon"
@@ -2092,11 +1944,8 @@
         Colophon
       </span>
 
-
       <p>
-
         This webpage is styled in the spirit of
-
         <a
           href="https://edwardtufte.github.io/tufte-css/"
           target="_blank"
@@ -2104,9 +1953,7 @@
         >
           Tufte CSS
         </a>.
-
         The typeface is
-
         <a
           href="https://edwardtufte.github.io/et-book/"
           target="_blank"
@@ -2114,9 +1961,7 @@
         >
           ET Book
         </a>.
-
         Content is authored by Sun Mingli with support from
-
         <a
           href="https://kimi.moonshot.cn/"
           target="_blank"
@@ -2124,9 +1969,7 @@
         >
           Kimi
         </a>.
-
       </p>
-
 
       <p>
         © 2026 Sun Mingli. All rights reserved.
@@ -2137,9 +1980,9 @@
   </main>
 
 
-  <!-- ═══════════════════════════════════════════════════════
+  <!-- =========================================================
        Footer
-       ═══════════════════════════════════════════════════════ -->
+       ========================================================= -->
 
   <footer class="site-footer">
 
@@ -2154,16 +1997,16 @@
   </footer>
 
 
-  <!-- ═══════════════════════════════════════════════════════
-       Theme Toggle
-       ═══════════════════════════════════════════════════════ -->
+  <!-- =========================================================
+       Theme toggle
+       ========================================================= -->
 
   <script>
 
     const toggle =
-      document.getElementById('theme-toggle');
+      document.getElementById("theme-toggle");
 
-    toggle.addEventListener('click', () => {
+    toggle.addEventListener("click", () => {
 
       const html =
         document.documentElement;
@@ -2172,9 +2015,9 @@
         html.dataset.theme;
 
       const next =
-        current === 'dark'
-          ? 'light'
-          : 'dark';
+        current === "dark"
+          ? "light"
+          : "dark";
 
       html.dataset.theme =
         next;
@@ -2182,7 +2025,7 @@
       try {
 
         localStorage.setItem(
-          'mingli-theme',
+          "mingli-theme",
           next
         );
 
@@ -2193,17 +2036,112 @@
   </script>
 
 
-  <!-- ═══════════════════════════════════════════════════════
-       Star Particle Effect
-       ═══════════════════════════════════════════════════════ -->
+  <!-- =========================================================
+       Sync first project video to text height
+       ========================================================= -->
+
+  <script>
+
+    function syncResearchVideo() {
+
+      const main =
+        document.querySelector(".research-main");
+
+      if (!main) return;
+
+      const media =
+        main.querySelector(".research-media");
+
+      const content =
+        main.querySelector(".research-content");
+
+      if (!media || !content) return;
+
+
+      /*
+        On desktop:
+
+        video height = content height
+        video width  = content height
+
+        Therefore the video is always a square.
+      */
+
+      if (window.innerWidth > 600) {
+
+        const height =
+          content.getBoundingClientRect().height;
+
+        media.style.width =
+          height + "px";
+
+        media.style.height =
+          height + "px";
+
+      }
+
+      /*
+        On mobile:
+
+        CSS controls the square size.
+      */
+
+      else {
+
+        media.style.width = "";
+        media.style.height = "";
+
+      }
+
+    }
+
+
+    /*
+      Wait until fonts and layout are ready.
+    */
+
+    window.addEventListener(
+      "load",
+      syncResearchVideo
+    );
+
+
+    /*
+      Recalculate when browser width changes.
+    */
+
+    window.addEventListener(
+      "resize",
+      syncResearchVideo
+    );
+
+
+    /*
+      Recalculate after fonts are loaded.
+    */
+
+    if (document.fonts) {
+
+      document.fonts.ready.then(
+        syncResearchVideo
+      );
+
+    }
+
+  </script>
+
+
+  <!-- =========================================================
+       Star particle effect
+       ========================================================= -->
 
   <script>
 
     (function() {
 
       const SYMBOLS =
-        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-          .split('');
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        .split("");
 
 
       function random(min, max) {
@@ -2215,13 +2153,17 @@
       }
 
 
-      function createStar(x, y, type) {
+      function createStar(
+        x,
+        y,
+        type
+      ) {
 
         const star =
-          document.createElement('span');
+          document.createElement("span");
 
         star.className =
-          'star-particle star-particle--' +
+          "star-particle star-particle--" +
           type;
 
         star.textContent =
@@ -2233,59 +2175,64 @@
           ];
 
         star.style.fontSize =
-          random(6, 26) + 'px';
+          random(6, 26) + "px";
 
         star.style.left =
-          x + 'px';
+          x + "px";
 
         star.style.top =
-          y + 'px';
+          y + "px";
 
 
         const angle =
           random(0, Math.PI * 2);
 
+
         const distance =
-          type === 'burst'
+          type === "burst"
             ? random(40, 140)
             : random(30, 100);
 
 
         star.style.setProperty(
-          '--star-x',
+          "--star-x",
           Math.cos(angle) *
-          distance +
-          'px'
+            distance +
+            "px"
         );
 
+
         star.style.setProperty(
-          '--star-y',
+          "--star-y",
           Math.sin(angle) *
-          distance +
-          'px'
+            distance +
+            "px"
         );
+
 
         star.style.setProperty(
-          '--star-r',
+          "--star-r",
           random(-180, 180) +
-          'deg'
+            "deg"
         );
 
 
-        document.body.appendChild(star);
+        document.body.appendChild(
+          star
+        );
 
 
         star.addEventListener(
-          'animationend',
+          "animationend",
           function() {
+
             star.remove();
+
           }
         );
 
       }
 
-
-      /* Trail */
 
       let lastX = -9999;
       let lastY = -9999;
@@ -2312,7 +2259,7 @@
           createStar(
             clientX,
             clientY,
-            'trail'
+            "trail"
           );
 
           lastX =
@@ -2327,7 +2274,7 @@
 
 
       document.addEventListener(
-        'mousemove',
+        "mousemove",
         function(e) {
 
           handleMove(
@@ -2340,11 +2287,13 @@
 
 
       document.addEventListener(
-        'touchmove',
+        "touchmove",
         function(e) {
 
           const touch =
             e.touches[0];
+
+          if (!touch) return;
 
           handleMove(
             touch.clientX,
@@ -2357,8 +2306,6 @@
         }
       );
 
-
-      /* Burst */
 
       function handleBurst(
         clientX,
@@ -2377,7 +2324,7 @@
               createStar(
                 clientX,
                 clientY,
-                'burst'
+                "burst"
               );
 
             },
@@ -2392,7 +2339,7 @@
       if (window.PointerEvent) {
 
         document.addEventListener(
-          'pointerdown',
+          "pointerdown",
           function(e) {
 
             handleBurst(
@@ -2403,10 +2350,12 @@
           }
         );
 
-      } else {
+      }
+
+      else {
 
         document.addEventListener(
-          'click',
+          "click",
           function(e) {
 
             handleBurst(
