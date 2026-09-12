@@ -522,13 +522,8 @@
     */
 
     .research-main {
-      display: grid;
-
-      grid-template-columns: auto minmax(0, 1fr);
-
-      gap: 1rem;
-
-      align-items: start;
+      /* 修改：去掉 Grid 布局，改为块级布局 */
+      display: block;
     }
 
     /*
@@ -536,13 +531,15 @@
       according to the actual height of .research-content.
     */
 
+    /* 修改：改为浮动布局，让文字环绕视频，并自动对齐右侧整体高度 */
     .research-media {
-      width: 0;
-      height: 0;
-
+      float: left;
+      width: auto;
+      height: auto;
       overflow: hidden;
-
-      flex-shrink: 0;
+      margin-right: 1rem;
+      margin-bottom: 0.5rem;
+      border-radius: 4px;
     }
 
     .research-media video {
@@ -556,6 +553,13 @@
 
     .research-content {
       min-width: 0;
+    }
+
+    /* 修改：清除浮动，保证下一个项目正常排版 */
+    .research-item::after {
+      content: "";
+      display: table;
+      clear: both;
     }
 
     .research-meta {
@@ -973,22 +977,14 @@
         font-size: 1.5rem;
       }
 
-      /*
-        On small screens, stack the project media
-        and project text.
-      */
-
-      .research-main {
-        grid-template-columns: 1fr;
-
-        gap: 0.8rem;
-      }
-
+      /* 修改：移动端取消浮动，让视频正常堆叠 */
       .research-media {
-        width: min(100%, 12rem);
-        height: auto;
-
+        float: none;
+        width: min(100%, 12rem) !important;
+        height: auto !important;
         aspect-ratio: 1 / 1;
+        margin-right: 0;
+        margin-bottom: 1rem;
       }
 
       .pub-item {
@@ -1258,44 +1254,13 @@
 
       <div class="research-item">
 
-        <!-- Year is independent -->
-        <div class="research-meta">
-          2026
-        </div>
-
-
-        <!--
-          Video + project text begin here.
-
-          The video height will be synchronized
-          to the actual height of .research-content.
-        -->
-
         <div class="research-main">
 
-          <div class="research-media">
-
-            <video
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="metadata"
-              aria-label="Graph-Based Generative Design of Mortise-and-Tenon Joints in Timber Structures"
-            >
-              <source
-                src="rotation.mp4"
-                type="video/mp4"
-              >
-            </video>
-
-          </div>
-
-
+          <!-- 修改：将年份移入 research-content 中，让视频可以同时对齐年份和标题 -->
           <div class="research-content">
-
+            <div class="research-meta">2026</div>
+            
             <h3>
-
               <a
                 href="https://www.youtube.com/watch?v=u5Ec4ELluCE"
                 target="_blank"
@@ -1306,14 +1271,11 @@
                 Graph-Based Generative Design of Mortise-and-Tenon
                 Joints in Timber Structures
               </a>
-
             </h3>
-
 
             <p class="subtitle">
               Graph Learning · Mortise-and-Tenon Joints · Algorithm Design
             </p>
-
 
             <p class="desc">
               Leveraging GNNs to capture the geometric, topological,
@@ -1322,9 +1284,7 @@
               into a digital and intelligent-driven paradigm.
             </p>
 
-
             <p class="venue">
-
               The 8th International Conference on Computational Design
               and Robotic Fabrication (CDRF 2026) · Accepted
 
@@ -1341,9 +1301,24 @@
                   aria-hidden="true"
                 ></i>
               </a>
-
             </p>
+          </div>
 
+          <!-- 修改：视频移动到 content 后面，方便用 float 实现文字环绕 -->
+          <div class="research-media">
+            <video
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              aria-label="Graph-Based Generative Design of Mortise-and-Tenon Joints in Timber Structures"
+            >
+              <source
+                src="rotation.mp4"
+                type="video/mp4"
+              >
+            </video>
           </div>
 
         </div>
