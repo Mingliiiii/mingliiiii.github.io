@@ -558,35 +558,56 @@
       font-size: 0.9rem;
 
       color: var(--text-secondary);
+
+      margin-bottom: 0;
     }
 
 
     /* ═══════════════════════════════════════════════════════
-       FIRST RESEARCH PROJECT — MEDIA + TEXT
+       FEATURED RESEARCH PROJECT
+       Video + Text
        ═══════════════════════════════════════════════════════ */
 
     .research-item--featured {
       display: grid;
 
+      /*
+       * Left: square video
+       * Right: project text
+       */
       grid-template-columns:
         180px
         minmax(0, 1fr);
 
-      gap: 1.5rem;
+      column-gap: 1.5rem;
 
-      align-items: start;
+      /*
+       * Both columns start from exactly
+       * the same top baseline.
+       */
+      align-items: stretch;
     }
 
+    /*
+     * The media column stretches to the
+     * exact height of the text column.
+     */
     .research-item--featured .research-media {
       width: 180px;
+      height: 100%;
 
-      aspect-ratio: 1 / 1;
+      min-height: 180px;
 
       overflow: hidden;
 
       background: var(--border);
+
+      align-self: stretch;
     }
 
+    /*
+     * Video fills the entire media column.
+     */
     .research-item--featured .research-media video {
       display: block;
 
@@ -598,12 +619,51 @@
       border: none;
     }
 
+    /*
+     * Prevents long words from forcing
+     * the right column wider.
+     */
     .research-item--featured .research-content {
       min-width: 0;
+
+      height: 100%;
     }
 
     .research-item--featured .research-meta {
       margin-top: 0;
+    }
+
+
+    /* ═══════════════════════════════════════════════════════
+       Project Title → YouTube
+       ═══════════════════════════════════════════════════════ */
+
+    .research-title-link {
+      color: var(--text);
+
+      text-decoration: none;
+
+      /*
+       * Invisible line by default.
+       * It appears on hover.
+       */
+      border-bottom:
+        1px solid transparent;
+
+      text-decoration-thickness: 1px;
+
+      transition:
+        border-color 0.2s ease,
+        color 0.2s ease;
+    }
+
+    .research-title-link:hover {
+      color: var(--text);
+
+      text-decoration: none;
+
+      border-bottom-color:
+        var(--text);
     }
 
 
@@ -614,6 +674,10 @@
     .youtube-link {
       display: inline-block;
 
+      /*
+       * Space between "Accepted"
+       * and the icon.
+       */
       margin-left: 0.6em;
 
       color: var(--text-secondary);
@@ -958,18 +1022,31 @@
       }
 
 
-      /* Featured research project becomes vertical */
+      /* Featured project becomes vertical */
 
       .research-item--featured {
         grid-template-columns: 1fr;
 
-        gap: 1rem;
+        row-gap: 1rem;
+
+        align-items: start;
       }
 
       .research-item--featured .research-media {
         width: 100%;
 
+        height: auto;
+
+        min-height: 0;
+
         aspect-ratio: 1 / 1;
+      }
+
+      .research-item--featured .research-media video {
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
       }
 
     }
@@ -993,7 +1070,9 @@
   <!-- Theme initialization -->
 
   <script>
+
     try {
+
       const saved =
         localStorage.getItem("mingli-theme");
 
@@ -1006,12 +1085,14 @@
         saved || preferred;
 
     } catch (_) {}
+
   </script>
 
 
   <!-- Structured data -->
 
   <script type="application/ld+json">
+
   {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -1030,12 +1111,18 @@
       }
     ]
   }
+
   </script>
 
 </head>
 
 
 <body>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       Header
+       ═══════════════════════════════════════════════════════ -->
 
   <header class="site-header">
 
@@ -1072,19 +1159,26 @@
       <p class="hero-intro">
 
         <em>
+
           Academic experience at
+
           <a href="https://tjdi.tongji.edu.cn/?lang=en">
             College of Design and Innovation (D&I)
           </a>,
+
           <a href="https://caup.tongji.edu.cn/caupen/">
             College of Architecture and Urban Planning (CAUP)
           </a>,
+
           Tongji University and
+
           <a href="https://www.coia.tech/">
             Co-Intelligent Architecture Lab
           </a>,
+
           Institute of Future Human Habitats,
           Tsinghua SIGS.
+
         </em>
 
       </p>
@@ -1093,55 +1187,74 @@
       <div class="hero-links">
 
         <a href="mailto:2233747@tongji.edu.cn">
+
           <i
             class="fa-solid fa-envelope link-icon"
             aria-hidden="true"
           ></i>
+
           Email
+
         </a>
 
+
         <a href="Sun_Mingli_CV.pdf">
+
           <i
             class="fa-solid fa-file-pdf link-icon"
             aria-hidden="true"
           ></i>
+
           CV
+
         </a>
+
 
         <a
           href="https://github.com/Mingliiiii?tab=repositories"
           target="_blank"
           rel="noreferrer noopener"
         >
+
           <i
             class="fa-brands fa-github link-icon"
             aria-hidden="true"
           ></i>
+
           GitHub
+
         </a>
+
 
         <a
           href="https://www.researchgate.net/profile/Mingli-Sun-4"
           target="_blank"
           rel="noreferrer noopener"
         >
+
           <i
             class="fa-brands fa-researchgate link-icon"
             aria-hidden="true"
           ></i>
+
           ResearchGate
+
         </a>
+
 
         <a
           href="https://scholar.google.com/citations?user=ayEBnm4AAAAJ&hl=zh-CN&authuser=1"
           target="_blank"
           rel="noreferrer noopener"
         >
+
           <i
             class="fa-solid fa-graduation-cap link-icon"
             aria-hidden="true"
           ></i>
+
           Google Scholar
+
         </a>
 
       </div>
@@ -1159,8 +1272,11 @@
         Research Interest
       </span>
 
+
       <p>
+
         <span class="highlight-pink">
+
           My research sits at the intersection of technology and art,
           exploring how design knowledge can be represented, learned,
           and transformed through machine computing. I am fascinated
@@ -1170,16 +1286,23 @@
           craftsmanship interact. My prior work investigates these
           questions through graph learning, generative AI and
           imitation learning.
+
         </span>
+
       </p>
 
+
       <p>
+
         <span class="highlight-pink">
+
           In addition, I am engaged with the theoretical and empirical
           study of human-AI interaction, exploring its broader
           implications for design practice. I am also interested in
           the philosophy of technology.
+
         </span>
+
       </p>
 
     </section>
@@ -1195,18 +1318,27 @@
         Research Projects
       </span>
 
+
       <p class="section-sublabel">
+
         Projects led or primarily executed, 2023–2026.
         Detailed roles and contributions are available in my
+
         <a href="Sun_Mingli_CV.pdf">
           CV
         </a>.
+
       </p>
 
 
-      <!-- FIRST PROJECT: VIDEO + TEXT -->
+      <!-- ═══════════════════════════════════════════════════
+           FIRST PROJECT — FEATURED
+           ═══════════════════════════════════════════════════ -->
 
       <div class="research-item research-item--featured">
+
+
+        <!-- Video -->
 
         <div class="research-media">
 
@@ -1217,36 +1349,63 @@
             playsinline
             preload="metadata"
           >
+
             <source
               src="rotation.mp4"
               type="video/mp4"
             >
+
             Your browser does not support the video tag.
+
           </video>
 
         </div>
 
 
+        <!-- Project Text -->
+
         <div class="research-content">
+
 
           <div class="research-meta">
             2026
           </div>
 
+
           <h3>
-            Graph-Based Generative Design of Mortise-and-Tenon Joints in Timber Structures
+
+            <a
+              class="research-title-link"
+              href="https://www.youtube.com/watch?v=u5Ec4ELluCE"
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label="Watch Graph-Based Generative Design of Mortise-and-Tenon Joints in Timber Structures on YouTube"
+              title="Watch project video on YouTube"
+            >
+
+              Graph-Based Generative Design of Mortise-and-Tenon Joints in Timber Structures
+
+            </a>
+
           </h3>
 
+
           <p class="subtitle">
+
             Graph Learning · Mortise-and-Tenon Joints · Algorithm Design
+
           </p>
 
+
           <p class="desc">
+
             Leveraging GNNs to capture the geometric, topological,
             and mechanical features of mortise-and-tenon joints,
             this project transforms the experience-based craftsmanship
             into a digital and intelligent-driven paradigm.
+
           </p>
+
 
           <p class="venue">
 
@@ -1261,20 +1420,25 @@
               aria-label="Watch project video on YouTube"
               title="Watch project video on YouTube"
             >
+
               <i
                 class="fa-brands fa-youtube"
                 aria-hidden="true"
               ></i>
+
             </a>
 
           </p>
+
 
         </div>
 
       </div>
 
 
-      <!-- SECOND PROJECT -->
+      <!-- ═══════════════════════════════════════════════════
+           SECOND PROJECT
+           ═══════════════════════════════════════════════════ -->
 
       <div class="research-item">
 
@@ -1283,20 +1447,29 @@
         </div>
 
         <h3>
+
           Generative AI Images for Early Conceptual Design:
           A Creativity Support Index (CSI) Study
+
         </h3>
 
+
         <p class="subtitle">
+
           Diffusion Models · Generative AI · Human–AI Interaction
+
         </p>
 
+
         <p class="desc">
+
           This study investigates how generative AI images influence
           early conceptual design, employing the Creativity Support
           Index (CSI) and verbal protocol analysis to study human–AI
           interaction.
+
         </p>
+
 
         <p class="venue">
 
@@ -1323,7 +1496,9 @@
       </div>
 
 
-      <!-- THIRD PROJECT -->
+      <!-- ═══════════════════════════════════════════════════
+           THIRD PROJECT
+           ═══════════════════════════════════════════════════ -->
 
       <div class="research-item">
 
@@ -1332,23 +1507,32 @@
         </div>
 
         <h3>
+
           An Imitation Learning-Based Design Agent for Modular
           Assembly-Oriented Structures
+
         </h3>
 
+
         <p class="subtitle">
+
           Generative Adversarial Imitation Learning (GAIL) ·
           Proximal Policy Optimization (PPO) · Unity3D ·
           ML-Agents · Human–AI Interaction
+
         </p>
 
+
         <p class="desc">
+
           Trains an agent through Generative Adversarial Imitation
           Learning (GAIL) and Proximal Policy Optimization (PPO)
           in Unity3D with ML-Agents Toolkit, using human demonstration
           trajectories to learn design reasoning strategies for
           modular assembly-oriented structures.
+
         </p>
+
 
         <p class="venue">
 
@@ -1365,7 +1549,9 @@
       </div>
 
 
-      <!-- FOURTH PROJECT -->
+      <!-- ═══════════════════════════════════════════════════
+           FOURTH PROJECT
+           ═══════════════════════════════════════════════════ -->
 
       <div class="research-item">
 
@@ -1373,20 +1559,30 @@
           2025–26
         </div>
 
+
         <h3>
+
           Intelligent Robotic System for High-Rise Building
           Façade Finishing
+
         </h3>
 
+
         <p class="subtitle">
+
           Construction Robotics · Field Testing · Algorithm Design
+
         </p>
 
+
         <p class="desc">
+
           Contributes to the later-stage validation, parametrically
           models operation and environment, defines evaluation metrics
           for operational performance, and validates through field testing.
+
         </p>
+
 
         <p class="venue">
 
@@ -1425,14 +1621,20 @@
         <div>
 
           <div class="pub-title">
+
             Intelligent Robotic Sanding System for Building
             Exterior Walls Integrated with Residential Building
             Manufacturing Machines
+
           </div>
 
+
           <div class="pub-authors">
+
             <strong>Mingli Sun</strong> & Hua Chai
+
           </div>
+
 
           <div class="pub-venue">
 
@@ -1462,9 +1664,12 @@
         <div>
 
           <div class="pub-title">
+
             Graph-Based Generative Design of Mortise-and-Tenon
             Joints in Timber Structures
+
           </div>
+
 
           <div class="pub-authors">
 
@@ -1478,8 +1683,11 @@
 
           </div>
 
+
           <div class="pub-venue">
+
             CDRF 2026 Accepted · EI
+
           </div>
 
         </div>
@@ -1496,15 +1704,21 @@
         <div>
 
           <div class="pub-title">
+
             Text-Guided Fine-Tuning Diffusion Model Enhanced
             the Spatial Envision of Modular Structures
+
           </div>
 
+
           <div class="pub-authors">
+
             <strong>Mingli Sun</strong>,
             Jianhao Chen,
             & Kostas Terzidis
+
           </div>
+
 
           <div class="pub-venue">
 
@@ -1534,10 +1748,13 @@
         <div>
 
           <div class="pub-title">
+
             Facilitation or Inhibition: The Influence of
             Generative Artificial Intelligence on Design Reasoning
             for Modular Structures
+
           </div>
+
 
           <div class="pub-authors">
 
@@ -1546,6 +1763,7 @@
             & Jianhao Chen
 
           </div>
+
 
           <div class="pub-venue">
 
@@ -1575,8 +1793,11 @@
         <div>
 
           <div class="pub-title">
+
             Co-Intelligent Design Toward Modular Structures
+
           </div>
+
 
           <div class="pub-authors">
 
@@ -1586,6 +1807,7 @@
             & Kenan Sun
 
           </div>
+
 
           <div class="pub-venue">
 
@@ -1617,6 +1839,7 @@
       <span class="section-label">
         Academic Experience
       </span>
+
 
       <div class="timeline">
 
@@ -1700,6 +1923,7 @@
         Education
       </span>
 
+
       <div class="timeline">
 
 
@@ -1761,6 +1985,7 @@
       <span class="section-label">
         Honors, Awards & Grants
       </span>
+
 
       <div class="awards-list">
 
@@ -1867,9 +2092,11 @@
         Colophon
       </span>
 
+
       <p>
 
         This webpage is styled in the spirit of
+
         <a
           href="https://edwardtufte.github.io/tufte-css/"
           target="_blank"
@@ -1879,6 +2106,7 @@
         </a>.
 
         The typeface is
+
         <a
           href="https://edwardtufte.github.io/et-book/"
           target="_blank"
@@ -1888,6 +2116,7 @@
         </a>.
 
         Content is authored by Sun Mingli with support from
+
         <a
           href="https://kimi.moonshot.cn/"
           target="_blank"
@@ -1897,6 +2126,7 @@
         </a>.
 
       </p>
+
 
       <p>
         © 2026 Sun Mingli. All rights reserved.
