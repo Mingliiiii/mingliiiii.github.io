@@ -512,6 +512,7 @@
       项目 01：Grid 两列。
       左列 = 正方形视频，边长由 JS 动态设定为「右侧测量块」高度。
       右列 = 2026 + 测量块（标题/副标题/描述/venue）。
+      align-items: center 让视频与右侧内容垂直居中对齐。
     */
 
     .research-video-block {
@@ -521,7 +522,7 @@
 
       gap: 1.2rem;
 
-      align-items: start;
+      align-items: center;
 
       margin-bottom: 0.5rem;
     }
@@ -535,15 +536,7 @@
 
       overflow: hidden;
 
-      border-radius: 6px;
-
       flex-shrink: 0;
-
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-    }
-
-    [data-theme="dark"] .research-video-media {
-      box-shadow: 0 1px 3px rgba(255, 255, 255, 0.06);
     }
 
     .research-video-media video {
@@ -560,7 +553,7 @@
       min-width: 0;
     }
 
-    /* 上方「2026」：与视频顶端对齐 */
+    /* 上方「2026」 */
     .research-video-year {
       font-family: var(--font);
 
@@ -571,9 +564,6 @@
       color: var(--text-secondary);
 
       line-height: 1.2;
-
-      /* 负外边距让「2026」视觉顶端与视频顶端齐平 */
-      margin-top: -0.15rem;
 
       margin-bottom: 0.25rem;
     }
@@ -983,6 +973,8 @@
         grid-template-columns: 1fr;
 
         gap: 0.8rem;
+
+        align-items: start;
       }
 
       .research-video-media {
@@ -990,10 +982,6 @@
         height: auto;
 
         aspect-ratio: 1 / 1;
-      }
-
-      .research-video-year {
-        margin-top: 0;
       }
 
       .pub-item {
@@ -1219,7 +1207,7 @@
 
 
       <!-- =====================================================
-           Project 01 — 左右并排，视频正方形边长 = 右侧测量块高度
+           Project 01 — 左右并排，视频与右侧内容垂直居中
            ===================================================== -->
 
       <div class="research-item">
@@ -1247,7 +1235,7 @@
 
           <div class="research-video-content">
 
-            <!-- 年份：与视频顶端对齐 -->
+            <!-- 年份 -->
             <div class="research-video-year">
               2026
             </div>
@@ -1979,7 +1967,6 @@
 
       if (window.innerWidth > 600) {
 
-        // 读取测量块（标题 + 副标题 + 描述 + venue）高度
         const h =
           measure.getBoundingClientRect().height;
 
@@ -1992,7 +1979,6 @@
 
       } else {
 
-        // 移动端由 CSS 控制
         media.style.width = "";
         media.style.height = "";
 
@@ -2007,7 +1993,6 @@
       document.fonts.ready.then(syncProjectVideo);
     }
 
-    // 视频元数据加载后，再同步一次（防止字体/换行还没稳定）
     document.addEventListener("DOMContentLoaded", function() {
       const v = document.querySelector("#project-01-media video");
       if (v) {
