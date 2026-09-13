@@ -1071,18 +1071,18 @@
 
   <script>
   document.addEventListener("DOMContentLoaded", function () {
-  const video = document.querySelector("#project-01-media video");
+    const video = document.querySelector("#project-01-media video");
 
-  if (!video) return;
+    if (!video) return;
+    
+    video.muted = true;
+    video.playsInline = true;
 
-  video.muted = true;
-  video.playsInline = true;
-
-  video.play().catch(function () {
-    console.log("Autoplay was blocked.");
+    video.play().catch(function () {
+      console.log("Autoplay was blocked.");
+    });
   });
-  });
- </script>  
+  </script>  
 
 <body>
 
@@ -1287,7 +1287,7 @@
 
               <p class="venue">
                 The 8th International Conference on Computational Design
-                and Robotic Fabrication (CDRF 2026) · Accepted
+                and Robotic Fabrication (CDRF 2026) · <a href="https://github.com/Mingliiiii/mingliiiii.github.io/blob/master/Graph-Based%20Generative%20Design%20of%20Mortise-and-Tenon%20Joints%20in%20Timber%20Structures.pdf" target="_blank" rel="noreferrer noopener"> Accepted </a>
 
                 <a
                   class="youtube-link"
@@ -1514,7 +1514,7 @@
           </div>
 
           <div class="pub-venue">
-            CDRF 2026 Accepted · EI
+            <a href="https://github.com/Mingliiiii/mingliiiii.github.io/blob/master/Graph-Based%20Generative%20Design%20of%20Mortise-and-Tenon%20Joints%20in%20Timber%20Structures.pdf" target="_blank" rel="noreferrer noopener"> CDRF 2026 Accepted </a> · EI
           </div>
 
         </div>
