@@ -1068,7 +1068,36 @@
   <base target="_blank">
 
 </head>
+  
+<script>
+  // 视频自动播放兜底：移动端首次触摸时强制播放
+  document.addEventListener("DOMContentLoaded", function () {
+    const video = document.querySelector("#project-01-media video");
+    if (!video) return;
 
+    // 尝试自动播放，如果失败则静默处理
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(function () {
+        // 自动播放被阻止，等待用户交互
+        console.log("自动播放被阻止，等待用户触摸。");
+      });
+    }
+
+    // 首次触摸/点击时强制播放
+    function tryPlay() {
+      if (video.paused) {
+        video.play().catch(function () {});
+      }
+      // 播放成功后移除监听，避免重复触发
+      document.removeEventListener("touchstart", tryPlay);
+      document.removeEventListener("click", tryPlay);
+    }
+
+    document.addEventListener("touchstart", tryPlay, { once: true, passive: true });
+    document.addEventListener("click", tryPlay, { once: true });
+  });
+</script>
 
 <body>
 
@@ -1221,8 +1250,10 @@
               muted
               loop
               playsinline
+              webkit-playsinline
               preload="metadata"
               aria-label="Graph-Based Generative Design of Mortise-and-Tenon Joints in Timber Structures"
+              autoplay
             >
               <source
                 src="rotation.mp4"
