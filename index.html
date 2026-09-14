@@ -1315,13 +1315,23 @@
            ===================================================== -->
 
      
-      <div class="research-item">
+     <div class="research-item">
 
-        <div class="research-video-block">
+       <div class="research-video-block">
 
-          <div class="research-video-media" id="project-02-media">
+    <!-- =========================
+         Project 02 Video
+         ========================= -->
 
-            <video
+         <div
+      class="research-video-media"
+      id="project-02-media"
+      style="
+        overflow: hidden;
+      "
+         >
+
+           <video
         autoplay
         muted
         loop
@@ -1329,84 +1339,225 @@
         webkit-playsinline
         preload="auto"
         aria-label="Generative AI Images for Early Conceptual Design"
-            >
-              <source
+        style="
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transform: scale(1.35);
+          transform-origin: center center;
+        "
+           >
+
+        <source
           src="p2.mp4"
           type="video/mp4"
-              >
-            </video>
+        >
 
-          </div>
+           </video>
 
-
-          <div class="research-video-content">
-
-            <!-- 年份 -->
-            <div class="research-video-year">
-              2024–25
-            </div>
+         </div>
 
 
-            <!-- 测量块：JS 将读取它的高度作为视频边长 -->
-            <div class="research-video-measure" id="project-02-measure">
+    <!-- =========================
+         Project 02 Text
+         ========================= -->
 
-              <h3>
+         <div class="research-video-content">
 
-                <a
+      <!-- 年份 -->
+           <div class="research-video-year">
+        2024–25
+           </div>
+
+
+      <!--
+        JS 会读取 Project 01 的文字高度，
+        并让 Project 02 使用完全相同的正方形尺寸
+      -->
+           <div
+        class="research-video-measure"
+        id="project-02-measure"
+           >
+
+             <h3>
+
+               <a
             href="https://doi.org/10.52842/conf.caadria.2025.1.049"
             target="_blank"
             rel="noreferrer noopener"
-                >
+               >
             Generative AI Images for Early Conceptual Design:
             A Creativity Support Index (CSI) Study
-                </a>
+               </a>
 
-              </h3>
-
-
-              <p class="subtitle">
-                Diffusion Models · Generative AI · Human–AI Interaction
-              </p>
+             </h3>
 
 
-              <p class="desc">
-                This study investigates how generative AI images influence
+             <p class="subtitle">
+          Diffusion Models · Generative AI · Human–AI Interaction
+             </p>
+
+
+             <p class="desc">
+          This study investigates how generative AI images influence
           early conceptual design, employing the Creativity Support
           Index (CSI) and verbal protocol analysis to study
           human–AI interaction.
-              </p>
+             </p>
 
 
-              <p class="venue">
-      
-                <a
+             <p class="venue">
+
+               <a
             href="https://doi.org/10.52842/conf.caadria.2025.1.049"
             target="_blank"
             rel="noreferrer noopener"
-                >
+               >
             CAADRIA 2025
-                </a>
+               </a>
 
-                &amp;
+               &amp;
 
-                <a
+               <a
             href="https://doi.org/10.3929/ethz-b-000728788"
             target="_blank"
             rel="noreferrer noopener"
-                >
-                  IASS 2024
-                </a>
+               >
+                 IASS 2024
+               </a>
+     
+             </p>
 
-              </p>
+           </div>
 
-            </div>
+         </div>
 
-          </div>
+       </div>
 
-        </div>
+     </div>
 
-      </div>
 
+<!-- =========================
+     Project 02 Size Sync
+     ========================= -->
+
+<script>
+
+(function () {
+
+  const project01Media =
+    document.getElementById("project-01-media");
+
+  const project02Media =
+    document.getElementById("project-02-media");
+
+
+  if (!project01Media || !project02Media) {
+    return;
+  }
+
+
+  function syncProject02() {
+
+    /*
+      Project 01 is the reference.
+
+      Whatever size Project 01 currently has,
+      Project 02 will use exactly the same size.
+    */
+
+    if (window.innerWidth > 600) {
+
+      const rect =
+        project01Media.getBoundingClientRect();
+
+      const size =
+        rect.width;
+
+      if (size > 0) {
+
+        project02Media.style.width =
+          size + "px";
+
+        project02Media.style.height =
+          size + "px";
+
+      }
+
+    }
+
+    /*
+      On mobile, return control to the
+      original responsive CSS.
+    */
+
+    else {
+
+      project02Media.style.width = "";
+      project02Media.style.height = "";
+
+    }
+
+  }
+
+
+  /*
+    Initial synchronization
+  */
+
+  window.addEventListener(
+    "load",
+    syncProject02
+  );
+
+
+  /*
+    Recalculate when the browser window changes
+  */
+
+  window.addEventListener(
+    "resize",
+    syncProject02
+  );
+
+
+  /*
+    Recalculate after fonts are loaded,
+    because Project 01's text height may change.
+  */
+
+  if (document.fonts) {
+
+    document.fonts.ready.then(
+      syncProject02
+    );
+
+  }
+
+
+  /*
+    Observe Project 01 itself.
+
+    If its size changes for any reason,
+    Project 02 follows automatically.
+  */
+
+  if (window.ResizeObserver) {
+
+    const observer =
+      new ResizeObserver(
+        syncProject02
+      );
+
+    observer.observe(
+      project01Media
+    );
+
+  }
+
+})();
+
+</script>
 
       <!-- =====================================================
            Project 03
