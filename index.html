@@ -508,17 +508,15 @@
       border-bottom: none;
     }
 
-    /*
-      项目 01：Grid 两列。
-      左列 = 正方形视频，边长由 JS 动态设定为「右侧测量块」高度。
-      右列 = 2026 + 测量块（标题/副标题/描述/venue）。
-      align-items: center 让视频与右侧内容垂直居中对齐。
-    */
+
+    /* =========================================================
+       Video projects
+       ========================================================= */
 
     .research-video-block {
       display: grid;
 
-      grid-template-columns: auto minmax(0, 1fr);
+      grid-template-columns: 160px minmax(0, 1fr);
 
       gap: 1.2rem;
 
@@ -527,7 +525,11 @@
       margin-bottom: 0.5rem;
     }
 
-    /* 初始尺寸由 JS 动态赋值；这里给个兜底，防止 JS 未生效时视频消失 */
+
+    /*
+      所有桌面端视频容器固定为 160 × 160 px
+    */
+
     .research-video-media {
       width: 160px;
       height: 160px;
@@ -537,7 +539,15 @@
       overflow: hidden;
 
       flex-shrink: 0;
+
+      position: relative;
     }
+
+
+    /*
+      默认视频：
+      完整填充 160 × 160 容器
+    */
 
     .research-video-media video {
       display: block;
@@ -546,14 +556,22 @@
       height: 100%;
 
       object-fit: cover;
+
+      transform: scale(1);
+
+      transform-origin: center center;
     }
 
+
     /* 右列内容区 */
+
     .research-video-content {
       min-width: 0;
     }
 
-    /* 上方「2026」 */
+
+    /* 年份 */
+
     .research-video-year {
       font-family: var(--font);
 
@@ -568,10 +586,13 @@
       margin-bottom: 0.25rem;
     }
 
-    /* 下方测量块：标题 + 副标题 + 描述 + venue */
+
+    /* 测量块 */
+
     .research-video-measure {
-      /* 这个容器就是 JS 要测量的目标 */
+      /* 不再用于计算视频尺寸 */
     }
+
 
     .research-item h3 {
       font-size: 1.15rem;
@@ -579,6 +600,7 @@
       font-weight: bold;
 
       margin-top: 0;
+
       margin-bottom: 0.25rem;
     }
 
@@ -968,7 +990,9 @@
         font-size: 1.5rem;
       }
 
+
       /* 移动端：视频与文字上下堆叠 */
+
       .research-video-block {
         grid-template-columns: 1fr;
 
@@ -977,12 +1001,15 @@
         align-items: start;
       }
 
+
       .research-video-media {
         width: min(100%, 12rem);
+
         height: auto;
 
         aspect-ratio: 1 / 1;
       }
+
 
       .pub-item {
         grid-template-columns: 1fr;
@@ -1028,7 +1055,9 @@
 
 
   <script>
+
     try {
+
       const saved =
         localStorage.getItem("mingli-theme");
 
@@ -1041,6 +1070,7 @@
         saved || preferred;
 
     } catch (_) {}
+
   </script>
 
 
@@ -1069,20 +1099,27 @@
 
 </head>
 
-  <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const video = document.querySelector("#project-01-media video");
 
-    if (!video) return;
-    
-    video.muted = true;
-    video.playsInline = true;
+<script>
 
-    video.play().catch(function () {
-      console.log("Autoplay was blocked.");
-    });
+document.addEventListener("DOMContentLoaded", function () {
+
+  const video =
+    document.querySelector("#project-01-media video");
+
+  if (!video) return;
+
+  video.muted = true;
+  video.playsInline = true;
+
+  video.play().catch(function () {
+    console.log("Autoplay was blocked.");
   });
-  </script>  
+
+});
+
+</script>
+
 
 <body>
 
@@ -1115,32 +1152,51 @@
       </p>
 
       <p class="hero-intro">
+
         <em>
+
           Academic experience at
+
           <a href="https://tjdi.tongji.edu.cn/?lang=en">
             College of Design and Innovation (D&amp;I)
           </a>,
+
           <a href="https://caup.tongji.edu.cn/caupen/">
             College of Architecture and Urban Planning (CAUP)
           </a>,
+
           Tongji University and
+
           <a href="https://www.coia.tech/">
             Co-Intelligent Architecture Lab
           </a>,
+
           Institute of Future Human Habitats, Tsinghua SIGS.
+
         </em>
+
       </p>
+
 
       <div class="hero-links">
 
         <a href="mailto:2233747@tongji.edu.cn">
-          <i class="fa-solid fa-envelope link-icon" aria-hidden="true"></i>
+          <i
+            class="fa-solid fa-envelope link-icon"
+            aria-hidden="true"
+          ></i>
           Email
         </a>
 
         <a href="Sun_Mingli_CV.pdf">
-          <i class="fa-solid fa-file-pdf link-icon" aria-hidden="true"></i>
+
+          <i
+            class="fa-solid fa-file-pdf link-icon"
+            aria-hidden="true"
+          ></i>
+
           CV
+
         </a>
 
         <a
@@ -1148,8 +1204,14 @@
           target="_blank"
           rel="noreferrer noopener"
         >
-          <i class="fa-brands fa-github link-icon" aria-hidden="true"></i>
+
+          <i
+            class="fa-brands fa-github link-icon"
+            aria-hidden="true"
+          ></i>
+
           GitHub
+
         </a>
 
         <a
@@ -1157,8 +1219,14 @@
           target="_blank"
           rel="noreferrer noopener"
         >
-          <i class="fa-brands fa-researchgate link-icon" aria-hidden="true"></i>
+
+          <i
+            class="fa-brands fa-researchgate link-icon"
+            aria-hidden="true"
+          ></i>
+
           ResearchGate
+
         </a>
 
         <a
@@ -1166,8 +1234,14 @@
           target="_blank"
           rel="noreferrer noopener"
         >
-          <i class="fa-solid fa-graduation-cap link-icon" aria-hidden="true"></i>
+
+          <i
+            class="fa-solid fa-graduation-cap link-icon"
+            aria-hidden="true"
+          ></i>
+
           Google Scholar
+
         </a>
 
       </div>
@@ -1181,8 +1255,11 @@
         Research Interest
       </span>
 
+
       <p>
+
         <span class="highlight-pink">
+
           My research sits at the intersection of technology and art,
           exploring how design knowledge can be represented, learned,
           and transformed through machine computing. I am fascinated
@@ -1192,16 +1269,23 @@
           craftsmanship interact. My prior work investigates these
           questions through graph learning, generative AI and
           imitation learning.
+
         </span>
+
       </p>
 
+
       <p>
+
         <span class="highlight-pink">
+
           In addition, I am engaged with the theoretical and empirical
           study of human-AI interaction, exploring its broader
           implications for design practice. I am also interested in
           the philosophy of technology.
+
         </span>
+
       </p>
 
     </section>
@@ -1213,22 +1297,29 @@
         Research Projects
       </span>
 
+
       <p class="section-sublabel">
+
         Projects led or primarily executed, 2023–2026.
         Detailed roles and contributions are available in my
         <a href="Sun_Mingli_CV.pdf">CV</a>.
+
       </p>
 
 
       <!-- =====================================================
-           Project 01 — 左右并排，视频与右侧内容垂直居中
+           Project 01
            ===================================================== -->
 
       <div class="research-item">
 
         <div class="research-video-block">
 
-          <div class="research-video-media" id="project-01-media">
+
+          <div
+            class="research-video-media"
+            id="project-01-media"
+          >
 
             <video
               autoplay
@@ -1238,12 +1329,13 @@
               webkit-playsinline
               preload="auto"
               aria-label="Graph-Based Generative Design of Mortise-and-Tenon Joints in Timber Structures"
-              
             >
+
               <source
                 src="rotation.mp4"
                 type="video/mp4"
               >
+
             </video>
 
           </div>
@@ -1251,13 +1343,16 @@
 
           <div class="research-video-content">
 
-            <!-- 年份 -->
+
             <div class="research-video-year">
               2026
             </div>
 
-            <!-- 测量块：JS 将读取它的高度作为视频边长 -->
-            <div class="research-video-measure" id="project-01-measure">
+
+            <div
+              class="research-video-measure"
+              id="project-01-measure"
+            >
 
               <h3>
 
@@ -1268,26 +1363,45 @@
                   aria-label="Watch project video on YouTube"
                   title="Watch project video on YouTube"
                 >
+
                   Graph-Based Generative Design of Mortise-and-Tenon
                   Joints in Timber Structures
+
                 </a>
 
               </h3>
 
+
               <p class="subtitle">
+
                 Graph Learning · Mortise-and-Tenon Joints · Algorithm Design
+
               </p>
 
+
               <p class="desc">
+
                 Leveraging GNNs to capture the geometric, topological,
                 and mechanical features of mortise-and-tenon joints,
                 this project transforms the experience-based craftsmanship
                 into a digital and intelligent-driven paradigm.
+
               </p>
 
+
               <p class="venue">
+
                 The 8th International Conference on Computational Design
-                and Robotic Fabrication (CDRF 2026) · <a href="https://github.com/Mingliiiii/mingliiiii.github.io/blob/master/Graph-Based%20Generative%20Design%20of%20Mortise-and-Tenon%20Joints%20in%20Timber%20Structures.pdf" target="_blank" rel="noreferrer noopener"> Accepted </a>
+                and Robotic Fabrication (CDRF 2026) ·
+
+                <a
+                  href="https://github.com/Mingliiiii/mingliiiii.github.io/blob/master/Graph-Based%20Generative%20Design%20of%20Mortise-and-Tenon%20Joints%20in%20Timber%20Structures.pdf"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  Accepted
+                </a>
+
 
                 <a
                   class="youtube-link"
@@ -1297,8 +1411,14 @@
                   aria-label="Watch project video on YouTube"
                   title="Watch project video on YouTube"
                 >
-                  <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+
+                  <i
+                    class="fa-brands fa-youtube"
+                    aria-hidden="true"
+                  ></i>
+
                 </a>
+
               </p>
 
             </div>
@@ -1314,250 +1434,116 @@
            Project 02
            ===================================================== -->
 
-     
-     <div class="research-item">
-
-       <div class="research-video-block">
-
-    <!-- =========================
-         Project 02 Video
-         ========================= -->
-
-         <div
-      class="research-video-media"
-      id="project-02-media"
-      style="
-        overflow: hidden;
-      "
-         >
-
-           <video
-        autoplay
-        muted
-        loop
-        playsinline
-        webkit-playsinline
-        preload="auto"
-        aria-label="Generative AI Images for Early Conceptual Design"
-        style="
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transform: scale(2);
-          transform-origin: center center;
-        "
-           >
+      <div class="research-item">
 
-        <source
-          src="p2.mp4"
-          type="video/mp4"
-        >
+        <div class="research-video-block">
 
-           </video>
 
-         </div>
+          <div
+            class="research-video-media"
+            id="project-02-media"
+          >
 
+            <video
+              autoplay
+              muted
+              loop
+              playsinline
+              webkit-playsinline
+              preload="auto"
+              aria-label="Generative AI Images for Early Conceptual Design"
+              style="
+                transform: scale(1.35);
+                transform-origin: center center;
+              "
+            >
 
-    <!-- =========================
-         Project 02 Text
-         ========================= -->
+              <source
+                src="p2.mp4"
+                type="video/mp4"
+              >
 
-         <div class="research-video-content">
+            </video>
 
-      <!-- 年份 -->
-           <div class="research-video-year">
-        2024–25
-           </div>
+          </div>
 
 
-      <!--
-        JS 会读取 Project 01 的文字高度，
-        并让 Project 02 使用完全相同的正方形尺寸
-      -->
-           <div
-        class="research-video-measure"
-        id="project-02-measure"
-           >
+          <div class="research-video-content">
 
-             <h3>
 
-               <a
-            href="https://doi.org/10.52842/conf.caadria.2025.1.049"
-            target="_blank"
-            rel="noreferrer noopener"
-               >
-            Generative AI Images for Early Conceptual Design:
-            A Creativity Support Index (CSI) Study
-               </a>
+            <div class="research-video-year">
+              2024–25
+            </div>
 
-             </h3>
 
+            <div
+              class="research-video-measure"
+              id="project-02-measure"
+            >
 
-             <p class="subtitle">
-          Diffusion Models · Generative AI · Human–AI Interaction
-             </p>
+              <h3>
 
+                <a
+                  href="https://doi.org/10.52842/conf.caadria.2025.1.049"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
 
-             <p class="desc">
-          This study investigates how generative AI images influence
-          early conceptual design, employing the Creativity Support
-          Index (CSI) and verbal protocol analysis to study
-          human–AI interaction.
-             </p>
+                  Generative AI Images for Early Conceptual Design:
+                  A Creativity Support Index (CSI) Study
 
+                </a>
 
-             <p class="venue">
+              </h3>
 
-               <a
-            href="https://doi.org/10.52842/conf.caadria.2025.1.049"
-            target="_blank"
-            rel="noreferrer noopener"
-               >
-            CAADRIA 2025
-               </a>
 
-               &amp;
+              <p class="subtitle">
 
-               <a
-            href="https://doi.org/10.3929/ethz-b-000728788"
-            target="_blank"
-            rel="noreferrer noopener"
-               >
-                 IASS 2024
-               </a>
-     
-             </p>
+                Diffusion Models · Generative AI · Human–AI Interaction
 
-           </div>
+              </p>
 
-         </div>
 
-       </div>
+              <p class="desc">
 
-     </div>
+                This study investigates how generative AI images influence
+                early conceptual design, employing the Creativity Support
+                Index (CSI) and verbal protocol analysis to study
+                human–AI interaction.
 
+              </p>
 
-<!-- =========================
-     Project 02 Size Sync
-     ========================= -->
 
-<script>
+              <p class="venue">
 
-(function () {
+                <a
+                  href="https://doi.org/10.52842/conf.caadria.2025.1.049"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  CAADRIA 2025
+                </a>
 
-  const project01Media =
-    document.getElementById("project-01-media");
+                &amp;
 
-  const project02Media =
-    document.getElementById("project-02-media");
+                <a
+                  href="https://doi.org/10.3929/ethz-b-000728788"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  IASS 2024
+                </a>
 
+              </p>
 
-  if (!project01Media || !project02Media) {
-    return;
-  }
+            </div>
 
+          </div>
 
-  function syncProject02() {
+        </div>
 
-    /*
-      Project 01 is the reference.
+      </div>
 
-      Whatever size Project 01 currently has,
-      Project 02 will use exactly the same size.
-    */
-
-    if (window.innerWidth > 600) {
-
-      const rect =
-        project01Media.getBoundingClientRect();
-
-      const size =
-        rect.width;
-
-      if (size > 0) {
-
-        project02Media.style.width =
-          size + "px";
-
-        project02Media.style.height =
-          size + "px";
-
-      }
-
-    }
-
-    /*
-      On mobile, return control to the
-      original responsive CSS.
-    */
-
-    else {
-
-      project02Media.style.width = "";
-      project02Media.style.height = "";
-
-    }
-
-  }
-
-
-  /*
-    Initial synchronization
-  */
-
-  window.addEventListener(
-    "load",
-    syncProject02
-  );
-
-
-  /*
-    Recalculate when the browser window changes
-  */
-
-  window.addEventListener(
-    "resize",
-    syncProject02
-  );
-
-
-  /*
-    Recalculate after fonts are loaded,
-    because Project 01's text height may change.
-  */
-
-  if (document.fonts) {
-
-    document.fonts.ready.then(
-      syncProject02
-    );
-
-  }
-
-
-  /*
-    Observe Project 01 itself.
-
-    If its size changes for any reason,
-    Project 02 follows automatically.
-  */
-
-  if (window.ResizeObserver) {
-
-    const observer =
-      new ResizeObserver(
-        syncProject02
-      );
-
-    observer.observe(
-      project01Media
-    );
-
-  }
-
-})();
-
-</script>
 
       <!-- =====================================================
            Project 03
@@ -1712,7 +1698,17 @@
           </div>
 
           <div class="pub-venue">
-            <a href="https://github.com/Mingliiiii/mingliiiii.github.io/blob/master/Graph-Based%20Generative%20Design%20of%20Mortise-and-Tenon%20Joints%20in%20Timber%20Structures.pdf" target="_blank" rel="noreferrer noopener"> CDRF 2026 Accepted </a> · EI
+
+            <a
+              href="https://github.com/Mingliiiii/mingliiiii.github.io/blob/master/Graph-Based%20Generative%20Design%20of%20Mortise-and-Tenon%20Joints%20in%20Timber%20Structures.pdf"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              CDRF 2026 Accepted
+            </a>
+
+            · EI
+
           </div>
 
         </div>
@@ -2080,7 +2076,9 @@
       </span>
 
       <p>
+
         This webpage is styled in the spirit of
+
         <a
           href="https://edwardtufte.github.io/tufte-css/"
           target="_blank"
@@ -2088,7 +2086,9 @@
         >
           Tufte CSS
         </a>.
+
         The typeface is
+
         <a
           href="https://edwardtufte.github.io/et-book/"
           target="_blank"
@@ -2096,7 +2096,9 @@
         >
           ET Book
         </a>.
+
         Content is authored by Sun Mingli with support from
+
         <a
           href="https://kimi.moonshot.cn/"
           target="_blank"
@@ -2104,7 +2106,9 @@
         >
           Kimi
         </a>.
+
       </p>
+
 
       <p>
         © 2026 Sun Mingli. All rights reserved.
@@ -2164,55 +2168,37 @@
 
 
   <!-- =========================================================
-       视频边长同步：读取 project-01-measure 的高度
+       视频自动播放
        ========================================================= -->
 
   <script>
 
-    function syncProjectVideo() {
+    document.addEventListener(
+      "DOMContentLoaded",
+      function () {
 
-      const media =
-        document.getElementById("project-01-media");
+        const videos =
+          document.querySelectorAll(
+            ".research-video-media video"
+          );
 
-      const measure =
-        document.getElementById("project-01-measure");
+        videos.forEach(function(video) {
 
-      if (!media || !measure) return;
+          video.muted = true;
+          video.playsInline = true;
 
-      if (window.innerWidth > 600) {
+          video.play().catch(function () {
 
-        const h =
-          measure.getBoundingClientRect().height;
+            console.log(
+              "Autoplay was blocked."
+            );
 
-        if (h > 0) {
+          });
 
-          media.style.width = h + "px";
-          media.style.height = h + "px";
-
-        }
-
-      } else {
-
-        media.style.width = "";
-        media.style.height = "";
+        });
 
       }
-
-    }
-
-    window.addEventListener("load", syncProjectVideo);
-    window.addEventListener("resize", syncProjectVideo);
-
-    if (document.fonts) {
-      document.fonts.ready.then(syncProjectVideo);
-    }
-
-    document.addEventListener("DOMContentLoaded", function() {
-      const v = document.querySelector("#project-01-media video");
-      if (v) {
-        v.addEventListener("loadedmetadata", syncProjectVideo);
-      }
-    });
+    );
 
   </script>
 
@@ -2231,19 +2217,30 @@
 
       function createStar(x, y, type) {
 
-        const star = document.createElement("span");
+        const star =
+          document.createElement("span");
 
         star.className =
           "star-particle star-particle--" + type;
 
         star.textContent =
-          SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+          SYMBOLS[
+            Math.floor(
+              Math.random() * SYMBOLS.length
+            )
+          ];
 
-        star.style.fontSize = random(6, 26) + "px";
-        star.style.left = x + "px";
-        star.style.top = y + "px";
+        star.style.fontSize =
+          random(6, 26) + "px";
 
-        const angle = random(0, Math.PI * 2);
+        star.style.left =
+          x + "px";
+
+        star.style.top =
+          y + "px";
+
+        const angle =
+          random(0, Math.PI * 2);
 
         const distance =
           type === "burst"
@@ -2267,9 +2264,12 @@
 
         document.body.appendChild(star);
 
-        star.addEventListener("animationend", function() {
-          star.remove();
-        });
+        star.addEventListener(
+          "animationend",
+          function() {
+            star.remove();
+          }
+        );
 
       }
 
@@ -2278,12 +2278,19 @@
 
       function handleMove(clientX, clientY) {
 
-        const dx = clientX - lastX;
-        const dy = clientY - lastY;
+        const dx =
+          clientX - lastX;
+
+        const dy =
+          clientY - lastY;
 
         if (dx * dx + dy * dy > 36) {
 
-          createStar(clientX, clientY, "trail");
+          createStar(
+            clientX,
+            clientY,
+            "trail"
+          );
 
           lastX = clientX;
           lastY = clientY;
@@ -2292,27 +2299,61 @@
 
       }
 
-      document.addEventListener("mousemove", function(e) {
-        handleMove(e.clientX, e.clientY);
-      });
+      document.addEventListener(
+        "mousemove",
+        function(e) {
 
-      document.addEventListener("touchmove", function(e) {
+          handleMove(
+            e.clientX,
+            e.clientY
+          );
 
-        const touch = e.touches[0];
+        }
+      );
 
-        if (!touch) return;
+      document.addEventListener(
+        "touchmove",
+        function(e) {
 
-        handleMove(touch.clientX, touch.clientY);
+          const touch =
+            e.touches[0];
 
-      }, { passive: true });
+          if (!touch) return;
 
-      function handleBurst(clientX, clientY) {
+          handleMove(
+            touch.clientX,
+            touch.clientY
+          );
 
-        for (let i = 0; i < 10; i++) {
+        },
+        {
+          passive: true
+        }
+      );
 
-          setTimeout(function() {
-            createStar(clientX, clientY, "burst");
-          }, i * 25);
+      function handleBurst(
+        clientX,
+        clientY
+      ) {
+
+        for (
+          let i = 0;
+          i < 10;
+          i++
+        ) {
+
+          setTimeout(
+            function() {
+
+              createStar(
+                clientX,
+                clientY,
+                "burst"
+              );
+
+            },
+            i * 25
+          );
 
         }
 
@@ -2320,15 +2361,31 @@
 
       if (window.PointerEvent) {
 
-        document.addEventListener("pointerdown", function(e) {
-          handleBurst(e.clientX, e.clientY);
-        });
+        document.addEventListener(
+          "pointerdown",
+          function(e) {
+
+            handleBurst(
+              e.clientX,
+              e.clientY
+            );
+
+          }
+        );
 
       } else {
 
-        document.addEventListener("click", function(e) {
-          handleBurst(e.clientX, e.clientY);
-        });
+        document.addEventListener(
+          "click",
+          function(e) {
+
+            handleBurst(
+              e.clientX,
+              e.clientY
+            );
+
+          }
+        );
 
       }
 
