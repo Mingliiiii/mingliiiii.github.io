@@ -3120,7 +3120,20 @@
 
   </script>
 
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".research-video-media video").forEach(function (video) {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.autoplay = true;
+      video.playsInline = true;
 
+      video.play().catch(function () {
+        // Browser may block autoplay
+      });
+    });
+  });
+  </script>
 
 
 
