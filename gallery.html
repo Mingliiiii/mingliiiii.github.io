@@ -1,1 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>Mingli's Gallery</title>
+
+  <meta
+    name="description"
+    content="Mingli's Gallery"
+  >
+
+  <!-- Main stylesheet -->
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  >
+
+</head>
+
+
+<body>
+
+
+  <main class="gallery-page">
+
+
+    <!-- =====================================================
+         Header
+         ===================================================== -->
+
+    <header class="gallery-header">
+
+      <a
+        href="index.html"
+        class="gallery-back"
+        aria-label="Back to homepage"
+      >
+        ←
+      </a>
+
+      <h1>
+        Mingli's Gallery
+      </h1>
+
+    </header>
+
+
+    <!-- =====================================================
+         Gallery
+         ===================================================== -->
+
+    <section
+      class="gallery-grid"
+      aria-label="Gallery"
+    >
+
+
+      <!-- ===================================================
+           IMAGE 01
+           =================================================== -->
+
+      <button
+        class="gallery-item gallery-image size-large"
+        type="button"
+        data-type="image"
+        data-src="gallery/image01.jpg"
+        aria-label="Open image"
+      >
+
+        <img
+          src="gallery/image01.jpg"
+          alt=""
+          loading="lazy"
+        >
+
+      </button>
+
+
+      <!-- ===================================================
+           IMAGE 02
+           =================================================== -->
+
+      <button
+        class="gallery-item gallery-image size-small"
+        type="button"
+        data-type="image"
+        data-src="gallery/image02.jpg"
+        aria-label="Open image"
+      >
+
+        <img
+          src="gallery/image02.jpg"
+          alt=""
+          loading="lazy"
+        >
+
+      </button>
+
+
+      <!-- ===================================================
+           VIDEO 01
+           =================================================== -->
+
+      <button
+        class="gallery-item gallery-video size-wide"
+        type="button"
+        data-type="video"
+        data-src="gallery/video01.mp4"
+        aria-label="Open video"
+      >
+
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+          webkit-playsinline
+          preload="metadata"
+        >
+
+          <source
+            src="gallery/video01.mp4"
+            type="video/mp4"
+          >
+
+        </video>
+
+      </button>
+
+
+      <!-- ===================================================
+           PDF 01
+           =================================================== -->
+
+      <button
+        class="gallery-item gallery-pdf size-small"
+        type="button"
+        data-type="pdf"
+        data-src="gallery/project01.pdf"
+        data-name="project01.pdf"
+        aria-label="Open PDF"
+      >
+
+        <div class="pdf-symbol">
+
+          <i class="fa-regular fa-file-pdf"></i>
+
+        </div>
+
+        <div class="pdf-name">
+          project01.pdf
+        </div>
+
+      </button>
+
+
+      <!-- ===================================================
+           IMAGE 03
+           =================================================== -->
+
+      <button
+        class="gallery-item gallery-image size-medium"
+        type="button"
+        data-type="image"
+        data-src="gallery/image03.jpg"
+        aria-label="Open image"
+      >
+
+        <img
+          src="gallery/image03.jpg"
+          alt=""
+          loading="lazy"
+        >
+
+      </button>
+
+
+      <!-- ===================================================
+           VIDEO 02
+           =================================================== -->
+
+      <button
+        class="gallery-item gallery-video size-large"
+        type="button"
+        data-type="video"
+        data-src="gallery/video02.mp4"
+        aria-label="Open video"
+      >
+
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+          webkit-playsinline
+          preload="metadata"
+        >
+
+          <source
+            src="gallery/video02.mp4"
+            type="video/mp4"
+          >
+
+        </video>
+
+      </button>
+
+
+      <!-- ===================================================
+           IMAGE 04
+           =================================================== -->
+
+      <button
+        class="gallery-item gallery-image size-medium"
+        type="button"
+        data-type="image"
+        data-src="gallery/image04.jpg"
+        aria-label="Open image"
+      >
+
+        <img
+          src="gallery/image04.jpg"
+          alt=""
+          loading="lazy"
+        >
+
+      </button>
+
+
+      <!-- ===================================================
+           IMAGE 05
+           =================================================== -->
+
+      <button
+        class="gallery-item gallery-image size-small"
+        type="button"
+        data-type="image"
+        data-src="gallery/image05.jpg"
+        aria-label="Open image"
+      >
+
+        <img
+          src="gallery/image05.jpg"
+          alt=""
+          loading="lazy"
+        >
+
+      </button>
+
+
+      <!-- ===================================================
+           PDF 02
+           =================================================== -->
+
+      <button
+        class="gallery-item gallery-pdf size-medium"
+        type="button"
+        data-type="pdf"
+        data-src="gallery/project02.pdf"
+        data-name="project02.pdf"
+        aria-label="Open PDF"
+      >
+
+        <div class="pdf-symbol">
+
+          <i class="fa-regular fa-file-pdf"></i>
+
+        </div>
+
+        <div class="pdf-name">
+          project02.pdf
+        </div>
+
+      </button>
+
+
+    </section>
+
+
+  </main>
+
+
+  <!-- =======================================================
+       Lightbox
+       ======================================================= -->
+
+  <div
+    class="gallery-lightbox"
+    id="galleryLightbox"
+    aria-hidden="true"
+  >
+
+    <button
+      class="lightbox-close"
+      type="button"
+      aria-label="Close"
+    >
+      ×
+    </button>
+
+
+    <div class="lightbox-content" id="lightboxContent">
+    </div>
+
+
+  </div>
+
+
+  <!-- =======================================================
+       Gallery JavaScript
+       ======================================================= -->
+
+  <script>
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function () {
+
+
+        /* ---------------------------------------------------
+           Elements
+           --------------------------------------------------- */
+
+        const grid =
+          document.querySelector(
+            ".gallery-grid"
+          );
+
+        const items =
+          Array.from(
+            grid.children
+          );
+
+        const lightbox =
+          document.getElementById(
+            "galleryLightbox"
+          );
+
+        const content =
+          document.getElementById(
+            "lightboxContent"
+          );
+
+        const closeButton =
+          document.querySelector(
+            ".lightbox-close"
+          );
+
+
+        /* ---------------------------------------------------
+           Random order
+           --------------------------------------------------- */
+
+        items.sort(
+          function () {
+            return Math.random() - 0.5;
+          }
+        );
+
+        items.forEach(
+          function (item) {
+            grid.appendChild(item);
+          }
+        );
+
+
+        /* ---------------------------------------------------
+           Autoplay gallery videos
+           --------------------------------------------------- */
+
+        const videos =
+          document.querySelectorAll(
+            ".gallery-video video"
+          );
+
+        videos.forEach(
+          function (video) {
+
+            video.muted = true;
+            video.defaultMuted = true;
+            video.autoplay = true;
+            video.playsInline = true;
+
+            video.play().catch(
+              function () {
+                // Browser may block autoplay.
+              }
+            );
+
+          }
+        );
+
+
+        /* ---------------------------------------------------
+           Open lightbox
+           --------------------------------------------------- */
+
+        items.forEach(
+          function (item) {
+
+            item.addEventListener(
+              "click",
+              function () {
+
+                const type =
+                  item.dataset.type;
+
+                const src =
+                  item.dataset.src;
+
+                openLightbox(
+                  type,
+                  src,
+                  item.dataset.name
+                );
+
+              }
+            );
+
+          }
+        );
+
+
+        /* ---------------------------------------------------
+           Open function
+           --------------------------------------------------- */
+
+        function openLightbox(
+          type,
+          src,
+          name
+        ) {
+
+          content.innerHTML = "";
+
+
+          /* IMAGE */
+
+          if (
+            type === "image"
+          ) {
+
+            const image =
+              document.createElement(
+                "img"
+              );
+
+            image.src = src;
+
+            image.alt = "";
+
+            image.className =
+              "lightbox-image";
+
+            content.appendChild(
+              image
+            );
+
+          }
+
+
+          /* VIDEO */
+
+          if (
+            type === "video"
+          ) {
+
+            const video =
+              document.createElement(
+                "video"
+              );
+
+            video.src = src;
+
+            video.autoplay = true;
+
+            video.muted = true;
+
+            video.loop = true;
+
+            video.playsInline = true;
+
+            video.controls = true;
+
+            video.className =
+              "lightbox-video";
+
+            content.appendChild(
+              video
+            );
+
+            video.play().catch(
+              function () {}
+            );
+
+          }
+
+
+          /* PDF */
+
+          if (
+            type === "pdf"
+          ) {
+
+            const iframe =
+              document.createElement(
+                "iframe"
+              );
+
+            iframe.src = src;
+
+            iframe.className =
+              "lightbox-pdf";
+
+            iframe.title =
+              name || "PDF";
+
+            content.appendChild(
+              iframe
+            );
+
+          }
+
+
+          lightbox.classList.add(
+            "is-open"
+          );
+
+          lightbox.setAttribute(
+            "aria-hidden",
+            "false"
+          );
+
+          document.body.classList.add(
+            "gallery-no-scroll"
+          );
+
+        }
+
+
+        /* ---------------------------------------------------
+           Close lightbox
+           --------------------------------------------------- */
+
+        function closeLightbox() {
+
+          lightbox.classList.remove(
+            "is-open"
+          );
+
+          lightbox.setAttribute(
+            "aria-hidden",
+            "true"
+          );
+
+          content.innerHTML = "";
+
+          document.body.classList.remove(
+            "gallery-no-scroll"
+          );
+
+        }
+
+
+        closeButton.addEventListener(
+          "click",
+          closeLightbox
+        );
+
+
+        lightbox.addEventListener(
+          "click",
+          function (event) {
+
+            if (
+              event.target === lightbox
+            ) {
+
+              closeLightbox();
+
+            }
+
+          }
+        );
+
+
+        /* ---------------------------------------------------
+           ESC key
+           --------------------------------------------------- */
+
+        document.addEventListener(
+          "keydown",
+          function (event) {
+
+            if (
+              event.key === "Escape"
+            ) {
+
+              closeLightbox();
+
+            }
+
+          }
+        );
+
+
+      }
+    );
+
+  </script>
+
+
+</body>
+
+</html>
