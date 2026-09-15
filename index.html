@@ -1,8 +1,15 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
 
   <title>Sun Mingli</title>
 
@@ -10,10 +17,21 @@
     name="description"
     content="Sun Mingli is a researcher working at the intersection of machine learning, structural architecture, human–AI collaboration, and construction robotics."
   >
-  <meta name="author" content="Sun Mingli">
-  <meta name="theme-color" content="#ffffff">
 
-  <link rel="canonical" href="https://mingliiiii.github.io/">
+  <meta
+    name="author"
+    content="Sun Mingli"
+  >
+
+  <meta
+    name="theme-color"
+    content="#ffffff"
+  >
+
+  <link
+    rel="canonical"
+    href="https://mingliiiii.github.io/"
+  >
 
   <link
     rel="icon"
@@ -29,60 +47,89 @@
     referrerpolicy="no-referrer"
   >
 
+
   <style>
+
 
     /* =========================================================
        Star particles
        ========================================================= */
 
     .star-particle {
+
       --star-x: 0px;
       --star-y: 0px;
       --star-r: 0deg;
 
       position: fixed;
+
       z-index: 9999;
 
       width: 1em;
       height: 1em;
 
       pointer-events: none;
+
       line-height: 1;
 
-      transform: translate(-50%, -50%);
-      will-change: transform, opacity;
+      transform:
+        translate(-50%, -50%);
+
+      will-change:
+        transform,
+        opacity;
 
       color: #111;
+
     }
+
 
     [data-theme="dark"] .star-particle {
+
       color: #e8e4dc;
+
     }
+
 
     .star-particle--trail {
+
       opacity: 0.9;
-      animation: star-drift 780ms ease-out forwards;
+
+      animation:
+        star-drift
+        780ms
+        ease-out
+        forwards;
+
     }
 
+
     .star-particle--burst {
+
       animation:
         star-drift
         1.22s
         cubic-bezier(0.22, 0.65, 0.24, 1)
         forwards;
+
     }
 
+
     @keyframes star-drift {
+
       0% {
+
         opacity: 1;
 
         transform:
           translate(-50%, -50%)
           rotate(0deg)
           scale(1);
+
       }
 
       100% {
+
         opacity: 0;
 
         transform:
@@ -92,33 +139,53 @@
           )
           rotate(var(--star-r))
           scale(0);
+
       }
+
     }
+
 
     @media (prefers-reduced-motion: reduce) {
 
       html {
+
         scroll-behavior: auto;
+
       }
 
       *,
       *::before,
       *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
+
+        animation-duration:
+          0.01ms !important;
+
+        animation-iteration-count:
+          1 !important;
+
+        scroll-behavior:
+          auto !important;
+
+        transition-duration:
+          0.01ms !important;
+
       }
 
       .star-particle {
+
         display: none !important;
+
       }
+
     }
+
 
     @media (pointer: coarse) {
 
       .star-particle--trail {
+
         opacity: 0.82;
+
       }
 
     }
@@ -129,8 +196,11 @@
        ========================================================= */
 
     .highlight-pink {
+
       background-color: transparent;
+
       color: var(--text);
+
     }
 
 
@@ -139,63 +209,97 @@
        ========================================================= */
 
     @font-face {
+
       font-family: "et-book";
 
       src:
-        url("https://cdn.bootcdn.net/ajax/libs/tufte-css/1.8.0/et-book/et-book-roman-line-figures/et-book-roman-line-figures.woff")
+        url(
+          "https://cdn.bootcdn.net/ajax/libs/tufte-css/1.8.0/et-book/et-book-roman-line-figures/et-book-roman-line-figures.woff"
+        )
         format("woff");
 
       font-weight: normal;
+
       font-style: normal;
+
       font-display: swap;
+
     }
 
+
     @font-face {
+
       font-family: "et-book";
 
       src:
-        url("https://cdn.bootcdn.net/ajax/libs/tufte-css/1.8.0/et-book/et-book-bold-line-figures/et-book-bold-line-figures.woff")
+        url(
+          "https://cdn.bootcdn.net/ajax/libs/tufte-css/1.8.0/et-book/et-book-bold-line-figures/et-book-bold-line-figures.woff"
+        )
         format("woff");
 
       font-weight: bold;
+
       font-style: normal;
+
       font-display: swap;
+
     }
 
+
     @font-face {
+
       font-family: "et-book";
 
       src:
-        url("https://cdn.bootcdn.net/ajax/libs/tufte-css/1.8.0/et-book/et-book-semi-bold-old-style-figures/et-book-semi-bold-old-style-figures.woff")
+        url(
+          "https://cdn.bootcdn.net/ajax/libs/tufte-css/1.8.0/et-book/et-book-semi-bold-old-style-figures/et-book-semi-bold-old-style-figures.woff"
+        )
         format("woff");
 
       font-weight: 600;
+
       font-style: normal;
+
       font-display: swap;
+
     }
 
+
     @font-face {
+
       font-family: "et-book";
 
       src:
-        url("https://cdn.bootcdn.net/ajax/libs/tufte-css/1.8.0/et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.woff")
+        url(
+          "https://cdn.bootcdn.net/ajax/libs/tufte-css/1.8.0/et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.woff"
+        )
         format("woff");
 
       font-weight: normal;
+
       font-style: italic;
+
       font-display: swap;
+
     }
 
+
     @font-face {
+
       font-family: "et-book";
 
       src:
-        url("https://cdn.bootcdn.net/ajax/libs/tufte-css/1.8.0/et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.woff")
+        url(
+          "https://cdn.bootcdn.net/ajax/libs/tufte-css/1.8.0/et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.woff"
+        )
         format("woff");
 
       font-weight: normal;
+
       font-style: normal;
+
       font-display: swap;
+
     }
 
 
@@ -204,12 +308,18 @@
        ========================================================= */
 
     :root {
+
       --bg: #ffffff;
+
       --text: #111111;
+
       --text-secondary: #555555;
 
-      --border: rgba(0, 0, 0, 0.10);
-      --link-underline: rgba(0, 0, 0, 0.22);
+      --border:
+        rgba(0, 0, 0, 0.10);
+
+      --link-underline:
+        rgba(0, 0, 0, 0.22);
 
       --max-width: 720px;
 
@@ -218,15 +328,24 @@
         Georgia,
         "Times New Roman",
         serif;
+
     }
 
+
     [data-theme="dark"] {
+
       --bg: #111111;
+
       --text: #e8e4dc;
+
       --text-secondary: #999999;
 
-      --border: rgba(255, 255, 255, 0.08);
-      --link-underline: rgba(255, 255, 255, 0.28);
+      --border:
+        rgba(255, 255, 255, 0.08);
+
+      --link-underline:
+        rgba(255, 255, 255, 0.28);
+
     }
 
 
@@ -235,30 +354,45 @@
        ========================================================= */
 
     * {
+
       box-sizing: border-box;
+
       margin: 0;
+
       padding: 0;
+
     }
+
 
     html {
+
       font-size: 16px;
 
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing:
+        antialiased;
+
+      -moz-osx-font-smoothing:
+        grayscale;
 
       scroll-behavior: smooth;
+
     }
 
+
     body {
+
       font-family: var(--font);
 
       font-size: 1.05rem;
+
       line-height: 1.45;
 
       color: var(--text);
+
       background: var(--bg);
 
-      max-width: var(--max-width);
+      max-width:
+        var(--max-width);
 
       margin: 0 auto;
 
@@ -270,6 +404,7 @@
       transition:
         background 0.3s ease,
         color 0.3s ease;
+
     }
 
 
@@ -278,35 +413,48 @@
        ========================================================= */
 
     .site-header {
+
       display: flex;
 
       justify-content: flex-end;
+
       align-items: baseline;
 
       margin-bottom: 2.5rem;
+
       padding-bottom: 0.5rem;
 
       border-bottom:
         1px solid var(--border);
+
     }
 
+
     .theme-toggle {
+
       background: none;
+
       border: none;
 
       cursor: pointer;
 
       font-size: 1rem;
 
-      color: var(--text-secondary);
+      color:
+        var(--text-secondary);
 
       padding: 0;
 
-      font-family: var(--font);
+      font-family:
+        var(--font);
+
     }
 
+
     .theme-toggle:hover {
+
       color: var(--text);
+
     }
 
 
@@ -318,6 +466,7 @@
     h2,
     h3,
     h4 {
+
       font-family: var(--font);
 
       font-weight: normal;
@@ -325,51 +474,75 @@
       color: var(--text);
 
       line-height: 1.2;
+
     }
 
+
     h1 {
+
       font-size: 3.6rem;
 
       letter-spacing: -0.01em;
+
     }
 
+
     h2 {
+
       font-size: 1.9rem;
 
       margin-top: 2.2rem;
+
       margin-bottom: 0.9rem;
 
       font-style: italic;
+
       font-weight: normal;
+
     }
 
+
     h3 {
+
       font-size: 1.15rem;
 
       margin-top: 1.3rem;
+
       margin-bottom: 0.35rem;
 
       font-weight: bold;
+
       font-style: normal;
+
     }
 
+
     h4 {
+
       font-size: 1.05rem;
 
       margin-top: 0.9rem;
+
       margin-bottom: 0.25rem;
 
       font-style: italic;
+
       font-weight: normal;
+
     }
 
+
     p {
+
       margin-bottom: 0.85rem;
 
       max-width: 68ch;
+
     }
 
+
     a {
+
       color: var(--text);
 
       text-decoration: underline;
@@ -383,18 +556,29 @@
 
       transition:
         text-decoration-color 0.2s;
+
     }
+
 
     a:hover {
-      text-decoration-color: var(--text);
+
+      text-decoration-color:
+        var(--text);
+
     }
+
 
     strong {
+
       font-weight: bold;
+
     }
 
+
     em {
+
       font-style: italic;
+
     }
 
 
@@ -403,18 +587,25 @@
        ========================================================= */
 
     .hero {
+
       margin-bottom: 3.2rem;
+
     }
 
+
     .hero-title {
+
       font-size: 3.2rem;
 
       font-weight: normal;
 
       margin-bottom: 0.67rem;
+
     }
 
+
     .hero-subtitle {
+
       font-size: 2.1rem;
 
       font-weight: normal;
@@ -424,9 +615,12 @@
       line-height: 1.2;
 
       color: var(--text);
+
     }
 
+
     .hero-intro {
+
       font-size: 1.05rem;
 
       line-height: 1.5;
@@ -434,20 +628,27 @@
       max-width: 62ch;
 
       margin-bottom: 1rem;
+
     }
 
+
     .hero-links {
+
       display: flex;
 
       gap: 0.3rem;
 
       flex-wrap: wrap;
+
     }
 
+
     .hero-links a {
+
       font-family: var(--font);
 
       font-size: 0.95rem;
+
     }
 
 
@@ -456,10 +657,14 @@
        ========================================================= */
 
     section {
+
       margin-top: 2rem;
+
     }
 
+
     .section-label {
+
       font-family: var(--font);
 
       font-style: italic;
@@ -475,9 +680,12 @@
       display: block;
 
       line-height: 1.2;
+
     }
 
+
     .section-sublabel {
+
       font-size: 0.95rem;
 
       font-style: italic;
@@ -485,9 +693,11 @@
       color: var(--text-secondary);
 
       margin-bottom: 1.2rem;
+
       margin-top: -0.3rem;
 
       line-height: 1.4;
+
     }
 
 
@@ -496,42 +706,51 @@
        ========================================================= */
 
     .research-item {
+
       margin-bottom: 0.77rem;
 
       padding-bottom: 0.6rem;
 
       border-bottom:
         1px solid var(--border);
+
     }
 
+
     .research-item:last-child {
+
       border-bottom: none;
+
     }
 
 
     /* =========================================================
-       Video projects
+       Research video block
        ========================================================= */
 
     .research-video-block {
+
       display: grid;
 
-      grid-template-columns: 120px minmax(0, 1fr);
+      grid-template-columns:
+        120px
+        minmax(0, 1fr);
 
       gap: 1.2rem;
 
       align-items: center;
 
       margin-bottom: 0.6rem;
+
     }
 
 
-    /*
-      所有桌面端视频容器固定为 160 × 160 px
-    */
+    /* Video thumbnail */
 
     .research-video-media {
+
       width: 120px;
+
       height: 120px;
 
       aspect-ratio: 1 / 1;
@@ -541,38 +760,54 @@
       flex-shrink: 0;
 
       position: relative;
+
     }
 
 
-    /*
-      默认视频：
-      完整填充 160 × 160 容器
-    */
-
     .research-video-media video {
+
       display: block;
 
       width: 100%;
+
       height: 100%;
 
       object-fit: cover;
 
-      transform: scale(1);
+      transform:
+        scale(1);
 
-      transform-origin: center center;
+      transform-origin:
+        center center;
+
+      cursor: pointer;
+
     }
 
 
-    /* 右列内容区 */
+    /* Project 02 special crop */
+
+    .research-video-media video.video-zoom {
+
+      transform:
+        scale(2.2);
+
+    }
+
+
+    /* Right column */
 
     .research-video-content {
+
       min-width: 0;
+
     }
 
 
-    /* 年份 */
+    /* Year */
 
     .research-video-year {
+
       font-family: var(--font);
 
       font-style: italic;
@@ -584,17 +819,12 @@
       line-height: 1.2;
 
       margin-bottom: 0.25rem;
-    }
 
-
-    /* 测量块 */
-
-    .research-video-measure {
-      /* 不再用于计算视频尺寸 */
     }
 
 
     .research-item h3 {
+
       font-size: 1.15rem;
 
       font-weight: bold;
@@ -602,9 +832,12 @@
       margin-top: 0;
 
       margin-bottom: 0.25rem;
+
     }
 
+
     .research-item h3 a {
+
       color: var(--text);
 
       text-decoration: none;
@@ -616,16 +849,22 @@
 
       transition:
         border-color 0.2s ease;
+
     }
 
+
     .research-item h3 a:hover {
+
       text-decoration: none;
 
       border-bottom-color:
         var(--text);
+
     }
 
+
     .research-item .subtitle {
+
       font-family: var(--font);
 
       font-style: italic;
@@ -635,17 +874,23 @@
       color: var(--text-secondary);
 
       margin-bottom: 0.45rem;
+
     }
 
+
     .research-item .desc {
+
       font-size: 0.9rem;
 
       line-height: 1.2;
 
       margin-bottom: 0.4rem;
+
     }
 
+
     .research-item .venue {
+
       font-family: var(--font);
 
       font-style: italic;
@@ -655,6 +900,7 @@
       color: var(--text-secondary);
 
       margin-bottom: 0;
+
     }
 
 
@@ -663,6 +909,7 @@
        ========================================================= */
 
     .youtube-link {
+
       display: inline-block;
 
       margin-left: 0.55em;
@@ -677,16 +924,23 @@
 
       transition:
         color 0.2s ease;
+
     }
 
+
     .youtube-link:hover {
+
       color: var(--text);
 
       text-decoration: none;
+
     }
 
+
     .youtube-link i {
+
       font-size: 0.95em;
+
     }
 
 
@@ -695,6 +949,7 @@
        ========================================================= */
 
     .pub-item {
+
       display: grid;
 
       grid-template-columns:
@@ -707,17 +962,26 @@
 
       border-bottom:
         1px solid var(--border);
+
     }
+
 
     .pub-item:first-child {
+
       padding-top: 0;
+
     }
+
 
     .pub-item:last-child {
+
       border-bottom: none;
+
     }
 
+
     .pub-year {
+
       font-family: var(--font);
 
       font-style: italic;
@@ -727,9 +991,12 @@
       color: var(--text-secondary);
 
       padding-top: 0.1rem;
+
     }
 
+
     .pub-title {
+
       font-size: 1.05rem;
 
       font-weight: normal;
@@ -739,17 +1006,23 @@
       margin-bottom: 0.15rem;
 
       line-height: 1.3;
+
     }
 
+
     .pub-authors {
+
       font-size: 0.95rem;
 
       color: var(--text-secondary);
 
       margin-bottom: 0.1rem;
+
     }
 
+
     .pub-venue {
+
       font-family: var(--font);
 
       font-style: italic;
@@ -757,6 +1030,7 @@
       font-size: 0.9rem;
 
       color: var(--text-secondary);
+
     }
 
 
@@ -765,6 +1039,7 @@
        ========================================================= */
 
     .timeline-item {
+
       display: grid;
 
       grid-template-columns:
@@ -777,17 +1052,26 @@
 
       border-bottom:
         1px solid var(--border);
+
     }
+
 
     .timeline-item:first-child {
+
       padding-top: 0;
+
     }
+
 
     .timeline-item:last-child {
+
       border-bottom: none;
+
     }
 
+
     .timeline-date {
+
       font-family: var(--font);
 
       font-style: italic;
@@ -797,26 +1081,36 @@
       color: var(--text-secondary);
 
       padding-top: 0.05rem;
+
     }
 
+
     .timeline-content {
+
       font-size: 1rem;
 
       line-height: 1.45;
+
     }
 
+
     .timeline-content .role {
+
       font-weight: bold;
 
       display: block;
+
     }
 
+
     .timeline-content .institution {
+
       font-style: italic;
 
       color: var(--text-secondary);
 
       display: block;
+
     }
 
 
@@ -825,6 +1119,7 @@
        ========================================================= */
 
     .award-item {
+
       display: grid;
 
       grid-template-columns:
@@ -840,17 +1135,26 @@
         1px solid var(--border);
 
       align-items: baseline;
+
     }
+
 
     .award-item:first-child {
+
       padding-top: 0;
+
     }
+
 
     .award-item:last-child {
+
       border-bottom: none;
+
     }
 
+
     .award-year {
+
       font-family: var(--font);
 
       font-style: italic;
@@ -858,15 +1162,21 @@
       font-size: 0.9rem;
 
       color: var(--text-secondary);
+
     }
 
+
     .award-name {
+
       font-size: 1rem;
 
       font-weight: normal;
+
     }
 
+
     .award-org {
+
       font-family: var(--font);
 
       font-style: italic;
@@ -876,6 +1186,7 @@
       color: var(--text-secondary);
 
       text-align: right;
+
     }
 
 
@@ -884,10 +1195,14 @@
        ========================================================= */
 
     .colophon {
+
       margin-top: 2.5rem;
+
     }
 
+
     .colophon p {
+
       font-size: 0.9rem;
 
       color: var(--text-secondary);
@@ -895,6 +1210,7 @@
       line-height: 1.5;
 
       margin-bottom: 0.4rem;
+
     }
 
 
@@ -903,6 +1219,7 @@
        ========================================================= */
 
     .site-footer {
+
       margin-top: 2.5rem;
 
       padding-top: 1.2rem;
@@ -913,6 +1230,7 @@
       display: flex;
 
       justify-content: space-between;
+
       align-items: baseline;
 
       font-family: var(--font);
@@ -922,12 +1240,16 @@
       font-size: 0.9rem;
 
       color: var(--text-secondary);
+
     }
 
+
     .site-footer a {
+
       font-size: 0.9rem;
 
       color: var(--text-secondary);
+
     }
 
 
@@ -936,6 +1258,7 @@
        ========================================================= */
 
     .link-icon {
+
       font-style: normal;
 
       margin-right: 0.3em;
@@ -945,22 +1268,28 @@
       font-size: 1.2em;
 
       vertical-align: middle;
+
     }
 
+
     .school-logo {
+
       display: inline-block;
 
       width: 1.1em;
+
       height: 1.1em;
 
       vertical-align: middle;
 
       margin-right: 0.25em;
+
       margin-left: 0.1em;
 
       border-radius: 50%;
 
       object-fit: cover;
+
     }
 
 
@@ -970,72 +1299,208 @@
 
     @media (max-width: 600px) {
 
+
       body {
+
         padding:
           1.2rem
           1rem
           2.5rem;
+
       }
+
 
       h1,
       .hero-title {
+
         font-size: 2.4rem;
+
       }
+
 
       .hero-subtitle {
+
         font-size: 1.6rem;
+
       }
+
 
       h2 {
+
         font-size: 1.5rem;
+
       }
 
 
-      /* 移动端：视频与文字上下堆叠 */
+      /* ---------------------------------------------------------
+         Research projects remain horizontal on mobile
+         --------------------------------------------------------- */
 
       .research-video-block {
-        grid-template-columns: 1fr;
 
-        gap: 0.8rem;
+        display: grid;
+
+        grid-template-columns:
+          92px
+          minmax(0, 1fr);
+
+        gap: 0.85rem;
 
         align-items: start;
+
+        margin-bottom: 0.65rem;
+
       }
 
 
       .research-video-media {
-        width: min(100%, 12rem);
 
-        height: auto;
+        width: 92px;
+
+        height: 92px;
 
         aspect-ratio: 1 / 1;
+
+        overflow: hidden;
+
+        position: relative;
+
+        flex-shrink: 0;
+
       }
 
+
+      .research-video-media video {
+
+        width: 100%;
+
+        height: 100%;
+
+        object-fit: cover;
+
+        display: block;
+
+      }
+
+
+      /* Reduce Project 02 crop on mobile */
+
+      .research-video-media video.video-zoom {
+
+        transform:
+          scale(1.7);
+
+      }
+
+
+      .research-video-year {
+
+        font-size: 0.82rem;
+
+        margin-bottom: 0.2rem;
+
+      }
+
+
+      .research-item h3 {
+
+        font-size: 1rem;
+
+        line-height: 1.22;
+
+        margin-top: 0;
+
+        margin-bottom: 0.2rem;
+
+      }
+
+
+      .research-item .subtitle {
+
+        font-size: 0.82rem;
+
+        line-height: 1.25;
+
+        margin-bottom: 0.35rem;
+
+      }
+
+
+      .research-item .desc {
+
+        font-size: 0.82rem;
+
+        line-height: 1.3;
+
+        margin-bottom: 0.3rem;
+
+      }
+
+
+      .research-item .venue {
+
+        font-size: 0.82rem;
+
+        line-height: 1.3;
+
+      }
+
+
+      /* ---------------------------------------------------------
+         Publications
+         --------------------------------------------------------- */
 
       .pub-item {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+          1fr;
 
         gap: 0.15rem;
+
       }
+
 
       .pub-year {
+
         padding-top: 0;
+
       }
+
+
+      /* ---------------------------------------------------------
+         Timeline
+         --------------------------------------------------------- */
 
       .timeline-item {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+          1fr;
 
         gap: 0.1rem;
+
       }
+
+
+      /* ---------------------------------------------------------
+         Awards
+         --------------------------------------------------------- */
 
       .award-item {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+          1fr;
 
         gap: 0.1rem;
+
       }
 
+
       .award-org {
+
         text-align: left;
+
       }
+
     }
 
 
@@ -1044,25 +1509,41 @@
        ========================================================= */
 
     ::selection {
-      background: rgba(0, 0, 0, 0.12);
+
+      background:
+        rgba(0, 0, 0, 0.12);
+
     }
 
+
     [data-theme="dark"] ::selection {
-      background: rgba(255, 255, 255, 0.15);
+
+      background:
+        rgba(255, 255, 255, 0.15);
+
     }
+
 
   </style>
 
+
+  <!-- =========================================================
+       Theme initialization
+       ========================================================= -->
 
   <script>
 
     try {
 
       const saved =
-        localStorage.getItem("mingli-theme");
+        localStorage.getItem(
+          "mingli-theme"
+        );
 
       const preferred =
-        matchMedia("(prefers-color-scheme: dark)").matches
+        matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches
           ? "dark"
           : "light";
 
@@ -1074,54 +1555,64 @@
   </script>
 
 
+  <!-- =========================================================
+       Structured data
+       ========================================================= -->
+
   <script type="application/ld+json">
+
   {
     "@context": "https://schema.org",
+
     "@type": "Person",
+
     "name": "Sun Mingli",
-    "jobTitle": "Researcher in Computational Design",
-    "url": "https://mingliiiii.github.io/",
-    "email": "mailto:mingli_sun@tongji.edu.cn",
+
+    "jobTitle":
+      "Researcher in Computational Design",
+
+    "url":
+      "https://mingliiiii.github.io/",
+
+    "email":
+      "mailto:mingli_sun@tongji.edu.cn",
+
     "affiliation": [
+
       {
-        "@type": "CollegeOrUniversity",
-        "name": "Tongji University"
+        "@type":
+          "CollegeOrUniversity",
+
+        "name":
+          "Tongji University"
       },
+
       {
-        "@type": "CollegeOrUniversity",
-        "name": "Tsinghua Shenzhen International Graduate School"
+        "@type":
+          "CollegeOrUniversity",
+
+        "name":
+          "Tsinghua Shenzhen International Graduate School"
       }
+
     ]
+
   }
+
   </script>
+
 
   <base target="_blank">
 
 </head>
 
 
-<script>
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  const video =
-    document.querySelector("#project-01-media video");
-
-  if (!video) return;
-
-  video.muted = true;
-  video.playsInline = true;
-
-  video.play().catch(function () {
-    console.log("Autoplay was blocked.");
-  });
-
-});
-
-</script>
-
-
 <body>
+
+
+  <!-- =========================================================
+       Header
+       ========================================================= -->
 
   <header class="site-header">
 
@@ -1141,15 +1632,26 @@ document.addEventListener("DOMContentLoaded", function () {
   <main id="top">
 
 
+    <!-- =======================================================
+         Hero
+         ======================================================= -->
+
     <section class="hero">
 
+
       <h1 class="hero-title">
+
         Sun Mingli
+
       </h1>
 
+
       <p class="hero-subtitle">
+
         Researcher in Algorithm and AI Design
+
       </p>
+
 
       <p class="hero-intro">
 
@@ -1157,21 +1659,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
           Academic experience at
 
-          <a href="https://tjdi.tongji.edu.cn/?lang=en">
+          <a
+            href="https://tjdi.tongji.edu.cn/?lang=en"
+          >
             College of Design and Innovation (D&amp;I)
           </a>,
 
-          <a href="https://caup.tongji.edu.cn/caupen/">
+          <a
+            href="https://caup.tongji.edu.cn/caupen/"
+          >
             College of Architecture and Urban Planning (CAUP)
           </a>,
 
           Tongji University and
 
-          <a href="https://www.coia.tech/">
+          <a
+            href="https://www.coia.tech/"
+          >
             Co-Intelligent Architecture Lab
           </a>,
 
-          Institute of Future Human Habitats, Tsinghua SIGS.
+          Institute of Future Human Habitats,
+          Tsinghua SIGS.
 
         </em>
 
@@ -1180,15 +1689,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
       <div class="hero-links">
 
-        <a href="mailto:2233747@tongji.edu.cn">
+
+        <a
+          href="mailto:2233747@tongji.edu.cn"
+        >
+
           <i
             class="fa-solid fa-envelope link-icon"
             aria-hidden="true"
           ></i>
+
           Email
+
         </a>
 
-        <a href="Sun_Mingli_CV.pdf">
+
+        <a
+          href="Sun_Mingli_CV.pdf"
+        >
 
           <i
             class="fa-solid fa-file-pdf link-icon"
@@ -1198,6 +1716,7 @@ document.addEventListener("DOMContentLoaded", function () {
           CV
 
         </a>
+
 
         <a
           href="https://github.com/Mingliiiii?tab=repositories"
@@ -1214,6 +1733,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         </a>
 
+
         <a
           href="https://www.researchgate.net/profile/Mingli-Sun-4"
           target="_blank"
@@ -1228,6 +1748,7 @@ document.addEventListener("DOMContentLoaded", function () {
           ResearchGate
 
         </a>
+
 
         <a
           href="https://scholar.google.com/citations?user=ayEBnm4AAAAJ&hl=zh-CN&authuser=1"
@@ -1244,15 +1765,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
         </a>
 
+
       </div>
+
 
     </section>
 
 
+    <!-- =======================================================
+         Research Interest
+         ======================================================= -->
+
     <section id="research-interest">
 
+
       <span class="section-label">
+
         Research Interest
+
       </span>
 
 
@@ -1288,13 +1818,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
       </p>
 
+
     </section>
 
 
+    <!-- =======================================================
+         Research Projects
+         ======================================================= -->
+
     <section id="research">
 
+
       <span class="section-label">
+
         Research Projects
+
       </span>
 
 
@@ -1302,7 +1840,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         Projects led or primarily executed, 2023–2026.
         Detailed roles and contributions are available in my
-        <a href="Sun_Mingli_CV.pdf">CV</a>.
+        <a href="Sun_Mingli_CV.pdf">
+          CV
+        </a>.
 
       </p>
 
@@ -1312,6 +1852,7 @@ document.addEventListener("DOMContentLoaded", function () {
            ===================================================== -->
 
       <div class="research-item">
+
 
         <div class="research-video-block">
 
@@ -1327,8 +1868,7 @@ document.addEventListener("DOMContentLoaded", function () {
               loop
               playsinline
               webkit-playsinline
-              preload="auto"
-               
+              preload="metadata"
               aria-label="Graph-Based Generative Design of Mortise-and-Tenon Joints in Timber Structures"
             >
 
@@ -1346,87 +1886,85 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             <div class="research-video-year">
+
               2026
-            </div>
-
-
-            <div
-              class="research-video-measure"
-              id="project-01-measure"
-            >
-
-              <h3>
-
-                <a
-                  href="https://www.youtube.com/watch?v=u5Ec4ELluCE"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  aria-label="Watch project video on YouTube"
-                  title="Watch project video on YouTube"
-                >
-
-                  Graph-Based Generative Design of Mortise-and-Tenon
-                  Joints in Timber Structures
-
-                </a>
-
-              </h3>
-
-
-              <p class="subtitle">
-
-                Graph Learning · Mortise-and-Tenon Joints · Algorithm Design
-
-              </p>
-
-
-              <p class="desc">
-
-                Leveraging GNNs to capture the geometric, topological,
-                and mechanical features of mortise-and-tenon joints,
-                this project transforms the experience-based craftsmanship
-                into a digital and intelligent-driven paradigm.
-
-              </p>
-
-
-              <p class="venue">
-
-                The 8th International Conference on Computational Design
-                and Robotic Fabrication (CDRF 2026) ·
-
-                <a
-                  href="https://github.com/Mingliiiii/mingliiiii.github.io/blob/master/Graph-Based%20Generative%20Design%20of%20Mortise-and-Tenon%20Joints%20in%20Timber%20Structures.pdf"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  Accepted
-                </a>
-
-
-                <a
-                  class="youtube-link"
-                  href="https://www.youtube.com/watch?v=u5Ec4ELluCE"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  aria-label="Watch project video on YouTube"
-                  title="Watch project video on YouTube"
-                >
-
-                  <i
-                    class="fa-brands fa-youtube"
-                    aria-hidden="true"
-                  ></i>
-
-                </a>
-
-              </p>
 
             </div>
+
+
+            <h3>
+
+              <a
+                href="https://www.youtube.com/watch?v=u5Ec4ELluCE"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="Watch project video on YouTube"
+                title="Watch project video on YouTube"
+              >
+
+                Graph-Based Generative Design of Mortise-and-Tenon
+                Joints in Timber Structures
+
+              </a>
+
+            </h3>
+
+
+            <p class="subtitle">
+
+              Graph Learning · Mortise-and-Tenon Joints · Algorithm Design
+
+            </p>
+
+
+            <p class="desc">
+
+              Leveraging GNNs to capture the geometric, topological,
+              and mechanical features of mortise-and-tenon joints,
+              this project transforms the experience-based craftsmanship
+              into a digital and intelligent-driven paradigm.
+
+            </p>
+
+
+            <p class="venue">
+
+              The 8th International Conference on Computational Design
+              and Robotic Fabrication (CDRF 2026) ·
+
+              <a
+                href="https://github.com/Mingliiiii/mingliiiii.github.io/blob/master/Graph-Based%20Generative%20Design%20of%20Mortise-and-Tenon%20Joints%20in%20Timber%20Structures.pdf"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Accepted
+              </a>
+
+
+              <a
+                class="youtube-link"
+                href="https://www.youtube.com/watch?v=u5Ec4ELluCE"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="Watch project video on YouTube"
+                title="Watch project video on YouTube"
+              >
+
+                <i
+                  class="fa-brands fa-youtube"
+                  aria-hidden="true"
+                ></i>
+
+              </a>
+
+            </p>
+
 
           </div>
 
+
         </div>
+
 
       </div>
 
@@ -1436,6 +1974,7 @@ document.addEventListener("DOMContentLoaded", function () {
            ===================================================== -->
 
       <div class="research-item">
+
 
         <div class="research-video-block">
 
@@ -1451,12 +1990,9 @@ document.addEventListener("DOMContentLoaded", function () {
               loop
               playsinline
               webkit-playsinline
-              preload="auto"
+              preload="metadata"
+              class="video-zoom"
               aria-label="Generative AI Images for Early Conceptual Design"
-              style="
-                transform: scale(2.2);
-                transform-origin: center center;
-              "
             >
 
               <source
@@ -1473,70 +2009,65 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             <div class="research-video-year">
+
               2024–25
-            </div>
-
-
-            <div
-              class="research-video-measure"
-              id="project-02-measure"
-            >
-
-              <h3>
-
-                
-                  Generative AI Images for Early Conceptual Design:
-                  A Creativity Support Index (CSI) Study
-
-             
-
-              </h3>
-
-
-              <p class="subtitle">
-
-                Diffusion Models · Generative AI · Human–AI Interaction
-
-              </p>
-
-
-              <p class="desc">
-
-                This study investigates how generative AI images influence
-                early conceptual design, employing the Creativity Support
-                Index (CSI) and verbal protocol analysis to study
-                human–AI interaction.
-
-              </p>
-
-
-              <p class="venue">
-
-                <a
-                  href="https://doi.org/10.52842/conf.caadria.2025.1.049"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  CAADRIA 2025
-                </a>
-
-                &amp;
-
-                <a
-                  href="https://doi.org/10.3929/ethz-b-000728788"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  IASS 2024
-                </a>
-
-              </p>
 
             </div>
+
+
+            <h3>
+
+              Generative AI Images for Early Conceptual Design:
+              A Creativity Support Index (CSI) Study
+
+            </h3>
+
+
+            <p class="subtitle">
+
+              Diffusion Models · Generative AI · Human–AI Interaction
+
+            </p>
+
+
+            <p class="desc">
+
+              This study investigates how generative AI images influence
+              early conceptual design, employing the Creativity Support
+              Index (CSI) and verbal protocol analysis to study
+              human–AI interaction.
+
+            </p>
+
+
+            <p class="venue">
+
+              <a
+                href="https://doi.org/10.52842/conf.caadria.2025.1.049"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                CAADRIA 2025
+              </a>
+
+              &amp;
+
+              <a
+                href="https://doi.org/10.3929/ethz-b-000728788"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                IASS 2024
+              </a>
+
+            </p>
+
 
           </div>
 
+
         </div>
+
 
       </div>
 
@@ -1545,151 +2076,233 @@ document.addEventListener("DOMContentLoaded", function () {
            Project 03
            ===================================================== -->
 
-  
+      <div class="research-item">
+
+
         <div class="research-video-block">
 
-          <div class="research-video-media" id="project-03-media">
-          <video
-      autoplay
-      muted
-      loop
-      playsinline
-      webkit-playsinline
-      preload="auto"
-      aria-label="An Imitation Learning-Based Design Agent for Modular Assembly-Oriented Structures"
-      style="--video-scale: 1;"
+
+          <div
+            class="research-video-media"
+            id="project-03-media"
           >
-          <source src="p3.mp4" type="video/mp4">
-          </video>
+
+            <video
+              autoplay
+              muted
+              loop
+              playsinline
+              webkit-playsinline
+              preload="metadata"
+              aria-label="An Imitation Learning-Based Design Agent for Modular Assembly-Oriented Structures"
+            >
+
+              <source
+                src="p3.mp4"
+                type="video/mp4"
+              >
+
+            </video>
+
           </div>
 
-          <div class="research-item">
 
-      <div class="research-meta">
-      2024
+          <div class="research-video-content">
+
+
+            <div class="research-video-year">
+
+              2024
+
+            </div>
+
+
+            <h3>
+
+              An Imitation Learning-Based Design Agent for
+              Modular Assembly-Oriented Structures
+
+            </h3>
+
+
+            <p class="subtitle">
+
+              Generative Adversarial Imitation Learning (GAIL) ·
+              Proximal Policy Optimization (PPO) · Unity3D ·
+              ML-Agents · Human–AI Interaction
+
+            </p>
+
+
+            <p class="desc">
+
+              Trains an agent through Generative Adversarial Imitation
+              Learning (GAIL) and Proximal Policy Optimization (PPO)
+              in Unity3D with ML-Agents Toolkit, using human demonstration
+              trajectories to learn design reasoning strategies for
+              modular assembly-oriented structures.
+
+            </p>
+
+
+            <p class="venue">
+
+              <a
+                href="https://doi.org/10.52842/conf.caadria.2024.3.171"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                CAADRIA 2024
+              </a>
+
+            </p>
+
+
+          </div>
+
+
         </div>
 
-        <h3>
-      An Imitation Learning-Based Design Agent for
-      Modular Assembly-Oriented Structures
-        </h3>
-
-        <p class="subtitle">
-      Generative Adversarial Imitation Learning (GAIL) ·
-      Proximal Policy Optimization (PPO) · Unity3D ·
-      ML-Agents · Human–AI Interaction
-        </p>
-
-        <p class="desc">
-      Trains an agent through Generative Adversarial Imitation
-      Learning (GAIL) and Proximal Policy Optimization (PPO)
-      in Unity3D with ML-Agents Toolkit, using human demonstration
-      trajectories to learn design reasoning strategies for
-      modular assembly-oriented structures.
-        </p>
-
-        <p class="venue">
-
-         <a
-        href="https://doi.org/10.52842/conf.caadria.2024.3.171"
-        target="_blank"
-        rel="noreferrer noopener"
-         >
-        CAADRIA 2024
-         </a>
-
-        </p>
-
-        </div>
 
       </div>
 
-        
 
       <!-- =====================================================
            Project 04
            ===================================================== -->
 
-      <div class="research-video-block">
+      <div class="research-item">
 
-        <div class="research-video-media" id="project-04-media">
-          <video
-            autoplay
-            muted
-            loop
-            playsinline
-            webkit-playsinline
-            preload="auto"
-            aria-label="Intelligent Robotic System for High-Rise Building Façade Finishing"
-            style="--video-scale: 1;"
+
+        <div class="research-video-block">
+
+
+          <div
+            class="research-video-media"
+            id="project-04-media"
           >
-            <source src="p4.mp4" type="video/mp4">
-          </video>
-        </div>
 
-        <div class="research-item">
+            <video
+              autoplay
+              muted
+              loop
+              playsinline
+              webkit-playsinline
+              preload="metadata"
+              aria-label="Intelligent Robotic System for High-Rise Building Façade Finishing"
+            >
 
-          <div class="research-meta">
-      2025–26
+              <source
+                src="p4.mp4"
+                type="video/mp4"
+              >
+
+            </video>
+
           </div>
 
-          <h3>
-      Intelligent Robotic System for High-Rise Building
-      Façade Finishing
-          </h3>
 
-          <p class="subtitle">
-      Construction Robotics · Field Testing · Algorithm Design
-          </p>
+          <div class="research-video-content">
 
-          <p class="desc">
-      Contributes to the later-stage validation, parametrically
-      models operation and environment, defines evaluation metrics
-      for operational performance, and validates through field testing.
-          </p>
 
-          <p class="venue">
+            <div class="research-video-year">
 
-            <a
-        href="https://doi.org/10.3969/j.issn.1002-0454.2026.06.011"
-        target="_blank"
-        rel="noreferrer noopener"
-            >
-        Housing Science 2026(6)
-            </a>
+              2025–26
 
-          </p>
+            </div>
+
+
+            <h3>
+
+              Intelligent Robotic System for High-Rise Building
+              Façade Finishing
+
+            </h3>
+
+
+            <p class="subtitle">
+
+              Construction Robotics · Field Testing · Algorithm Design
+
+            </p>
+
+
+            <p class="desc">
+
+              Contributes to the later-stage validation, parametrically
+              models operation and environment, defines evaluation metrics
+              for operational performance, and validates through field testing.
+
+            </p>
+
+
+            <p class="venue">
+
+              <a
+                href="https://doi.org/10.3969/j.issn.1002-0454.2026.06.011"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Housing Science 2026(6)
+              </a>
+
+            </p>
+
+
+          </div>
+
 
         </div>
 
+
       </div>
+
 
     </section>
 
 
+    <!-- =======================================================
+         Publications
+         ======================================================= -->
+
     <section id="publications">
 
+
       <span class="section-label">
+
         Publications
+
       </span>
 
 
       <div class="pub-item">
 
+
         <div class="pub-year">
+
           2026
+
         </div>
+
 
         <div>
 
           <div class="pub-title">
+
             Intelligent Robotic Sanding System for Building Exterior
             Walls Integrated with Residential Building Manufacturing Machines
+
           </div>
 
+
           <div class="pub-authors">
-            <strong>Mingli Sun</strong> &amp; Hua Chai
+
+            <strong>Mingli Sun</strong>
+            &amp;
+            Hua Chai
+
           </div>
+
 
           <div class="pub-venue">
 
@@ -1707,31 +2320,43 @@ document.addEventListener("DOMContentLoaded", function () {
 
         </div>
 
+
       </div>
 
 
       <div class="pub-item">
 
+
         <div class="pub-year">
+
           2026
+
         </div>
+
 
         <div>
 
           <div class="pub-title">
+
             Graph-Based Generative Design of Mortise-and-Tenon
             Joints in Timber Structures
+
           </div>
 
+
           <div class="pub-authors">
+
             <strong>Mingli Sun</strong>,
             Ying Zhou,
             Yuancao Liu,
             Yuxuan Zhu,
             Qinhui Yang,
             Yige Liu,
-            &amp; Hua Chai
+            &amp;
+            Hua Chai
+
           </div>
+
 
           <div class="pub-venue">
 
@@ -1749,27 +2374,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
         </div>
 
+
       </div>
 
 
       <div class="pub-item">
 
+
         <div class="pub-year">
+
           2025
+
         </div>
+
 
         <div>
 
           <div class="pub-title">
+
             Text-Guided Fine-Tuning Diffusion Model Enhanced
             the Spatial Envision of Modular Structures
+
           </div>
 
+
           <div class="pub-authors">
+
             <strong>Mingli Sun</strong>,
             Jianhao Chen,
-            &amp; Kostas Terzidis
+            &amp;
+            Kostas Terzidis
+
           </div>
+
 
           <div class="pub-venue">
 
@@ -1787,27 +2424,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
         </div>
 
+
       </div>
 
 
       <div class="pub-item">
 
+
         <div class="pub-year">
+
           2024
+
         </div>
+
 
         <div>
 
           <div class="pub-title">
+
             Facilitation or Inhibition: The Influence of Generative
             Artificial Intelligence on Design Reasoning for Modular Structures
+
           </div>
 
+
           <div class="pub-authors">
+
             <strong>Mingli Sun</strong>,
             Kostas Terzidis,
-            &amp; Jianhao Chen
+            &amp;
+            Jianhao Chen
+
           </div>
+
 
           <div class="pub-venue">
 
@@ -1825,27 +2474,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
         </div>
 
+
       </div>
 
 
       <div class="pub-item">
 
+
         <div class="pub-year">
+
           2024
+
         </div>
+
 
         <div>
 
           <div class="pub-title">
+
             Co-Intelligent Design Toward Modular Structures
+
           </div>
 
+
           <div class="pub-authors">
+
             <strong>Mingli Sun</strong>,
             Peter Buš,
             Jianhao Chen,
-            &amp; Kenan Sun
+            &amp;
+            Kenan Sun
+
           </div>
+
 
           <div class="pub-venue">
 
@@ -1863,253 +2524,394 @@ document.addEventListener("DOMContentLoaded", function () {
 
         </div>
 
+
       </div>
+
 
     </section>
 
+
+    <!-- =======================================================
+         Academic Experience
+         ======================================================= -->
 
     <section id="experience">
 
+
       <span class="section-label">
+
         Academic Experience
+
       </span>
 
 
       <div class="timeline">
 
+
         <div class="timeline-item">
 
+
           <div class="timeline-date">
+
             2025–2026
+
           </div>
+
 
           <div class="timeline-content">
 
             <span class="role">
+
               Research Assistant
+
             </span>
 
+
             <span class="institution">
+
               College of Architecture and Urban Planning,
               Tongji University
+
             </span>
 
           </div>
+
 
         </div>
 
 
         <div class="timeline-item">
 
+
           <div class="timeline-date">
+
             2024–2025
+
           </div>
+
 
           <div class="timeline-content">
 
             <span class="role">
+
               Research Intern
+
             </span>
 
+
             <span class="institution">
+
               Institute of Future Human Habitats,
               Tsinghua Shenzhen International Graduate School
+
             </span>
 
           </div>
+
 
         </div>
 
 
         <div class="timeline-item">
 
+
           <div class="timeline-date">
+
             2023
+
           </div>
+
 
           <div class="timeline-content">
 
             <span class="role">
+
               Technical Instructor
+
             </span>
 
+
             <span class="institution">
+
               FabLab O Shanghai · MIT FabLab Global Network
+
             </span>
 
           </div>
 
+
         </div>
+
 
       </div>
 
+
     </section>
 
+
+    <!-- =======================================================
+         Education
+         ======================================================= -->
 
     <section id="education">
 
+
       <span class="section-label">
+
         Education
+
       </span>
 
 
       <div class="timeline">
 
+
         <div class="timeline-item">
 
+
           <div class="timeline-date">
+
             2022–2025
+
           </div>
+
 
           <div class="timeline-content">
 
             <span class="role">
+
               MFA in Arts and Design
+
             </span>
 
+
             <span class="institution">
+
               Advanced Environmental Design,
               College of Design and Innovation,
               Tongji University
+
             </span>
 
           </div>
+
 
         </div>
 
 
         <div class="timeline-item">
 
+
           <div class="timeline-date">
+
             2016–2020
+
           </div>
+
 
           <div class="timeline-content">
 
             <span class="role">
+
               BEng in Industrial Design
+
             </span>
 
+
             <span class="institution">
+
               Mechanical and Electrical Engineering School,
               Beijing Information Science &amp; Technology University
+
             </span>
 
           </div>
 
+
         </div>
 
+
       </div>
+
 
     </section>
 
 
+    <!-- =======================================================
+         Awards
+         ======================================================= -->
+
     <section id="awards">
 
+
       <span class="section-label">
+
         Honors, Awards &amp; Grants
+
       </span>
 
 
       <div class="awards-list">
 
+
         <div class="award-item">
 
+
           <div class="award-year">
+
             2025
+
           </div>
 
+
           <div class="award-name">
+
             Shanghai Outstanding Graduate Award (top 5%)
+
           </div>
 
+
           <div class="award-org">
+
             Shanghai Municipal Education Commission
+
           </div>
+
 
         </div>
 
 
         <div class="award-item">
 
+
           <div class="award-year">
+
             2024
+
           </div>
 
+
           <div class="award-name">
-            Xiangcheng High-Tech Talent Scholarship (endowed, top ~1%)
+
+            Xiangcheng High-Tech Talent Scholarship
+            (endowed, top ~1%)
+
           </div>
+
 
           <div class="award-org">
+
             Tongji University
+
           </div>
+
 
         </div>
 
 
         <div class="award-item">
 
+
           <div class="award-year">
+
             2024
+
           </div>
 
+
           <div class="award-name">
+
             International Academic Conference Travel Grant
+
           </div>
 
+
           <div class="award-org">
+
             Tongji University
+
           </div>
+
 
         </div>
 
 
         <div class="award-item">
 
+
           <div class="award-year">
+
             2023
+
           </div>
+
 
           <div class="award-name">
+
             International and Hong Kong, Macao, and Taiwan Exchange Grant
+
           </div>
 
+
           <div class="award-org">
+
             Tongji University
+
           </div>
+
 
         </div>
 
 
         <div class="award-item">
 
+
           <div class="award-year">
+
             2020
+
           </div>
+
 
           <div class="award-name">
+
             Beijing Outstanding Graduate Award (top 5%)
+
           </div>
+
 
           <div class="award-org">
+
             Beijing Municipal Education Commission
+
           </div>
 
+
         </div>
+
 
       </div>
 
+
     </section>
 
+
+    <!-- =======================================================
+         Colophon
+         ======================================================= -->
 
     <section
       class="colophon"
       id="colophon"
     >
 
+
       <span class="section-label">
+
         Colophon
+
       </span>
+
 
       <p>
 
@@ -2147,15 +2949,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
       <p>
+
         © 2026 Sun Mingli. All rights reserved.
+
       </p>
 
+
     </section>
+
 
   </main>
 
 
+  <!-- =========================================================
+       Footer
+       ========================================================= -->
+
   <footer class="site-footer">
+
 
     <a
       href="#top"
@@ -2165,46 +2976,59 @@ document.addEventListener("DOMContentLoaded", function () {
       🤸
     </a>
 
+
   </footer>
 
+
+  <!-- =========================================================
+       Theme toggle
+       ========================================================= -->
 
   <script>
 
     const toggle =
-      document.getElementById("theme-toggle");
+      document.getElementById(
+        "theme-toggle"
+      );
 
-    toggle.addEventListener("click", () => {
 
-      const html =
-        document.documentElement;
+    toggle.addEventListener(
+      "click",
+      () => {
 
-      const current =
-        html.dataset.theme;
+        const html =
+          document.documentElement;
 
-      const next =
-        current === "dark"
-          ? "light"
-          : "dark";
+        const current =
+          html.dataset.theme;
 
-      html.dataset.theme =
-        next;
+        const next =
+          current === "dark"
+            ? "light"
+            : "dark";
 
-      try {
 
-        localStorage.setItem(
-          "mingli-theme",
-          next
-        );
+        html.dataset.theme =
+          next;
 
-      } catch (_) {}
 
-    });
+        try {
+
+          localStorage.setItem(
+            "mingli-theme",
+            next
+          );
+
+        } catch (_) {}
+
+      }
+    );
 
   </script>
 
 
   <!-- =========================================================
-       视频自动播放
+       Video autoplay
        ========================================================= -->
 
   <script>
@@ -2218,20 +3042,79 @@ document.addEventListener("DOMContentLoaded", function () {
             ".research-video-media video"
           );
 
-        videos.forEach(function(video) {
 
-          video.muted = true;
-          video.playsInline = true;
+        videos.forEach(
+          function (video) {
 
-          video.play().catch(function () {
 
-            console.log(
-              "Autoplay was blocked."
+            /*
+             * Explicitly configure muted inline playback.
+             */
+
+            video.muted = true;
+
+            video.defaultMuted = true;
+
+            video.playsInline = true;
+
+
+            /*
+             * Try autoplay.
+             *
+             * Mobile browsers may still block autoplay.
+             * If that happens, the first frame remains visible
+             * and the user can start playback by tapping the video.
+             */
+
+            const tryPlay =
+              function () {
+
+                const promise =
+                  video.play();
+
+
+                if (
+                  promise !== undefined
+                ) {
+
+                  promise.catch(
+                    function () {
+
+                      /*
+                       * Autoplay blocked.
+                       * Manual playback remains available.
+                       */
+
+                    }
+                  );
+
+                }
+
+              };
+
+
+            /*
+             * Try immediately.
+             */
+
+            tryPlay();
+
+
+            /*
+             * Try again once video data becomes available.
+             */
+
+            video.addEventListener(
+              "loadeddata",
+              tryPlay,
+              {
+                once: true
+              }
             );
 
-          });
 
-        });
+          }
+        );
 
       }
     );
@@ -2239,88 +3122,186 @@ document.addEventListener("DOMContentLoaded", function () {
   </script>
 
 
+  <!-- =========================================================
+       Tap video to play / pause
+       ========================================================= -->
+
   <script>
 
-    (function() {
+    document.addEventListener(
+      "click",
+      function (e) {
+
+
+        const video =
+          e.target.closest(
+            ".research-video-media video"
+          );
+
+
+        if (!video) return;
+
+
+        if (video.paused) {
+
+          video.play().catch(
+            function () {}
+          );
+
+        } else {
+
+          video.pause();
+
+        }
+
+
+      }
+    );
+
+  </script>
+
+
+  <!-- =========================================================
+       Star cursor effect
+       ========================================================= -->
+
+  <script>
+
+    (function () {
+
 
       const SYMBOLS =
         "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         .split("");
 
+
       function random(min, max) {
-        return Math.random() * (max - min) + min;
+
+        return Math.random()
+          * (max - min)
+          + min;
+
       }
 
-      function createStar(x, y, type) {
+
+      function createStar(
+        x,
+        y,
+        type
+      ) {
+
 
         const star =
-          document.createElement("span");
+          document.createElement(
+            "span"
+          );
+
 
         star.className =
-          "star-particle star-particle--" + type;
+          "star-particle star-particle--"
+          + type;
+
 
         star.textContent =
           SYMBOLS[
             Math.floor(
-              Math.random() * SYMBOLS.length
+              Math.random()
+              * SYMBOLS.length
             )
           ];
 
+
         star.style.fontSize =
-          random(6, 26) + "px";
+          random(6, 26)
+          + "px";
+
 
         star.style.left =
           x + "px";
 
+
         star.style.top =
           y + "px";
 
+
         const angle =
-          random(0, Math.PI * 2);
+          random(
+            0,
+            Math.PI * 2
+          );
+
 
         const distance =
           type === "burst"
             ? random(40, 140)
             : random(30, 100);
 
+
         star.style.setProperty(
           "--star-x",
-          Math.cos(angle) * distance + "px"
+          Math.cos(angle)
+          * distance
+          + "px"
         );
+
 
         star.style.setProperty(
           "--star-y",
-          Math.sin(angle) * distance + "px"
+          Math.sin(angle)
+          * distance
+          + "px"
         );
+
 
         star.style.setProperty(
           "--star-r",
-          random(-180, 180) + "deg"
+          random(-180, 180)
+          + "deg"
         );
 
-        document.body.appendChild(star);
+
+        document.body.appendChild(
+          star
+        );
+
 
         star.addEventListener(
           "animationend",
-          function() {
+          function () {
+
             star.remove();
+
           }
         );
 
+
       }
 
+
       let lastX = -9999;
+
       let lastY = -9999;
 
-      function handleMove(clientX, clientY) {
+
+      function handleMove(
+        clientX,
+        clientY
+      ) {
+
 
         const dx =
           clientX - lastX;
 
+
         const dy =
           clientY - lastY;
 
-        if (dx * dx + dy * dy > 36) {
+
+        if (
+          dx * dx + dy * dy
+          > 36
+        ) {
+
 
           createStar(
             clientX,
@@ -2328,38 +3309,52 @@ document.addEventListener("DOMContentLoaded", function () {
             "trail"
           );
 
-          lastX = clientX;
-          lastY = clientY;
+
+          lastX =
+            clientX;
+
+
+          lastY =
+            clientY;
+
 
         }
 
       }
 
+
       document.addEventListener(
         "mousemove",
-        function(e) {
+        function (e) {
+
 
           handleMove(
             e.clientX,
             e.clientY
           );
 
+
         }
       );
 
+
       document.addEventListener(
         "touchmove",
-        function(e) {
+        function (e) {
+
 
           const touch =
             e.touches[0];
 
+
           if (!touch) return;
+
 
           handleMove(
             touch.clientX,
             touch.clientY
           );
+
 
         },
         {
@@ -2367,10 +3362,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       );
 
+
       function handleBurst(
         clientX,
         clientY
       ) {
+
 
         for (
           let i = 0;
@@ -2378,8 +3375,10 @@ document.addEventListener("DOMContentLoaded", function () {
           i++
         ) {
 
+
           setTimeout(
-            function() {
+            function () {
+
 
               createStar(
                 clientX,
@@ -2387,47 +3386,64 @@ document.addEventListener("DOMContentLoaded", function () {
                 "burst"
               );
 
+
             },
             i * 25
           );
+
 
         }
 
       }
 
-      if (window.PointerEvent) {
+
+      if (
+        window.PointerEvent
+      ) {
+
 
         document.addEventListener(
           "pointerdown",
-          function(e) {
+          function (e) {
+
 
             handleBurst(
               e.clientX,
               e.clientY
             );
 
+
           }
         );
+
 
       } else {
 
+
         document.addEventListener(
           "click",
-          function(e) {
+          function (e) {
+
 
             handleBurst(
               e.clientX,
               e.clientY
             );
 
+
           }
         );
 
+
       }
+
 
     })();
 
   </script>
 
+
 </body>
+
 </html>
+```
