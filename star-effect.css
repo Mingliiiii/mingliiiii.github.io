@@ -275,18 +275,21 @@
 .gallery-header h1 {
   margin: 0;
 
-  font-size:
-    clamp(
-      2.8rem,
-      8vw,
-      6.5rem
-    );
+  font-family:
+    et-book,
+    Palatino,
+    "Palatino Linotype",
+    "Book Antiqua",
+    Georgia,
+    serif;
+
+  font-size: clamp(3.5rem, 9vw, 7rem);
 
   font-weight: 400;
 
   line-height: 0.95;
 
-  letter-spacing: -0.055em;
+  letter-spacing: -0.045em;
 }
 
 
