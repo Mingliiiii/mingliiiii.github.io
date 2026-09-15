@@ -3121,43 +3121,7 @@
   </script>
 
 
-  <!-- =========================================================
-       Tap video to play / pause
-       ========================================================= -->
 
-  <script>
-
-    document.addEventListener(
-      "click",
-      function (e) {
-
-
-        const video =
-          e.target.closest(
-            ".research-video-media video"
-          );
-
-
-        if (!video) return;
-
-
-        if (video.paused) {
-
-          video.play().catch(
-            function () {}
-          );
-
-        } else {
-
-          video.pause();
-
-        }
-
-
-      }
-    );
-
-  </script>
 
 
   <!-- =========================================================
