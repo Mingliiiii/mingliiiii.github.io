@@ -1345,7 +1345,7 @@
 
         gap: 0.85rem;
 
-        align-items: start;
+        align-items: center;
 
         margin-bottom: 0.65rem;
 
@@ -3025,115 +3025,45 @@
 
   </script>
 
-
-  <!-- =========================================================
-       Video autoplay
-       ========================================================= -->
-
-  <script>
-
-    document.addEventListener(
-      "DOMContentLoaded",
-      function () {
-
-        const videos =
-          document.querySelectorAll(
-            ".research-video-media video"
-          );
-
-
-        videos.forEach(
-          function (video) {
-
-
-            /*
-             * Explicitly configure muted inline playback.
-             */
-
-            video.muted = true;
-
-            video.defaultMuted = true;
-
-            video.playsInline = true;
-
-
-            /*
-             * Try autoplay.
-             *
-             * Mobile browsers may still block autoplay.
-             * If that happens, the first frame remains visible
-             * and the user can start playback by tapping the video.
-             */
-
-            const tryPlay =
-              function () {
-
-                const promise =
-                  video.play();
-
-
-                if (
-                  promise !== undefined
-                ) {
-
-                  promise.catch(
-                    function () {
-
-                      /*
-                       * Autoplay blocked.
-                       * Manual playback remains available.
-                       */
-
-                    }
-                  );
-
-                }
-
-              };
-
-
-            /*
-             * Try immediately.
-             */
-
-            tryPlay();
-
-
-            /*
-             * Try again once video data becomes available.
-             */
-
-            video.addEventListener(
-              "loadeddata",
-              tryPlay,
-              {
-                once: true
-              }
-            );
-
-
-          }
-        );
-
-      }
-    );
-
-  </script>
+<!-- =========================================================
+     Video autoplay
+     ========================================================= -->
 
   <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".research-video-media video").forEach(function (video) {
-      video.muted = true;
-      video.defaultMuted = true;
-      video.autoplay = true;
-      video.playsInline = true;
+    document.addEventListener("DOMContentLoaded", function () {
 
-      video.play().catch(function () {
-        // Browser may block autoplay
-      });
-    });
-  });
+     const videos = document.querySelectorAll(
+       ".research-video-media video"
+     );
+
+     videos.forEach(function (video) {
+
+       video.muted = true;
+       video.defaultMuted = true;
+       video.autoplay = true;
+       video.playsInline = true;
+
+       const tryPlay = function () {
+         video.play().catch(function () {
+          // Autoplay may be blocked by the browser.
+          // No manual playback UI is added.
+         });
+       };
+
+      // Try immediately.
+       tryPlay();
+
+      // Try again when the first frame/data is ready.
+       video.addEventListener("loadeddata", tryPlay, {
+        once: true
+       });
+
+     });
+
+   });
   </script>
+  
+ 
 
 
 
