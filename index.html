@@ -1521,7 +1521,38 @@
         rgba(255, 255, 255, 0.15);
 
     }
+    /* =========================================================
+   Gallery link
+   ========================================================= */
 
+      .gallery-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 28px;
+        height: 28px;
+
+        margin-left: 0.35rem;
+
+        color: inherit;
+        text-decoration: none;
+
+        opacity: 0.7;
+
+        transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+      }
+
+      .gallery-link:hover {
+        opacity: 1;
+        transform: translateY(-1px);
+      }
+
+        .gallery-link i {
+        font-size: 0.95rem;
+      }
 
   </style>
 
@@ -1624,6 +1655,16 @@
     >
       🔦
     </button>
+    
+  <!-- Gallery -->
+    <a
+      href="gallery.html"
+      class="gallery-link"
+      aria-label="Mingli's Gallery"
+      title="Mingli's Gallery"
+    >
+      <i class="fa-regular fa-moon"></i>
+    </a>
 
   </header>
 
